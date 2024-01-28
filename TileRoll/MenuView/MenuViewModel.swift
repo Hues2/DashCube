@@ -1,7 +1,7 @@
 import Foundation
 import Combine
 
-class GameViewModel : ObservableObject {
+class MenuViewModel : ObservableObject {
     @Published private(set) var gameState : GameState = .menu
     @Published private(set) var score : Int = .zero
     
@@ -21,7 +21,7 @@ class GameViewModel : ObservableObject {
 }
 
 // MARK: - Subscribers
-private extension GameViewModel {
+private extension MenuViewModel {
     func subscribeToScore() {
         self.gameManager.$score
             .sink { [weak self] newScore in
@@ -38,5 +38,12 @@ private extension GameViewModel {
                 self.gameState = newGameState
             }
             .store(in: &cancellables)
+    }
+}
+
+// MARK: - Start Game
+extension MenuViewModel {
+    func startGame() {
+        self.gameManager.startGame()
     }
 }

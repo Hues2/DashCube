@@ -12,6 +12,8 @@ struct GameView: View {
         GeometryReader { proxy in
             VStack(alignment: .center, spacing: 5) {
                 score
+                    .opacity(viewModel.gameState == .playing ? 1 : 0)
+                
                 game(proxy)
             }
         }
@@ -25,12 +27,12 @@ private extension GameView {
             Text("score_title".localizedString)
                 .font(.largeTitle)
                 .fontWeight(.black)
-                .foregroundStyle(.black)
+                .foregroundStyle(.white)
             
             Text("\(viewModel.score)")
                 .font(.largeTitle)
                 .fontWeight(.light)
-                .foregroundStyle(.black)
+                .foregroundStyle(.white)
         }
     }
 }
@@ -40,5 +42,7 @@ private extension GameView {
     func game(_ proxy : GeometryProxy) -> some View {
         GameViewControllerWrapper(frameSize: proxy.size, gameManager: viewModel.gameManager)
             .clipShape(RoundedRectangle(cornerRadius: 12))
+            .ignoresSafeArea(edges: .bottom)
+            .disabled(viewModel.gameState != .playing)
     }
 }

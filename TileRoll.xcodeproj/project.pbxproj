@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2E78123C2B66EE4D009CEE78 /* GameState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E78123B2B66EE4D009CEE78 /* GameState.swift */; };
+		2E78123E2B66EF6F009CEE78 /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E78123D2B66EF6F009CEE78 /* MenuView.swift */; };
+		2E7812402B66EFEC009CEE78 /* MenuViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E78123F2B66EFEC009CEE78 /* MenuViewModel.swift */; };
 		2EADDD2A2B66924000D724BF /* TileRollApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EADDD292B66924000D724BF /* TileRollApp.swift */; };
 		2EADDD2C2B66924000D724BF /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EADDD2B2B66924000D724BF /* ContentView.swift */; };
 		2EADDD2E2B66924300D724BF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2EADDD2D2B66924300D724BF /* Assets.xcassets */; };
@@ -32,6 +35,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2E78123B2B66EE4D009CEE78 /* GameState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameState.swift; sourceTree = "<group>"; };
+		2E78123D2B66EF6F009CEE78 /* MenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
+		2E78123F2B66EFEC009CEE78 /* MenuViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewModel.swift; sourceTree = "<group>"; };
 		2EADDD262B66924000D724BF /* TileRoll.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TileRoll.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2EADDD292B66924000D724BF /* TileRollApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TileRollApp.swift; sourceTree = "<group>"; };
 		2EADDD2B2B66924000D724BF /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -68,6 +74,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2E78123A2B66EE42009CEE78 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				2E78123B2B66EE4D009CEE78 /* GameState.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		2EADDD1D2B66924000D724BF = {
 			isa = PBXGroup;
 			children = (
@@ -87,6 +101,7 @@
 		2EADDD282B66924000D724BF /* TileRoll */ = {
 			isa = PBXGroup;
 			children = (
+				2E78123A2B66EE42009CEE78 /* Models */,
 				2EADDD642B66D32700D724BF /* Managers */,
 				2EADDD442B66947B00D724BF /* App */,
 				2EADDD692B66D5EF00D724BF /* MainView */,
@@ -195,6 +210,8 @@
 		2EADDD6C2B66D60D00D724BF /* MenuView */ = {
 			isa = PBXGroup;
 			children = (
+				2E78123D2B66EF6F009CEE78 /* MenuView.swift */,
+				2E78123F2B66EFEC009CEE78 /* MenuViewModel.swift */,
 			);
 			path = MenuView;
 			sourceTree = "<group>";
@@ -294,8 +311,10 @@
 				2EADDD4C2B66977900D724BF /* GameViewController.swift in Sources */,
 				2EADDD5D2B6697E500D724BF /* TileNode.swift in Sources */,
 				2EADDD612B66981C00D724BF /* Utils.swift in Sources */,
+				2E7812402B66EFEC009CEE78 /* MenuViewModel.swift in Sources */,
 				2EADDD682B66D52900D724BF /* GameViewModel.swift in Sources */,
 				2EADDD662B66D33500D724BF /* GameManager.swift in Sources */,
+				2E78123E2B66EF6F009CEE78 /* MenuView.swift in Sources */,
 				2EADDD5C2B6697E500D724BF /* BallNode.swift in Sources */,
 				2EADDD632B66982E00D724BF /* Constants.swift in Sources */,
 				2EADDD492B66952600D724BF /* GameViewControllerWrapper.swift in Sources */,
@@ -306,6 +325,7 @@
 				2EADDD512B6697A900D724BF /* TileManager.swift in Sources */,
 				2EADDD472B66950B00D724BF /* GameView.swift in Sources */,
 				2EADDD2A2B66924000D724BF /* TileRollApp.swift in Sources */,
+				2E78123C2B66EE4D009CEE78 /* GameState.swift in Sources */,
 				2EADDD532B6697A900D724BF /* GameControllerManager.swift in Sources */,
 				2EADDD6F2B66D65300D724BF /* MainViewModel.swift in Sources */,
 			);
