@@ -15,7 +15,6 @@
 		2EADDD492B66952600D724BF /* GameViewControllerWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EADDD482B66952600D724BF /* GameViewControllerWrapper.swift */; };
 		2EADDD4C2B66977900D724BF /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EADDD4B2B66977900D724BF /* GameViewController.swift */; };
 		2EADDD512B6697A900D724BF /* TileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EADDD4E2B6697A900D724BF /* TileManager.swift */; };
-		2EADDD522B6697A900D724BF /* GameManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EADDD4F2B6697A900D724BF /* GameManager.swift */; };
 		2EADDD532B6697A900D724BF /* GameControllerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EADDD502B6697A900D724BF /* GameControllerManager.swift */; };
 		2EADDD562B6697C400D724BF /* TileCoordinates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EADDD552B6697C400D724BF /* TileCoordinates.swift */; };
 		2EADDD5C2B6697E500D724BF /* BallNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EADDD582B6697E500D724BF /* BallNode.swift */; };
@@ -24,6 +23,10 @@
 		2EADDD5F2B6697E500D724BF /* LightNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EADDD5B2B6697E500D724BF /* LightNode.swift */; };
 		2EADDD612B66981C00D724BF /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EADDD602B66981C00D724BF /* Utils.swift */; };
 		2EADDD632B66982E00D724BF /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EADDD622B66982E00D724BF /* Constants.swift */; };
+		2EADDD662B66D33500D724BF /* GameManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EADDD652B66D33500D724BF /* GameManager.swift */; };
+		2EADDD682B66D52900D724BF /* GameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EADDD672B66D52900D724BF /* GameViewModel.swift */; };
+		2EADDD6B2B66D60900D724BF /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EADDD6A2B66D60900D724BF /* MainView.swift */; };
+		2EADDD6F2B66D65300D724BF /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EADDD6E2B66D65300D724BF /* MainViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,7 +39,6 @@
 		2EADDD482B66952600D724BF /* GameViewControllerWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewControllerWrapper.swift; sourceTree = "<group>"; };
 		2EADDD4B2B66977900D724BF /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		2EADDD4E2B6697A900D724BF /* TileManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TileManager.swift; sourceTree = "<group>"; };
-		2EADDD4F2B6697A900D724BF /* GameManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameManager.swift; sourceTree = "<group>"; };
 		2EADDD502B6697A900D724BF /* GameControllerManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameControllerManager.swift; sourceTree = "<group>"; };
 		2EADDD552B6697C400D724BF /* TileCoordinates.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TileCoordinates.swift; sourceTree = "<group>"; };
 		2EADDD582B6697E500D724BF /* BallNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BallNode.swift; sourceTree = "<group>"; };
@@ -45,6 +47,10 @@
 		2EADDD5B2B6697E500D724BF /* LightNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LightNode.swift; sourceTree = "<group>"; };
 		2EADDD602B66981C00D724BF /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		2EADDD622B66982E00D724BF /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		2EADDD652B66D33500D724BF /* GameManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameManager.swift; sourceTree = "<group>"; };
+		2EADDD672B66D52900D724BF /* GameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewModel.swift; sourceTree = "<group>"; };
+		2EADDD6A2B66D60900D724BF /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		2EADDD6E2B66D65300D724BF /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,7 +83,10 @@
 		2EADDD282B66924000D724BF /* TileRoll */ = {
 			isa = PBXGroup;
 			children = (
+				2EADDD642B66D32700D724BF /* Managers */,
 				2EADDD442B66947B00D724BF /* App */,
+				2EADDD692B66D5EF00D724BF /* MainView */,
+				2EADDD6C2B66D60D00D724BF /* MenuView */,
 				2EADDD452B66950000D724BF /* GameView */,
 				2EADDD372B66924D00D724BF /* Game */,
 				2EADDD2D2B66924300D724BF /* Assets.xcassets */,
@@ -99,10 +108,10 @@
 		2EADDD372B66924D00D724BF /* Game */ = {
 			isa = PBXGroup;
 			children = (
+				2EADDD4A2B66976500D724BF /* GameViewController */,
 				2EADDD572B6697D300D724BF /* Nodes */,
 				2EADDD542B6697BC00D724BF /* Models */,
 				2EADDD4D2B66979D00D724BF /* Managers */,
-				2EADDD4A2B66976500D724BF /* GameViewController */,
 			);
 			name = Game;
 			path = "New Group";
@@ -122,6 +131,7 @@
 			children = (
 				2EADDD462B66950B00D724BF /* GameView.swift */,
 				2EADDD482B66952600D724BF /* GameViewControllerWrapper.swift */,
+				2EADDD672B66D52900D724BF /* GameViewModel.swift */,
 			);
 			path = GameView;
 			sourceTree = "<group>";
@@ -138,7 +148,6 @@
 			isa = PBXGroup;
 			children = (
 				2EADDD502B6697A900D724BF /* GameControllerManager.swift */,
-				2EADDD4F2B6697A900D724BF /* GameManager.swift */,
 				2EADDD4E2B6697A900D724BF /* TileManager.swift */,
 			);
 			path = Managers;
@@ -161,6 +170,30 @@
 				2EADDD592B6697E500D724BF /* TileNode.swift */,
 			);
 			path = Nodes;
+			sourceTree = "<group>";
+		};
+		2EADDD642B66D32700D724BF /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				2EADDD652B66D33500D724BF /* GameManager.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		2EADDD692B66D5EF00D724BF /* MainView */ = {
+			isa = PBXGroup;
+			children = (
+				2EADDD6A2B66D60900D724BF /* MainView.swift */,
+				2EADDD6E2B66D65300D724BF /* MainViewModel.swift */,
+			);
+			path = MainView;
+			sourceTree = "<group>";
+		};
+		2EADDD6C2B66D60D00D724BF /* MenuView */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = MenuView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -237,17 +270,20 @@
 				2EADDD4C2B66977900D724BF /* GameViewController.swift in Sources */,
 				2EADDD5D2B6697E500D724BF /* TileNode.swift in Sources */,
 				2EADDD612B66981C00D724BF /* Utils.swift in Sources */,
+				2EADDD682B66D52900D724BF /* GameViewModel.swift in Sources */,
+				2EADDD662B66D33500D724BF /* GameManager.swift in Sources */,
 				2EADDD5C2B6697E500D724BF /* BallNode.swift in Sources */,
 				2EADDD632B66982E00D724BF /* Constants.swift in Sources */,
 				2EADDD492B66952600D724BF /* GameViewControllerWrapper.swift in Sources */,
 				2EADDD5F2B6697E500D724BF /* LightNode.swift in Sources */,
 				2EADDD2C2B66924000D724BF /* ContentView.swift in Sources */,
+				2EADDD6B2B66D60900D724BF /* MainView.swift in Sources */,
 				2EADDD5E2B6697E500D724BF /* CameraNode.swift in Sources */,
-				2EADDD522B6697A900D724BF /* GameManager.swift in Sources */,
 				2EADDD512B6697A900D724BF /* TileManager.swift in Sources */,
 				2EADDD472B66950B00D724BF /* GameView.swift in Sources */,
 				2EADDD2A2B66924000D724BF /* TileRollApp.swift in Sources */,
 				2EADDD532B6697A900D724BF /* GameControllerManager.swift in Sources */,
+				2EADDD6F2B66D65300D724BF /* MainViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

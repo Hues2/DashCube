@@ -1,8 +1,8 @@
 import Foundation
-import SceneKit
+import Combine
 
 class GameManager {
-    var score : Int = 0
+    @Published private(set) var score : Int = 0
 }
 
 extension GameManager {

@@ -3,29 +3,38 @@ import QuartzCore
 import SceneKit
 
 class GameViewController: UIViewController {
+    // Size of the scene view
+    private var viewSize : CGSize = .zero
     // Scene View
-    var sceneView : SCNView!
+    private var sceneView : SCNView!
     // Scene
-    var scene : SCNScene!
+    private var scene : SCNScene!
     // Game Manager
-    var gameManager : GameManager!
+    private var gameManager : GameManager!
     // Game Manager
-    var tileManager : TileManager!
+    private var tileManager : TileManager!
     // Game Controller Manager;
-    var gameControllerManager : GameControllerManager!
+    private var gameControllerManager : GameControllerManager!
     // Camera
-    var cameraNode : CameraNode!
+    private var cameraNode : CameraNode!
     // Ball node
-    var ballNode : BallNode!
+    private var ballNode : BallNode!
     private var previousBallY : Float = 12
     
-    override func viewDidLoad() {
+    func setSize(_ size : CGSize) {
+        self.viewSize = size
+        setup()
+    }
+    
+    private func setup() {
         setUpScene()
         setUpGameManager()
         setUpTileManager()
         setUpCamera()
         setUpBall()
         setUpGameControllerManager()
+        self.view.backgroundColor = .clear
+        self.sceneView.backgroundColor = .clear
     }
 }
 
@@ -74,7 +83,7 @@ private extension GameViewController {
 // MARK: - Scene & View Setup
 extension GameViewController {
     func setUpScene() {
-        sceneView = SCNView(frame: view.bounds)
+        sceneView = SCNView(frame: CGRect(origin: .zero, size: viewSize))
         view.addSubview(sceneView)
         sceneView.delegate = self
         sceneView.debugOptions = [.showPhysicsShapes, .showPhysicsFields]
@@ -95,7 +104,7 @@ extension GameViewController {
         gradientLayer.startPoint = CGPoint(x: 0.5, y: 0)
         gradientLayer.endPoint = CGPoint(x: 0.5, y: 1)
         
-        scene.background.contents = gradientLayer
+//        scene.background.contents = gradientLayer
     }
 }
 

@@ -1,15 +1,10 @@
 import SwiftUI
 
 struct ContentView: View {
+    // Instantiate manager dependencies
+    private let gameManager = GameManager()
+    
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
-            
-            GameView()
-        }
-        .padding()
+        MainView(gameManager: gameManager)
     }
 }
