@@ -20,6 +20,13 @@ class GameViewController: UIViewController {
     // Ball node
     private var ballNode : BallNode!
     private var previousBallY : Float = 12
+}
+
+// MARK: - VC Setup
+extension GameViewController {
+    func injectDependencies(gameManager : GameManager) {
+        self.gameManager = gameManager
+    }
     
     func setSize(_ size : CGSize) {
         self.viewSize = size
@@ -28,7 +35,6 @@ class GameViewController: UIViewController {
     
     private func setup() {
         setUpScene()
-        setUpGameManager()
         setUpTileManager()
         setUpCamera()
         setUpBall()
@@ -61,13 +67,6 @@ private extension GameViewController {
 
 // MARK: - Game Controller Manager Setup
 private extension GameViewController {
-    func setUpGameManager() {
-        self.gameManager = GameManager()
-    }
-}
-
-// MARK: - Game Controller Manager Setup
-private extension GameViewController {
     func setUpGameControllerManager() {
         self.gameControllerManager = GameControllerManager(sceneView: self.sceneView, ballNode: self.ballNode)
     }
@@ -90,21 +89,6 @@ extension GameViewController {
         scene = SCNScene()
         sceneView.scene = scene
         scene.physicsWorld.contactDelegate = self
-        setSceneBackground()
-    }
-    
-    func setSceneBackground() {
-        let gradientLayer = CAGradientLayer()
-        gradientLayer.frame = view.bounds
-        
-        let startColor = UIColor(red: 1.0, green: 0.71, blue: 0.756, alpha: 1).cgColor // Pastel Pink
-        let endColor = UIColor(red: 0.686, green: 0.933, blue: 0.933, alpha: 1).cgColor // Pastel Blue
-        
-        gradientLayer.colors = [startColor, endColor]
-        gradientLayer.startPoint = CGPoint(x: 0.5, y: 0)
-        gradientLayer.endPoint = CGPoint(x: 0.5, y: 1)
-        
-//        scene.background.contents = gradientLayer
     }
 }
 

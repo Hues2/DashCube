@@ -7,6 +7,8 @@ class GameManager {
 
 extension GameManager {
     func addPoint() {
-        self.score += 1
+        DispatchQueue.main.async {
+            self.score += 1
+        }
     }
 }
