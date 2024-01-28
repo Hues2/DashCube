@@ -21,11 +21,10 @@ class BallNode: SCNNode {
 private extension BallNode {
     private func setUpTile() {
         // Create a sphere geometry
-        let sphereGeometry = SCNSphere(radius: 0.5)
+        let sphereGeometry = SCNSphere(radius: Constants.ballSize)
         
         // Create a material for the sphere
         let material = SCNMaterial()
-//        material.lightingModel = .physicallyBased
         material.diffuse.contents = UIColor.white
         
         // Apply the material to the sphere
@@ -70,8 +69,8 @@ extension BallNode {
         moveDownAction.timingMode = .easeIn
         let jumpAction = SCNAction.sequence([moveUpAction, moveDownAction])
         
-        let moveRightAction = SCNAction.moveBy(x: 2, y: -2, z: 0, duration: 0.2)
-        let moveLeftAction = SCNAction.moveBy(x: 0, y: -2, z: 2, duration: 0.2)
+        let moveRightAction = SCNAction.moveBy(x: 4, y: -2, z: 0, duration: 0.2)
+        let moveLeftAction = SCNAction.moveBy(x: 0, y: -2, z: 4, duration: 0.2)
         
         self.jumpRightAction = SCNAction.group([jumpAction, moveRightAction])
         self.jumpLeftAction = SCNAction.group([jumpAction, moveLeftAction])

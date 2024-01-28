@@ -34,12 +34,12 @@ extension TileManager {
     private func setTilePosition(_ tileNode : TileNode) {
         tileNode.position = SCNVector3(tileCoordinates.xPosition, tileCoordinates.yPosition, tileCoordinates.zPosition)
         tileCoordinates.yPosition -= 2 // Next block should always be place below current block
-        tileCoordinates.xPosition = tileNode.tilePosition == .right ? (tileCoordinates.xPosition + 2) : tileCoordinates.xPosition
-        tileCoordinates.zPosition = tileNode.tilePosition == .right ? tileCoordinates.zPosition : (tileCoordinates.zPosition + 2)
+        tileCoordinates.xPosition = tileNode.tilePosition == .right ? (tileCoordinates.xPosition + 4) : tileCoordinates.xPosition
+        tileCoordinates.zPosition = tileNode.tilePosition == .right ? tileCoordinates.zPosition : (tileCoordinates.zPosition + 4)
     }
     
     private func removeTileNode(_ tileNode : TileNode) {
-        if self.tileNodes.count > 15 {
+        if self.tileNodes.count > Constants.maxNumberOfTiles {
             tileNode.removeFromParentNode()
             tileNodes.removeFirst()
         }
@@ -49,7 +49,7 @@ extension TileManager {
 // MARK: - Set up initial tile nodes
 private extension TileManager {
     private func setUpInitialTileNodes() {
-        for _ in 0...9 {
+        for _ in Constants.rangeOfInitialNodes {
             addTileNode()
         }
     }

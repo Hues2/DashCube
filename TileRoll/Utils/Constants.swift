@@ -2,6 +2,12 @@ import Foundation
 import SwiftUI
 
 class Constants {
+    static let rangeOfInitialNodes : ClosedRange<Int> = 0...7
+    static let maxNumberOfTiles : Int = 16
+    static let tileSize : Double = 2.0
+    static let ballSize : Double = 1.0
+    
+    // Physics
     static let tileNodeName = "tile"
     static let ballNodeName = "ball"
     static let ballCategoryBitMask = 1

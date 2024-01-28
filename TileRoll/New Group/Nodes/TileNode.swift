@@ -19,7 +19,10 @@ class TileNode: SCNNode, Identifiable {
     
     private func setUpTile() {
         // Create a box geometry
-        let boxGeometry = SCNBox(width: 1.0, height: 1.0, length: 1.0, chamferRadius: 0.0)
+        let boxGeometry = SCNBox(width: Constants.tileSize,
+                                 height: Constants.tileSize,
+                                 length: Constants.tileSize,
+                                 chamferRadius: 0.0)
         
         // Create a material for the box
         let material = SCNMaterial()
