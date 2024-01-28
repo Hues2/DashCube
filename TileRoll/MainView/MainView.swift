@@ -8,13 +8,11 @@ struct MainView: View {
     }
     
     var body: some View {
-        VStack {
-            ZStack {
-                GameView(gameManager: viewModel.gameManager)
-                
-                if viewModel.gameState == .menu {
-                    MenuView(gameManager: viewModel.gameManager)
-                }
+        ZStack(alignment: .top) {
+            GameView(gameManager: viewModel.gameManager)
+            
+            if viewModel.gameState == .menu {
+                MenuView(gameManager: viewModel.gameManager)
             }
         }
         .background(backgroundGradient)

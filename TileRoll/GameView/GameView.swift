@@ -41,7 +41,6 @@ private extension GameView {
 private extension GameView {
     func game(_ proxy : GeometryProxy) -> some View {
         GameViewControllerWrapper(frameSize: proxy.size, gameManager: viewModel.gameManager)
-            .clipShape(RoundedRectangle(cornerRadius: 12))
             .ignoresSafeArea(edges: .bottom)
             .disabled(viewModel.gameState != .playing)
     }

@@ -3,3 +3,6 @@
 
 // Game View
 "score_title" = "Score:";
+
+// Menu View
+"tap_to_start" = "TAP TO START";
