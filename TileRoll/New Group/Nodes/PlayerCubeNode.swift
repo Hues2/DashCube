@@ -2,9 +2,9 @@ import SceneKit
 
 class PlayerCubeNode: SCNNode {
     // Actions
-    var jumpRightAction : SCNAction!
-    var jumpLeftAction : SCNAction!
-    let initialRotation = SCNVector4(x: 0, y: 0, z: 0, w: 0)
+    private var jumpRightAction : SCNAction!
+    private var jumpLeftAction : SCNAction!
+    private let initialRotation = SCNVector4(x: 0, y: 0, z: 0, w: 0)
     
     override init() {
         super.init()

@@ -3,11 +3,11 @@ import SceneKit
 
 class TileManager {
     // Scene
-    let scene : SCNScene
+    private let scene : SCNScene
     
     // Tiles
-    var tileNodes : [TileNode] = []
-    var tileCoordinates = TileCoordinates()
+    private var tileNodes : [TileNode] = []
+    private var tileCoordinates = TileCoordinates()
     
     init(scene : SCNScene) {
         self.scene = scene

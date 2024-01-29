@@ -1,8 +1,8 @@
 import SceneKit
 
 class GameControllerManager {
-    let sceneView : SCNView
-    let playerCube : PlayerCubeNode
+    private let sceneView : SCNView
+    private let playerCube : PlayerCubeNode
     
     init(sceneView: SCNView, playerCube : PlayerCubeNode) {
         self.sceneView = sceneView
