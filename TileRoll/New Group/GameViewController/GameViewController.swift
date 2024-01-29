@@ -17,10 +17,7 @@ class GameViewController: UIViewController {
     private var gameControllerManager : GameControllerManager!
     // Camera
     private var cameraNode : CameraNode!
-    // Ball node
-    private var ballNode : BallNode!
-    private var previousBallY : Float = 12
-    
+    // Player node
     private var playerCube : PlayerCubeNode!
     private var previousPlayerY : Float = 12
 }
@@ -40,7 +37,6 @@ extension GameViewController {
         setUpScene()
         setUpTileManager()
         setUpCamera()
-        setUpBall()
         setUpPlayerCube()
         setUpGameControllerManager()
         self.view.backgroundColor = .clear
@@ -48,17 +44,8 @@ extension GameViewController {
     }
 }
 
-// MARK: - Tile Setup
+// MARK: - Player Setup
 private extension GameViewController {
-    func setUpBall() {
-        let ballXPosition = 0
-        let ballYPosition = 11
-        let ballZPosition = 0
-        self.ballNode = BallNode()
-        ballNode.position = SCNVector3(ballXPosition, ballYPosition, ballZPosition)
-//        Utils.addNodeToScene(scene, ballNode)
-    }
-    
     func setUpPlayerCube() {
         let cubeXPosition = 0
         let cubeYPosition = 11
@@ -81,7 +68,7 @@ private extension GameViewController {
 // MARK: - Game Controller Manager Setup
 private extension GameViewController {
     func setUpGameControllerManager() {
-        self.gameControllerManager = GameControllerManager(sceneView: self.sceneView, ballNode: self.ballNode, playerCube: playerCube)
+        self.gameControllerManager = GameControllerManager(sceneView: self.sceneView, playerCube: playerCube)
     }
 }
 
@@ -116,10 +103,6 @@ extension GameViewController : SCNPhysicsContactDelegate {
             self.gameManager.addPoint()
         }
         
-        // Stop the ball
-        self.ballNode.physicsBody?.velocity = SCNVector3Zero
-        self.ballNode.physicsBody?.angularVelocity = SCNVector4Zero
-        
         // Stop the player cube
         self.playerCube.physicsBody?.velocity = SCNVector3Zero
         self.playerCube.physicsBody?.angularVelocity = SCNVector4Zero
@@ -134,13 +117,6 @@ extension GameViewController : SCNSceneRendererDelegate {
     
 //    MARK: - Update Camera & Light Positions
     private func updatePositions() {
-        if ballNode.position.y != previousBallY {
-            let x = ballNode.position.x + self.cameraNode.initialPosition.x
-            let y = self.cameraNode.initialPosition.y - (previousBallY - ballNode.position.y)
-            let z = ballNode.position.z + self.cameraNode.initialPosition.z
-            cameraNode.position = SCNVector3(x, y, z)
-        }
-        
         if playerCube.position.y != previousPlayerY {
             let x = playerCube.position.x + self.cameraNode.initialPosition.x
             let y = self.cameraNode.initialPosition.y - (previousPlayerY - playerCube.position.y)

@@ -2,12 +2,10 @@ import SceneKit
 
 class GameControllerManager {
     let sceneView : SCNView
-    let ballNode : BallNode
     let playerCube : PlayerCubeNode
     
-    init(sceneView: SCNView, ballNode : BallNode, playerCube : PlayerCubeNode) {
+    init(sceneView: SCNView, playerCube : PlayerCubeNode) {
         self.sceneView = sceneView
-        self.ballNode = ballNode
         self.playerCube = playerCube
         addSwipeGestureRecognizer()
     }
@@ -24,9 +22,6 @@ class GameControllerManager {
     @objc func handleSwipe(_ gesture: UISwipeGestureRecognizer) {
         guard gesture.state == .ended else { return }
         self.enableSwipeGestureRecognizers(false)
-        self.ballNode.move(gesture.direction) {
-            self.enableSwipeGestureRecognizers(true)
-        }
         self.playerCube.move(gesture.direction) {
             self.enableSwipeGestureRecognizers(true)
         }

@@ -109,9 +109,9 @@ private extension PlayerCubeNode {
     func moveAction(_ duration : Double, _ direction : UISwipeGestureRecognizer.Direction) -> SCNAction {
         switch direction {
         case .right:
-            return SCNAction.moveBy(x: 4, y: -1, z: 0, duration: duration)
+            return SCNAction.moveBy(x: 4, y: -2, z: 0, duration: duration)
         case .left:
-            return SCNAction.moveBy(x: 0, y: -1, z: 4, duration: duration)
+            return SCNAction.moveBy(x: 0, y: -2, z: 4, duration: duration)
         default:
             return SCNAction()
         }
