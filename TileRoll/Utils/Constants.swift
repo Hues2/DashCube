@@ -7,6 +7,9 @@ class Constants {
     static let tileSize : Double = 2.0
     static let ballSize : Double = 1.0
     
+    // Animation
+    static let playerMovementAnimationDuration : Double = 0.1
+    
     // Physics
     static let tileNodeName = "tile"
     static let ballNodeName = "ball"

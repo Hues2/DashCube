@@ -44,5 +44,6 @@ class TileNode: SCNNode, Identifiable {
         self.physicsBody?.collisionBitMask = Constants.ballCategoryBitMask
         self.physicsBody?.contactTestBitMask = Constants.ballCategoryBitMask
         self.physicsBody?.isAffectedByGravity = false
+        self.physicsBody?.friction = 1
     }
 }
