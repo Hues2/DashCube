@@ -5,7 +5,7 @@ class PlayerCubeNode: SCNNode {
     private var jumpRightAction : SCNAction!
     private var jumpLeftAction : SCNAction!
     private let initialRotation = SCNVector4(x: 0, y: 0, z: 0, w: 0)
-    let initialPlayerY : Float = 12
+    let initialPlayerPosition : SCNVector3 = SCNVector3(0, 12, 0)
     
     override init() {
         super.init()
@@ -38,6 +38,8 @@ private extension PlayerCubeNode {
         // Create a node with the box geometry
         self.geometry = boxGeometry
         
+        // Set the position of the player cube
+        self.position = initialPlayerPosition
         setUpPhysicsBody()
     }
     

@@ -7,7 +7,7 @@ struct GameViewControllerWrapper: UIViewControllerRepresentable {
     let gameVC = GameViewController()
     
     func makeUIViewController(context: Context) -> GameViewController {
-        gameVC.setSize(frameSize)
+        gameVC.setUp(frameSize)
         gameVC.injectDependencies(gameManager: gameManager)
         return gameVC
     }

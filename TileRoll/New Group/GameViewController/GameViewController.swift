@@ -1,6 +1,7 @@
 import UIKit
 import QuartzCore
 import SceneKit
+import Combine
 
 class GameViewController: UIViewController {
     // Size of the scene view
@@ -18,21 +19,15 @@ class GameViewController: UIViewController {
     // Camera
     private var cameraNode : CameraNode!
     // Player node
-    private var playerCube : PlayerCubeNode!    
+    private var playerCube : PlayerCubeNode!  
+    // Cancellables
+    private var cancellables = Set<AnyCancellable>()
 }
 
 // MARK: - VC Setup
 extension GameViewController {
-    func injectDependencies(gameManager : GameManager) {
-        self.gameManager = gameManager
-    }
-    
-    func setSize(_ size : CGSize) {
+    func setUp(_ size : CGSize) {
         self.viewSize = size
-        setup()
-    }
-    
-    private func setup() {
         setUpScene()
         setUpTileManager()
         setUpCamera()
@@ -41,16 +36,33 @@ extension GameViewController {
         self.view.backgroundColor = .clear
         self.sceneView.backgroundColor = .clear
     }
+    
+    func injectDependencies(gameManager : GameManager) {
+        self.gameManager = gameManager
+        self.addSubscriptions()
+    }
+}
+
+// MARK: - Subscriptions
+private extension GameViewController {
+    private func addSubscriptions() {
+        self.subscribeToGameState()
+    }
+    
+    private func subscribeToGameState() {
+        self.gameManager.$gameState
+            .sink { [weak self] newGameState in
+                guard let self else { return }
+                self.playerCube.position = self.playerCube.initialPlayerPosition
+            }
+            .store(in: &cancellables)
+    }
 }
 
 // MARK: - Player Setup
 private extension GameViewController {
-    func setUpPlayerCube() {
-        let cubeXPosition = 0
-        let cubeYPosition = 11
-        let cubeZPosition = 0
-        self.playerCube = PlayerCubeNode()
-        playerCube.position = SCNVector3(cubeXPosition, cubeYPosition, cubeZPosition)
+    func setUpPlayerCube() {        
+        self.playerCube = PlayerCubeNode()        
         Utils.addNodeToScene(scene, playerCube)
     }
 }
@@ -95,10 +107,10 @@ extension GameViewController {
 extension GameViewController : SCNPhysicsContactDelegate {
     func physicsWorld(_ world: SCNPhysicsWorld, didBegin contact: SCNPhysicsContact) {
         let tileNode = (contact.nodeA.name == Constants.tileNodeName ? contact.nodeA : contact.nodeB) as? TileNode
-        let deadZoneNode = (contact.nodeA.name == Constants.tileNodeName ? contact.nodeA : contact.nodeB) as? DeadZoneNode
+        let deadZoneNode = (contact.nodeA.name == Constants.deadZoneNodeName ? contact.nodeA : contact.nodeB) as? DeadZoneNode
         
         // If there is contact with the dead zone then game over
-        if let deadZoneNode {
+        if deadZoneNode != nil {
             self.gameManager.endGame()
             return
         }
@@ -123,9 +135,9 @@ extension GameViewController : SCNSceneRendererDelegate {
     
 //    MARK: - Update Camera & Light Positions
     private func updatePositions() {
-        if playerCube.position.y != playerCube.initialPlayerY {
+        if playerCube.position.y != playerCube.initialPlayerPosition.y {
             let x = playerCube.position.x + self.cameraNode.initialPosition.x
-            let y = self.cameraNode.initialPosition.y - (playerCube.initialPlayerY - playerCube.position.y)
+            let y = self.cameraNode.initialPosition.y - (playerCube.initialPlayerPosition.y - playerCube.position.y)
             let z = playerCube.position.z + self.cameraNode.initialPosition.z
             cameraNode.position = SCNVector3(x, y, z)
         }
