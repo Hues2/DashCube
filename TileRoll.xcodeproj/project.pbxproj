@@ -10,6 +10,7 @@
 		2E78123C2B66EE4D009CEE78 /* GameState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E78123B2B66EE4D009CEE78 /* GameState.swift */; };
 		2E78123E2B66EF6F009CEE78 /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E78123D2B66EF6F009CEE78 /* MenuView.swift */; };
 		2E7812402B66EFEC009CEE78 /* MenuViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E78123F2B66EFEC009CEE78 /* MenuViewModel.swift */; };
+		2E9ACA872B699D3D0090245B /* DeadZoneNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9ACA862B699D3D0090245B /* DeadZoneNode.swift */; };
 		2EA341C42B68592D0046DE5A /* PlayerCubeNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EA341C32B68592C0046DE5A /* PlayerCubeNode.swift */; };
 		2EADDD2A2B66924000D724BF /* TileRollApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EADDD292B66924000D724BF /* TileRollApp.swift */; };
 		2EADDD2C2B66924000D724BF /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EADDD2B2B66924000D724BF /* ContentView.swift */; };
@@ -39,6 +40,7 @@
 		2E78123B2B66EE4D009CEE78 /* GameState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameState.swift; sourceTree = "<group>"; };
 		2E78123D2B66EF6F009CEE78 /* MenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
 		2E78123F2B66EFEC009CEE78 /* MenuViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewModel.swift; sourceTree = "<group>"; };
+		2E9ACA862B699D3D0090245B /* DeadZoneNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeadZoneNode.swift; sourceTree = "<group>"; };
 		2EA341C32B68592C0046DE5A /* PlayerCubeNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerCubeNode.swift; sourceTree = "<group>"; };
 		2EADDD262B66924000D724BF /* TileRoll.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TileRoll.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2EADDD292B66924000D724BF /* TileRollApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TileRollApp.swift; sourceTree = "<group>"; };
@@ -187,8 +189,9 @@
 				2EADDD582B6697E500D724BF /* BallNode.swift */,
 				2EADDD5A2B6697E500D724BF /* CameraNode.swift */,
 				2EADDD5B2B6697E500D724BF /* LightNode.swift */,
-				2EADDD592B6697E500D724BF /* TileNode.swift */,
 				2EA341C32B68592C0046DE5A /* PlayerCubeNode.swift */,
+				2EADDD592B6697E500D724BF /* TileNode.swift */,
+				2E9ACA862B699D3D0090245B /* DeadZoneNode.swift */,
 			);
 			path = Nodes;
 			sourceTree = "<group>";
@@ -322,6 +325,7 @@
 				2EADDD5C2B6697E500D724BF /* BallNode.swift in Sources */,
 				2EADDD632B66982E00D724BF /* Constants.swift in Sources */,
 				2EADDD492B66952600D724BF /* GameViewControllerWrapper.swift in Sources */,
+				2E9ACA872B699D3D0090245B /* DeadZoneNode.swift in Sources */,
 				2EADDD5F2B6697E500D724BF /* LightNode.swift in Sources */,
 				2EADDD2C2B66924000D724BF /* ContentView.swift in Sources */,
 				2EADDD6B2B66D60900D724BF /* MainView.swift in Sources */,

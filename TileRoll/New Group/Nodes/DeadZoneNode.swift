@@ -1,33 +1,27 @@
 import SceneKit
 
-class TileNode: SCNNode, Identifiable {
-    let id = UUID()
-    var contactHandled : Bool = false
-    let tilePosition : TilePosition
-    var collidedWith : Bool = false
+class DeadZoneNode: SCNNode {
     
-    init(tilePosition : TilePosition) {
-        self.tilePosition = tilePosition
+    override init() {
         super.init()
-        self.name = Constants.tileNodeName
-        setUpTile()
-        addDeadZone()
+        self.name = Constants.deadZoneNodeName
+        setUpPlatform()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func setUpTile() {
+    private func setUpPlatform() {
         // Create a box geometry
-        let boxGeometry = SCNBox(width: Constants.tileSize,
-                                 height: Constants.tileSize,
-                                 length: Constants.tileSize,
+        let boxGeometry = SCNBox(width: Constants.deadZoneSize,
+                                 height: Constants.deadZoneSize / 6,
+                                 length: Constants.deadZoneSize,
                                  chamferRadius: 0.0)
         
         // Create a material for the box
         let material = SCNMaterial()
-        material.diffuse.contents = UIColor.black
+        material.diffuse.contents = UIColor.red
         
         // Apply the material to the box
         boxGeometry.materials = [material]
@@ -41,17 +35,10 @@ class TileNode: SCNNode, Identifiable {
     private func setUpPhysicsBody() {
         guard let geometry else { return }
         self.physicsBody = SCNPhysicsBody(type: .kinematic, shape: SCNPhysicsShape(geometry: geometry))
-        self.physicsBody?.categoryBitMask = Constants.tileCategoryBitMask
+        self.physicsBody?.categoryBitMask = Constants.deadZoneCategoryBitMask
         self.physicsBody?.collisionBitMask = Constants.ballCategoryBitMask
         self.physicsBody?.contactTestBitMask = Constants.ballCategoryBitMask
         self.physicsBody?.isAffectedByGravity = false
         self.physicsBody?.friction = 1
-    }
-    
-    private func addDeadZone() {
-        let deadZone = DeadZoneNode()
-        deadZone.position = self.position
-        deadZone.position.y = self.position.y - 4
-        self.addChildNode(deadZone)
     }
 }

@@ -18,7 +18,15 @@ extension GameManager {
 // MARK: - Start/End Game
 extension GameManager {
     func startGame() {
-        self.score = 0
-        self.gameState = .playing
+        DispatchQueue.main.async {
+            self.score = 0
+            self.gameState = .playing
+        }
+    }
+    
+    func endGame() {
+        DispatchQueue.main.async {
+            self.gameState = .over
+        }
     }
 }

@@ -95,6 +95,13 @@ extension GameViewController {
 extension GameViewController : SCNPhysicsContactDelegate {
     func physicsWorld(_ world: SCNPhysicsWorld, didBegin contact: SCNPhysicsContact) {
         let tileNode = (contact.nodeA.name == Constants.tileNodeName ? contact.nodeA : contact.nodeB) as? TileNode
+        let deadZoneNode = (contact.nodeA.name == Constants.tileNodeName ? contact.nodeA : contact.nodeB) as? DeadZoneNode
+        
+        // If there is contact with the dead zone then game over
+        if let deadZoneNode {
+            self.gameManager.endGame()
+            return
+        }
         
         if let tileNode, !tileNode.contactHandled {
             tileNode.contactHandled = true

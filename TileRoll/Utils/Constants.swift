@@ -6,6 +6,7 @@ class Constants {
     static let maxNumberOfTiles : Int = 16
     static let tileSize : Double = 2.0
     static let ballSize : Double = 1.0
+    static let deadZoneSize : Double = 8.0
     
     // Animation
     static let playerMovementAnimationDuration : Double = 0.1
@@ -13,8 +14,10 @@ class Constants {
     // Physics
     static let tileNodeName = "tile"
     static let ballNodeName = "ball"
+    static let deadZoneNodeName = "deadZone"
     static let ballCategoryBitMask = 1
     static let tileCategoryBitMask = 2
+    static let deadZoneCategoryBitMask = 2
     
     // Colours
     struct Colour {
