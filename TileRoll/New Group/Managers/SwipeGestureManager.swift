@@ -1,6 +1,6 @@
 import SceneKit
 
-class GameControllerManager {
+class SwipeGestureManager {
     private let sceneView : SCNView
     private let playerCube : PlayerCubeNode
     

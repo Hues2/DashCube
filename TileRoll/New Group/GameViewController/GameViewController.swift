@@ -14,12 +14,11 @@ class GameViewController: UIViewController {
     // Game Manager
     private var tileManager : TileManager!
     // Game Controller Manager;
-    private var gameControllerManager : GameControllerManager!
+    private var swipeGestureManager : SwipeGestureManager!
     // Camera
     private var cameraNode : CameraNode!
     // Player node
-    private var playerCube : PlayerCubeNode!
-    private var previousPlayerY : Float = 12
+    private var playerCube : PlayerCubeNode!    
 }
 
 // MARK: - VC Setup
@@ -38,7 +37,7 @@ extension GameViewController {
         setUpTileManager()
         setUpCamera()
         setUpPlayerCube()
-        setUpGameControllerManager()
+        setUpSwipeGestureManager()
         self.view.backgroundColor = .clear
         self.sceneView.backgroundColor = .clear
     }
@@ -67,8 +66,8 @@ private extension GameViewController {
 
 // MARK: - Game Controller Manager Setup
 private extension GameViewController {
-    func setUpGameControllerManager() {
-        self.gameControllerManager = GameControllerManager(sceneView: self.sceneView, playerCube: playerCube)
+    func setUpSwipeGestureManager() {
+        self.swipeGestureManager = SwipeGestureManager(sceneView: self.sceneView, playerCube: playerCube)
     }
 }
 
@@ -117,9 +116,9 @@ extension GameViewController : SCNSceneRendererDelegate {
     
 //    MARK: - Update Camera & Light Positions
     private func updatePositions() {
-        if playerCube.position.y != previousPlayerY {
+        if playerCube.position.y != playerCube.initialPlayerY {
             let x = playerCube.position.x + self.cameraNode.initialPosition.x
-            let y = self.cameraNode.initialPosition.y - (previousPlayerY - playerCube.position.y)
+            let y = self.cameraNode.initialPosition.y - (playerCube.initialPlayerY - playerCube.position.y)
             let z = playerCube.position.z + self.cameraNode.initialPosition.z
             cameraNode.position = SCNVector3(x, y, z)
         }

@@ -19,7 +19,7 @@
 		2EADDD492B66952600D724BF /* GameViewControllerWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EADDD482B66952600D724BF /* GameViewControllerWrapper.swift */; };
 		2EADDD4C2B66977900D724BF /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EADDD4B2B66977900D724BF /* GameViewController.swift */; };
 		2EADDD512B6697A900D724BF /* TileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EADDD4E2B6697A900D724BF /* TileManager.swift */; };
-		2EADDD532B6697A900D724BF /* GameControllerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EADDD502B6697A900D724BF /* GameControllerManager.swift */; };
+		2EADDD532B6697A900D724BF /* SwipeGestureManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EADDD502B6697A900D724BF /* SwipeGestureManager.swift */; };
 		2EADDD562B6697C400D724BF /* TileCoordinates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EADDD552B6697C400D724BF /* TileCoordinates.swift */; };
 		2EADDD5C2B6697E500D724BF /* BallNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EADDD582B6697E500D724BF /* BallNode.swift */; };
 		2EADDD5D2B6697E500D724BF /* TileNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EADDD592B6697E500D724BF /* TileNode.swift */; };
@@ -49,7 +49,7 @@
 		2EADDD482B66952600D724BF /* GameViewControllerWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewControllerWrapper.swift; sourceTree = "<group>"; };
 		2EADDD4B2B66977900D724BF /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		2EADDD4E2B6697A900D724BF /* TileManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TileManager.swift; sourceTree = "<group>"; };
-		2EADDD502B6697A900D724BF /* GameControllerManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameControllerManager.swift; sourceTree = "<group>"; };
+		2EADDD502B6697A900D724BF /* SwipeGestureManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwipeGestureManager.swift; sourceTree = "<group>"; };
 		2EADDD552B6697C400D724BF /* TileCoordinates.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TileCoordinates.swift; sourceTree = "<group>"; };
 		2EADDD582B6697E500D724BF /* BallNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BallNode.swift; sourceTree = "<group>"; };
 		2EADDD592B6697E500D724BF /* TileNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TileNode.swift; sourceTree = "<group>"; };
@@ -167,7 +167,7 @@
 		2EADDD4D2B66979D00D724BF /* Managers */ = {
 			isa = PBXGroup;
 			children = (
-				2EADDD502B6697A900D724BF /* GameControllerManager.swift */,
+				2EADDD502B6697A900D724BF /* SwipeGestureManager.swift */,
 				2EADDD4E2B6697A900D724BF /* TileManager.swift */,
 			);
 			path = Managers;
@@ -330,7 +330,7 @@
 				2EADDD472B66950B00D724BF /* GameView.swift in Sources */,
 				2EADDD2A2B66924000D724BF /* TileRollApp.swift in Sources */,
 				2E78123C2B66EE4D009CEE78 /* GameState.swift in Sources */,
-				2EADDD532B6697A900D724BF /* GameControllerManager.swift in Sources */,
+				2EADDD532B6697A900D724BF /* SwipeGestureManager.swift in Sources */,
 				2EADDD6F2B66D65300D724BF /* MainViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

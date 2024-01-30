@@ -5,6 +5,7 @@ class PlayerCubeNode: SCNNode {
     private var jumpRightAction : SCNAction!
     private var jumpLeftAction : SCNAction!
     private let initialRotation = SCNVector4(x: 0, y: 0, z: 0, w: 0)
+    let initialPlayerY : Float = 12
     
     override init() {
         super.init()
