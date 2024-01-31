@@ -53,9 +53,24 @@ private extension GameViewController {
         self.gameManager.$gameState
             .sink { [weak self] newGameState in
                 guard let self else { return }
-                self.playerCube.position = self.playerCube.initialPlayerPosition
+                switch newGameState {
+                case .menu :
+                    break
+                case .playing:
+                    self.restartGame()
+                case .over:
+                    break
+                }
             }
             .store(in: &cancellables)
+    }
+}
+
+// MARK: - Restart Game
+private extension GameViewController {
+    func restartGame() {
+        self.playerCube.position = self.playerCube.initialPlayerPosition
+        self.cameraNode.position = self.cameraNode.initialPosition
     }
 }
 

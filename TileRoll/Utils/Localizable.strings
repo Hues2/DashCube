@@ -4,5 +4,10 @@
 // Game View
 "score_title" = "Score:";
 
+// Game Over
+"game_over" = "GAME OVER";
+"play_again" = "Play again";
+"return_to_menu" = "Return to menu";
+
 // Menu View
 "tap_to_start" = "TAP TO START";

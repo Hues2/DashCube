@@ -24,4 +24,7 @@ class Constants {
         static let pastelBlue : Color = Color(red: 0.686, green: 0.933, blue: 0.933)
         static let pastelPink : Color = Color(red: 1.0, green: 0.71, blue: 0.756)
     }
+    
+    // UI
+    static let cornerRadius : CGFloat = 12
 }

@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2E52F0DF2B6AB7BE009014CF /* GameOverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E52F0DE2B6AB7BE009014CF /* GameOverView.swift */; };
+		2E52F0E22B6AC0BE009014CF /* RoundedGradientBorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E52F0E12B6AC0BE009014CF /* RoundedGradientBorder.swift */; };
+		2E52F0E52B6AC282009014CF /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E52F0E42B6AC282009014CF /* CustomButton.swift */; };
 		2E78123C2B66EE4D009CEE78 /* GameState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E78123B2B66EE4D009CEE78 /* GameState.swift */; };
 		2E78123E2B66EF6F009CEE78 /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E78123D2B66EF6F009CEE78 /* MenuView.swift */; };
 		2E7812402B66EFEC009CEE78 /* MenuViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E78123F2B66EFEC009CEE78 /* MenuViewModel.swift */; };
@@ -37,6 +40,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2E52F0DE2B6AB7BE009014CF /* GameOverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOverView.swift; sourceTree = "<group>"; };
+		2E52F0E12B6AC0BE009014CF /* RoundedGradientBorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedGradientBorder.swift; sourceTree = "<group>"; };
+		2E52F0E42B6AC282009014CF /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		2E78123B2B66EE4D009CEE78 /* GameState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameState.swift; sourceTree = "<group>"; };
 		2E78123D2B66EF6F009CEE78 /* MenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
 		2E78123F2B66EFEC009CEE78 /* MenuViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewModel.swift; sourceTree = "<group>"; };
@@ -78,6 +84,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2E52F0E02B6AC0A2009014CF /* ViewModifiers */ = {
+			isa = PBXGroup;
+			children = (
+				2E52F0E12B6AC0BE009014CF /* RoundedGradientBorder.swift */,
+			);
+			path = ViewModifiers;
+			sourceTree = "<group>";
+		};
+		2E52F0E32B6AC26C009014CF /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				2E52F0E42B6AC282009014CF /* CustomButton.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
 		2E78123A2B66EE42009CEE78 /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -112,6 +134,7 @@
 				2EADDD6C2B66D60D00D724BF /* MenuView */,
 				2EADDD452B66950000D724BF /* GameView */,
 				2EADDD372B66924D00D724BF /* Game */,
+				2E52F0E32B6AC26C009014CF /* Components */,
 				2EADDD702B66DFF400D724BF /* Utils */,
 				2EADDD2D2B66924300D724BF /* Assets.xcassets */,
 				2EADDD2F2B66924300D724BF /* Preview Content */,
@@ -154,6 +177,7 @@
 				2EADDD462B66950B00D724BF /* GameView.swift */,
 				2EADDD482B66952600D724BF /* GameViewControllerWrapper.swift */,
 				2EADDD672B66D52900D724BF /* GameViewModel.swift */,
+				2E52F0DE2B6AB7BE009014CF /* GameOverView.swift */,
 			);
 			path = GameView;
 			sourceTree = "<group>";
@@ -225,6 +249,7 @@
 		2EADDD702B66DFF400D724BF /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				2E52F0E02B6AC0A2009014CF /* ViewModifiers */,
 				2EADDD732B66E05E00D724BF /* Extensions */,
 				2EADDD602B66981C00D724BF /* Utils.swift */,
 				2EADDD622B66982E00D724BF /* Constants.swift */,
@@ -314,9 +339,11 @@
 			files = (
 				2EADDD752B66E06D00D724BF /* String.swift in Sources */,
 				2EADDD562B6697C400D724BF /* TileCoordinates.swift in Sources */,
+				2E52F0E52B6AC282009014CF /* CustomButton.swift in Sources */,
 				2EA341C42B68592D0046DE5A /* PlayerCubeNode.swift in Sources */,
 				2EADDD4C2B66977900D724BF /* GameViewController.swift in Sources */,
 				2EADDD5D2B6697E500D724BF /* TileNode.swift in Sources */,
+				2E52F0E22B6AC0BE009014CF /* RoundedGradientBorder.swift in Sources */,
 				2EADDD612B66981C00D724BF /* Utils.swift in Sources */,
 				2E7812402B66EFEC009CEE78 /* MenuViewModel.swift in Sources */,
 				2EADDD682B66D52900D724BF /* GameViewModel.swift in Sources */,
@@ -332,6 +359,7 @@
 				2EADDD5E2B6697E500D724BF /* CameraNode.swift in Sources */,
 				2EADDD512B6697A900D724BF /* TileManager.swift in Sources */,
 				2EADDD472B66950B00D724BF /* GameView.swift in Sources */,
+				2E52F0DF2B6AB7BE009014CF /* GameOverView.swift in Sources */,
 				2EADDD2A2B66924000D724BF /* TileRollApp.swift in Sources */,
 				2E78123C2B66EE4D009CEE78 /* GameState.swift in Sources */,
 				2EADDD532B6697A900D724BF /* SwipeGestureManager.swift in Sources */,

@@ -16,6 +16,9 @@ struct GameView: View {
                 
                 game(proxy)
             }
+            .overlay {
+                gameOverView
+            }
         }
     }
 }
@@ -43,5 +46,14 @@ private extension GameView {
         GameViewControllerWrapper(frameSize: proxy.size, gameManager: viewModel.gameManager)
             .ignoresSafeArea(edges: .bottom)
             .disabled(viewModel.gameState != .playing)
+    }
+}
+
+// MARK: - Game Over UI
+private extension GameView {
+    @ViewBuilder var gameOverView : some View {
+        if viewModel.gameState == .over {
+            GameOverView(viewModel: viewModel)
+        }
     }
 }

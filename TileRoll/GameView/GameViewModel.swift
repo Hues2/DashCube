@@ -40,3 +40,10 @@ private extension GameViewModel {
             .store(in: &cancellables)
     }
 }
+
+// MARK: - Subscribers
+extension GameViewModel {
+    func restartGame() {
+        self.gameManager.startGame()
+    }
+}
