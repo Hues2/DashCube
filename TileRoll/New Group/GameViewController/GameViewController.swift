@@ -22,6 +22,7 @@ class GameViewController: UIViewController {
     private var playerCube : PlayerCubeNode!  
     // Cancellables
     private var cancellables = Set<AnyCancellable>()
+    private var isFirstLoad : Bool = true
 }
 
 // MARK: - VC Setup
@@ -58,7 +59,10 @@ private extension GameViewController {
                 case .menu :
                     break
                 case .playing:
-                    self.resetGame()
+                    if !self.isFirstLoad {
+                        self.resetGame()
+                    }
+                    self.isFirstLoad = false
                 case .over:
                     break
                 }
@@ -70,7 +74,6 @@ private extension GameViewController {
 // MARK: - Restart Game
 private extension GameViewController {
     func resetGame() {
-        print("Reseting")
         self.tileManager.reset()
         self.playerCube.reset()
         self.cameraNode.reset()

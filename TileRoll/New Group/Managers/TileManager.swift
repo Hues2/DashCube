@@ -23,9 +23,10 @@ extension TileManager {
         addTileNode()
     }
     
-    private func addTileNode() {
+    private func addTileNode(_ isInitialTile : Bool = false) {
         guard let tilePosition = TilePosition.allCases.randomElement() else { return }
         let tileNode = TileNode(tilePosition: tilePosition)
+        tileNode.contactHandled = isInitialTile
         self.tileNodes.append(tileNode)
         setTilePosition(tileNode)
         Utils.addNodeToScene(scene, tileNode)
@@ -49,8 +50,8 @@ extension TileManager {
 // MARK: - Set up initial tile nodes
 private extension TileManager {
     private func setUpInitialTileNodes() {
-        for _ in Constants.rangeOfInitialNodes {
-            addTileNode()
+        for i in Constants.rangeOfInitialNodes {
+            addTileNode((i == 0))
         }
     }
 }

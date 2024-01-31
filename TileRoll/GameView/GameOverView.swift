@@ -35,6 +35,7 @@ private extension GameOverView {
             .font(.largeTitle)
             .fontWeight(.black)
             .fontDesign(.rounded)
+            .foregroundStyle(.white)
     }
     
     var score : some View {
@@ -42,9 +43,11 @@ private extension GameOverView {
             Text("score_title")
                 .font(.title3)
                 .fontWeight(.bold)
+                .foregroundStyle(.white)
             Text("\(viewModel.score)")
                 .font(.title3)
                 .fontWeight(.light)
+                .foregroundStyle(.white)
         }
     }
     

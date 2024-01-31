@@ -21,7 +21,7 @@ class DeadZoneNode: SCNNode {
         
         // Create a material for the box
         let material = SCNMaterial()
-        material.diffuse.contents = UIColor.red
+        material.diffuse.contents = UIColor.clear
         
         // Apply the material to the box
         boxGeometry.materials = [material]
@@ -34,7 +34,7 @@ class DeadZoneNode: SCNNode {
     
     private func setUpPhysicsBody() {
         guard let geometry else { return }
-        self.physicsBody = SCNPhysicsBody(type: .kinematic, shape: SCNPhysicsShape(geometry: geometry))
+        self.physicsBody = SCNPhysicsBody(type: .dynamic, shape: SCNPhysicsShape(geometry: geometry))
         self.physicsBody?.categoryBitMask = Constants.deadZoneCategoryBitMask
         self.physicsBody?.collisionBitMask = Constants.playerCubeCategoryBitMask
         self.physicsBody?.contactTestBitMask = Constants.playerCubeCategoryBitMask
