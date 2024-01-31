@@ -36,8 +36,8 @@ class DeadZoneNode: SCNNode {
         guard let geometry else { return }
         self.physicsBody = SCNPhysicsBody(type: .kinematic, shape: SCNPhysicsShape(geometry: geometry))
         self.physicsBody?.categoryBitMask = Constants.deadZoneCategoryBitMask
-        self.physicsBody?.collisionBitMask = Constants.ballCategoryBitMask
-        self.physicsBody?.contactTestBitMask = Constants.ballCategoryBitMask
+        self.physicsBody?.collisionBitMask = Constants.playerCubeCategoryBitMask
+        self.physicsBody?.contactTestBitMask = Constants.playerCubeCategoryBitMask
         self.physicsBody?.isAffectedByGravity = false
         self.physicsBody?.friction = 1
     }

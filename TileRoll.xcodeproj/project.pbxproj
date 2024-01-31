@@ -25,7 +25,6 @@
 		2EADDD512B6697A900D724BF /* TileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EADDD4E2B6697A900D724BF /* TileManager.swift */; };
 		2EADDD532B6697A900D724BF /* SwipeGestureManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EADDD502B6697A900D724BF /* SwipeGestureManager.swift */; };
 		2EADDD562B6697C400D724BF /* TileCoordinates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EADDD552B6697C400D724BF /* TileCoordinates.swift */; };
-		2EADDD5C2B6697E500D724BF /* BallNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EADDD582B6697E500D724BF /* BallNode.swift */; };
 		2EADDD5D2B6697E500D724BF /* TileNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EADDD592B6697E500D724BF /* TileNode.swift */; };
 		2EADDD5E2B6697E500D724BF /* CameraNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EADDD5A2B6697E500D724BF /* CameraNode.swift */; };
 		2EADDD5F2B6697E500D724BF /* LightNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EADDD5B2B6697E500D724BF /* LightNode.swift */; };
@@ -59,7 +58,6 @@
 		2EADDD4E2B6697A900D724BF /* TileManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TileManager.swift; sourceTree = "<group>"; };
 		2EADDD502B6697A900D724BF /* SwipeGestureManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwipeGestureManager.swift; sourceTree = "<group>"; };
 		2EADDD552B6697C400D724BF /* TileCoordinates.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TileCoordinates.swift; sourceTree = "<group>"; };
-		2EADDD582B6697E500D724BF /* BallNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BallNode.swift; sourceTree = "<group>"; };
 		2EADDD592B6697E500D724BF /* TileNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TileNode.swift; sourceTree = "<group>"; };
 		2EADDD5A2B6697E500D724BF /* CameraNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraNode.swift; sourceTree = "<group>"; };
 		2EADDD5B2B6697E500D724BF /* LightNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LightNode.swift; sourceTree = "<group>"; };
@@ -210,7 +208,6 @@
 		2EADDD572B6697D300D724BF /* Nodes */ = {
 			isa = PBXGroup;
 			children = (
-				2EADDD582B6697E500D724BF /* BallNode.swift */,
 				2EADDD5A2B6697E500D724BF /* CameraNode.swift */,
 				2EADDD5B2B6697E500D724BF /* LightNode.swift */,
 				2EA341C32B68592C0046DE5A /* PlayerCubeNode.swift */,
@@ -349,7 +346,6 @@
 				2EADDD682B66D52900D724BF /* GameViewModel.swift in Sources */,
 				2EADDD662B66D33500D724BF /* GameManager.swift in Sources */,
 				2E78123E2B66EF6F009CEE78 /* MenuView.swift in Sources */,
-				2EADDD5C2B6697E500D724BF /* BallNode.swift in Sources */,
 				2EADDD632B66982E00D724BF /* Constants.swift in Sources */,
 				2EADDD492B66952600D724BF /* GameViewControllerWrapper.swift in Sources */,
 				2E9ACA872B699D3D0090245B /* DeadZoneNode.swift in Sources */,

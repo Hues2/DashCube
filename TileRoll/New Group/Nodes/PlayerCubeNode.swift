@@ -9,7 +9,7 @@ class PlayerCubeNode: SCNNode {
     
     override init() {
         super.init()
-        self.name = Constants.ballNodeName
+        self.name = Constants.playerCubeNodeName
         setUpCube()
         setupActions()
     }
@@ -46,7 +46,7 @@ private extension PlayerCubeNode {
     private func setUpPhysicsBody() {
         guard let geometry else { return }
         self.physicsBody = SCNPhysicsBody(type: .dynamic, shape: SCNPhysicsShape(geometry: geometry))
-        self.physicsBody?.categoryBitMask = Constants.ballCategoryBitMask
+        self.physicsBody?.categoryBitMask = Constants.playerCubeCategoryBitMask
         self.physicsBody?.collisionBitMask = Constants.tileCategoryBitMask
         self.physicsBody?.contactTestBitMask = Constants.tileCategoryBitMask
         self.physicsBody?.isAffectedByGravity = true

@@ -133,7 +133,7 @@ extension GameViewController : SCNPhysicsContactDelegate {
             return
         }
         
-        if let tileNode, !tileNode.contactHandled {
+        if let tileNode, !tileNode.contactHandled, gameManager.gameState == .playing {
             tileNode.contactHandled = true
             self.tileManager.addNewTile()
             self.gameManager.addPoint()
