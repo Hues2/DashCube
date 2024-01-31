@@ -41,9 +41,15 @@ private extension GameViewModel {
     }
 }
 
-// MARK: - Subscribers
+// MARK: - Restart game
 extension GameViewModel {
     func restartGame() {
         self.gameManager.startGame()
+    }
+}
+
+extension GameViewModel {
+    func returnToMenu() {
+        self.gameManager.returnToMenu()
     }
 }

@@ -13,21 +13,13 @@ private extension GameOverView {
         VStack(spacing: 50) {
             gameOverTitle
             
-            VStack {
+            VStack(spacing: 15) {
                 score
-                    .padding(.bottom, 15)
                 playAgainButton
+                returnToMenuButton
             }
         }
-        .padding(30)
-        .frame(maxWidth: .infinity)
-        .background(
-            Color.black
-                .opacity(0.5)
-                .blur(radius: 10)
-                .withRoundedGradientBorder(colors: [Constants.Colour.pastelBlue])
-        )
-        .padding()
+        .withCardStyle()
     }
     
     var gameOverTitle : some View {
@@ -58,11 +50,8 @@ private extension GameOverView {
     }
     
     var returnToMenuButton : some View {
-        Button {
-            // TODO: Show menu
-        } label: {
-            
+        CustomButton(title: "return_to_menu".localizedString) {
+            viewModel.returnToMenu()
         }
-
     }
 }

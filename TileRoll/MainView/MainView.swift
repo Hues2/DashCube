@@ -8,7 +8,7 @@ struct MainView: View {
     }
     
     var body: some View {
-        ZStack(alignment: .top) {
+        ZStack(alignment: .center) {
             GameView(gameManager: viewModel.gameManager)
             
             if viewModel.gameState == .menu {

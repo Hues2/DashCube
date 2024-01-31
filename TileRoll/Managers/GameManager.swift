@@ -15,7 +15,7 @@ extension GameManager {
     }
 }
 
-// MARK: - Start/End Game
+// MARK: - Start/End Game & Back to menu
 extension GameManager {
     func startGame() {
         DispatchQueue.main.async {
@@ -27,6 +27,12 @@ extension GameManager {
     func endGame() {
         DispatchQueue.main.async {
             self.gameState = .over
+        }
+    }
+    
+    func returnToMenu() {
+        DispatchQueue.main.async {
+            self.gameState = .menu
         }
     }
 }

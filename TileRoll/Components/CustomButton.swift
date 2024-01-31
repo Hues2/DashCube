@@ -13,6 +13,7 @@ struct CustomButton: View {
                 .fontWeight(.semibold)
                 .foregroundStyle(.white)
                 .padding()
+                .frame(maxWidth: .infinity)
                 .background(
                     Color(uiColor: .darkGray)
                         .withRoundedGradientBorder(colors: [Constants.Colour.pastelBlue, Constants.Colour.pastelPink])

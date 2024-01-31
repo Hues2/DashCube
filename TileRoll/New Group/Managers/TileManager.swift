@@ -26,7 +26,7 @@ extension TileManager {
     private func addTileNode(_ isInitialTile : Bool = false) {
         guard let tilePosition = TilePosition.allCases.randomElement() else { return }
         let tileNode = TileNode(tilePosition: tilePosition)
-        tileNode.contactHandled = isInitialTile
+        tileNode.contactHandled = isInitialTile // This stops 1 point being added at start of game
         self.tileNodes.append(tileNode)
         setTilePosition(tileNode)
         Utils.addNodeToScene(scene, tileNode)
