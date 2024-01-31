@@ -50,14 +50,15 @@ private extension GameViewController {
     }
     
     private func subscribeToGameState() {
-        self.gameManager.$gameState
+        self.gameManager.$gameState            
             .sink { [weak self] newGameState in
                 guard let self else { return }
+                print("Game State changed --> \(newGameState)")
                 switch newGameState {
                 case .menu :
                     break
                 case .playing:
-                    self.restartGame()
+                    self.resetGame()
                 case .over:
                     break
                 }
@@ -68,9 +69,11 @@ private extension GameViewController {
 
 // MARK: - Restart Game
 private extension GameViewController {
-    func restartGame() {
-        self.playerCube.position = self.playerCube.initialPlayerPosition
-        self.cameraNode.position = self.cameraNode.initialPosition
+    func resetGame() {
+        print("Reseting")
+        self.tileManager.reset()
+        self.playerCube.reset()
+        self.cameraNode.reset()
     }
 }
 
@@ -123,7 +126,7 @@ extension GameViewController : SCNPhysicsContactDelegate {
     func physicsWorld(_ world: SCNPhysicsWorld, didBegin contact: SCNPhysicsContact) {
         let tileNode = (contact.nodeA.name == Constants.tileNodeName ? contact.nodeA : contact.nodeB) as? TileNode
         let deadZoneNode = (contact.nodeA.name == Constants.deadZoneNodeName ? contact.nodeA : contact.nodeB) as? DeadZoneNode
-        
+
         // If there is contact with the dead zone then game over
         if deadZoneNode != nil {
             self.gameManager.endGame()
@@ -137,8 +140,7 @@ extension GameViewController : SCNPhysicsContactDelegate {
         }
         
         // Stop the player cube
-        self.playerCube.physicsBody?.velocity = SCNVector3Zero
-        self.playerCube.physicsBody?.angularVelocity = SCNVector4Zero
+        self.playerCube.stopPlayerCube()
     }
 }
 

@@ -18,3 +18,9 @@ class CameraNode: SCNNode {
         self.eulerAngles = rotationAngle
     }
 }
+
+extension CameraNode {
+    func reset() {
+        self.position = self.initialPosition
+    }
+}

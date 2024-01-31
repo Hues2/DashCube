@@ -120,3 +120,20 @@ private extension PlayerCubeNode {
         }
     }
 }
+
+// MARK: - Stop Player Cube
+extension PlayerCubeNode {
+    func stopPlayerCube() {
+        self.physicsBody?.velocity = SCNVector3Zero
+        self.physicsBody?.angularVelocity = SCNVector4Zero
+    }
+}
+
+// MARK: - Reset
+extension PlayerCubeNode {
+    func reset() {        
+        self.stopPlayerCube()
+        self.position = self.initialPlayerPosition
+        self.rotation = self.initialRotation
+    }
+}

@@ -55,6 +55,27 @@ private extension TileManager {
     }
 }
 
+// MARK: - Restart Game
+extension TileManager {
+    func reset() {
+        // This is to replay the exact same layout of tiles
+        // Although, if you keep replaying, the tile nodes will keep dissapearing from under the player
+        // As the number of tiles on the list has reached the Constants.maxNumberOfTiles
+        
+//        self.tileNodes = self.tileNodes.map({ tileNode in
+//            var newTileNode = tileNode
+//            newTileNode.contactHandled = false
+//            return newTileNode
+//        })      
+        for tileNode in tileNodes {
+            tileNode.removeFromParentNode()
+        }
+        self.tileNodes.removeAll()
+        self.tileCoordinates = TileCoordinates()
+        self.setUpInitialTileNodes()
+    }
+}
+
 enum TilePosition : CaseIterable {
     case left, right
 }

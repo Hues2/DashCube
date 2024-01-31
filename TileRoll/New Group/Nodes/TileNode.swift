@@ -4,7 +4,6 @@ class TileNode: SCNNode, Identifiable {
     let id = UUID()
     var contactHandled : Bool = false
     let tilePosition : TilePosition
-    var collidedWith : Bool = false
     
     init(tilePosition : TilePosition) {
         self.tilePosition = tilePosition
