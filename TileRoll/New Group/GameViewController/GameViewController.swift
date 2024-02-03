@@ -83,7 +83,7 @@ private extension GameViewController {
 // MARK: - Player Setup
 private extension GameViewController {
     func setUpPlayerCube() {        
-        self.playerCube = PlayerCubeNode()        
+        self.playerCube = PlayerCubeNode()
         Utils.addNodeToScene(scene, playerCube)
     }
 }
@@ -138,7 +138,7 @@ extension GameViewController : SCNPhysicsContactDelegate {
         
         if let tileNode, !tileNode.contactHandled, gameManager.gameState == .playing {
             tileNode.contactHandled = true
-            self.tileManager.addNewTile()
+            self.tileManager.addNewTile(tileNode.id)
             self.gameManager.addPoint()
         }
         

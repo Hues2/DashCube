@@ -4,6 +4,7 @@ class TileNode: SCNNode, Identifiable {
     let id = UUID()
     var contactHandled : Bool = false
     let tilePosition : TilePosition
+    var deadZoneNode : DeadZoneNode!
     
     init(tilePosition : TilePosition) {
         self.tilePosition = tilePosition
@@ -48,9 +49,9 @@ class TileNode: SCNNode, Identifiable {
     }
     
     private func addDeadZone() {
-        let deadZone = DeadZoneNode()
-        deadZone.position = self.position
-        deadZone.position.y = self.position.y - 4
-        self.addChildNode(deadZone)
+        deadZoneNode = DeadZoneNode()
+        deadZoneNode.position = self.position
+        deadZoneNode.position.y = self.position.y - 4
+        self.addChildNode(deadZoneNode)
     }
 }

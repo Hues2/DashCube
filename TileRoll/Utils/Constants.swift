@@ -2,10 +2,11 @@ import Foundation
 import SwiftUI
 
 class Constants {
-    static let rangeOfInitialNodes : ClosedRange<Int> = 0...7
-    static let maxNumberOfTiles : Int = 16
+    static let rangeOfInitialNodes : ClosedRange<Int> = 0...2
+    static let maxNumberOfTiles : Int = 8
     static let tileSize : Double = 2.0
-    static let deadZoneSize : Double = 8.0
+    static let deadZoneSize : Double = 13.0
+    static let deadZoneHeight : Double = 0.1
     
     // Animation
     static let playerMovementAnimationDuration : Double = 0.1

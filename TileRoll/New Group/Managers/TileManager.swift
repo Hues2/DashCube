@@ -17,10 +17,11 @@ class TileManager {
 
 // MARK: - Add Tile Node
 extension TileManager {
-    func addNewTile() {
+    func addNewTile(_ tileId : UUID?) {
         guard let firstTileNode = tileNodes.first else { return }
         removeTileNode(firstTileNode)
         addTileNode()
+        removeDeadZoneNode(tileId)
     }
     
     private func addTileNode(_ isInitialTile : Bool = false) {
@@ -38,12 +39,21 @@ extension TileManager {
         tileCoordinates.xPosition = tileNode.tilePosition == .right ? (tileCoordinates.xPosition + 4) : tileCoordinates.xPosition
         tileCoordinates.zPosition = tileNode.tilePosition == .right ? tileCoordinates.zPosition : (tileCoordinates.zPosition + 4)
     }
-    
+}
+
+// MARK: - Remove nodes
+private extension TileManager {
     private func removeTileNode(_ tileNode : TileNode) {
         if self.tileNodes.count > Constants.maxNumberOfTiles {
             tileNode.removeFromParentNode()
             tileNodes.removeFirst()
         }
+    }
+    
+    private func removeDeadZoneNode(_ tileId : UUID?) {
+        let contactedTile = tileNodes.first(where: { $0.id == tileId })
+        guard let contactedTile else { return }
+        contactedTile.deadZoneNode.removeFromParentNode()
     }
 }
 

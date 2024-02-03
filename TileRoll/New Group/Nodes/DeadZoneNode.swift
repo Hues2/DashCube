@@ -15,7 +15,7 @@ class DeadZoneNode: SCNNode {
     private func setUpPlatform() {
         // Create a box geometry
         let boxGeometry = SCNBox(width: Constants.deadZoneSize,
-                                 height: Constants.deadZoneSize / 6,
+                                 height: Constants.deadZoneHeight,
                                  length: Constants.deadZoneSize,
                                  chamferRadius: 0.0)
         
