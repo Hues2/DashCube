@@ -131,8 +131,10 @@ extension GameViewController : SCNPhysicsContactDelegate {
         let deadZoneNode = (contact.nodeA.name == Constants.deadZoneNodeName ? contact.nodeA : contact.nodeB) as? DeadZoneNode
         
         // If there is contact with the dead zone then game over
-        if deadZoneNode != nil {
+        if deadZoneNode != nil, self.gameManager.gameState != .over, self.gameManager.gameState != .menu {
             self.gameManager.endGame()
+            self.playerCube.physicsBody?.applyForce(.init(0, -2, 0), asImpulse: true)
+            self.playerCube.physicsBody?.applyTorque(.init(2, 0, 1, 1), asImpulse: true)
             return
         }
         

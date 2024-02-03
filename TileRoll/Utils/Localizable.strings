@@ -10,5 +10,5 @@
 "return_to_menu" = "Return to menu";
 
 // Menu View
-"tap_to_start" = "TAP TO START";
 "play_button_title" = "Play";
+"high_score" = "High Score:";

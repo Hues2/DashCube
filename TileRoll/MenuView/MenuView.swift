@@ -19,6 +19,7 @@ private extension MenuView {
             appTitle
                 .padding(.bottom, 50)
             VStack {
+                highScore
                 playButton
             }
         }
@@ -39,9 +40,19 @@ private extension MenuView {
 
 // MARK: - Current high score
 private extension MenuView {
-    var currentHighScore : some View {
-        // TODO: Implement high score
-        Text("")
+    var highScore : some View {
+        HStack {
+            Text("high_score".localizedString)
+                .font(.body)
+                .fontWeight(.bold)
+                .fontDesign(.rounded)
+                .foregroundStyle(.white)
+            Text("\(viewModel.highScore)")
+                .font(.body)
+                .fontWeight(.light)
+                .fontDesign(.rounded)
+                .foregroundStyle(.white)
+        }
     }
 }
 
@@ -51,16 +62,5 @@ private extension MenuView {
         CustomButton(title: "play_button_title".localizedString) {
             self.viewModel.startGame()
         }
-    }
-}
-
-private extension MenuView {
-    var tapToStart : some View {
-        Text("tap_to_start".localizedString)
-            .font(.largeTitle)
-            .fontWeight(.black)
-            .fontDesign(.rounded)
-            .foregroundStyle(.white)
-            .padding(.top, 40)
     }
 }

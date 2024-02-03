@@ -5,7 +5,7 @@ class Constants {
     static let rangeOfInitialNodes : ClosedRange<Int> = 0...2
     static let maxNumberOfTiles : Int = 8
     static let tileSize : Double = 2.0
-    static let deadZoneSize : Double = 13.0
+    static let deadZoneSize : Double = 100
     static let deadZoneHeight : Double = 0.1
     
     // Animation
@@ -27,4 +27,8 @@ class Constants {
     
     // UI
     static let cornerRadius : CGFloat = 12
+    
+    struct UserDefaults {
+        static let highScore = "highScore"
+    }
 }

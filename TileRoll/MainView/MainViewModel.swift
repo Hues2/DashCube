@@ -17,6 +17,7 @@ class MainViewModel : ObservableObject {
     private func addSubscriptions() {
         subscribeToScore()
         subscribeToGameState()
+        subscribeToNewGameState()
     }
 }
 
@@ -36,6 +37,17 @@ private extension MainViewModel {
             .sink { [weak self] newGameState in
                 guard let self else { return }
                 self.gameState = newGameState
+            }
+            .store(in: &cancellables)
+    }
+    
+    func subscribeToNewGameState() {
+        self.$gameState
+            .sink { [weak self] newGameState in
+                guard let self else { return }
+                if newGameState == .over {
+                    
+                }
             }
             .store(in: &cancellables)
     }
