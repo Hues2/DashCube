@@ -26,7 +26,7 @@ extension TileManager {
     
     private func addTileNode(_ isInitialTile : Bool = false) {
         guard let tilePosition = TilePosition.allCases.randomElement() else { return }
-        let tileNode = TileNode(tilePosition: tilePosition)
+        let tileNode = TileNode(tilePosition: tilePosition, isFirstTile: isInitialTile)
         tileNode.contactHandled = isInitialTile // This stops 1 point being added at start of game
         self.tileNodes.append(tileNode)
         setTilePosition(tileNode)
@@ -42,7 +42,7 @@ extension TileManager {
 }
 
 // MARK: - Remove nodes
-private extension TileManager {
+extension TileManager {
     private func removeTileNode(_ tileNode : TileNode) {
         if self.tileNodes.count > Constants.maxNumberOfTiles {
             tileNode.removeFromParentNode()
@@ -53,13 +53,13 @@ private extension TileManager {
     private func removeDeadZoneNode(_ tileId : UUID?) {
         let contactedTile = tileNodes.first(where: { $0.id == tileId })
         guard let contactedTile else { return }
-        contactedTile.deadZoneNode.removeFromParentNode()
+        contactedTile.removeDeadZone()
     }
 }
 
 // MARK: - Set up initial tile nodes
 private extension TileManager {
-    private func setUpInitialTileNodes() {
+    func setUpInitialTileNodes() {
         for i in Constants.rangeOfInitialNodes {
             addTileNode((i == 0))
         }

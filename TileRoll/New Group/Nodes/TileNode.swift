@@ -4,14 +4,18 @@ class TileNode: SCNNode, Identifiable {
     let id = UUID()
     var contactHandled : Bool = false
     let tilePosition : TilePosition
-    var deadZoneNode : DeadZoneNode!
+    var isFirstTile : Bool
+    private var deadZoneNode : DeadZoneNode!
     
-    init(tilePosition : TilePosition) {
+    init(tilePosition : TilePosition, isFirstTile : Bool) {
         self.tilePosition = tilePosition
+        self.isFirstTile = isFirstTile
         super.init()
         self.name = Constants.tileNodeName
         setUpTile()
-        addDeadZone()
+        if !isFirstTile {
+            addDeadZone()
+        }
     }
     
     required init?(coder: NSCoder) {
@@ -51,7 +55,11 @@ class TileNode: SCNNode, Identifiable {
     private func addDeadZone() {
         deadZoneNode = DeadZoneNode()
         deadZoneNode.position = self.position
-        deadZoneNode.position.y = self.position.y - 4
+        deadZoneNode.position.y = self.position.y - 1
         self.addChildNode(deadZoneNode)
+    }
+    
+    func removeDeadZone() {
+        self.deadZoneNode.removeFromParentNode()
     }
 }
