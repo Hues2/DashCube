@@ -6,7 +6,7 @@ class GameViewModel : ObservableObject {
     @Published private(set) var score : Int = .zero
     
     // Timer
-    @Published private(set) var seconds: Int = 0
+    @Published private(set) var seconds : Int = 0
     @Published private(set) var milliseconds: Int = 0
     
     // Dependencies
