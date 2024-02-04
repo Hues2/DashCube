@@ -142,6 +142,7 @@ extension GameViewController : SCNPhysicsContactDelegate {
             tileNode.contactHandled = true
             self.tileManager.addNewTile(tileNode.id)
             self.gameManager.addPoint()
+            self.gameManager.startTimer()
         }
         
         // Stop the player cube

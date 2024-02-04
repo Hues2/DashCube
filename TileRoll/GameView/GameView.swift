@@ -14,6 +14,9 @@ struct GameView: View {
                 score
                     .opacity(viewModel.gameState == .playing ? 1 : 0)
                 
+                Text(String(format: "%02d:%02d", viewModel.seconds, viewModel.milliseconds))
+                    .font(.title)
+                
                 game(proxy)
             }
             .overlay {

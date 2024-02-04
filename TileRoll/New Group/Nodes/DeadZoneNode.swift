@@ -21,7 +21,7 @@ class DeadZoneNode: SCNNode {
         
         // Create a material for the box
         let material = SCNMaterial()
-        material.diffuse.contents = UIColor.red
+        material.diffuse.contents = UIColor.clear
         
         // Apply the material to the box
         boxGeometry.materials = [material]

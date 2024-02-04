@@ -6,6 +6,12 @@ class GameManager {
     @Published private(set) var score : Int = 0
     @Published private(set) var highScore : Int = 0
     
+    // Timer
+    @Published private(set) var seconds: Int = 5
+    @Published private(set) var milliseconds: Int = 0
+    @Published private(set) var timeEnded : Bool = false
+    private var timer : Timer?
+    
     private var cancellables = Set<AnyCancellable>()
     
     init() {
@@ -29,6 +35,41 @@ private extension GameManager {
                 }
             }
             .store(in: &cancellables)
+    }
+}
+
+// MARK: - Timer
+extension GameManager {
+    func startTimer() {
+        DispatchQueue.main.async {
+            self.timeEnded = false
+            self.seconds = 5
+            self.milliseconds = 0
+            self.timer = Timer.scheduledTimer(withTimeInterval: 0.01, repeats: true) { [weak self] _ in
+                guard let self else { return }
+                self.updateTimer()
+            }
+        }
+    }
+    
+    private func updateTimer() {
+        if milliseconds == 0 {
+            if seconds > 0 {
+                self.seconds -= 1
+                self.milliseconds = 99
+            } else {
+                stopTimer()
+            }
+        } else {
+            milliseconds -= 1
+        }
+    }
+    
+    private func stopTimer() {
+        self.timeEnded = true
+        print("TIME OUT!!!")
+        timer?.invalidate()
+        timer = nil
     }
 }
 

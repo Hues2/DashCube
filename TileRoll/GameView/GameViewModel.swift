@@ -5,6 +5,10 @@ class GameViewModel : ObservableObject {
     @Published private(set) var gameState : GameState = .menu
     @Published private(set) var score : Int = .zero
     
+    // Timer
+    @Published private(set) var seconds: Int = 0
+    @Published private(set) var milliseconds: Int = 0
+    
     // Dependencies
     let gameManager : GameManager
     private var cancellables = Set<AnyCancellable>()
@@ -17,6 +21,8 @@ class GameViewModel : ObservableObject {
     private func addSubscriptions() {
         subscribeToScore()
         subscribeToGameState()
+        subscribeToSeconds()
+        subscribeToMilliseconds()
     }
 }
 
@@ -39,6 +45,24 @@ private extension GameViewModel {
             }
             .store(in: &cancellables)
     }
+    
+    func subscribeToSeconds() {
+        self.gameManager.$seconds
+            .sink { [weak self] newSeconds in
+                guard let self else { return }
+                self.seconds = newSeconds
+            }
+            .store(in: &cancellables)
+    }
+    
+    func subscribeToMilliseconds() {
+        self.gameManager.$milliseconds
+            .sink { [weak self] newMilliSeconds in
+                guard let self else { return }
+                self.milliseconds = newMilliSeconds
+            }
+            .store(in: &cancellables)
+    }
 }
 
 // MARK: - Restart game
@@ -48,6 +72,7 @@ extension GameViewModel {
     }
 }
 
+// MARK: - Return to menu
 extension GameViewModel {
     func returnToMenu() {
         self.gameManager.returnToMenu()
