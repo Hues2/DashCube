@@ -30,4 +30,8 @@ class Constants {
     // Game Timer
     static let timerSeconds : Int = 1
     static let timerMilliSeconds : Int = 0
+    // Namespace names
+    struct GeometryEffectName {
+        static let card = "card"
+    }
 }

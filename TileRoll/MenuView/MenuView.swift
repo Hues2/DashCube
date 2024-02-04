@@ -2,9 +2,11 @@ import SwiftUI
 
 struct MenuView: View {
     @StateObject private var viewModel : MenuViewModel
+    private var namespace : Namespace.ID
     
-    init(gameManager : GameManager) {
+    init(gameManager : GameManager, namespace : Namespace.ID) {
         self._viewModel = StateObject(wrappedValue: MenuViewModel(gameManager: gameManager))
+        self.namespace = namespace
     }
     
     var body: some View {

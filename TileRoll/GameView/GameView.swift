@@ -3,28 +3,33 @@ import SceneKit
 
 struct GameView: View {
     @StateObject private var viewModel : GameViewModel
+    private var namespace : Namespace.ID
     
-    init(gameManager : GameManager) {
+    init(gameManager : GameManager, namespace : Namespace.ID) {
         self._viewModel = StateObject(wrappedValue: GameViewModel(gameManager: gameManager))
+        self.namespace = namespace
     }
     
     var body: some View {
         GeometryReader { proxy in
             VStack(alignment: .center, spacing: 5) {
-                header
-                    .withCardStyle()
-                    .opacity(viewModel.gameState == .playing ? 1 : 0)
+                if viewModel.gameState == .playing {
+                    header
+                        .withCardStyle()
+                        .matchedGeometryEffect(id: Constants.GeometryEffectName.card, in: namespace)
+                }
                 
                 game(proxy)
             }
             .overlay {
-                gameOverView
+                if viewModel.gameState == .over {
+                    gameOverView
+                        .matchedGeometryEffect(id: Constants.GeometryEffectName.card, in: namespace)
+                }
             }
         }
     }
 }
-
-
 
 // MARK: - Header UI
 private extension GameView {
@@ -64,9 +69,7 @@ private extension GameView {
 
 // MARK: - Game Over UI
 private extension GameView {
-    @ViewBuilder var gameOverView : some View {
-        if viewModel.gameState == .over {
-            GameOverView(viewModel: viewModel)
-        }
+    var gameOverView : some View {
+        GameOverView(viewModel: viewModel)
     }
 }

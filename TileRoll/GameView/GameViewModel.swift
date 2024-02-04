@@ -1,5 +1,6 @@
 import Foundation
 import Combine
+import SwiftUI
 
 class GameViewModel : ObservableObject {
     @Published private(set) var gameState : GameState = .menu
@@ -52,7 +53,9 @@ private extension GameViewModel {
         self.gameManager.$gameState
             .sink { [weak self] newGameState in
                 guard let self else { return }
-                self.gameState = newGameState
+                withAnimation {
+                    self.gameState = newGameState
+                }
             }
             .store(in: &cancellables)
     }
@@ -79,13 +82,17 @@ private extension GameViewModel {
 // MARK: - Restart game
 extension GameViewModel {
     func restartGame() {
-        self.gameManager.startGame()
+        withAnimation {
+            self.gameManager.startGame()
+        }
     }
 }
 
 // MARK: - Return to menu
 extension GameViewModel {
     func returnToMenu() {
-        self.gameManager.returnToMenu()
+        withAnimation {
+            self.gameManager.returnToMenu()
+        }
     }
 }

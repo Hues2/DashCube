@@ -2,6 +2,7 @@ import SwiftUI
 
 struct MainView: View {
     @StateObject private var viewModel : MainViewModel
+    @Namespace private var namespace
     
     init(gameManager : GameManager) {
         self._viewModel = StateObject(wrappedValue: MainViewModel(gameManager: gameManager))
@@ -9,10 +10,11 @@ struct MainView: View {
     
     var body: some View {
         ZStack(alignment: .center) {
-            GameView(gameManager: viewModel.gameManager)
+            GameView(gameManager: viewModel.gameManager, namespace: namespace)
             
             if viewModel.gameState == .menu {
-                MenuView(gameManager: viewModel.gameManager)
+                MenuView(gameManager: viewModel.gameManager, namespace: namespace)
+                    .matchedGeometryEffect(id: Constants.GeometryEffectName.card, in: namespace)
             }
         }
         .background(backgroundGradient)
