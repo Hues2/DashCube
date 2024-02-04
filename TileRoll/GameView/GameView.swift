@@ -11,11 +11,9 @@ struct GameView: View {
     var body: some View {
         GeometryReader { proxy in
             VStack(alignment: .center, spacing: 5) {
-                score
+                header
+                    .withCardStyle()
                     .opacity(viewModel.gameState == .playing ? 1 : 0)
-                
-                Text(String(format: "%02d:%02d", viewModel.seconds, viewModel.milliseconds))
-                    .font(.title)
                 
                 game(proxy)
             }
@@ -26,18 +24,30 @@ struct GameView: View {
     }
 }
 
-// MARK: - Score UI
+
+
+// MARK: - Header UI
 private extension GameView {
-    var score : some View {
+    var header : some View {
         HStack {
-            Text("score_title".localizedString)
-                .font(.largeTitle)
-                .fontWeight(.black)
-                .foregroundStyle(.white)
-            
-            Text("\(viewModel.score)")
-                .font(.largeTitle)
+            headerSection(title: "best_title".localizedString, value: "\(viewModel.highScore)")
+            Spacer()
+            headerSection(title: "timer_title".localizedString, value: String(format: "%02d:%02d", viewModel.seconds, viewModel.milliseconds))
+            Spacer()
+            headerSection(title: "score_title".localizedString, value: "\(viewModel.score)")
+        }
+        .frame(maxWidth: .infinity)
+    }
+    
+    func headerSection(title : String, value : String) -> some View {
+        VStack {
+            Text(title)
+                .font(.title3)
                 .fontWeight(.light)
+                .foregroundStyle(.white)
+            Text(value)
+                .font(.title)
+                .fontWeight(.bold)
                 .foregroundStyle(.white)
         }
     }

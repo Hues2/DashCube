@@ -4,6 +4,7 @@ import Combine
 class GameViewModel : ObservableObject {
     @Published private(set) var gameState : GameState = .menu
     @Published private(set) var score : Int = .zero
+    @Published private(set) var highScore : Int = .zero
     
     // Timer
     @Published private(set) var seconds : Int = 0
@@ -20,6 +21,7 @@ class GameViewModel : ObservableObject {
     
     private func addSubscriptions() {
         subscribeToScore()
+        subscribeToHighScore()
         subscribeToGameState()
         subscribeToSeconds()
         subscribeToMilliseconds()
@@ -33,6 +35,15 @@ private extension GameViewModel {
             .sink { [weak self] newScore in
                 guard let self else { return }
                 self.score = newScore
+            }
+            .store(in: &cancellables)
+    }
+    
+    func subscribeToHighScore() {
+        self.gameManager.$highScore
+            .sink { [weak self] newHighScore in
+                guard let self else { return }
+                self.highScore = newHighScore
             }
             .store(in: &cancellables)
     }

@@ -3,6 +3,8 @@
 
 // Game View
 "score_title" = "Score:";
+"best_title" = "Best:";
+"timer_title" = "Timer:";
 
 // Game Over
 "game_over" = "GAME OVER";
