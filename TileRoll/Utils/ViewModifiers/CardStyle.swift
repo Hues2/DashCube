@@ -3,7 +3,7 @@ import SwiftUI
 struct CardStyle: ViewModifier {
     func body(content: Content) -> some View {
         content
-            .padding(30)
+            .padding()
             .frame(maxWidth: .infinity)
             .background(
                 Color.black

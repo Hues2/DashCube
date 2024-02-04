@@ -2,21 +2,23 @@ import SwiftUI
 
 struct MenuView: View {
     @StateObject private var viewModel : MenuViewModel
-    private var namespace : Namespace.ID
     
-    init(gameManager : GameManager, namespace : Namespace.ID) {
+    init(gameManager : GameManager) {
         self._viewModel = StateObject(wrappedValue: MenuViewModel(gameManager: gameManager))
-        self.namespace = namespace
     }
     
     var body: some View {
-        content
+        if viewModel.gameState == .over {
+            gameOverView
+        } else {
+            mainMenu
+        }
     }
 }
 
 // MARK: - Content
 private extension MenuView {
-    var content : some View {
+    var mainMenu : some View {
         VStack {
             appTitle
                 .padding(.bottom, 50)
@@ -64,5 +66,12 @@ private extension MenuView {
         CustomButton(title: "play_button_title".localizedString) {
             self.viewModel.startGame()
         }
+    }
+}
+
+// MARK: - Game Over UI
+private extension MenuView {
+    var gameOverView : some View {
+        GameOverView(viewModel: viewModel)
     }
 }

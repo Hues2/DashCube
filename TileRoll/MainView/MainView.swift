@@ -10,17 +10,32 @@ struct MainView: View {
     
     var body: some View {
         ZStack(alignment: .center) {
-            GameView(gameManager: viewModel.gameManager, namespace: namespace)
+            gameView
             
-            if viewModel.gameState == .menu {
-                MenuView(gameManager: viewModel.gameManager, namespace: namespace)
-                    .matchedGeometryEffect(id: Constants.GeometryEffectName.card, in: namespace)
+            if viewModel.showMenu {
+                menuView
             }
         }
         .background(backgroundGradient)
     }
 }
 
+// MARK: - Game View
+private extension MainView {
+    var gameView : some View {
+        GameView(gameManager: viewModel.gameManager, namespace: namespace, showMenu: viewModel.showMenu)
+    }
+}
+
+// MARK: - Menu View
+private extension MainView {
+    var menuView : some View {
+        MenuView(gameManager: viewModel.gameManager)
+            .matchedGeometryEffect(id: Constants.GeometryEffectName.card, in: namespace)
+    }
+}
+
+// MARK: - Background gradient
 private extension MainView {
     var backgroundGradient : some View {
         LinearGradient(gradient: Gradient(colors: [Constants.Colour.pastelPink, Constants.Colour.pastelBlue]),

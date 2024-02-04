@@ -4,28 +4,22 @@ import SceneKit
 struct GameView: View {
     @StateObject private var viewModel : GameViewModel
     private var namespace : Namespace.ID
+    private var showMenu : Bool
     
-    init(gameManager : GameManager, namespace : Namespace.ID) {
+    init(gameManager : GameManager, namespace : Namespace.ID, showMenu : Bool) {
         self._viewModel = StateObject(wrappedValue: GameViewModel(gameManager: gameManager))
         self.namespace = namespace
+        self.showMenu = showMenu
     }
     
     var body: some View {
         GeometryReader { proxy in
             VStack(alignment: .center, spacing: 5) {
-                if viewModel.gameState == .playing {
+                if !showMenu {
                     header
-                        .withCardStyle()
-                        .matchedGeometryEffect(id: Constants.GeometryEffectName.card, in: namespace)
                 }
                 
                 game(proxy)
-            }
-            .overlay {
-                if viewModel.gameState == .over {
-                    gameOverView
-                        .matchedGeometryEffect(id: Constants.GeometryEffectName.card, in: namespace)
-                }
             }
         }
     }
@@ -42,6 +36,8 @@ private extension GameView {
             headerSection(title: "score_title".localizedString, value: "\(viewModel.score)")
         }
         .frame(maxWidth: .infinity)
+        .withCardStyle()
+        .matchedGeometryEffect(id: Constants.GeometryEffectName.card, in: namespace)
     }
     
     func headerSection(title : String, value : String) -> some View {
@@ -50,10 +46,12 @@ private extension GameView {
                 .font(.title3)
                 .fontWeight(.light)
                 .foregroundStyle(.white)
+                .fontDesign(.rounded)
             Text(value)
                 .font(.title)
                 .fontWeight(.bold)
                 .foregroundStyle(.white)
+                .fontDesign(.rounded)
         }
     }
 }
@@ -64,12 +62,5 @@ private extension GameView {
         GameViewControllerWrapper(frameSize: proxy.size, gameManager: viewModel.gameManager)
             .ignoresSafeArea(edges: .bottom)
             .disabled(viewModel.gameState != .playing)
-    }
-}
-
-// MARK: - Game Over UI
-private extension GameView {
-    var gameOverView : some View {
-        GameOverView(viewModel: viewModel)
     }
 }

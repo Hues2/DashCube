@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct GameOverView: View {
-    @ObservedObject var viewModel : GameViewModel
+    @ObservedObject var viewModel : MenuViewModel
     
     var body: some View {
         content
@@ -45,7 +45,7 @@ private extension GameOverView {
     
     var playAgainButton : some View {
         CustomButton(title: "play_again".localizedString) {
-            viewModel.restartGame()
+            viewModel.startGame()
         }
     }
     

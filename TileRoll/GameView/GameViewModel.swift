@@ -78,21 +78,3 @@ private extension GameViewModel {
             .store(in: &cancellables)
     }
 }
-
-// MARK: - Restart game
-extension GameViewModel {
-    func restartGame() {
-        withAnimation {
-            self.gameManager.startGame()
-        }
-    }
-}
-
-// MARK: - Return to menu
-extension GameViewModel {
-    func returnToMenu() {
-        withAnimation {
-            self.gameManager.returnToMenu()
-        }
-    }
-}

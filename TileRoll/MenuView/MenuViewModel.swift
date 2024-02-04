@@ -53,9 +53,20 @@ private extension MenuViewModel {
     }
 }
 
-// MARK: - Start Game
+// MARK: - Restart game
 extension MenuViewModel {
     func startGame() {
-        self.gameManager.startGame()
+        withAnimation {
+            self.gameManager.startGame()
+        }
+    }
+}
+
+// MARK: - Return to menu
+extension MenuViewModel {
+    func returnToMenu() {
+        withAnimation {
+            self.gameManager.returnToMenu()
+        }
     }
 }
