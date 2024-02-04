@@ -33,13 +33,13 @@ extension GameViewController {
         setUpTileManager()
         setUpCamera()
         setUpPlayerCube()
-        setUpSwipeGestureManager()
         self.view.backgroundColor = .clear
         self.sceneView.backgroundColor = .clear
     }
     
     func injectDependencies(gameManager : GameManager) {
         self.gameManager = gameManager
+        self.setUpSwipeGestureManager()
         self.addSubscriptions()
     }
 }
@@ -100,7 +100,9 @@ private extension GameViewController {
 // MARK: - Game Controller Manager Setup
 private extension GameViewController {
     func setUpSwipeGestureManager() {
-        self.swipeGestureManager = SwipeGestureManager(sceneView: self.sceneView, playerCube: playerCube)
+        self.swipeGestureManager = SwipeGestureManager(sceneView: self.sceneView,
+                                                       playerCube: playerCube,
+                                                       gameManager: self.gameManager)
     }
 }
 
@@ -148,7 +150,6 @@ extension GameViewController : SCNPhysicsContactDelegate {
         tileNode.contactHandled = true
         self.tileManager.addNewTile(tileNode.id)
         self.gameManager.addPoint()
-        self.gameManager.startTimer()
     }
     
     private func gameOver(deadZoneNode : DeadZoneNode) {
