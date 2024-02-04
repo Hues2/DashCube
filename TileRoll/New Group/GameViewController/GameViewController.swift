@@ -129,24 +129,33 @@ extension GameViewController : SCNPhysicsContactDelegate {
     func physicsWorld(_ world: SCNPhysicsWorld, didBegin contact: SCNPhysicsContact) {
         let tileNode = (contact.nodeA.name == Constants.tileNodeName ? contact.nodeA : contact.nodeB) as? TileNode
         let deadZoneNode = (contact.nodeA.name == Constants.deadZoneNodeName ? contact.nodeA : contact.nodeB) as? DeadZoneNode
-        
+        deadZoneNode?.removeFromParentNode()
         // If there is contact with the dead zone then game over
-        if deadZoneNode != nil, self.gameManager.gameState != .over, self.gameManager.gameState != .menu {
-            self.gameManager.endGame()
-            self.playerCube.physicsBody?.applyForce(.init(0, -2, 0), asImpulse: true)
-            self.playerCube.physicsBody?.applyTorque(.init(2, 0, 1, 1), asImpulse: true)
+        if let deadZoneNode, self.gameManager.gameState != .over, self.gameManager.gameState != .menu {
+            gameOver(deadZoneNode: deadZoneNode)
             return
         }
-        
+        // There has been contact between the player cube and a tile
         if let tileNode, !tileNode.contactHandled, gameManager.gameState == .playing {
-            tileNode.contactHandled = true
-            self.tileManager.addNewTile(tileNode.id)
-            self.gameManager.addPoint()
-            self.gameManager.startTimer()
+            nextTile(tileNode: tileNode)
         }
         
         // Stop the player cube
         self.playerCube.stopPlayerCube()
+    }
+    
+    private func nextTile(tileNode : TileNode) {
+        tileNode.contactHandled = true
+        self.tileManager.addNewTile(tileNode.id)
+        self.gameManager.addPoint()
+        self.gameManager.startTimer()
+    }
+    
+    private func gameOver(deadZoneNode : DeadZoneNode) {
+        self.gameManager.endGame()
+        // Push player off screen
+        self.playerCube.physicsBody?.applyForce(.init(0, -3, 0), asImpulse: true)
+        self.playerCube.physicsBody?.applyTorque(.init(2, 0, 2, 2), asImpulse: true)
     }
 }
 

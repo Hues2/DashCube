@@ -8,7 +8,7 @@ class GameManager {
     
     // Timer
     @Published private(set) var seconds : Int = Constants.timerSeconds
-    @Published private(set) var milliseconds : Int = 0
+    @Published private(set) var milliseconds : Int = Constants.timerMilliSeconds
     @Published private(set) var timeEnded : Bool = false
     private var timer : Timer?
     
@@ -21,6 +21,7 @@ class GameManager {
     
     private func addSubscriptions() {
         subscribeToGameState()
+        subscribeToTimerEnded()
     }
 }
 
@@ -36,6 +37,14 @@ private extension GameManager {
             }
             .store(in: &cancellables)
     }
+    
+    func subscribeToTimerEnded() {
+        self.$timeEnded
+            .sink { [weak self] timeHasEnded in
+                if timeHasEnded { self?.gameState = .over }
+            }
+            .store(in: &cancellables)
+    }
 }
 
 // MARK: - Timer
@@ -45,7 +54,7 @@ extension GameManager {
             self.stopTimer()
             self.timeEnded = false
             self.seconds = Constants.timerSeconds
-            self.milliseconds = 0
+            self.milliseconds = Constants.timerMilliSeconds
             self.timer = Timer.scheduledTimer(withTimeInterval: 0.01, repeats: true) { [weak self] _ in
                 guard let self else { return }
                 self.updateTimer()

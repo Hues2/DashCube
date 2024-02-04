@@ -38,7 +38,6 @@ class DeadZoneNode: SCNNode {
         self.physicsBody?.categoryBitMask = Constants.deadZoneCategoryBitMask
         self.physicsBody?.collisionBitMask = Constants.playerCubeCategoryBitMask
         self.physicsBody?.contactTestBitMask = Constants.playerCubeCategoryBitMask
-        self.physicsBody?.isAffectedByGravity = false
-        self.physicsBody?.friction = 1
+        self.physicsBody?.isAffectedByGravity = false        
     }
 }

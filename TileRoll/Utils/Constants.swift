@@ -29,4 +29,5 @@ class Constants {
     }
     // Game Timer
     static let timerSeconds : Int = 1
+    static let timerMilliSeconds : Int = 0
 }
