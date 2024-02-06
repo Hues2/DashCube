@@ -9,7 +9,7 @@ class PlayerCubeNode: SCNNode {
     
     override init() {
         super.init()
-        self.name = Constants.playerCubeNodeName
+        self.name = Constants.NodeName.playerCubeNodeName
         setUpCube()
         setupActions()
     }
@@ -23,9 +23,9 @@ class PlayerCubeNode: SCNNode {
 private extension PlayerCubeNode {
     private func setUpCube() {
         // Create a box geometry
-        let boxGeometry = SCNBox(width: Constants.tileSize,
-                                 height: Constants.tileSize,
-                                 length: Constants.tileSize,
+        let boxGeometry = SCNBox(width: Constants.Node.tileSize,
+                                 height: Constants.Node.tileSize,
+                                 length: Constants.Node.tileSize,
                                  chamferRadius: 0.0)
         
         // Create a material for the box
@@ -46,9 +46,9 @@ private extension PlayerCubeNode {
     private func setUpPhysicsBody() {
         guard let geometry else { return }
         self.physicsBody = SCNPhysicsBody(type: .dynamic, shape: SCNPhysicsShape(geometry: geometry))
-        self.physicsBody?.categoryBitMask = Constants.playerCubeCategoryBitMask
-        self.physicsBody?.collisionBitMask = Constants.tileCategoryBitMask
-        self.physicsBody?.contactTestBitMask = Constants.tileCategoryBitMask
+        self.physicsBody?.categoryBitMask = Constants.Physics.playerCubeCategoryBitMask
+        self.physicsBody?.collisionBitMask = Constants.Physics.tileCategoryBitMask
+        self.physicsBody?.contactTestBitMask = Constants.Physics.tileCategoryBitMask
         self.physicsBody?.isAffectedByGravity = true
         self.physicsBody?.friction = 1
     }

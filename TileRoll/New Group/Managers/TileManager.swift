@@ -50,7 +50,7 @@ extension TileManager {
         tileNode.updatePosition(position: position)
         
         // Add the spike node
-        if !isInitialTile {
+        if !isInitialTile, Utils.randomBool(Constants.Gameplay.spikeTileOdds) {
             addSpikeNode(position: position, isInitialTile: isInitialTile, tilePosition: tileNode.tilePosition)
         }
     }
@@ -88,14 +88,13 @@ private extension TileManager {
         let x = (spikePosition == .left) ? (position.x - 4) : (position.x + 4)
         let z = (spikePosition == .left) ? (position.z + 4) : (position.z - 4)
         spikeNode.updatePosition(position: SCNVector3(x, y, z))
-        
     }
 }
 
 // MARK: - Remove nodes
 extension TileManager {
     private func removeTileNode(_ tileNode : TileNode) {
-        if self.tileNodes.count > Constants.maxNumberOfTiles {
+        if self.tileNodes.count > Constants.Node.maxNumberOfTiles {
             tileNode.removeFromParentNode()
             tileNodes.removeFirst()
         }
@@ -111,7 +110,7 @@ extension TileManager {
 // MARK: - Set up initial tile nodes
 private extension TileManager {
     func setUpInitialTileNodes() {
-        for i in Constants.rangeOfInitialNodes {
+        for i in Constants.Node.rangeOfInitialNodes {
             addTileNode((i == 0))
         }
     }
@@ -129,10 +128,14 @@ extension TileManager {
 //            newTileNode.contactHandled = false
 //            return newTileNode
 //        })      
-        for tileNode in tileNodes {
+        for tileNode in self.tileNodes {
             tileNode.removeFromParentNode()
         }
+        for spikeNode in self.spikeNodes {
+            spikeNode.removeFromParentNode()
+        }
         self.tileNodes.removeAll()
+        self.spikeNodes.removeAll()
         self.tileCoordinates = TileCoordinates()
         self.setUpInitialTileNodes()
     }

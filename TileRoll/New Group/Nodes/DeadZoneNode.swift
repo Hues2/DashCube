@@ -4,7 +4,7 @@ class DeadZoneNode: SCNNode {
     
     override init() {
         super.init()
-        self.name = Constants.deadZoneNodeName
+        self.name = Constants.NodeName.deadZoneNodeName
         setUpPlatform()
     }
     
@@ -14,9 +14,9 @@ class DeadZoneNode: SCNNode {
     
     private func setUpPlatform() {
         // Create a box geometry
-        let boxGeometry = SCNBox(width: Constants.deadZoneSize,
-                                 height: Constants.deadZoneHeight,
-                                 length: Constants.deadZoneSize,
+        let boxGeometry = SCNBox(width: Constants.Node.deadZoneSize,
+                                 height: Constants.Node.deadZoneHeight,
+                                 length: Constants.Node.deadZoneSize,
                                  chamferRadius: 0.0)
         
         // Create a material for the box
@@ -35,9 +35,9 @@ class DeadZoneNode: SCNNode {
     private func setUpPhysicsBody() {
         guard let geometry else { return }
         self.physicsBody = SCNPhysicsBody(type: .dynamic, shape: SCNPhysicsShape(geometry: geometry))
-        self.physicsBody?.categoryBitMask = Constants.deadZoneCategoryBitMask
-        self.physicsBody?.collisionBitMask = Constants.playerCubeCategoryBitMask
-        self.physicsBody?.contactTestBitMask = Constants.playerCubeCategoryBitMask
+        self.physicsBody?.categoryBitMask = Constants.Physics.deadZoneCategoryBitMask
+        self.physicsBody?.collisionBitMask = Constants.Physics.playerCubeCategoryBitMask
+        self.physicsBody?.contactTestBitMask = Constants.Physics.playerCubeCategoryBitMask
         self.physicsBody?.isAffectedByGravity = false        
     }
 }

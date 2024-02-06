@@ -7,8 +7,8 @@ class GameManager {
     @Published private(set) var highScore : Int = 0
     
     // Timer
-    @Published private(set) var seconds : Int = Constants.timerSeconds
-    @Published private(set) var milliseconds : Int = Constants.timerMilliSeconds
+    @Published private(set) var seconds : Int = Constants.GameTimer.timerSeconds
+    @Published private(set) var milliseconds : Int = Constants.GameTimer.timerMilliSeconds
     @Published private(set) var timeEnded : Bool = false
     private var timer : Timer?
     
@@ -53,8 +53,8 @@ extension GameManager {
         DispatchQueue.main.async {
             self.stopTimer()
             self.timeEnded = false
-            self.seconds = Constants.timerSeconds
-            self.milliseconds = Constants.timerMilliSeconds
+            self.seconds = Constants.GameTimer.timerSeconds
+            self.milliseconds = Constants.GameTimer.timerMilliSeconds
             self.timer = Timer.scheduledTimer(withTimeInterval: 0.01, repeats: true) { [weak self] _ in
                 guard let self else { return }
                 self.updateTimer()
@@ -69,7 +69,6 @@ extension GameManager {
                 self.milliseconds = 99
             } else {
                 self.timeEnded = true
-                print("TIME OUT!!!")
                 stopTimer()
             }
         } else {

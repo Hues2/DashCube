@@ -13,7 +13,7 @@ class TileNode: SCNNode, Identifiable {
         self.isFirstTile = isFirstTile
         self.isSpikeNode = isSpikeNode
         super.init()
-        self.name = isSpikeNode ? Constants.spikeTileNodeName : Constants.tileNodeName
+        self.name = isSpikeNode ? Constants.NodeName.spikeTileNodeName : Constants.NodeName.tileNodeName
         setUpTile()
         if !isFirstTile && !isSpikeNode {
             addDeadZone()
@@ -26,9 +26,9 @@ class TileNode: SCNNode, Identifiable {
     
     private func setUpTile() {
         // Create a box geometry
-        let boxGeometry = SCNBox(width: Constants.tileSize,
-                                 height: Constants.tileSize,
-                                 length: Constants.tileSize,
+        let boxGeometry = SCNBox(width: Constants.Node.tileSize,
+                                 height: Constants.Node.tileSize,
+                                 length: Constants.Node.tileSize,
                                  chamferRadius: 0.0)
         
         // Create a material for the box
@@ -47,9 +47,9 @@ class TileNode: SCNNode, Identifiable {
     private func setUpPhysicsBody() {
         guard let geometry else { return }
         self.physicsBody = SCNPhysicsBody(type: .kinematic, shape: SCNPhysicsShape(geometry: geometry))
-        self.physicsBody?.categoryBitMask = Constants.tileCategoryBitMask
-        self.physicsBody?.collisionBitMask = Constants.playerCubeCategoryBitMask
-        self.physicsBody?.contactTestBitMask = Constants.playerCubeCategoryBitMask
+        self.physicsBody?.categoryBitMask = Constants.Physics.tileCategoryBitMask
+        self.physicsBody?.collisionBitMask = Constants.Physics.playerCubeCategoryBitMask
+        self.physicsBody?.contactTestBitMask = Constants.Physics.playerCubeCategoryBitMask
         self.physicsBody?.isAffectedByGravity = false
         self.physicsBody?.friction = 1
     }

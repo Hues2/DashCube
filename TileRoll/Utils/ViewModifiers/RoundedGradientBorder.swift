@@ -4,9 +4,9 @@ struct RoundedGradientBorder: ViewModifier {
     let colors : [Color]
     func body(content: Content) -> some View {
         content
-            .clipShape(RoundedRectangle(cornerRadius: Constants.cornerRadius))
+            .clipShape(RoundedRectangle(cornerRadius: Constants.UI.cornerRadius))
             .overlay {
-                RoundedRectangle(cornerRadius: Constants.cornerRadius)
+                RoundedRectangle(cornerRadius: Constants.UI.cornerRadius)
                     .stroke(
                         LinearGradient(colors: colors, startPoint: .leading, endPoint: .trailing)
                     )

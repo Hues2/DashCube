@@ -129,14 +129,17 @@ extension GameViewController {
 // MARK: - Physics body collisions
 extension GameViewController : SCNPhysicsContactDelegate {
     func physicsWorld(_ world: SCNPhysicsWorld, didBegin contact: SCNPhysicsContact) {
-        let tileNode = (contact.nodeA.name == Constants.tileNodeName ? contact.nodeA : contact.nodeB) as? TileNode
-        let deadZoneNode = (contact.nodeA.name == Constants.deadZoneNodeName ? contact.nodeA : contact.nodeB) as? DeadZoneNode
+        // Tile Node
+        let tileNode = (contact.nodeA.name == Constants.NodeName.tileNodeName ? contact.nodeA : contact.nodeB) as? TileNode
+        // Dead Zone Node
+        let deadZoneNode = (contact.nodeA.name == Constants.NodeName.deadZoneNodeName ? contact.nodeA : contact.nodeB) as? DeadZoneNode
+        // If there is contact with the dead zone then remove the dead zone and game over
         deadZoneNode?.removeFromParentNode()
-        // If there is contact with the dead zone then game over
         if let deadZoneNode, self.gameManager.gameState != .over, self.gameManager.gameState != .menu {
             gameOver(deadZoneNode: deadZoneNode)
             return
         }
+        
         // There has been contact between the player cube and a tile
         if let tileNode, !tileNode.contactHandled, gameManager.gameState == .playing {
             nextTile(tileNode: tileNode)
