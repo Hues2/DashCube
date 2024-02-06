@@ -40,27 +40,35 @@ extension TileManager {
     
     private func setTilePosition(_ tileNode : TileNode, _ isInitialTile : Bool) {
         if !isInitialTile {
-            // Set next Y position
-            tileCoordinates.yPosition -= 2 // Next block should always be place below current block
-            // Set next X position
-            tileCoordinates.xPosition = tileNode.tilePosition == .right ?
-            (tileCoordinates.xPosition + 4) : tileCoordinates.xPosition
-            // Set next Z position
-            tileCoordinates.zPosition = tileNode.tilePosition == .right ?
-            tileCoordinates.zPosition : (tileCoordinates.zPosition + 4)
+            // Never add a "spike" block option on the first level
+            setUpNextTileCoordinates(tileNode)
         }
         
         let position = SCNVector3(tileCoordinates.xPosition,
                                   tileCoordinates.yPosition,
                                   tileCoordinates.zPosition)
         tileNode.updatePosition(position: position)
-        print("TILE POSITION: \(tileNode.tilePosition)")
-        print("TILE POSITION: \(tileNode.position)")
         
         // Add the spike node
-//        addSpikeNode(position: position, isInitialTile: isInitialTile, tilePosition: tileNode.tilePosition)
+        if !isInitialTile {
+            addSpikeNode(position: position, isInitialTile: isInitialTile, tilePosition: tileNode.tilePosition)
+        }
     }
     
+    private func setUpNextTileCoordinates(_ tileNode : TileNode) {
+        // Set next Y position
+        tileCoordinates.yPosition -= 2 // Next block should always be place below current block
+        // Set next X position
+        tileCoordinates.xPosition = tileNode.tilePosition == .right ?
+        (tileCoordinates.xPosition + 4) : tileCoordinates.xPosition
+        // Set next Z position
+        tileCoordinates.zPosition = tileNode.tilePosition == .right ?
+        tileCoordinates.zPosition : (tileCoordinates.zPosition + 4)
+    }
+}
+
+// MARK: - Spike Node
+private extension TileManager {
     private func addSpikeNode(position : SCNVector3,
                               isInitialTile : Bool,
                               tilePosition : TilePosition) {
@@ -79,10 +87,7 @@ extension TileManager {
         let y = position.y
         let x = (spikePosition == .left) ? (position.x - 4) : (position.x + 4)
         let z = (spikePosition == .left) ? (position.z + 4) : (position.z - 4)
-        let spikeNodePosition = SCNVector3(x, y, z)
-        spikeNode.updatePosition(position: spikeNodePosition)
-        print("SPIKE POSITION: \(spikePosition)")
-        print("SPIKE POSITION: \(spikeNode.position)\n/n")
+        spikeNode.updatePosition(position: SCNVector3(x, y, z))
         
     }
 }

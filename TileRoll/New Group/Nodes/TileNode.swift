@@ -33,7 +33,7 @@ class TileNode: SCNNode, Identifiable {
         
         // Create a material for the box
         let material = SCNMaterial()
-        material.diffuse.contents = isSpikeNode ? UIColor.blue : (tilePosition == .right ? UIColor.red : UIColor.black)
+        material.diffuse.contents = isSpikeNode ? UIColor.blue : UIColor.black
         
         // Apply the material to the box
         boxGeometry.materials = [material]
