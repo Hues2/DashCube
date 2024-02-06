@@ -119,7 +119,8 @@ extension GameViewController {
         sceneView = SCNView(frame: CGRect(origin: .zero, size: viewSize))
         view.addSubview(sceneView)
         sceneView.delegate = self
-        sceneView.debugOptions = [.showPhysicsShapes, .showPhysicsFields]
+        sceneView.debugOptions = [.showPhysicsShapes, .showPhysicsFields, .showBoundingBoxes, .showSkeletons, .showWireframe]
+//        self.sceneView.allowsCameraControl = true
         scene = SCNScene()
         sceneView.scene = scene
         scene.physicsWorld.contactDelegate = self
@@ -156,7 +157,6 @@ extension GameViewController : SCNPhysicsContactDelegate {
         self.gameManager.endGame()
         // Push player off screen
         self.playerCube.physicsBody?.applyForce(.init(0, -3, 0), asImpulse: true)
-        self.playerCube.physicsBody?.applyTorque(.init(2, 0, 2, 2), asImpulse: true)
     }
 }
 
@@ -166,7 +166,7 @@ extension GameViewController : SCNSceneRendererDelegate {
         updatePositions()
     }
     
-//    MARK: - Update Camera & Light Positions
+// MARK: - Update Camera & Light Positions
     private func updatePositions() {
         if playerCube.position.y != playerCube.initialPlayerPosition.y {
             let x = playerCube.position.x + self.cameraNode.initialPosition.x

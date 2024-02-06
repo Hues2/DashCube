@@ -11,6 +11,7 @@ struct MainView: View {
     var body: some View {
         ZStack(alignment: .center) {
             gameView
+                .ignoresSafeArea(edges: [.bottom])
             
             if viewModel.showMenu {
                 menuView

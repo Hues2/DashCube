@@ -12,9 +12,11 @@ class Constants {
     // Physics
     static let playerCubeNodeName = "player"
     static let tileNodeName = "tile"
+    static let spikeTileNodeName = "spikeTile"
     static let deadZoneNodeName = "deadZone"
     static let playerCubeCategoryBitMask = 1
     static let tileCategoryBitMask = 2
+    static let spikeTileCategoryBitMask = 2
     static let deadZoneCategoryBitMask = 2
     // Colours
     struct Colour {
@@ -28,7 +30,7 @@ class Constants {
         static let highScore = "highScore"
     }
     // Game Timer
-    static let timerSeconds : Int = 1
+    static let timerSeconds : Int = 6000
     static let timerMilliSeconds : Int = 0
     // Namespace names
     struct GeometryEffectName {

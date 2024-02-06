@@ -9,6 +9,9 @@ class TileManager {
     private var tileNodes : [TileNode] = []
     private var tileCoordinates = TileCoordinates()
     
+    // Spike Nodes
+    private var spikeNodes : [TileNode] = []
+    
     init(scene : SCNScene) {
         self.scene = scene
         setUpInitialTileNodes()
@@ -26,18 +29,55 @@ extension TileManager {
     
     private func addTileNode(_ isInitialTile : Bool = false) {
         guard let tilePosition = TilePosition.allCases.randomElement() else { return }
-        let tileNode = TileNode(tilePosition: tilePosition, isFirstTile: isInitialTile)
+        let tileNode = TileNode(tilePosition: tilePosition,
+                                isFirstTile: isInitialTile,
+                                isSpikeNode: false)
         tileNode.contactHandled = isInitialTile // This stops 1 point being added at start of game
         self.tileNodes.append(tileNode)
-        setTilePosition(tileNode)
+        setTilePosition(tileNode, isInitialTile)
         Utils.addNodeToScene(scene, tileNode)
     }
     
-    private func setTilePosition(_ tileNode : TileNode) {
-        tileNode.position = SCNVector3(tileCoordinates.xPosition, tileCoordinates.yPosition, tileCoordinates.zPosition)
+    private func setTilePosition(_ tileNode : TileNode, _ isInitialTile : Bool) {
+        let position = SCNVector3(tileCoordinates.xPosition,
+                                  tileCoordinates.yPosition,
+                                  tileCoordinates.zPosition)
+        tileNode.updatePosition(position: position)
+        
+        // Add the spike node
+        addSpikeNode(position: position, isInitialTile: isInitialTile, tilePosition: tileNode.tilePosition)
+        
+        // Set next Y position
         tileCoordinates.yPosition -= 2 // Next block should always be place below current block
-        tileCoordinates.xPosition = tileNode.tilePosition == .right ? (tileCoordinates.xPosition + 4) : tileCoordinates.xPosition
-        tileCoordinates.zPosition = tileNode.tilePosition == .right ? tileCoordinates.zPosition : (tileCoordinates.zPosition + 4)
+        // Set next X position
+        tileCoordinates.xPosition = tileNode.tilePosition == .right ?
+        (tileCoordinates.xPosition + 4) : tileCoordinates.xPosition
+        // Set next Z position
+        tileCoordinates.zPosition = tileNode.tilePosition == .right ?
+        tileCoordinates.zPosition : (tileCoordinates.zPosition + 4)
+    }
+    
+    private func addSpikeNode(position : SCNVector3,
+                              isInitialTile : Bool,
+                              tilePosition : TilePosition) {
+        guard let spikeNodePosition = TilePosition.allCases.randomElement() else { return }
+        let spikeNode = TileNode(tilePosition: spikeNodePosition,
+                                 isFirstTile: isInitialTile,
+                                 isSpikeNode: true)
+        self.spikeNodes.append(spikeNode)
+        self.setSpikeNodePosition(position: position, tilePosition: tilePosition, spikeNode: spikeNode)
+        Utils.addNodeToScene(scene, spikeNode)
+    }
+    
+    private func setSpikeNodePosition(position : SCNVector3,
+                                      tilePosition : TilePosition,
+                                      spikeNode : TileNode) {
+        let y = position.y
+        let x = (tilePosition == .left) ? (position.x + 4) : (position.x - 4)
+        let z = (tilePosition == .left) ? (position.z - 4) : (position.z + 4)
+        let spikePosition = SCNVector3(x, y, z)
+        spikeNode.updatePosition(position: spikePosition)
+        
     }
 }
 

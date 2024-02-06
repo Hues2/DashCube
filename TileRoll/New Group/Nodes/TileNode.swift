@@ -5,15 +5,17 @@ class TileNode: SCNNode, Identifiable {
     var contactHandled : Bool = false
     let tilePosition : TilePosition
     var isFirstTile : Bool
+    let isSpikeNode : Bool
     private var deadZoneNode : DeadZoneNode!
     
-    init(tilePosition : TilePosition, isFirstTile : Bool) {
+    init(tilePosition : TilePosition, isFirstTile : Bool, isSpikeNode : Bool) {
         self.tilePosition = tilePosition
         self.isFirstTile = isFirstTile
+        self.isSpikeNode = isSpikeNode
         super.init()
-        self.name = Constants.tileNodeName
+        self.name = isSpikeNode ? Constants.spikeTileNodeName : Constants.tileNodeName
         setUpTile()
-        if !isFirstTile {
+        if !isFirstTile && !isSpikeNode {
             addDeadZone()
         }
     }
@@ -31,7 +33,7 @@ class TileNode: SCNNode, Identifiable {
         
         // Create a material for the box
         let material = SCNMaterial()
-        material.diffuse.contents = UIColor.black
+        material.diffuse.contents = isSpikeNode ? UIColor.blue : UIColor.black
         
         // Apply the material to the box
         boxGeometry.materials = [material]
@@ -52,6 +54,13 @@ class TileNode: SCNNode, Identifiable {
         self.physicsBody?.friction = 1
     }
     
+    func updatePosition(position : SCNVector3) {
+        self.position = position
+    }
+}
+
+// MARK: - Dead Zone
+extension TileNode {
     private func addDeadZone() {
         deadZoneNode = DeadZoneNode()
         deadZoneNode.position = self.position

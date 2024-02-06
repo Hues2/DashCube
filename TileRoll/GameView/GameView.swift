@@ -21,6 +21,7 @@ struct GameView: View {
                 
                 game(proxy)
             }
+            .frame(maxHeight: .infinity)
         }
     }
 }
