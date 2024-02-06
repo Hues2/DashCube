@@ -54,7 +54,6 @@ private extension GameViewController {
         self.gameManager.$gameState            
             .sink { [weak self] newGameState in
                 guard let self else { return }
-                print("Game State changed --> \(newGameState)")
                 switch newGameState {
                 case .menu :
                     break
