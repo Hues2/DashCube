@@ -27,7 +27,7 @@ private extension MenuView {
                 playButton
             }
         }
-        .withCardStyle()
+        .withCardStyle(outerPadding: Constants.UI.outerMenuPadding)
     }
 }
 

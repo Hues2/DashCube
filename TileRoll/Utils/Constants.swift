@@ -31,7 +31,9 @@ class Constants {
     }
     // MARK: - UI
     struct UI {
-        static let cornerRadius : CGFloat = 12
+        static let cornerRadius : CGFloat = 16
+        static let outerMenuPadding : CGFloat = 20
+        static let innerMenuPadding : CGFloat = 20
     }
     // MARK: - User Defaults
     struct UserDefaults {

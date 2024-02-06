@@ -16,7 +16,7 @@ struct GameView: View {
         GeometryReader { proxy in
             VStack(alignment: .center, spacing: 5) {
                 if !showMenu {
-                    header
+                    header(proxy)
                 }
                 
                 game(proxy)
@@ -28,7 +28,7 @@ struct GameView: View {
 
 // MARK: - Header UI
 private extension GameView {
-    var header : some View {
+    func header(_ proxy : GeometryProxy) -> some View {
         HStack {
             headerSection(title: "best_title".localizedString, value: "\(viewModel.highScore)")
             Spacer()
@@ -37,8 +37,9 @@ private extension GameView {
             headerSection(title: "score_title".localizedString, value: "\(viewModel.score)")
         }
         .frame(maxWidth: .infinity)
-        .withCardStyle()
+        .withCardStyle(innerPadding: proxy.safeAreaInsets.top)
         .matchedGeometryEffect(id: Constants.GeometryEffectName.card, in: namespace)
+        .ignoresSafeArea()
     }
     
     func headerSection(title : String, value : String) -> some View {

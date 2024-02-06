@@ -19,7 +19,7 @@ private extension GameOverView {
                 returnToMenuButton
             }
         }
-        .withCardStyle()
+        .withCardStyle(outerPadding: Constants.UI.outerMenuPadding)
     }
     
     var gameOverTitle : some View {
