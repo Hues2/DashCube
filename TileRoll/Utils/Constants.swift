@@ -6,6 +6,7 @@ class Constants {
     struct Node {
         static let rangeOfInitialNodes : ClosedRange<Int> = 0...2
         static let maxNumberOfTiles : Int = 8
+        static let maxNumberOfSpikeTiles : Int = 8
         static let tileSize : Double = 2.0
         static let deadZoneSize : Double = 100
         static let deadZoneHeight : Double = 0.1
@@ -34,6 +35,7 @@ class Constants {
         static let cornerRadius : CGFloat = 16
         static let outerMenuPadding : CGFloat = 20
         static let innerMenuPadding : CGFloat = 20
+        static let horizontalMenuPadding : CGFloat = 10
     }
     // MARK: - User Defaults
     struct UserDefaults {
@@ -41,7 +43,7 @@ class Constants {
     }
     // MARK: - Game Timer
     struct GameTimer {
-        static let timerSeconds : Int = 6000
+        static let timerSeconds : Int = 60
         static let timerMilliSeconds : Int = 0
     }
     // MARK: - Namespace names

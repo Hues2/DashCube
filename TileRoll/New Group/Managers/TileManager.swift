@@ -23,6 +23,7 @@ extension TileManager {
     func addNewTile(_ tileId : UUID?) {
         guard let firstTileNode = tileNodes.first else { return }
         removeTileNode(firstTileNode)
+        removeSpikeNode()
         addTileNode()
         removeDeadZoneNode(tileId)
     }
@@ -92,15 +93,20 @@ private extension TileManager {
 }
 
 // MARK: - Remove nodes
-extension TileManager {
-    private func removeTileNode(_ tileNode : TileNode) {
-        if self.tileNodes.count > Constants.Node.maxNumberOfTiles {
-            tileNode.removeFromParentNode()
-            tileNodes.removeFirst()
-        }
+private extension TileManager {
+    func removeTileNode(_ tileNode : TileNode) {
+        guard self.tileNodes.count > Constants.Node.maxNumberOfTiles else { return }
+        tileNode.removeFromParentNode()
+        tileNodes.removeFirst()
     }
     
-    private func removeDeadZoneNode(_ tileId : UUID?) {
+    func removeSpikeNode() {
+        guard let spikeNode = spikeNodes.first, spikeNodes.count > Constants.Node.maxNumberOfSpikeTiles else { return }
+        spikeNode.removeFromParentNode()
+        spikeNodes.removeFirst()
+    }
+    
+    func removeDeadZoneNode(_ tileId : UUID?) {
         let contactedTile = tileNodes.first(where: { $0.id == tileId })
         guard let contactedTile else { return }
         contactedTile.removeDeadZone()

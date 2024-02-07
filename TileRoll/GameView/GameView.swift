@@ -37,7 +37,9 @@ private extension GameView {
             headerSection(title: "score_title".localizedString, value: "\(viewModel.score)")
         }
         .frame(maxWidth: .infinity)
-        .withCardStyle(innerPadding: proxy.safeAreaInsets.top)
+        .withCardStyle(innerPadding: proxy.safeAreaInsets.top,
+                       horizontalPadding: Constants.UI.horizontalMenuPadding,
+                       roundedBorderColour: .clear)
         .matchedGeometryEffect(id: Constants.GeometryEffectName.card, in: namespace)
         .ignoresSafeArea()
     }
