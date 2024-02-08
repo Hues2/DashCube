@@ -2,10 +2,12 @@ import SwiftUI
 
 struct MainView: View {
     @StateObject private var viewModel : MainViewModel
+    @StateObject private var menuViewModel : MenuViewModel
     @Namespace private var namespace
     
     init(gameManager : GameManager) {
         self._viewModel = StateObject(wrappedValue: MainViewModel(gameManager: gameManager))
+        self._menuViewModel = StateObject(wrappedValue: MenuViewModel(gameManager: gameManager))
     }
     
     var body: some View {
@@ -31,7 +33,7 @@ private extension MainView {
 // MARK: - Menu View
 private extension MainView {
     var menuView : some View {
-        MenuView(gameManager: viewModel.gameManager)
+        MenuView(viewModel: menuViewModel)
             .matchedGeometryEffect(id: Constants.GeometryEffectName.card, in: namespace)
     }
 }

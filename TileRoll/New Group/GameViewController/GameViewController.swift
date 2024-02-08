@@ -32,9 +32,9 @@ extension GameViewController {
     func setUp(_ size : CGSize) {
         self.viewSize = size
         setUpScene()
-        setUpTileManager()
         setUpCamera()
         setUpPlayerCube()
+        setUpTileManager()
         self.view.backgroundColor = .clear
         self.sceneView.backgroundColor = .clear
     }
@@ -50,10 +50,11 @@ extension GameViewController {
 private extension GameViewController {
     private func addSubscriptions() {
         self.subscribeToGameState()
+        self.subscribeToTimeEnded()
     }
     
     private func subscribeToGameState() {
-        self.gameManager.$gameState            
+        self.gameManager.$gameState        
             .sink { [weak self] newGameState in
                 guard let self else { return }
                 switch newGameState {
@@ -67,6 +68,15 @@ private extension GameViewController {
                 case .over:
                     self.gameIsReset = false
                 }
+            }
+            .store(in: &cancellables)
+    }
+    
+    private func subscribeToTimeEnded() {
+        self.gameManager.$timeEnded
+            .sink { [weak self] newTimeEnded in
+                guard let self, newTimeEnded else { return }
+                self.tileManager.timeEnded()
             }
             .store(in: &cancellables)
     }
@@ -113,7 +123,7 @@ private extension GameViewController {
 // MARK: - Game Manager Setup
 private extension GameViewController {
     func setUpTileManager() {
-        self.tileManager = TileManager(scene: self.scene)
+        self.tileManager = TileManager(scene: self.scene, playerCube: self.playerCube)
     }
 }
 

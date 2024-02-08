@@ -36,6 +36,7 @@ private extension MenuViewModel {
     
     func subscribeToGameState() {
         self.gameManager.$gameState
+            .dropFirst()
             .sink { [weak self] newGameState in
                 guard let self else { return }
                 self.gameState = newGameState

@@ -1,12 +1,8 @@
 import SwiftUI
 
 struct MenuView: View {
-    @StateObject private var viewModel : MenuViewModel
-    
-    init(gameManager : GameManager) {
-        self._viewModel = StateObject(wrappedValue: MenuViewModel(gameManager: gameManager))
-    }
-    
+    @ObservedObject var viewModel : MenuViewModel
+
     var body: some View {
         if viewModel.gameState == .over {
             gameOverView

@@ -41,7 +41,8 @@ private extension GameManager {
     func subscribeToTimerEnded() {
         self.$timeEnded
             .sink { [weak self] timeHasEnded in
-                if timeHasEnded { self?.gameState = .over }
+                guard let self, timeHasEnded else { return }
+                self.gameState = .over
             }
             .store(in: &cancellables)
     }

@@ -26,7 +26,7 @@ private extension MainViewModel {
             .sink { [weak self] newGameState in
                 guard let self else { return }
                 withAnimation(.spring) {
-                    self.showMenu = (newGameState == . playing) ? false : true
+                    self.showMenu = (newGameState == .playing) ? false : true
                 }
             }
             .store(in: &cancellables)

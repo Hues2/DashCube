@@ -4,6 +4,7 @@ import SceneKit
 class TileManager {
     // Scene
     private let scene : SCNScene
+    private let playerCube : PlayerCubeNode
     
     // Tiles
     private var tileNodes : [TileNode] = []
@@ -12,8 +13,9 @@ class TileManager {
     // Spike Nodes
     private var spikeNodes : [TileNode] = []
     
-    init(scene : SCNScene) {
+    init(scene : SCNScene, playerCube : PlayerCubeNode) {
         self.scene = scene
+        self.playerCube = playerCube
         setUpInitialTileNodes()
     }
 }
@@ -144,6 +146,12 @@ extension TileManager {
         self.spikeNodes.removeAll()
         self.tileCoordinates = TileCoordinates()
         self.setUpInitialTileNodes()
+    }
+}
+
+extension TileManager {
+    func timeEnded() {
+        print("TIME ENDED")
     }
 }
 
