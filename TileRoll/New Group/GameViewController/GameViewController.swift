@@ -67,6 +67,7 @@ private extension GameViewController {
                     self.isFirstLoad = false
                 case .over:
                     self.gameIsReset = false
+                    self.tileManager.gameOver()
                 }
             }
             .store(in: &cancellables)
@@ -76,7 +77,7 @@ private extension GameViewController {
         self.gameManager.$timeEnded
             .sink { [weak self] newTimeEnded in
                 guard let self, newTimeEnded else { return }
-                self.tileManager.timeEnded()
+//                self.tileManager.timeEnded()
             }
             .store(in: &cancellables)
     }
@@ -173,7 +174,7 @@ extension GameViewController : SCNPhysicsContactDelegate {
     private func gameOver(deadZoneNode : DeadZoneNode) {
         self.gameManager.endGame()
         // Push player off screen
-        self.playerCube.physicsBody?.applyForce(.init(0, -3, 0), asImpulse: true)
+        self.playerCube.physicsBody?.applyForce(.init(0, -5, 0), asImpulse: true)
     }
 }
 

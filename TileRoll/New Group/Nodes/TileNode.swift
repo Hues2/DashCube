@@ -6,7 +6,7 @@ class TileNode: SCNNode, Identifiable {
     let tilePosition : TilePosition
     var isFirstTile : Bool
     let isSpikeNode : Bool
-    private var deadZoneNode : DeadZoneNode!
+    private var deadZoneNode : DeadZoneNode?
     
     init(tilePosition : TilePosition, isFirstTile : Bool, isSpikeNode : Bool) {
         self.tilePosition = tilePosition
@@ -44,14 +44,14 @@ class TileNode: SCNNode, Identifiable {
         setUpPhysicsBody()
     }
     
-    private func setUpPhysicsBody() {
+    private func setUpPhysicsBody(_ type : SCNPhysicsBodyType = .kinematic) {
         guard let geometry else { return }
-        self.physicsBody = SCNPhysicsBody(type: .kinematic, shape: SCNPhysicsShape(geometry: geometry))
+        self.physicsBody = SCNPhysicsBody(type: type, shape: SCNPhysicsShape(geometry: geometry))
         self.physicsBody?.categoryBitMask = Constants.Physics.tileCategoryBitMask
         self.physicsBody?.collisionBitMask = Constants.Physics.playerCubeCategoryBitMask
         self.physicsBody?.contactTestBitMask = Constants.Physics.playerCubeCategoryBitMask
-        self.physicsBody?.isAffectedByGravity = false
-        self.physicsBody?.friction = 1
+        self.physicsBody?.isAffectedByGravity = type == .kinematic ? false : true
+        self.physicsBody?.friction = type == .kinematic ? 1 : 0
     }
     
     func updatePosition(position : SCNVector3) {
@@ -63,12 +63,22 @@ class TileNode: SCNNode, Identifiable {
 extension TileNode {
     private func addDeadZone() {
         deadZoneNode = DeadZoneNode()
+        guard let deadZoneNode else { return }
         deadZoneNode.position = self.position
         deadZoneNode.position.y = self.position.y - 1
         self.addChildNode(deadZoneNode)
     }
     
     func removeDeadZone() {
-        self.deadZoneNode.removeFromParentNode()
+        guard let deadZoneNode else { return }
+        deadZoneNode.removeFromParentNode()
+    }
+}
+
+extension TileNode {
+    func gameOver() {
+        self.removeDeadZone()
+        self.setUpPhysicsBody(.dynamic)
+        self.physicsBody?.applyForce(.init(0, -5, 0), asImpulse: true)
     }
 }

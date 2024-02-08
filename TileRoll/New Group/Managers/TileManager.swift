@@ -127,15 +127,6 @@ private extension TileManager {
 // MARK: - Restart Game
 extension TileManager {
     func reset() {
-        // This is to replay the exact same layout of tiles
-        // Although, if you keep replaying, the tile nodes will keep dissapearing from under the player
-        // As the number of tiles on the list has reached the Constants.maxNumberOfTiles
-        
-//        self.tileNodes = self.tileNodes.map({ tileNode in
-//            var newTileNode = tileNode
-//            newTileNode.contactHandled = false
-//            return newTileNode
-//        })      
         for tileNode in self.tileNodes {
             tileNode.removeFromParentNode()
         }
@@ -150,8 +141,16 @@ extension TileManager {
 }
 
 extension TileManager {
-    func timeEnded() {
-        print("TIME ENDED")
+    func gameOver() {
+        DispatchQueue.main.async {
+            for tile in self.tileNodes {
+                tile.gameOver()
+            }
+            
+            for spikeNode in self.spikeNodes {
+                spikeNode.gameOver()
+            }
+        }
     }
 }
 

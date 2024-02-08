@@ -109,21 +109,27 @@ extension GameManager {
 // MARK: - Start/End Game & Back to menu
 extension GameManager {
     func startGame() {
-        DispatchQueue.main.async {
-            self.score = 0
-            self.gameState = .playing
+        if self.gameState != .playing {
+            DispatchQueue.main.async {
+                self.score = 0
+                self.gameState = .playing
+            }
         }
     }
     
     func endGame() {
-        DispatchQueue.main.async {
-            self.gameState = .over
+        if self.gameState != .over {
+            DispatchQueue.main.async {
+                self.gameState = .over
+            }
         }
     }
     
     func returnToMenu() {
-        DispatchQueue.main.async {
-            self.gameState = .menu
+        if self.gameState != .menu {
+            DispatchQueue.main.async {
+                self.gameState = .menu
+            }
         }
     }
 }
