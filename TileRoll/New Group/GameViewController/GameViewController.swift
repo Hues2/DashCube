@@ -69,7 +69,7 @@ private extension GameViewController {
                 case .over:
                     self.gameIsReset = false
                     self.isGameOver = true
-                    
+                    self.tileManager.gameOver()
                 }
             }
             .store(in: &cancellables)
