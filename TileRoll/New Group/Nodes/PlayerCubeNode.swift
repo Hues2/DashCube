@@ -137,3 +137,9 @@ extension PlayerCubeNode {
         self.rotation = self.initialRotation
     }
 }
+
+extension PlayerCubeNode {
+    func gameOver() {
+        self.physicsBody?.applyForce(.init(0, -7, 0), asImpulse: true)
+    }
+}

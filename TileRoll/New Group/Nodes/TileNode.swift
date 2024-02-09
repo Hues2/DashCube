@@ -75,6 +75,15 @@ extension TileNode {
     }
 }
 
+// MARK: - Drop Spike Node
+extension TileNode {
+    func dropTile() {
+        self.setUpPhysicsBody(.dynamic)
+        self.physicsBody?.applyForce(.init(0, -5, 0), asImpulse: true)
+    }
+}
+
+// MARK: - Game Over
 extension TileNode {
     func gameOver() {
         self.removeDeadZone()

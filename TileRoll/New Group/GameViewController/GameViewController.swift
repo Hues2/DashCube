@@ -167,13 +167,31 @@ extension GameViewController : SCNPhysicsContactDelegate {
         let deadZoneNode = (contact.nodeA.name == Constants.NodeName.deadZoneNodeName ? contact.nodeA : contact.nodeB) as? DeadZoneNode
         // If there is contact with the dead zone then remove the dead zone and game over
         deadZoneNode?.removeFromParentNode()
-        if let deadZoneNode, self.gameManager.gameState != .over, self.gameManager.gameState != .menu, !self.isGameOver {
-            self.gameOver(deadZoneNode: deadZoneNode)
+        
+        // MARK: - Player hit deadzone
+        if let deadZoneNode,
+           self.gameManager.gameState != .over,
+           self.gameManager.gameState != .menu,
+           !self.isGameOver {
+            self.gameOver()
             return
         }
         
-        // There has been contact between the player cube and a tile
-        if let tileNode, !tileNode.contactHandled, gameManager.gameState == .playing {
+        // MARK: - Player hit spike node
+        if let tileNode,
+           tileNode.name == Constants.NodeName.spikeTileNodeName,
+           self.gameManager.gameState != .over,
+           self.gameManager.gameState != .menu,
+           !self.isGameOver {
+            tileNode.dropTile()
+            self.gameOver()
+            return
+        }
+        
+        // MARK: - Player landed on tile
+        if let tileNode,
+           !tileNode.contactHandled,
+           gameManager.gameState == .playing {
             self.nextTile(tileNode: tileNode)
         }
         
@@ -187,10 +205,10 @@ extension GameViewController : SCNPhysicsContactDelegate {
         self.gameManager.addPoint()
     }
     
-    private func gameOver(deadZoneNode : DeadZoneNode) {
+    private func gameOver() {
         self.gameManager.endGame()
         // Push player off screen
-        self.playerCube.physicsBody?.applyForce(.init(0, -5, 0), asImpulse: true)
+        self.playerCube.gameOver()
         self.isGameOver = true
     }
 }
