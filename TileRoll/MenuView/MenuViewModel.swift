@@ -6,6 +6,7 @@ class MenuViewModel : ObservableObject {
     @Published private(set) var gameState : GameState = .menu
     @Published private(set) var score : Int = .zero
     @Published private(set) var highScore : Int = .zero
+    @Published private(set) var isGameOver : Bool = false
     
     // Dependencies
     let gameManager : GameManager
@@ -36,7 +37,6 @@ private extension MenuViewModel {
     
     func subscribeToGameState() {
         self.gameManager.$gameState
-            .dropFirst()
             .sink { [weak self] newGameState in
                 guard let self else { return }
                 self.gameState = newGameState

@@ -32,7 +32,7 @@ private extension GameManager {
             .sink { [weak self] newGameState in
                 guard let self else { return }
                 if newGameState == .over {
-                    self.setHighScore()
+                    self.gameOver()
                 }
             }
             .store(in: &cancellables)
@@ -41,7 +41,7 @@ private extension GameManager {
     func subscribeToTimerEnded() {
         self.$timeEnded
             .sink { [weak self] timeHasEnded in
-                guard let self, timeHasEnded else { return }
+                guard let self, timeHasEnded, self.gameState != .over else { return }
                 self.gameState = .over
             }
             .store(in: &cancellables)
@@ -54,8 +54,6 @@ extension GameManager {
         DispatchQueue.main.async {
             self.stopTimer()
             self.timeEnded = false
-            self.seconds = Constants.GameTimer.timerSeconds
-            self.milliseconds = Constants.GameTimer.timerMilliSeconds
             self.timer = Timer.scheduledTimer(withTimeInterval: 0.01, repeats: true) { [weak self] _ in
                 guard let self else { return }
                 self.updateTimer()
@@ -78,6 +76,8 @@ extension GameManager {
     }
     
     private func stopTimer() {
+        self.seconds = Constants.GameTimer.timerSeconds
+        self.milliseconds = Constants.GameTimer.timerMilliSeconds
         timer?.invalidate()
         timer = nil
     }
@@ -131,5 +131,12 @@ extension GameManager {
                 self.gameState = .menu
             }
         }
+    }
+}
+
+private extension GameManager {
+    func gameOver() {
+        self.stopTimer()
+        self.setHighScore()
     }
 }

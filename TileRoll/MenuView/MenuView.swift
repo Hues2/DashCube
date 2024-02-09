@@ -4,15 +4,24 @@ struct MenuView: View {
     @ObservedObject var viewModel : MenuViewModel
 
     var body: some View {
-        if viewModel.gameState == .over {
-            gameOverView
-        } else {
-            mainMenu
-        }
+        content
     }
 }
 
 // MARK: - Content
+private extension MenuView {
+    var content : some View {
+        VStack {
+            if viewModel.gameState == .over {
+                gameOverView
+            } else {
+                mainMenu
+            }
+        }
+    }
+}
+
+// MARK: - Main Menu
 private extension MenuView {
     var mainMenu : some View {
         VStack {

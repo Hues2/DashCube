@@ -78,7 +78,5 @@ extension TileNode {
 extension TileNode {
     func gameOver() {
         self.removeDeadZone()
-        self.setUpPhysicsBody(.dynamic)
-        self.physicsBody?.applyForce(.init(0, -5, 0), asImpulse: true)
     }
 }

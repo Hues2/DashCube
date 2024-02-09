@@ -25,6 +25,8 @@ class GameViewController: UIViewController {
     private var isFirstLoad : Bool = true
     // Game is reset
     private var gameIsReset : Bool = true
+    // Game is over
+    private var isGameOver : Bool = false
 }
 
 // MARK: - VC Setup
@@ -50,7 +52,6 @@ extension GameViewController {
 private extension GameViewController {
     private func addSubscriptions() {
         self.subscribeToGameState()
-        self.subscribeToTimeEnded()
     }
     
     private func subscribeToGameState() {
@@ -67,17 +68,9 @@ private extension GameViewController {
                     self.isFirstLoad = false
                 case .over:
                     self.gameIsReset = false
-                    self.tileManager.gameOver()
+                    self.isGameOver = true
+                    
                 }
-            }
-            .store(in: &cancellables)
-    }
-    
-    private func subscribeToTimeEnded() {
-        self.gameManager.$timeEnded
-            .sink { [weak self] newTimeEnded in
-                guard let self, newTimeEnded else { return }
-//                self.tileManager.timeEnded()
             }
             .store(in: &cancellables)
     }
@@ -90,6 +83,7 @@ private extension GameViewController {
             self.cameraNode.reset()
             self.tileManager.reset()
             self.playerCube.reset()
+            self.isGameOver = false
             self.gameIsReset = true
         }
     }
@@ -151,14 +145,14 @@ extension GameViewController : SCNPhysicsContactDelegate {
         let deadZoneNode = (contact.nodeA.name == Constants.NodeName.deadZoneNodeName ? contact.nodeA : contact.nodeB) as? DeadZoneNode
         // If there is contact with the dead zone then remove the dead zone and game over
         deadZoneNode?.removeFromParentNode()
-        if let deadZoneNode, self.gameManager.gameState != .over, self.gameManager.gameState != .menu {
-            gameOver(deadZoneNode: deadZoneNode)
+        if let deadZoneNode, self.gameManager.gameState != .over, self.gameManager.gameState != .menu, !self.isGameOver {
+            self.gameOver(deadZoneNode: deadZoneNode)
             return
         }
         
         // There has been contact between the player cube and a tile
         if let tileNode, !tileNode.contactHandled, gameManager.gameState == .playing {
-            nextTile(tileNode: tileNode)
+            self.nextTile(tileNode: tileNode)
         }
         
         // Stop the player cube
@@ -175,13 +169,14 @@ extension GameViewController : SCNPhysicsContactDelegate {
         self.gameManager.endGame()
         // Push player off screen
         self.playerCube.physicsBody?.applyForce(.init(0, -5, 0), asImpulse: true)
+        self.isGameOver = true
     }
 }
 
 // MARK: - Scene Renderer
 extension GameViewController : SCNSceneRendererDelegate {
     func renderer(_ renderer: SCNSceneRenderer, didApplyAnimationsAtTime time: TimeInterval) {
-        updatePositions()
+        self.updatePositions()
     }
     
 // MARK: - Update Camera & Light Positions
