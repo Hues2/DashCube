@@ -15,6 +15,7 @@
 		2E78123E2B66EF6F009CEE78 /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E78123D2B66EF6F009CEE78 /* MenuView.swift */; };
 		2E7812402B66EFEC009CEE78 /* MenuViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E78123F2B66EFEC009CEE78 /* MenuViewModel.swift */; };
 		2E9ACA872B699D3D0090245B /* DeadZoneNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9ACA862B699D3D0090245B /* DeadZoneNode.swift */; };
+		2EA119D82B76D5F400F4B481 /* AmbientLightNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EA119D72B76D5F400F4B481 /* AmbientLightNode.swift */; };
 		2EA341C42B68592D0046DE5A /* PlayerCubeNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EA341C32B68592C0046DE5A /* PlayerCubeNode.swift */; };
 		2EADDD2A2B66924000D724BF /* TileRollApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EADDD292B66924000D724BF /* TileRollApp.swift */; };
 		2EADDD2C2B66924000D724BF /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EADDD2B2B66924000D724BF /* ContentView.swift */; };
@@ -28,7 +29,7 @@
 		2EADDD562B6697C400D724BF /* TileCoordinates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EADDD552B6697C400D724BF /* TileCoordinates.swift */; };
 		2EADDD5D2B6697E500D724BF /* TileNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EADDD592B6697E500D724BF /* TileNode.swift */; };
 		2EADDD5E2B6697E500D724BF /* CameraNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EADDD5A2B6697E500D724BF /* CameraNode.swift */; };
-		2EADDD5F2B6697E500D724BF /* LightNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EADDD5B2B6697E500D724BF /* LightNode.swift */; };
+		2EADDD5F2B6697E500D724BF /* DirectionalLightNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EADDD5B2B6697E500D724BF /* DirectionalLightNode.swift */; };
 		2EADDD612B66981C00D724BF /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EADDD602B66981C00D724BF /* Utils.swift */; };
 		2EADDD632B66982E00D724BF /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EADDD622B66982E00D724BF /* Constants.swift */; };
 		2EADDD662B66D33500D724BF /* GameManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EADDD652B66D33500D724BF /* GameManager.swift */; };
@@ -48,6 +49,7 @@
 		2E78123D2B66EF6F009CEE78 /* MenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
 		2E78123F2B66EFEC009CEE78 /* MenuViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewModel.swift; sourceTree = "<group>"; };
 		2E9ACA862B699D3D0090245B /* DeadZoneNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeadZoneNode.swift; sourceTree = "<group>"; };
+		2EA119D72B76D5F400F4B481 /* AmbientLightNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmbientLightNode.swift; sourceTree = "<group>"; };
 		2EA341C32B68592C0046DE5A /* PlayerCubeNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerCubeNode.swift; sourceTree = "<group>"; };
 		2EADDD262B66924000D724BF /* TileRoll.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TileRoll.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2EADDD292B66924000D724BF /* TileRollApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TileRollApp.swift; sourceTree = "<group>"; };
@@ -62,7 +64,7 @@
 		2EADDD552B6697C400D724BF /* TileCoordinates.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TileCoordinates.swift; sourceTree = "<group>"; };
 		2EADDD592B6697E500D724BF /* TileNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TileNode.swift; sourceTree = "<group>"; };
 		2EADDD5A2B6697E500D724BF /* CameraNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraNode.swift; sourceTree = "<group>"; };
-		2EADDD5B2B6697E500D724BF /* LightNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LightNode.swift; sourceTree = "<group>"; };
+		2EADDD5B2B6697E500D724BF /* DirectionalLightNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DirectionalLightNode.swift; sourceTree = "<group>"; };
 		2EADDD602B66981C00D724BF /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		2EADDD622B66982E00D724BF /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		2EADDD652B66D33500D724BF /* GameManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameManager.swift; sourceTree = "<group>"; };
@@ -212,10 +214,11 @@
 			isa = PBXGroup;
 			children = (
 				2EADDD5A2B6697E500D724BF /* CameraNode.swift */,
-				2EADDD5B2B6697E500D724BF /* LightNode.swift */,
+				2EADDD5B2B6697E500D724BF /* DirectionalLightNode.swift */,
 				2EA341C32B68592C0046DE5A /* PlayerCubeNode.swift */,
 				2EADDD592B6697E500D724BF /* TileNode.swift */,
 				2E9ACA862B699D3D0090245B /* DeadZoneNode.swift */,
+				2EA119D72B76D5F400F4B481 /* AmbientLightNode.swift */,
 			);
 			path = Nodes;
 			sourceTree = "<group>";
@@ -340,6 +343,7 @@
 				2EADDD752B66E06D00D724BF /* String.swift in Sources */,
 				2EADDD562B6697C400D724BF /* TileCoordinates.swift in Sources */,
 				2E52F0E52B6AC282009014CF /* CustomButton.swift in Sources */,
+				2EA119D82B76D5F400F4B481 /* AmbientLightNode.swift in Sources */,
 				2EA341C42B68592D0046DE5A /* PlayerCubeNode.swift in Sources */,
 				2EADDD4C2B66977900D724BF /* GameViewController.swift in Sources */,
 				2EADDD5D2B6697E500D724BF /* TileNode.swift in Sources */,
@@ -353,7 +357,7 @@
 				2E6A25022B6B08BB00FB24DA /* CardStyle.swift in Sources */,
 				2EADDD492B66952600D724BF /* GameViewControllerWrapper.swift in Sources */,
 				2E9ACA872B699D3D0090245B /* DeadZoneNode.swift in Sources */,
-				2EADDD5F2B6697E500D724BF /* LightNode.swift in Sources */,
+				2EADDD5F2B6697E500D724BF /* DirectionalLightNode.swift in Sources */,
 				2EADDD2C2B66924000D724BF /* ContentView.swift in Sources */,
 				2EADDD6B2B66D60900D724BF /* MainView.swift in Sources */,
 				2EADDD5E2B6697E500D724BF /* CameraNode.swift in Sources */,

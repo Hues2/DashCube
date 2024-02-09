@@ -18,8 +18,10 @@ class GameViewController: UIViewController {
     private var swipeGestureManager : SwipeGestureManager!
     // Camera
     private var cameraNode : CameraNode!
-    // Light
-    private var lightNode : LightNode!
+    // Directional Light
+    private var directionalLightNode : DirectionalLightNode!
+    // Ambient Light
+    private var ambientLightNode : AmbientLightNode!
     // Player node
     private var playerCube : PlayerCubeNode!  
     // Cancellables
@@ -37,7 +39,8 @@ extension GameViewController {
         self.viewSize = size
         setUpScene()
         setUpCamera()
-        setUpLight()
+        setUpAmbientLight()
+        setUpDirectionalLight()
         setUpPlayerCube()
         setUpTileManager()
         self.view.backgroundColor = .clear
@@ -100,11 +103,19 @@ private extension GameViewController {
     }
 }
 
-// MARK: - Light Setup
+// MARK: - Directional Light Setup
 private extension GameViewController {
-    func setUpLight() {
-        self.lightNode = LightNode()
-        Utils.addNodeToScene(scene, lightNode)
+    func setUpDirectionalLight() {
+        self.directionalLightNode = DirectionalLightNode()
+        Utils.addNodeToScene(scene, directionalLightNode)
+    }
+}
+
+// MARK: - Ambient Light Setup
+private extension GameViewController {
+    func setUpAmbientLight() {
+        self.ambientLightNode = AmbientLightNode()
+        Utils.addNodeToScene(scene, ambientLightNode)
     }
 }
 
@@ -196,8 +207,7 @@ extension GameViewController : SCNSceneRendererDelegate {
             let x = playerCube.position.x + self.cameraNode.initialPosition.x
             let y = self.cameraNode.initialPosition.y - (playerCube.initialPlayerPosition.y - playerCube.position.y)
             let z = playerCube.position.z + self.cameraNode.initialPosition.z
-            cameraNode.position = SCNVector3(x, y, z)
-            lightNode.position = SCNVector3(x, y, z)
+            cameraNode.position = SCNVector3(x, y, z)            
         }
     }
 }

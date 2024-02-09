@@ -13,8 +13,8 @@ struct CardStyle: ViewModifier {
             .padding(Constants.UI.innerMenuPadding)
             .frame(maxWidth: .infinity)
             .background(
-                Color.black
-                    .opacity(0.5)
+                Color.white
+                    .opacity(0.1)
                     .blur(radius: 10)
                     .withRoundedGradientBorder(colors: [roundedBorderColour])
             )
