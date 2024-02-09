@@ -40,6 +40,7 @@ private extension MenuViewModel {
             .sink { [weak self] newGameState in
                 guard let self else { return }
                 self.gameState = newGameState
+                self.isGameOver = (newGameState == .over)
             }
             .store(in: &cancellables)
     }

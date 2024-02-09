@@ -12,7 +12,7 @@ struct MenuView: View {
 private extension MenuView {
     var content : some View {
         VStack {
-            if viewModel.gameState == .over {
+            if viewModel.isGameOver {
                 gameOverView
             } else {
                 mainMenu

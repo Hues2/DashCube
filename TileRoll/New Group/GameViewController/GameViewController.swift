@@ -18,6 +18,8 @@ class GameViewController: UIViewController {
     private var swipeGestureManager : SwipeGestureManager!
     // Camera
     private var cameraNode : CameraNode!
+    // Light
+    private var lightNode : LightNode!
     // Player node
     private var playerCube : PlayerCubeNode!  
     // Cancellables
@@ -35,6 +37,7 @@ extension GameViewController {
         self.viewSize = size
         setUpScene()
         setUpCamera()
+        setUpLight()
         setUpPlayerCube()
         setUpTileManager()
         self.view.backgroundColor = .clear
@@ -97,6 +100,14 @@ private extension GameViewController {
     }
 }
 
+// MARK: - Light Setup
+private extension GameViewController {
+    func setUpLight() {
+        self.lightNode = LightNode()
+        Utils.addNodeToScene(scene, lightNode)
+    }
+}
+
 // MARK: - Camera Setup
 private extension GameViewController {
     func setUpCamera() {
@@ -128,7 +139,7 @@ extension GameViewController {
         sceneView = SCNView(frame: CGRect(origin: .zero, size: viewSize))
         view.addSubview(sceneView)
         sceneView.delegate = self
-        sceneView.debugOptions = [.showPhysicsShapes, .showPhysicsFields, .showBoundingBoxes, .showSkeletons, .showWireframe]
+//        sceneView.debugOptions = [.showPhysicsShapes, .showPhysicsFields, .showBoundingBoxes, .showSkeletons, .showWireframe]
 //        self.sceneView.allowsCameraControl = true
         scene = SCNScene()
         sceneView.scene = scene
@@ -186,6 +197,7 @@ extension GameViewController : SCNSceneRendererDelegate {
             let y = self.cameraNode.initialPosition.y - (playerCube.initialPlayerPosition.y - playerCube.position.y)
             let z = playerCube.position.z + self.cameraNode.initialPosition.z
             cameraNode.position = SCNVector3(x, y, z)
+            lightNode.position = SCNVector3(x, y, z)
         }
     }
 }
