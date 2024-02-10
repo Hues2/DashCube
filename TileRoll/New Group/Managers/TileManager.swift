@@ -141,10 +141,14 @@ extension TileManager {
 }
 
 extension TileManager {
-    func gameOver() {
-        DispatchQueue.main.async {
+    func gameOver(timerEnded : Bool) {
+        DispatchQueue.main.async { [weak self] in
+            guard let self else { return }
             for tile in self.tileNodes {
                 tile.gameOver()
+                if timerEnded, Utils.isWithinOne(tile.position.y, (self.playerCube.position.y - 1)) {
+                    tile.dropTile()
+                }
             }
             
             for spikeNode in self.spikeNodes {

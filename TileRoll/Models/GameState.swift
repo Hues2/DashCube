@@ -1,5 +1,7 @@
 import Foundation
 
-enum GameState {
-    case menu, playing, over
+enum GameState : Equatable {
+    case menu
+    case playing
+    case over(timerEnded : Bool)            
 }

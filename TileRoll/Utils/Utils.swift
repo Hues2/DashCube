@@ -23,4 +23,8 @@ class Utils {
         let randomNumber = Double.random(in: 0.0...100.0)
         return randomNumber <= percentage
     }
+    
+    static func isWithinOne(_ number1: Float, _ number2: Float) -> Bool {
+        return abs(number1 - number2) <= 1
+    }
 }

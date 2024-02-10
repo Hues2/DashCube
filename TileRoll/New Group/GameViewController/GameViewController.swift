@@ -26,6 +26,7 @@ class GameViewController: UIViewController {
     private var playerCube : PlayerCubeNode!  
     // Cancellables
     private var cancellables = Set<AnyCancellable>()
+    // Is first game load
     private var isFirstLoad : Bool = true
     // Game is reset
     private var gameIsReset : Bool = true
@@ -65,17 +66,17 @@ private extension GameViewController {
             .sink { [weak self] newGameState in
                 guard let self else { return }
                 switch newGameState {
-                case .menu :
+                case .menu:
                     self.resetGame()
                 case .playing:
                     if !self.isFirstLoad {
                         self.resetGame()
                     }
                     self.isFirstLoad = false
-                case .over:
+                case .over(let timerEnded):
                     self.gameIsReset = false
                     self.isGameOver = true
-                    self.tileManager.gameOver()
+                    self.tileManager.gameOver(timerEnded: timerEnded)
                 }
             }
             .store(in: &cancellables)
@@ -170,7 +171,8 @@ extension GameViewController : SCNPhysicsContactDelegate {
         
         // MARK: - Player hit deadzone
         if deadZoneNode != nil,
-           self.gameManager.gameState != .over,
+           self.gameManager.gameState != .over(timerEnded: true),
+           self.gameManager.gameState != .over(timerEnded: false),
            self.gameManager.gameState != .menu,
            !self.isGameOver {
             self.gameOver()
@@ -180,7 +182,8 @@ extension GameViewController : SCNPhysicsContactDelegate {
         // MARK: - Player hit spike node
         if let tileNode,
            tileNode.name == Constants.NodeName.spikeTileNodeName,
-           self.gameManager.gameState != .over,
+           self.gameManager.gameState != .over(timerEnded: true),
+           self.gameManager.gameState != .over(timerEnded: false),
            self.gameManager.gameState != .menu,
            !self.isGameOver {
             tileNode.dropTile()

@@ -75,7 +75,7 @@ extension TileNode {
     }
 }
 
-// MARK: - Drop Spike Node
+// MARK: - Drop Tile Node
 extension TileNode {
     func dropTile() {
         self.setUpPhysicsBody(.dynamic)
