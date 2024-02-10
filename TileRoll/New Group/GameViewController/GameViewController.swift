@@ -169,7 +169,7 @@ extension GameViewController : SCNPhysicsContactDelegate {
         deadZoneNode?.removeFromParentNode()
         
         // MARK: - Player hit deadzone
-        if let deadZoneNode,
+        if deadZoneNode != nil,
            self.gameManager.gameState != .over,
            self.gameManager.gameState != .menu,
            !self.isGameOver {
@@ -191,7 +191,8 @@ extension GameViewController : SCNPhysicsContactDelegate {
         // MARK: - Player landed on tile
         if let tileNode,
            !tileNode.contactHandled,
-           gameManager.gameState == .playing {
+           gameManager.gameState == .playing,
+            tileNode.name == Constants.NodeName.tileNodeName {
             self.nextTile(tileNode: tileNode)
         }
         
