@@ -40,6 +40,7 @@
 		2EADDD6F2B66D65300D724BF /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EADDD6E2B66D65300D724BF /* MainViewModel.swift */; };
 		2EADDD722B66E01700D724BF /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2EADDD712B66E01700D724BF /* Localizable.strings */; };
 		2EADDD752B66E06D00D724BF /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EADDD742B66E06D00D724BF /* String.swift */; };
+		2EE69A402B79902800DC44BE /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EE69A3F2B79902800DC44BE /* Array.swift */; };
 		2EFD816D2B79856000CEB4A3 /* PlayerCube.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EFD816C2B79856000CEB4A3 /* PlayerCube.swift */; };
 /* End PBXBuildFile section */
 
@@ -78,6 +79,7 @@
 		2EADDD6E2B66D65300D724BF /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 		2EADDD712B66E01700D724BF /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		2EADDD742B66E06D00D724BF /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
+		2EE69A3F2B79902800DC44BE /* Array.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
 		2EFD816C2B79856000CEB4A3 /* PlayerCube.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerCube.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -282,6 +284,7 @@
 			isa = PBXGroup;
 			children = (
 				2EADDD742B66E06D00D724BF /* String.swift */,
+				2EE69A3F2B79902800DC44BE /* Array.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -362,6 +365,7 @@
 				2E52F0E52B6AC282009014CF /* CustomButton.swift in Sources */,
 				2EA119D82B76D5F400F4B481 /* AmbientLightNode.swift in Sources */,
 				2EFD816D2B79856000CEB4A3 /* PlayerCube.swift in Sources */,
+				2EE69A402B79902800DC44BE /* Array.swift in Sources */,
 				2E9EC6612B795AB800141568 /* CubeNodeViewRepresentable.swift in Sources */,
 				2EA341C42B68592D0046DE5A /* PlayerCubeNode.swift in Sources */,
 				2EADDD4C2B66977900D724BF /* GameViewController.swift in Sources */,

@@ -55,6 +55,7 @@ private extension PlayerCubesView {
                               bottomTrailing: .interactive) { view, phase in
                 view
                     .scaleEffect(phase.isIdentity ? 1 : 0)
+                    .opacity(phase.isIdentity ? 1 : 0.5)
             }
     }
 }
