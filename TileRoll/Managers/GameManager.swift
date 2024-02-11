@@ -138,6 +138,7 @@ extension GameManager {
     }
 }
 
+// MARK: - Game over
 private extension GameManager {
     func gameOver() {
         self.stopTimer()

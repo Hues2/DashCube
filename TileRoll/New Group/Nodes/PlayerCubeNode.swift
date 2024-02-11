@@ -129,6 +129,14 @@ extension PlayerCubeNode {
     }
 }
 
+// MARK: - Adjust Position
+extension PlayerCubeNode {
+    func adjustPositionToTile(_ tileNode : SCNNode) {
+        self.position.x = tileNode.position.x
+        self.position.z = tileNode.position.z
+    }
+}
+
 // MARK: - Reset
 extension PlayerCubeNode {
     func reset() {        

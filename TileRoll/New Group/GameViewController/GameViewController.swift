@@ -162,6 +162,8 @@ extension GameViewController {
 // MARK: - Physics body collisions
 extension GameViewController : SCNPhysicsContactDelegate {
     func physicsWorld(_ world: SCNPhysicsWorld, didBegin contact: SCNPhysicsContact) {
+        // Stop the player cube
+        self.playerCube.stopPlayerCube()
         // Tile Node
         let tileNode = (contact.nodeA.name == Constants.NodeName.tileNodeName ? contact.nodeA : contact.nodeB) as? TileNode
         // Dead Zone Node
@@ -195,20 +197,20 @@ extension GameViewController : SCNPhysicsContactDelegate {
         if let tileNode,
            !tileNode.contactHandled,
            gameManager.gameState == .playing,
-            tileNode.name == Constants.NodeName.tileNodeName {
+           tileNode.name == Constants.NodeName.tileNodeName {
             self.nextTile(tileNode: tileNode)
         }
-        
-        // Stop the player cube
-        self.playerCube.stopPlayerCube()
     }
     
+    // MARK: - Next Tile
     private func nextTile(tileNode : TileNode) {
         tileNode.contactHandled = true
         self.tileManager.addNewTile(tileNode.id)
+        self.playerCube.adjustPositionToTile(tileNode)
         self.gameManager.addPoint()
     }
     
+    // MARK: - Game Over
     private func gameOver() {
         self.gameManager.endGame()
         // Push player off screen
