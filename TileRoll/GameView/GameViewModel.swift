@@ -6,6 +6,7 @@ class GameViewModel : ObservableObject {
     @Published private(set) var gameState : GameState = .menu
     @Published private(set) var score : Int = .zero
     @Published private(set) var highScore : Int = .zero
+    @Published var isAnimating : Bool = false
     
     // Timer
     @Published private(set) var seconds : Int = 0
@@ -36,6 +37,10 @@ private extension GameViewModel {
             .sink { [weak self] newScore in
                 guard let self else { return }
                 self.score = newScore
+                
+                if newScore.isMultiple(of: 10) && newScore > 0 {
+                    self.isAnimating.toggle()
+                }
             }
             .store(in: &cancellables)
     }

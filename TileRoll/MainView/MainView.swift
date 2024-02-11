@@ -19,7 +19,7 @@ struct MainView: View {
                 menuView
             }
         }
-        .background(.black)
+        .background(Color.customBackground)
     }
 }
 

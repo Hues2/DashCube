@@ -34,17 +34,17 @@ private extension GameView {
             Spacer()
             headerSection(title: "timer_title".localizedString, value: String(format: "%02d:%02d", viewModel.seconds, viewModel.milliseconds))
             Spacer()
-            headerSection(title: "score_title".localizedString, value: "\(viewModel.score)")
+            headerSection(title: "score_title".localizedString, value: "\(viewModel.score)", isAnimatible: true)
         }
         .frame(maxWidth: .infinity)
         .withCardStyle(innerPadding: proxy.safeAreaInsets.top,
                        horizontalPadding: Constants.UI.horizontalMenuPadding,
-                       roundedBorderColour: .clear)
+                       roundedBorderColours: [.clear])
         .matchedGeometryEffect(id: Constants.GeometryEffectName.card, in: namespace)
         .ignoresSafeArea()
     }
     
-    func headerSection(title : String, value : String) -> some View {
+    func headerSection(title : String, value : String, isAnimatible : Bool = false) -> some View {
         VStack {
             Text(title)
                 .font(.title3)
@@ -56,6 +56,15 @@ private extension GameView {
                 .fontWeight(.bold)
                 .foregroundStyle(.white)
                 .fontDesign(.rounded)
+                .keyframeAnimator(initialValue: ScoreAnimationValues(), trigger: viewModel.isAnimating) { content, value in
+                    content
+                        .scaleEffect(isAnimatible ? value.scale : 1)
+                } keyframes: { _ in
+                    KeyframeTrack(\.scale) {
+                        CubicKeyframe(1.5, duration: 0.2)
+                        CubicKeyframe(1, duration: 0.2)
+                    }
+                }
         }
     }
 }
@@ -66,5 +75,11 @@ private extension GameView {
         GameViewControllerWrapper(frameSize: proxy.size, gameManager: viewModel.gameManager)
             .ignoresSafeArea(edges: .bottom)
             .disabled(viewModel.gameState != .playing)
+    }
+}
+
+private extension GameView {
+    struct ScoreAnimationValues {
+        var scale = 1.0
     }
 }
