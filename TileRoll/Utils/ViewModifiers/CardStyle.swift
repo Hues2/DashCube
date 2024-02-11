@@ -15,7 +15,6 @@ struct CardStyle: ViewModifier {
             .background(
                 Color.white
                     .opacity(0.1)
-                    .blur(radius: 15)
                     .withRoundedGradientBorder(colors: roundedBorderColours.reversed())
             )
             .padding(outerPadding)

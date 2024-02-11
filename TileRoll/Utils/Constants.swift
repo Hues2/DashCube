@@ -1,4 +1,5 @@
 import Foundation
+import UIKit
 import SwiftUI
 
 class Constants {
@@ -48,5 +49,13 @@ class Constants {
     // Gameplay Values
     struct Gameplay {
         static let spikeTileOdds : Double = 25
+    }
+    // MARK: - Player Cube
+    struct PlayerCubeValues {
+        static let playerCubeOptions : [PlayerCube] = [
+            PlayerCube(color: .red),
+            PlayerCube(color: .blue),
+            PlayerCube(color: .purple)
+        ]
     }
 }

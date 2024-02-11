@@ -8,6 +8,9 @@ class MenuViewModel : ObservableObject {
     @Published private(set) var highScore : Int = .zero
     @Published private(set) var isGameOver : Bool = false
     
+    // Player Cube
+    @Published private(set) var selectedPlayerCube : PlayerCube = PlayerCube(color: .white)
+    
     // Dependencies
     let gameManager : GameManager
     private var cancellables = Set<AnyCancellable>()
@@ -21,6 +24,7 @@ class MenuViewModel : ObservableObject {
         subscribeToScore()
         subscribeToGameState()
         subscribeToHighScore()
+        subscribeToSelectedPlayerCube()
     }
 }
 
@@ -50,6 +54,15 @@ private extension MenuViewModel {
             .sink { [weak self] newHighScore in
                 guard let self else { return }
                 self.highScore = newHighScore
+            }
+            .store(in: &cancellables)
+    }
+    
+    func subscribeToSelectedPlayerCube() {
+        self.gameManager.$selectedPlayerCube
+            .sink { [weak self] newSelectedPlayerCube in
+                guard let self else { return }
+                self.selectedPlayerCube = newSelectedPlayerCube
             }
             .store(in: &cancellables)
     }

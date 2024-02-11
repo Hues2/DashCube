@@ -2,6 +2,8 @@ import SwiftUI
 import SceneKit
 
 struct PlayerCubesView: View {
+    @ObservedObject var viewModel : MenuViewModel
+    
     var body: some View {
         content
     }
@@ -9,7 +11,7 @@ struct PlayerCubesView: View {
 
 private extension PlayerCubesView {
     var content : some View {
-        VStack(alignment: .leading, spacing: 5) {
+        VStack(alignment: .leading, spacing: 7.5) {
             title
             cubes
         }
@@ -27,22 +29,26 @@ private extension PlayerCubesView {
         GeometryReader { proxy in
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(spacing: 0) {
-                    cubeNode(proxy: proxy, uiColor: .red)
-                    cubeNode(proxy: proxy, uiColor: .blue)
-                    cubeNode(proxy: proxy, uiColor: .purple)
+                    ForEach(Constants.PlayerCubeValues.playerCubeOptions) { playerCube in
+                        cubeNode(proxy: proxy, playerCube: playerCube)
+                    }
                 }
             }
             .contentMargins(0)
             .scrollTargetBehavior(.paging)
             .frame(maxWidth: .infinity)
-            .background(Color.customBackground.clipShape(RoundedRectangle(cornerRadius: Constants.UI.cornerRadius)))
+            .background(
+                Color.customBackground
+                    .opacity(0.5)
+                    .clipShape(RoundedRectangle(cornerRadius: Constants.UI.cornerRadius))
+            )
             .withRoundedGradientBorder(colors: [.customAqua, .customStrawberry])
         }
         .frame(height: 150)
     }
     
-    func cubeNode(proxy: GeometryProxy, uiColor : UIColor) -> some View {
-        CubeNodeViewRepresentable(uiColor: uiColor)
+    func cubeNode(proxy: GeometryProxy, playerCube : PlayerCube) -> some View {
+        CubeNodeViewRepresentable(playerCube: playerCube)
             .frame(width: proxy.size.width)
             .scrollTargetLayout()
             .scrollTransition(topLeading: .interactive,

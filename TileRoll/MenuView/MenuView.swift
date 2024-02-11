@@ -31,7 +31,6 @@ private extension MenuView {
                 highScore
                 playButton
                 playerCubesView
-                    .padding(.top)
             }
         }
         .withCardStyle(outerPadding: Constants.UI.outerMenuPadding)
@@ -54,12 +53,12 @@ private extension MenuView {
     var highScore : some View {
         HStack {
             Text("high_score".localizedString)
-                .font(.body)
+                .font(.title3)
                 .fontWeight(.bold)
                 .fontDesign(.rounded)
                 .foregroundStyle(.white)
             Text("\(viewModel.highScore)")
-                .font(.body)
+                .font(.title3)
                 .fontWeight(.light)
                 .fontDesign(.rounded)
                 .foregroundStyle(.white)
@@ -85,7 +84,10 @@ private extension MenuView {
 
 // MARK: - Player Cubes
 private extension MenuView {
-    var playerCubesView : some View {
-        PlayerCubesView()
+    @ViewBuilder var playerCubesView : some View {
+        if viewModel.gameState == .menu {
+            PlayerCubesView(viewModel: viewModel)
+                .padding(.top)
+        }
     }
 }
