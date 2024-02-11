@@ -43,8 +43,8 @@ class Constants {
     }
     // MARK: - Game Timer
     struct GameTimer {
-        static let timerSeconds : Int = 3
-        static let timerMilliSeconds : Int = 0
+        static let timerStartingSeconds : Int = 5
+        static let timerStartingMilliSeconds : Int = 0
     }
     // MARK: - Namespace names
     struct GeometryEffectName {

@@ -7,10 +7,12 @@ class GameManager {
     @Published private(set) var highScore : Int = 0
     
     // Timer
-    @Published private(set) var seconds : Int = Constants.GameTimer.timerSeconds
-    @Published private(set) var milliseconds : Int = Constants.GameTimer.timerMilliSeconds
+    @Published private(set) var seconds : Int = Constants.GameTimer.timerStartingSeconds
+    @Published private(set) var milliseconds : Int = Constants.GameTimer.timerStartingMilliSeconds
     @Published private(set) var timeEnded : Bool = false
     private var timer : Timer?
+    private var maxSeconds : Int = Constants.GameTimer.timerStartingSeconds
+    private var maxMilliseconds : Int = Constants.GameTimer.timerStartingMilliSeconds
     
     private var cancellables = Set<AnyCancellable>()
     
@@ -65,7 +67,7 @@ extension GameManager {
     }
     
     private func updateTimer() {
-        if milliseconds == 0 {
+        if self.milliseconds == 0 {
             if seconds > 0 {
                 self.seconds -= 1
                 self.milliseconds = 99
@@ -74,15 +76,28 @@ extension GameManager {
                 stopTimer()
             }
         } else {
-            milliseconds -= 1
+            self.milliseconds -= 1
         }
     }
     
     private func stopTimer() {
-        self.seconds = Constants.GameTimer.timerSeconds
-        self.milliseconds = Constants.GameTimer.timerMilliSeconds
+        self.seconds = self.maxSeconds
+        self.milliseconds = self.maxMilliseconds
         timer?.invalidate()
         timer = nil
+    }
+    
+    private func resetTimerValues() {
+        self.maxSeconds = Constants.GameTimer.timerStartingSeconds
+        self.maxMilliseconds = Constants.GameTimer.timerStartingMilliSeconds
+        self.seconds = Constants.GameTimer.timerStartingSeconds
+        self.milliseconds = Constants.GameTimer.timerStartingMilliSeconds
+    }
+    
+    private func reduceTime() {
+        if self.score.isMultiple(of: 10), self.score > 0, self.maxSeconds > 1 {
+            self.maxSeconds -= 1
+        }
     }
 }
 
@@ -106,6 +121,7 @@ extension GameManager {
         DispatchQueue.main.async {
             self.score += 1
         }
+        self.reduceTime()
     }
 }
 
@@ -142,6 +158,7 @@ extension GameManager {
 private extension GameManager {
     func gameOver() {
         self.stopTimer()
+        self.resetTimerValues()
         self.setHighScore()
     }
 }
