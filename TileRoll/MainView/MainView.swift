@@ -41,7 +41,7 @@ private extension MainView {
 // MARK: - Background gradient
 private extension MainView {
     var backgroundGradient : some View {
-        LinearGradient(gradient: Gradient(colors: [Constants.Colour.pastelPink, Constants.Colour.pastelBlue]),
+        LinearGradient(gradient: Gradient(colors: [Color.customStrawberry, Color.customAqua]),
                        startPoint: .top,
                        endPoint: .bottom)
         .ignoresSafeArea()

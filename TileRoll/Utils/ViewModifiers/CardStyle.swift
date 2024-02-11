@@ -26,7 +26,7 @@ extension View {
     func withCardStyle(innerPadding : CGFloat = 0,
                        outerPadding : CGFloat = 0,
                        horizontalPadding : CGFloat = 0,
-                       roundedBorderColour : Color = Constants.Colour.pastelBlue) -> some View {
+                       roundedBorderColour : Color = Color.customAqua) -> some View {
         modifier(CardStyle(innerPadding: innerPadding,
                            outerPadding: outerPadding,
                            horizontalPadding: horizontalPadding,

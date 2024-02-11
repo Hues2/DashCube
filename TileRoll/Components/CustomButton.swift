@@ -16,7 +16,7 @@ struct CustomButton: View {
                 .frame(maxWidth: .infinity)
                 .background(
                     Color(uiColor: .darkGray)
-                        .withRoundedGradientBorder(colors: [Constants.Colour.pastelBlue, Constants.Colour.pastelPink])
+                        .withRoundedGradientBorder(colors: [Color.customAqua, Color.customStrawberry])
                 )
         }
     }

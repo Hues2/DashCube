@@ -25,11 +25,6 @@ class Constants {
         static let tileCategoryBitMask = 2
         static let deadZoneCategoryBitMask = 2
     }
-    // MARK: - Colours
-    struct Colour {
-        static let pastelBlue : Color = Color(red: 0.686, green: 0.933, blue: 0.933)
-        static let pastelPink : Color = Color(red: 1.0, green: 0.71, blue: 0.756)
-    }
     // MARK: - UI
     struct UI {
         static let cornerRadius : CGFloat = 16
@@ -43,7 +38,7 @@ class Constants {
     }
     // MARK: - Game Timer
     struct GameTimer {
-        static let timerStartingSeconds : Int = 5
+        static let timerStartingSeconds : Int = 3
         static let timerStartingMilliSeconds : Int = 0
     }
     // MARK: - Namespace names
@@ -52,6 +47,6 @@ class Constants {
     }
     // Gameplay Values
     struct Gameplay {
-        static let spikeTileOdds : Double = 20
+        static let spikeTileOdds : Double = 25
     }
 }
