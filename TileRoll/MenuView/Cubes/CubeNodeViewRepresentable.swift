@@ -1,0 +1,52 @@
+import SwiftUI
+import SceneKit
+
+struct CubeNodeViewRepresentable: UIViewRepresentable {
+    let uiColor : UIColor
+    
+    func makeUIView(context: Context) -> SCNView {
+        let sceneView = SCNView()
+        sceneView.scene = SCNScene()
+        sceneView.backgroundColor = .clear
+        sceneView.autoenablesDefaultLighting = true
+        sceneView.allowsCameraControl = false
+        sceneView.showsStatistics = false
+        let cubeNode = cubeNode()
+        let cameraNode = cameraNode()
+        sceneView.scene?.rootNode.addChildNode(cubeNode)
+        sceneView.scene?.rootNode.addChildNode(cameraNode)
+        return sceneView
+    }
+
+    func updateUIView(_ uiView: SCNView, context: Context) {
+        // Update the SCNView if needed
+    }
+    
+    private func cubeNode() -> SCNNode {
+        // Create a box geometry
+        let boxGeometry = SCNBox(width: Constants.Node.tileSize,
+                                 height: Constants.Node.tileSize,
+                                 length: Constants.Node.tileSize,
+                                 chamferRadius: 0.0)
+        
+        // Create a material for the box
+        let material = SCNMaterial()
+        material.diffuse.contents = uiColor
+        
+        // Apply the material to the box
+        boxGeometry.materials = [material]
+        
+        return SCNNode(geometry: boxGeometry)
+    }
+    
+    private func cameraNode() -> SCNNode {
+        let cameraNode = SCNNode()
+        cameraNode.camera = SCNCamera()
+        let rotationAngle = SCNVector3Make(-0.3, 0.6, 0)
+        cameraNode.eulerAngles = rotationAngle
+        cameraNode.position.y = 1.25
+        cameraNode.position.z = 4
+        cameraNode.position.x = 2.25
+        return cameraNode
+    }
+}

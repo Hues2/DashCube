@@ -30,6 +30,8 @@ private extension MenuView {
             VStack {
                 highScore
                 playButton
+                playerCubesView
+                    .padding(.top)
             }
         }
         .withCardStyle(outerPadding: Constants.UI.outerMenuPadding)
@@ -78,5 +80,12 @@ private extension MenuView {
 private extension MenuView {
     var gameOverView : some View {
         GameOverView(viewModel: viewModel)
+    }
+}
+
+// MARK: - Player Cubes
+private extension MenuView {
+    var playerCubesView : some View {
+        PlayerCubesView()
     }
 }
