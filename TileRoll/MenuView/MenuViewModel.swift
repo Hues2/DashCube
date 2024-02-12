@@ -18,6 +18,8 @@ class MenuViewModel : ObservableObject {
     init(gameManager: GameManager) {
         self.gameManager = gameManager
         self.addSubscriptions()
+        guard let firstPlayerCube = Constants.PlayerCubeValues.playerCubeOptions.first else { return }
+        self.selectedPlayerCube = firstPlayerCube
     }
     
     private func addSubscriptions() {
@@ -59,10 +61,11 @@ private extension MenuViewModel {
     }
     
     func subscribeToSelectedPlayerCube() {
-        self.gameManager.$selectedPlayerCube
+        self.$selectedPlayerCube
+            .dropFirst()
             .sink { [weak self] newSelectedPlayerCube in
                 guard let self else { return }
-                self.selectedPlayerCube = newSelectedPlayerCube
+                self.gameManager.setPlayerCube(newSelectedPlayerCube)
             }
             .store(in: &cancellables)
     }

@@ -57,11 +57,12 @@ extension GameViewController {
 
 // MARK: - Subscriptions
 private extension GameViewController {
-    private func addSubscriptions() {
+    func addSubscriptions() {
         self.subscribeToGameState()
+        self.subscribeToPlayerCubeModel()
     }
     
-    private func subscribeToGameState() {
+    func subscribeToGameState() {
         self.gameManager.$gameState        
             .sink { [weak self] newGameState in
                 guard let self else { return }
@@ -78,6 +79,15 @@ private extension GameViewController {
                     self.isGameOver = true
                     self.tileManager.gameOver(timerEnded: timerEnded)
                 }
+            }
+            .store(in: &cancellables)
+    }
+    
+    func subscribeToPlayerCubeModel() {
+        self.gameManager.$selectedPlayerCube
+            .sink { [weak self] newSelectedPlayerCube in
+                guard let self else { return }
+                self.playerCube.updatePlayerCubeModel(newSelectedPlayerCube)
             }
             .store(in: &cancellables)
     }

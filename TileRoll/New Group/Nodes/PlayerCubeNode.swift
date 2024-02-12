@@ -6,6 +6,7 @@ class PlayerCubeNode: SCNNode {
     private var jumpLeftAction : SCNAction!
     private let initialRotation = SCNVector4(x: 0, y: 0, z: 0, w: 0)
     let initialPlayerPosition : SCNVector3 = SCNVector3(0, 13, 0)
+    var playerCubeModel : PlayerCube = PlayerCube(color: .white)
     
     override init() {
         super.init()
@@ -22,6 +23,13 @@ class PlayerCubeNode: SCNNode {
 // MARK: - Movement
 private extension PlayerCubeNode {
     private func setUpCube() {
+        setUpGeometryBox()
+        // Set the position of the player cube
+        self.position = initialPlayerPosition
+        setUpPhysicsBody()
+    }
+    
+    private func setUpGeometryBox() {
         // Create a box geometry
         let boxGeometry = SCNBox(width: Constants.Node.tileSize,
                                  height: Constants.Node.tileSize,
@@ -30,17 +38,13 @@ private extension PlayerCubeNode {
         
         // Create a material for the box
         let material = SCNMaterial()
-        material.diffuse.contents = UIColor.white
+        material.diffuse.contents = playerCubeModel.color
         
         // Apply the material to the box
         boxGeometry.materials = [material]
         
         // Create a node with the box geometry
         self.geometry = boxGeometry
-        
-        // Set the position of the player cube
-        self.position = initialPlayerPosition
-        setUpPhysicsBody()
     }
     
     private func setUpPhysicsBody() {
@@ -146,8 +150,17 @@ extension PlayerCubeNode {
     }
 }
 
+// MARK: - Game Over
 extension PlayerCubeNode {
     func gameOver() {
         self.physicsBody?.applyForce(.init(0, -7, 0), asImpulse: true)
+    }
+}
+
+// MARK: - Update Player Cube Model
+extension PlayerCubeNode {
+    func updatePlayerCubeModel(_ playerCubeModel : PlayerCube) {
+        self.playerCubeModel = playerCubeModel
+        self.setUpGeometryBox()
     }
 }

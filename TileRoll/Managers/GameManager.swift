@@ -165,3 +165,10 @@ private extension GameManager {
         self.setHighScore()
     }
 }
+
+// MARK: - Update Player Cube
+extension GameManager {
+    func setPlayerCube(_ playerCube : PlayerCube) {
+        self.selectedPlayerCube = playerCube
+    }
+}
