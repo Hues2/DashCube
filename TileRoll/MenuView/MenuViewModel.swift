@@ -9,7 +9,7 @@ class MenuViewModel : ObservableObject {
     @Published private(set) var isGameOver : Bool = false
     
     // Player Cube
-    @Published private(set) var selectedPlayerCube : PlayerCube = PlayerCube(color: .white)
+    @Published var selectedPlayerCube : PlayerCube = PlayerCube(color: .white)
     
     // Dependencies
     let gameManager : GameManager

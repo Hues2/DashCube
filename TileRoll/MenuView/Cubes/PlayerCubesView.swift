@@ -13,7 +13,7 @@ private extension PlayerCubesView {
     var content : some View {
         VStack(alignment: .leading, spacing: 7.5) {
             title
-            cubes
+            cubesTabView
         }
     }
     
@@ -25,24 +25,15 @@ private extension PlayerCubesView {
             .foregroundStyle(.white)
     }
     
-    var cubes : some View {
+    var cubesTabView : some View {
         GeometryReader { proxy in
-            ScrollView(.horizontal, showsIndicators: false) {
-                HStack(spacing: 0) {
-                    ForEach(Constants.PlayerCubeValues.playerCubeOptions) { playerCube in
-                        cubeNode(proxy: proxy, playerCube: playerCube)
-                    }
+            TabView(selection: $viewModel.selectedPlayerCube) {
+                ForEach(Constants.PlayerCubeValues.playerCubeOptions) { playerCube in
+                    cubeNode(proxy: proxy, playerCube: playerCube)
+                        .tag(playerCube)
                 }
             }
-            .contentMargins(0)
-            .scrollTargetBehavior(.paging)
-            .frame(maxWidth: .infinity)
-            .background(
-                Color.customBackground
-                    .opacity(0.5)
-                    .clipShape(RoundedRectangle(cornerRadius: Constants.UI.cornerRadius))
-            )
-            .withRoundedGradientBorder(colors: [.customAqua, .customStrawberry])
+            .tabViewStyle(.page(indexDisplayMode: .never))
         }
         .frame(height: 150)
     }
@@ -50,12 +41,35 @@ private extension PlayerCubesView {
     func cubeNode(proxy: GeometryProxy, playerCube : PlayerCube) -> some View {
         CubeNodeViewRepresentable(playerCube: playerCube)
             .frame(width: proxy.size.width)
-            .scrollTargetLayout()
-            .scrollTransition(topLeading: .interactive,
-                              bottomTrailing: .interactive) { view, phase in
-                view
-                    .scaleEffect(phase.isIdentity ? 1 : 0)
-                    .opacity(phase.isIdentity ? 1 : 0.5)
-            }
     }
 }
+
+//var cubesScrollView : some View {
+//    GeometryReader { proxy in
+//        ScrollView(.horizontal, showsIndicators: false) {
+//            HStack(spacing: 0) {
+//                ForEach(Constants.PlayerCubeValues.playerCubeOptions) { playerCube in
+//                    cubeNode(proxy: proxy, playerCube: playerCube)
+//                }
+//            }
+//        }
+//        .contentMargins(0)
+//        .scrollTargetBehavior(.paging)
+//        .frame(maxWidth: .infinity)
+//        .background(
+//            Color.customBackground
+//                .opacity(0.5)
+//                .clipShape(RoundedRectangle(cornerRadius: Constants.UI.cornerRadius))
+//        )
+//        .withRoundedGradientBorder(colors: [.customAqua, .customStrawberry])
+//    }
+//    .frame(height: 150)
+//}
+
+//            .scrollTargetLayout()
+//            .scrollTransition(topLeading: .interactive,
+//                              bottomTrailing: .interactive) { view, phase in
+//                view
+//                    .scaleEffect(phase.isIdentity ? 1 : 0)
+//                    .opacity(phase.isIdentity ? 1 : 0.5)
+//            }

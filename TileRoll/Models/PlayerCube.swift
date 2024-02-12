@@ -1,6 +1,6 @@
 import UIKit
 
-struct PlayerCube : Identifiable {
+struct PlayerCube : Identifiable, Hashable {
     let id: UUID
     let color : UIColor
     
