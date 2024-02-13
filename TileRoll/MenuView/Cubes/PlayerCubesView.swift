@@ -47,10 +47,9 @@ private extension PlayerCubesView {
                     .opacity(0.5)
                     .clipShape(RoundedRectangle(cornerRadius: Constants.UI.cornerRadius))
             )
-//            .withRoundedGradientBorder(colors: [.customAqua, .customStrawberry])
             .withRoundedGradientBorder(colors: [Color(viewModel.selectedPlayerCube.color)])
         }
-        .frame(height: 150)
+        .frame(height: 200)
     }
     
     func cubeNodeView(proxy: GeometryProxy, playerCube : PlayerCube) -> some View {

@@ -9,7 +9,7 @@ class MenuViewModel : ObservableObject {
     @Published private(set) var isGameOver : Bool = false
     
     // Player Cube
-    @Published var selectedPlayerCube : PlayerCube = PlayerCube(color: .white)
+    @Published var selectedPlayerCube : PlayerCube
     
     // Dependencies
     let gameManager : GameManager
@@ -17,6 +17,7 @@ class MenuViewModel : ObservableObject {
     
     init(gameManager: GameManager) {
         self.gameManager = gameManager
+        self.selectedPlayerCube = gameManager.selectedPlayerCube
         self.addSubscriptions()
         guard let firstPlayerCube = Constants.PlayerCubeValues.playerCubeOptions.first else { return }
         self.selectedPlayerCube = firstPlayerCube

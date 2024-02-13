@@ -12,6 +12,7 @@ struct CubeNodeViewRepresentable: UIViewRepresentable {
         sceneView.allowsCameraControl = false
         sceneView.showsStatistics = false
         let cubeNode = cubeNode()
+        animateCube(cubeNode)
         let cameraNode = cameraNode()
         sceneView.scene?.rootNode.addChildNode(cubeNode)
         sceneView.scene?.rootNode.addChildNode(cameraNode)
@@ -48,5 +49,9 @@ struct CubeNodeViewRepresentable: UIViewRepresentable {
         cameraNode.position.z = 4
         cameraNode.position.x = 2.25
         return cameraNode
+    }
+    
+    private func animateCube(_ node : SCNNode) {
+        node.runAction(.repeatForever(playerCube.animation.action))
     }
 }

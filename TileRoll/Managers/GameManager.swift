@@ -15,7 +15,7 @@ class GameManager {
     private var maxMilliseconds : Int = Constants.GameTimer.timerStartingMilliSeconds
     
     // Player Cube
-    @Published private(set) var selectedPlayerCube : PlayerCube = PlayerCube(color: .white)
+    @Published private(set) var selectedPlayerCube : PlayerCube = PlayerCube(color: .white, animation: .normal)
     
     private var cancellables = Set<AnyCancellable>()
     
