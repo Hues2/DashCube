@@ -33,6 +33,10 @@ class Constants {
         static let innerMenuPadding : CGFloat = 20
         static let horizontalMenuPadding : CGFloat = 10
     }
+    // MARK: - SF Symbols
+    struct SFSymbol {
+        static let checkMark : String = "checkmark.seal.fill"
+    }
     // MARK: - User Defaults
     struct UserDefaults {
         static let highScore = "highScore"

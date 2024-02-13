@@ -3,6 +3,8 @@ import SceneKit
 
 struct PlayerCubesView: View {
     @ObservedObject var viewModel : MenuViewModel
+    @State private var animationToggle : Bool = false
+    @State private var isFirst : Bool = true
     
     var body: some View {
         content
@@ -14,6 +16,9 @@ private extension PlayerCubesView {
         VStack(alignment: .leading, spacing: 7.5) {
             title
             cubesScrollView
+        }
+        .onChange(of: viewModel.selectedPlayerCube) { oldValue, newValue in
+            if isFirst { self.isFirst = false }
         }
     }
     
@@ -51,15 +56,8 @@ private extension PlayerCubesView {
         ZStack(alignment: .topTrailing) {
             CubeNodeViewRepresentable(playerCube: playerCube)
                 .frame(width: proxy.size.width)
-                .scrollTargetLayout()
-                .scrollTransition(topLeading: .interactive,
-                                  bottomTrailing: .interactive) { view, phase in
-                    view
-                        .scaleEffect(phase.isIdentity ? 1 : 0)
-                        .opacity(phase.isIdentity ? 1 : 0.5)
-                }
             if viewModel.selectedPlayerCube == playerCube {
-                selectedLabel
+                selectedIcon(self.isFirst)
                     .padding()
             }
         }
@@ -68,13 +66,39 @@ private extension PlayerCubesView {
                 self.viewModel.selectedPlayerCube = playerCube
             }
         }
+        .scrollTargetLayout()
+        .scrollTransition(topLeading: .interactive,
+                          bottomTrailing: .interactive) { view, phase in
+            view
+                .scaleEffect(phase.isIdentity ? 1 : 0)
+                .opacity(phase.isIdentity ? 1 : 0.5)
+        }
     }
     
-    var selectedLabel : some View {
-        Text("cube_selected".localizedString)
-            .font(.title3)
+    func selectedIcon(_ isFirst : Bool) -> some View {
+        Image(systemName: Constants.SFSymbol.checkMark)
             .foregroundStyle(.white)
-            .fontDesign(.rounded)
-            .fontWeight(.semibold)
+            .fontWeight(.bold)
+            .font(.title2)
+            .keyframeAnimator(initialValue: CheckMarkAnimation(), trigger: self.animationToggle) { content, value in
+                content
+                    .scaleEffect(isFirst ? 1 : value.scale)
+            } keyframes: { _ in
+                KeyframeTrack(\.scale) {
+                    CubicKeyframe(1.3, duration: 0.2)
+                    CubicKeyframe(1, duration: 0.2)
+                }
+            }
+            .onAppear {
+                withAnimation {
+                    self.animationToggle.toggle()
+                }
+            }
+    }
+}
+
+private extension PlayerCubesView {
+    struct CheckMarkAnimation {
+        var scale = 1.0
     }
 }
