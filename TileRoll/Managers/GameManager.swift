@@ -98,8 +98,19 @@ extension GameManager {
     }
     
     private func reduceTime() {
-        if self.score.isMultiple(of: 10), self.score > 0, self.maxSeconds > 1 {
-            self.maxSeconds -= 1
+        if self.score.isMultiple(of: 10), self.score > 0 {
+            if self.maxSeconds > 1 {
+                self.maxSeconds -= 1
+                return
+            }
+            if self.maxSeconds == 1 {
+                self.maxSeconds = 0
+                self.maxMilliseconds = 99
+            }
+            
+            if self.maxMilliseconds > Constants.GameTimer.timerMinimumMilliSeconds {
+                self.maxMilliseconds -= 10
+            }
         }
     }
 }
