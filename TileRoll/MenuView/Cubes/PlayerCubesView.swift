@@ -47,7 +47,8 @@ private extension PlayerCubesView {
                     .opacity(0.5)
                     .clipShape(RoundedRectangle(cornerRadius: Constants.UI.cornerRadius))
             )
-            .withRoundedGradientBorder(colors: [.customAqua, .customStrawberry])
+//            .withRoundedGradientBorder(colors: [.customAqua, .customStrawberry])
+            .withRoundedGradientBorder(colors: [Color(viewModel.selectedPlayerCube.color)])
         }
         .frame(height: 150)
     }
@@ -63,7 +64,10 @@ private extension PlayerCubesView {
         }
         .onTapGesture {
             if self.viewModel.selectedPlayerCube != playerCube {
-                self.viewModel.selectedPlayerCube = playerCube
+                // Animate the border color
+                withAnimation {
+                    self.viewModel.selectedPlayerCube = playerCube
+                }
             }
         }
         .scrollTargetLayout()
@@ -79,18 +83,19 @@ private extension PlayerCubesView {
         Image(systemName: Constants.SFSymbol.checkMark)
             .foregroundStyle(.white)
             .fontWeight(.bold)
-            .font(.title2)
+            .font(.title2)            
             .keyframeAnimator(initialValue: CheckMarkAnimation(), trigger: self.animationToggle) { content, value in
                 content
                     .scaleEffect(isFirst ? 1 : value.scale)
             } keyframes: { _ in
                 KeyframeTrack(\.scale) {
-                    CubicKeyframe(1.3, duration: 0.2)
-                    CubicKeyframe(1, duration: 0.2)
+                    SpringKeyframe(1.5, duration: 0.2, spring: .snappy)
+                    SpringKeyframe(1, duration: 0.2, spring: .snappy)
                 }
             }
             .onAppear {
                 withAnimation {
+                    // Animate the icon keyframe
                     self.animationToggle.toggle()
                 }
             }
@@ -99,6 +104,7 @@ private extension PlayerCubesView {
 
 private extension PlayerCubesView {
     struct CheckMarkAnimation {
-        var scale = 1.0
+        var scale : CGFloat = 1.0
+        var tint : Color = .white
     }
 }

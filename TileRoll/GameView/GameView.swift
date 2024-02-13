@@ -80,6 +80,6 @@ private extension GameView {
 
 private extension GameView {
     struct ScoreAnimationValues {
-        var scale = 1.0
+        var scale : CGFloat = 1.0
     }
 }

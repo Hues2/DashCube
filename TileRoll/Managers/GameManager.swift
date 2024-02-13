@@ -110,6 +110,7 @@ extension GameManager {
             
             if self.maxMilliseconds > Constants.GameTimer.timerMinimumMilliSeconds {
                 self.maxMilliseconds -= 10
+                return
             }
         }
     }
