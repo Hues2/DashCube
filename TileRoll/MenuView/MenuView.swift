@@ -87,7 +87,7 @@ private extension MenuView {
     @ViewBuilder var playerCubesView : some View {
         if viewModel.gameState == .menu {
             PlayerCubesView(viewModel: viewModel)
-                .padding(.top, 15)
+                .padding(.top, 20)
         }
     }
 }

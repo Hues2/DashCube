@@ -14,7 +14,7 @@ enum CubeAnimation {
     private func basicAction() -> SCNAction {
         // Pause
         let pauseAction = SCNAction.move(by: .init(0, 0, 0), duration: 3)
-        
+
         // Jump
         let jumpUpAction = SCNAction.move(by: .init(0, 1, 0), duration: 0.2)
         let jumpDownAction = SCNAction.move(by: .init(0, -1, 0), duration: 0.2)

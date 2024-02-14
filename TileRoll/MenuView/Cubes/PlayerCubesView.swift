@@ -13,7 +13,7 @@ struct PlayerCubesView: View {
 
 private extension PlayerCubesView {
     var content : some View {
-        VStack(alignment: .leading, spacing: 7.5) {
+        VStack(alignment: .leading, spacing: 10) {
             title
             cubesScrollView
         }

@@ -48,7 +48,7 @@ struct CubeNodeViewRepresentable: UIViewRepresentable {
         cameraNode.eulerAngles = rotationAngle
         cameraNode.position.y = 1.25
         cameraNode.position.z = 4
-        cameraNode.position.x = 2.25
+        cameraNode.position.x = 2.4
         return cameraNode
     }
     
