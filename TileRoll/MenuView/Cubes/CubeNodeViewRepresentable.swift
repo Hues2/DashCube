@@ -13,6 +13,7 @@ struct CubeNodeViewRepresentable: UIViewRepresentable {
         sceneView.showsStatistics = false
         let cubeNode = cubeNode()
         animateCube(cubeNode)
+        cubeNode.position.y = -0.5
         let cameraNode = cameraNode()
         sceneView.scene?.rootNode.addChildNode(cubeNode)
         sceneView.scene?.rootNode.addChildNode(cameraNode)
@@ -25,9 +26,9 @@ struct CubeNodeViewRepresentable: UIViewRepresentable {
     
     private func cubeNode() -> SCNNode {
         // Create a box geometry
-        let boxGeometry = SCNBox(width: Constants.Node.tileSize,
-                                 height: Constants.Node.tileSize,
-                                 length: Constants.Node.tileSize,
+        let boxGeometry = SCNBox(width: Constants.Node.tileSize - 0.25,
+                                 height: Constants.Node.tileSize - 0.25,
+                                 length: Constants.Node.tileSize - 0.25,
                                  chamferRadius: 0.0)
         
         // Create a material for the box
@@ -52,6 +53,6 @@ struct CubeNodeViewRepresentable: UIViewRepresentable {
     }
     
     private func animateCube(_ node : SCNNode) {
-        node.runAction(.repeatForever(playerCube.animation.action))
+        node.runAction(playerCube.animation.action)
     }
 }
