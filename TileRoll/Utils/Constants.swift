@@ -60,7 +60,7 @@ class Constants {
         static let playerCubeOptions : [PlayerCube] = [
             PlayerCube(color: .red, animation: .basic),
             PlayerCube(color: .blue, animation: .yAxisSpin),
-            PlayerCube(color: .purple, animation: .basic)
+            PlayerCube(color: .purple, animation: .basicYAxisSpin)
         ]
     }
 }
