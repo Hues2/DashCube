@@ -13,7 +13,14 @@ class Constants {
         static let deadZoneHeight : Double = 0.1
     }
     // MARK: - Animation
-    static let playerMovementAnimationDuration : Double = 0.1
+    struct Animation {
+        static let playerMovementAnimationDuration : Double = 0.1
+        static let jumpActionDuration : Double = 0.1
+        static let jumpDisplayActionDuration : Double = 0.2
+        static let rotationActionDuration : Double = 0.2      
+        static let pauseActionDuration : Double = 2.5
+    }
+    // MARK: - Node Name
     struct NodeName {
         static let playerCubeNodeName = "player"
         static let tileNodeName = "tile"

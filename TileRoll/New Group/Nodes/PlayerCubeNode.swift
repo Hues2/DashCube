@@ -75,47 +75,21 @@ extension PlayerCubeNode {
     }
     
     private func setupActions() {
-        let duration = Constants.playerMovementAnimationDuration
-        
-        self.jumpRightAction = SCNAction.group([jumpAction(duration),
-                                                rotateAction(duration, .right),
-                                                moveAction(duration, .right)])
-        self.jumpLeftAction = SCNAction.group([jumpAction(duration),
-                                               rotateAction(duration, .left),
-                                               moveAction(duration, .left)])
+        self.jumpRightAction = SCNAction.group([playerCubeModel.animation.cubeAction.rightAction,
+                                                moveAction(.right)])
+        self.jumpLeftAction = SCNAction.group([playerCubeModel.animation.cubeAction.leftAction,
+                                               moveAction(.left)])
     }
 }
 
-// MARK: - Animation
+// MARK: - Move Action
 private extension PlayerCubeNode {
-    func jumpAction(_ duration : Double) -> SCNAction {
-        let moveUpAction = SCNAction.moveBy(x: 0, y: 1, z: 0, duration: duration)
-        let moveDownAction = SCNAction.moveBy(x: 0, y: -1, z: 0, duration: duration)
-        moveUpAction.timingMode = .easeOut
-        moveDownAction.timingMode = .easeIn
-                
-        return SCNAction.sequence([moveUpAction, moveDownAction])
-    }
-    
-    func rotateAction(_ duration : Double, _ direction : UISwipeGestureRecognizer.Direction) -> SCNAction {
+    func moveAction(_ direction : UISwipeGestureRecognizer.Direction) -> SCNAction {
         switch direction {
         case .right:
-            let rightRotationAmount : CGFloat = -(.pi / 2)
-            return SCNAction.rotate(by: rightRotationAmount, around: .init(0, 0, 1), duration: duration)
+            return SCNAction.moveBy(x: 4, y: -2, z: 0, duration: Constants.Animation.playerMovementAnimationDuration)
         case .left:
-            let leftRotationAmount : CGFloat = (.pi / 2)
-            return SCNAction.rotate(by: leftRotationAmount, around: .init(1, 0, 0), duration: duration)
-        default:
-            return SCNAction()
-        }
-    }
-    
-    func moveAction(_ duration : Double, _ direction : UISwipeGestureRecognizer.Direction) -> SCNAction {
-        switch direction {
-        case .right:
-            return SCNAction.moveBy(x: 4, y: -2, z: 0, duration: duration)
-        case .left:
-            return SCNAction.moveBy(x: 0, y: -2, z: 4, duration: duration)
+            return SCNAction.moveBy(x: 0, y: -2, z: 4, duration: Constants.Animation.playerMovementAnimationDuration)
         default:
             return SCNAction()
         }
@@ -159,5 +133,6 @@ extension PlayerCubeNode {
     func updatePlayerCubeModel(_ playerCubeModel : PlayerCube) {
         self.playerCubeModel = playerCubeModel
         self.setUpGeometryBox()
+        self.setupActions()
     }
 }
