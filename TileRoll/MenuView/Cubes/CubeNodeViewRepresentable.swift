@@ -11,12 +11,14 @@ struct CubeNodeViewRepresentable: UIViewRepresentable {
         sceneView.autoenablesDefaultLighting = true
         sceneView.allowsCameraControl = false
         sceneView.showsStatistics = false
+        
         let cubeNode = cubeNode()
         animateCube(cubeNode)
         cubeNode.position.y = -0.5
         let cameraNode = cameraNode()
         let ambientLightNode = ambientLightNode()
         let directionalLightNode = directionalLightNode()
+        
         sceneView.scene?.rootNode.addChildNode(cubeNode)
         sceneView.scene?.rootNode.addChildNode(cameraNode)
         sceneView.scene?.rootNode.addChildNode(ambientLightNode)

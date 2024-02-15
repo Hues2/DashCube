@@ -42,7 +42,6 @@ private extension PlayerCubeNode {
         
         // Apply the material to the box
         boxGeometry.materials = [material]
-        
         // Create a node with the box geometry
         self.geometry = boxGeometry
     }
@@ -63,12 +62,10 @@ extension PlayerCubeNode {
     func move(_ swipeDirection : UISwipeGestureRecognizer.Direction, _ completion : @escaping () -> Void) {
         switch swipeDirection {
         case .left:
-            self.rotation = initialRotation
             self.runAction(jumpLeftAction) {
                 completion()
             }
         case .right:
-            self.rotation = initialRotation
             self.runAction(jumpRightAction) {
                 completion()
             }
@@ -104,10 +101,10 @@ private extension PlayerCubeNode {
         switch direction {
         case .right:
             let rightRotationAmount : CGFloat = -(.pi / 2)
-            return SCNAction.rotateBy(x: 0, y: 0, z: rightRotationAmount, duration: duration)
+            return SCNAction.rotate(by: rightRotationAmount, around: .init(0, 0, 1), duration: duration)
         case .left:
             let leftRotationAmount : CGFloat = (.pi / 2)
-            return SCNAction.rotateBy(x: leftRotationAmount, y: 0, z: 0, duration: duration)
+            return SCNAction.rotate(by: leftRotationAmount, around: .init(1, 0, 0), duration: duration)
         default:
             return SCNAction()
         }

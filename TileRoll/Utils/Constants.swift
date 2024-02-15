@@ -59,7 +59,7 @@ class Constants {
     struct PlayerCubeValues {
         static let playerCubeOptions : [PlayerCube] = [
             PlayerCube(color: .red, animation: .basic),
-            PlayerCube(color: .blue, animation: .basic),
+            PlayerCube(color: .blue, animation: .yAxisSpin),
             PlayerCube(color: .purple, animation: .basic)
         ]
     }
