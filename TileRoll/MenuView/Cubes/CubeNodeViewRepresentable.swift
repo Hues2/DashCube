@@ -82,6 +82,6 @@ struct CubeNodeViewRepresentable: UIViewRepresentable {
     
     
     private func animateCube(_ node : SCNNode) {
-        node.runAction(playerCube.animation.action)
+        node.runAction(playerCube.animation.displayAction)
     }
 }

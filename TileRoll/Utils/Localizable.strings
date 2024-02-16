@@ -1,5 +1,5 @@
 // App title
-"app_title" = "Tile Roll";
+"app_title" = "App Title";
 
 // Game View
 "score_title" = "Score:";
@@ -15,3 +15,6 @@
 "play_button_title" = "Play";
 "high_score" = "High Score:";
 "pick_a_cube" = "Pick your cube:";
+
+// Cubelets
+"cubelets" = "Cubelets";

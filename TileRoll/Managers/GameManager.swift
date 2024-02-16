@@ -15,7 +15,7 @@ class GameManager {
     private var maxMilliseconds : Int = Constants.GameTimer.timerStartingMilliSeconds
     
     // Player Cube
-    @Published private(set) var selectedPlayerCube : PlayerCube = PlayerCube(color: .white, animation: .basic)
+    @Published private(set) var selectedPlayerCube : PlayerCube = PlayerCube(color: .white, animation: .basic, cost: .zero, isUnlocked: false)
     
     private var cancellables = Set<AnyCancellable>()
     
@@ -109,7 +109,7 @@ extension GameManager {
             }
             
             if self.maxMilliseconds > Constants.GameTimer.timerMinimumMilliSeconds {
-                self.maxMilliseconds -= 10
+                self.maxMilliseconds -= 20
                 return
             }
         }

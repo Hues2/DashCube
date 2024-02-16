@@ -47,12 +47,13 @@ class Constants {
     // MARK: - User Defaults
     struct UserDefaults {
         static let highScore = "highScore"
+        static let cubelets = "cubelets"
     }
     // MARK: - Game Timer
     struct GameTimer {
-        static let timerStartingSeconds : Int = 2
+        static let timerStartingSeconds : Int = 1
         static let timerStartingMilliSeconds : Int = 0
-        static let timerMinimumMilliSeconds : Int = 69
+        static let timerMinimumMilliSeconds : Int = 59
     }
     // MARK: - Namespace names
     struct GeometryEffectName {
@@ -65,9 +66,22 @@ class Constants {
     // MARK: - Player Cube
     struct PlayerCubeValues {
         static let playerCubeOptions : [PlayerCube] = [
-            PlayerCube(color: .red, animation: .basic),
-            PlayerCube(color: .blue, animation: .yAxisSpin),
-            PlayerCube(color: .purple, animation: .basicYAxisSpin)
+            PlayerCube(color: .red,
+                       animation: .basic,
+                       cost: 0,
+                       isUnlocked: true),
+            PlayerCube(color: .blue,
+                       animation: .yAxisSpin,
+                       cost: 500,
+                       isUnlocked: false),
+            PlayerCube(color: .purple,
+                       animation: .basicYAxisSpin,
+                       cost: 1500,
+                       isUnlocked: false)
         ]
+    }
+    // MARK: - Cubelets
+    struct Cubelets {
+        static let gameStartedCubelets : Int = 5
     }
 }

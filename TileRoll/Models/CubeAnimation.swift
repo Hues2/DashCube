@@ -6,7 +6,7 @@ enum CubeAnimation {
     case yAxisSpin
     case basicYAxisSpin
     
-    var action : SCNAction {
+    var displayAction : SCNAction {
         switch self {
         case .basic:
             return basicAction()

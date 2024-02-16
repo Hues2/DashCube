@@ -10,13 +10,17 @@ class MenuViewModel : ObservableObject {
     
     // Player Cube
     @Published var selectedPlayerCube : PlayerCube
+    // Cubelets
+    @Published private(set) var totalCubelets : Int = .zero
     
     // Dependencies
     let gameManager : GameManager
+    let cubeletsManager: CubeletsManager
     private var cancellables = Set<AnyCancellable>()
     
-    init(gameManager: GameManager) {
+    init(gameManager: GameManager, cubeletsManager: CubeletsManager) {
         self.gameManager = gameManager
+        self.cubeletsManager = cubeletsManager
         self.selectedPlayerCube = gameManager.selectedPlayerCube
         self.addSubscriptions()
         guard let firstPlayerCube = Constants.PlayerCubeValues.playerCubeOptions.first else { return }
@@ -28,6 +32,7 @@ class MenuViewModel : ObservableObject {
         subscribeToGameState()
         subscribeToHighScore()
         subscribeToSelectedPlayerCube()
+        subscribeToTotalCubelets()
     }
 }
 
@@ -67,6 +72,15 @@ private extension MenuViewModel {
             .sink { [weak self] newSelectedPlayerCube in
                 guard let self else { return }
                 self.gameManager.setPlayerCube(newSelectedPlayerCube)
+            }
+            .store(in: &cancellables)
+    }
+    
+    func subscribeToTotalCubelets() {
+        self.cubeletsManager.$totalCubelets
+            .sink { [weak self] newTotalCubelets in
+                guard let self else { return }
+                self.totalCubelets = newTotalCubelets
             }
             .store(in: &cancellables)
     }

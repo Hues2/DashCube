@@ -26,14 +26,17 @@ private extension MenuView {
     var mainMenu : some View {
         VStack {
             appTitle
+                .padding(.top, 25)
                 .padding(.bottom, 50)
             VStack {
-                highScore
-                playButton
-                playerCubesView
+                VStack {
+                    header
+                    playerCubesView
+                    playButton
+                }
             }
+            .withCardStyle(outerPadding: Constants.UI.outerMenuPadding)
         }
-        .withCardStyle(outerPadding: Constants.UI.outerMenuPadding)
     }
 }
 
@@ -48,17 +51,40 @@ private extension MenuView {
     }
 }
 
-// MARK: - Current high score
+// MARK: - Menu header
 private extension MenuView {
-    var highScore : some View {
+    var header : some View {
         HStack {
+            highScore
+            Spacer()
+            cubeletsView
+        }
+    }
+    
+    var highScore : some View {
+        VStack {
             Text("high_score".localizedString)
-                .font(.title3)
+                .font(.title2)
                 .fontWeight(.bold)
                 .fontDesign(.rounded)
                 .foregroundStyle(.white)
             Text("\(viewModel.highScore)")
-                .font(.title3)
+                .font(.title2)
+                .fontWeight(.light)
+                .fontDesign(.rounded)
+                .foregroundStyle(.white)
+        }
+    }
+    
+    var cubeletsView : some View {
+        VStack {
+            Text("\("cubelets".localizedString):")
+                .font(.title2)
+                .fontWeight(.bold)
+                .fontDesign(.rounded)
+                .foregroundStyle(.white)
+            Text("\(viewModel.totalCubelets)")
+                .font(.title2)
                 .fontWeight(.light)
                 .fontDesign(.rounded)
                 .foregroundStyle(.white)
@@ -72,13 +98,7 @@ private extension MenuView {
         CustomButton(title: "play_button_title".localizedString) {
             self.viewModel.startGame()
         }
-    }
-}
-
-// MARK: - Game Over UI
-private extension MenuView {
-    var gameOverView : some View {
-        GameOverView(viewModel: viewModel)
+        .padding(.top, 20)
     }
 }
 
@@ -89,5 +109,12 @@ private extension MenuView {
             PlayerCubesView(viewModel: viewModel)
                 .padding(.top, 20)
         }
+    }
+}
+
+// MARK: - Game Over UI
+private extension MenuView {
+    var gameOverView : some View {
+        GameOverView(viewModel: viewModel)
     }
 }
