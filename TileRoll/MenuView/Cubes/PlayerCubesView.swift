@@ -112,7 +112,9 @@ private extension PlayerCubesView {
                 Image(systemName: "lock.fill")
                 Text("\(playerCube.cost) \("cubelets".localizedString)")
             }
-            unlockCubeButton(playerCube)
+            if viewModel.canUnlockCube(playerCube) {
+                unlockCubeButton(playerCube)
+            }
         }
     }
     

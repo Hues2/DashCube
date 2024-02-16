@@ -33,3 +33,11 @@ extension CubeletsManager {
         UserDefaults.standard.setValue(newTotal, forKey: Constants.UserDefaults.cubelets)
     }
 }
+
+// MARK: - Spend cubelets
+extension CubeletsManager {
+    func spendCubelets(_ amount : Int) {
+        self.totalCubelets -= amount
+        UserDefaults.standard.setValue(self.totalCubelets, forKey: Constants.UserDefaults.cubelets)
+    }
+}

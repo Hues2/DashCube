@@ -122,6 +122,10 @@ extension MenuViewModel {
 
 // MARK: - Unlock player cube
 extension MenuViewModel {
+    func canUnlockCube(_ playerCube : PlayerCube) -> Bool {
+        return (self.totalCubelets >= playerCube.cost)
+    }
+    
     func unlockPlayerCube(_ playerCube : PlayerCube) {
         self.cubesManager.unlockPlayerCube(playerCube)
     }

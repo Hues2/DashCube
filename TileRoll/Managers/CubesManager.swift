@@ -13,6 +13,7 @@ class CubesManager {
 
 extension CubesManager {
     func unlockPlayerCube(_ playerCube : PlayerCube) {
+        self.cubeletsManager.spendCubelets(playerCube.cost)
         self.cubes = self.cubes.map({ cube in
             return PlayerCube(id: cube.id,
                               color: cube.color,
