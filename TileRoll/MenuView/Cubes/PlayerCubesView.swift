@@ -34,7 +34,7 @@ private extension PlayerCubesView {
         GeometryReader { proxy in
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(spacing: 0) {
-                    ForEach(Constants.PlayerCubeValues.playerCubeOptions) { playerCube in
+                    ForEach(viewModel.cubes) { playerCube in
                         cubeNodeView(proxy: proxy, playerCube: playerCube)
                     }
                 }
@@ -53,6 +53,15 @@ private extension PlayerCubesView {
     }
     
     func cubeNodeView(proxy: GeometryProxy, playerCube : PlayerCube) -> some View {
+        ZStack {
+            cube(proxy: proxy, playerCube: playerCube)
+            if !playerCube.isUnlocked {
+                unlockCubeView(playerCube)
+            }
+        }
+    }
+    
+    func cube(proxy: GeometryProxy, playerCube : PlayerCube) -> some View {
         ZStack(alignment: .topTrailing) {
             CubeNodeViewRepresentable(playerCube: playerCube)
                 .frame(width: proxy.size.width)
@@ -61,13 +70,10 @@ private extension PlayerCubesView {
                     .padding()
             }
         }
+        .blur(radius: playerCube.isUnlocked ? 0 : 15)
+        .disabled(!playerCube.isUnlocked)
         .onTapGesture {
-            if self.viewModel.selectedPlayerCube != playerCube {
-                // Animate the border color
-                withAnimation {
-                    self.viewModel.selectedPlayerCube = playerCube
-                }
-            }
+            handleTap(playerCube)
         }
         .scrollTargetLayout()
         .scrollTransition(topLeading: .interactive,
@@ -98,6 +104,34 @@ private extension PlayerCubesView {
                     self.animationToggle.toggle()
                 }
             }
+    }
+    
+    func unlockCubeView(_ playerCube : PlayerCube) -> some View {
+        VStack(spacing: 15) {
+            HStack {
+                Image(systemName: "lock.fill")
+                Text("\(playerCube.cost) \("cubelets".localizedString)")
+            }
+            unlockCubeButton(playerCube)
+        }
+    }
+    
+    func unlockCubeButton(_ playerCube : PlayerCube) -> some View {
+        CustomButton(title: "unlock_player_cube".localizedString) {        
+            viewModel.unlockPlayerCube(playerCube)
+        }
+    }
+}
+
+// MARK: - Select cube
+private extension PlayerCubesView {
+    func handleTap(_ playerCube : PlayerCube) {
+        if self.viewModel.selectedPlayerCube != playerCube {
+            // Animate the border color
+            withAnimation {
+                self.viewModel.selectedPlayerCube = playerCube
+            }
+        }
     }
 }
 

@@ -15,6 +15,7 @@
 "play_button_title" = "Play";
 "high_score" = "High Score:";
 "pick_a_cube" = "Pick your cube:";
+"unlock_player_cube" = "Unlock";
 
 // Cubelets
 "cubelets" = "Cubelets";

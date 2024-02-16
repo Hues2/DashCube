@@ -9,18 +9,24 @@ class MenuViewModel : ObservableObject {
     @Published private(set) var isGameOver : Bool = false
     
     // Player Cube
-    @Published var selectedPlayerCube : PlayerCube
+    @Published var selectedPlayerCube : PlayerCube    
     // Cubelets
     @Published private(set) var totalCubelets : Int = .zero
+    // Cubes
+    @Published private(set) var cubes : [PlayerCube] = []
     
     // Dependencies
     let gameManager : GameManager
     let cubeletsManager: CubeletsManager
+    let cubesManager: CubesManager
+    
+    // Cancellables
     private var cancellables = Set<AnyCancellable>()
     
-    init(gameManager: GameManager, cubeletsManager: CubeletsManager) {
+    init(gameManager: GameManager, cubeletsManager: CubeletsManager, cubesManager: CubesManager) {
         self.gameManager = gameManager
         self.cubeletsManager = cubeletsManager
+        self.cubesManager = cubesManager
         self.selectedPlayerCube = gameManager.selectedPlayerCube
         self.addSubscriptions()
         guard let firstPlayerCube = Constants.PlayerCubeValues.playerCubeOptions.first else { return }
@@ -31,6 +37,7 @@ class MenuViewModel : ObservableObject {
         subscribeToScore()
         subscribeToGameState()
         subscribeToHighScore()
+        subscribeToCubes()
         subscribeToSelectedPlayerCube()
         subscribeToTotalCubelets()
     }
@@ -76,6 +83,15 @@ private extension MenuViewModel {
             .store(in: &cancellables)
     }
     
+    func subscribeToCubes() {
+        self.cubesManager.$cubes
+            .sink { [weak self] newCubes in
+                guard let self else { return }
+                self.cubes = newCubes
+            }
+            .store(in: &cancellables)
+    }
+    
     func subscribeToTotalCubelets() {
         self.cubeletsManager.$totalCubelets
             .sink { [weak self] newTotalCubelets in
@@ -101,5 +117,12 @@ extension MenuViewModel {
         withAnimation {
             self.gameManager.returnToMenu()
         }
+    }
+}
+
+// MARK: - Unlock player cube
+extension MenuViewModel {
+    func unlockPlayerCube(_ playerCube : PlayerCube) {
+        self.cubesManager.unlockPlayerCube(playerCube)
     }
 }
