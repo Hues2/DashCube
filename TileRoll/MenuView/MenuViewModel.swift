@@ -125,6 +125,11 @@ extension MenuViewModel {
     }
     
     func unlockPlayerCube(_ playerCube : PlayerCube) {
+        // Unlock and save the cube
         self.cubesManager.unlockCube(playerCube)
+        // Spend the cubelets
+        self.cubeletsManager.spendCubelets(playerCube.cost)
+        // Publish the new cube for the game view controller
+        self.selectedPlayerCube = playerCube
     }
 }

@@ -122,6 +122,7 @@ private extension PlayerCubesView {
         CustomButton(title: "unlock_player_cube".localizedString) {        
             viewModel.unlockPlayerCube(playerCube)
         }
+        .padding()
     }
 }
 

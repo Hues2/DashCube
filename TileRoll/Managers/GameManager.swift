@@ -14,12 +14,9 @@ class GameManager {
     private var maxSeconds : Int = Constants.GameTimer.timerStartingSeconds
     private var maxMilliseconds : Int = Constants.GameTimer.timerStartingMilliSeconds
     
-    // Dependencies
-    private let cubeletsManager : CubeletsManager
     private var cancellables = Set<AnyCancellable>()
     
-    init(cubeletsManager : CubeletsManager) {
-        self.cubeletsManager = cubeletsManager
+    init() {
         addSubscriptions()
         getHighScore()
     }

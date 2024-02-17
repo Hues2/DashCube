@@ -4,11 +4,7 @@ class CubesManager {
     @Published var cubes : [PlayerCube] = []
     @Published var selectedCube : PlayerCube = PlayerCube(id: "white", color: .white, animation: .basic, cost: .zero, isUnlocked: false)
     
-    // Dependencies
-    private let cubeletsManager : CubeletsManager
-    
-    init(cubeletsManager : CubeletsManager) {
-        self.cubeletsManager = cubeletsManager
+    init() {
         self.cubes = self.getUnlockedCubeIds()
         guard let savedSelectedCube = self.savedSelectedCube() else {
             guard let firstCube = Constants.PlayerCubeValues.playerCubeOptions.first else { return }
@@ -40,9 +36,7 @@ extension CubesManager {
         // Save the cube id to user defaults
         var unlockedCubeIds : [String] = UserDefaults.standard.value(forKey: Constants.UserDefaults.cubeIds) as? [String] ?? []
         unlockedCubeIds.append(playerCube.id)
-        UserDefaults.standard.setValue(unlockedCubeIds, forKey: Constants.UserDefaults.cubeIds)
-        // Spend the cubelets
-        self.cubeletsManager.spendCubelets(playerCube.cost)
+        UserDefaults.standard.setValue(unlockedCubeIds, forKey: Constants.UserDefaults.cubeIds)        
         // Publish the modified cubes list
         self.cubes = self.cubes.map({ cube in
             return PlayerCube(id: cube.id,

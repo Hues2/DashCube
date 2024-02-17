@@ -8,8 +8,8 @@ struct ContentView: View {
     
     init() {
         self.cubeletsManager = CubeletsManager()
-        self.gameManager = GameManager(cubeletsManager: cubeletsManager)
-        self.cubesManager = CubesManager(cubeletsManager: cubeletsManager)
+        self.gameManager = GameManager()
+        self.cubesManager = CubesManager()
     }
     
     var body: some View {
