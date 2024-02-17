@@ -33,6 +33,7 @@ private extension CubesManager {
 // MARK: - Unlock cube
 extension CubesManager {
     func unlockCube(_ playerCube : PlayerCube) {
+        // TODO: Should use CloudKit or similar to store this data, instead of user defaults
         // Save the cube id to user defaults
         var unlockedCubeIds : [String] = UserDefaults.standard.value(forKey: Constants.UserDefaults.cubeIds) as? [String] ?? []
         unlockedCubeIds.append(playerCube.id)

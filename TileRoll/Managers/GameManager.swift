@@ -122,6 +122,7 @@ extension GameManager {
     private func setHighScore() {
         if self.score > self.highScore {
             self.highScore = score
+            // TODO: Save this highscore to game centre account or cloud kit
             UserDefaults.standard.setValue(score, forKey: Constants.UserDefaults.highScore)
         }
     }
