@@ -122,7 +122,7 @@ private extension PlayerCubesView {
         if self.viewModel.selectedPlayerCube != playerCube {
             // Animate the border color
             withAnimation {
-                self.viewModel.selectedPlayerCube = playerCube
+                self.viewModel.saveSelectedCube(playerCube)
             }
         }
     }

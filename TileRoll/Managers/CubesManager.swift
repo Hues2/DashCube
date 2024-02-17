@@ -23,16 +23,14 @@ private extension CubesManager {
         // Saved selected cube ID
         let savedSelectedCubeId = UserDefaults.standard.value(forKey: Constants.UserDefaults.selectedCubeId) as? String ?? ""
         // Set the cube values
-        let cubes = Constants.PlayerCubeValues.playerCubeOptions.map { cube in
+        self.cubes = Constants.PlayerCubeValues.playerCubeOptions.map { cube in
             return PlayerCube(id: cube.id,
                               color: cube.color,
                               animation: cube.animation,
                               requiredHighScore: cube.requiredHighScore,
                               isUnlocked: (highScore >= cube.requiredHighScore),
                               isSelected: (savedSelectedCubeId == cube.id))
-        }
-        print("CUBES MANAGER : \n\(cubes)")
-        self.cubes = cubes
+        }        
     }
 }
 
@@ -63,8 +61,16 @@ extension CubesManager {
     }
     
     func saveSelectedCubeId(_ id : String) {
-        guard let cube = self.cubes.first(where: { $0.id == id }) else { return }
-        self.selectedCube = cube
+        guard let selectedCube = self.cubes.first(where: { $0.id == id }) else { return }
+        self.cubes = self.cubes.map { cube in
+            return PlayerCube(id: cube.id,
+                              color: cube.color,
+                              animation: cube.animation,
+                              requiredHighScore: cube.requiredHighScore,
+                              isUnlocked: cube.isUnlocked,
+                              isSelected: (id == cube.id))
+        }
+        self.setSelectedCube()
         UserDefaults.standard.setValue(id, forKey: Constants.UserDefaults.selectedCubeId)
     }
 }

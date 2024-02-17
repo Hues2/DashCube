@@ -69,11 +69,10 @@ private extension MenuViewModel {
     }
     
     func subscribeToSelectedPlayerCube() {
-        self.$selectedPlayerCube
-            .dropFirst()
+        self.cubesManager.$selectedCube
             .sink { [weak self] newSelectedPlayerCube in
                 guard let self else { return }
-                self.cubesManager.saveSelectedCubeId(newSelectedPlayerCube.id)
+                self.selectedPlayerCube = newSelectedPlayerCube
             }
             .store(in: &cancellables)
     }
@@ -82,7 +81,6 @@ private extension MenuViewModel {
         self.cubesManager.$cubes            
             .sink { [weak self] newCubes in
                 guard let self else { return }
-                print("MENU VM cubes \n \(newCubes)")
                 self.cubes = newCubes
             }
             .store(in: &cancellables)
@@ -107,8 +105,13 @@ extension MenuViewModel {
     }
 }
 
-private extension MenuViewModel {
-    func unlockCubes(_ highScore : Int) {
+// MARK: - Cubes
+extension MenuViewModel {
+    private func unlockCubes(_ highScore : Int) {
         self.cubesManager.unlockCubes(highScore)
+    }
+    
+    func saveSelectedCube(_ playerCube : PlayerCube) {
+        self.cubesManager.saveSelectedCubeId(playerCube.id)
     }
 }
