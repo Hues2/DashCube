@@ -1,17 +1,11 @@
-import SwiftUI
+import Foundation
 import GameKit
 
-@main
-struct CubeDropApp: App {
-    var body: some Scene {
-        WindowGroup {
-            ContentView()
-                .onAppear {
-                    authenticateUser()
-                }
-        }
-    }
+class GameCenterManager {
     
+}
+
+extension GameCenterManager {
     func authenticateUser() {
         GKLocalPlayer.local.authenticateHandler = { vc, error in
             guard error == nil else {

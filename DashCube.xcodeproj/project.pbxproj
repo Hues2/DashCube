@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2E2BFFFD2B81460A0074E69D /* GameCenterManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E2BFFFC2B81460A0074E69D /* GameCenterManager.swift */; };
 		2E52F0DF2B6AB7BE009014CF /* GameOverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E52F0DE2B6AB7BE009014CF /* GameOverView.swift */; };
 		2E52F0E22B6AC0BE009014CF /* RoundedGradientBorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E52F0E12B6AC0BE009014CF /* RoundedGradientBorder.swift */; };
 		2E52F0E52B6AC282009014CF /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E52F0E42B6AC282009014CF /* CustomButton.swift */; };
@@ -47,6 +48,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2E2BFFFB2B8141900074E69D /* DashCube.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DashCube.entitlements; sourceTree = "<group>"; };
+		2E2BFFFC2B81460A0074E69D /* GameCenterManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameCenterManager.swift; sourceTree = "<group>"; };
 		2E52F0DE2B6AB7BE009014CF /* GameOverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOverView.swift; sourceTree = "<group>"; };
 		2E52F0E12B6AC0BE009014CF /* RoundedGradientBorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedGradientBorder.swift; sourceTree = "<group>"; };
 		2E52F0E42B6AC282009014CF /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
@@ -153,6 +156,7 @@
 		2EADDD282B66924000D724BF /* DashCube */ = {
 			isa = PBXGroup;
 			children = (
+				2E2BFFFB2B8141900074E69D /* DashCube.entitlements */,
 				2EADDD442B66947B00D724BF /* App */,
 				2E78123A2B66EE42009CEE78 /* Models */,
 				2EADDD642B66D32700D724BF /* Managers */,
@@ -251,6 +255,7 @@
 			children = (
 				2EADDD652B66D33500D724BF /* GameManager.swift */,
 				2EA0A1562B8020D30014AE22 /* CubesManager.swift */,
+				2E2BFFFC2B81460A0074E69D /* GameCenterManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -374,6 +379,7 @@
 				2EE69A402B79902800DC44BE /* Array.swift in Sources */,
 				2E9EC6612B795AB800141568 /* CubeNodeViewRepresentable.swift in Sources */,
 				2EA341C42B68592D0046DE5A /* PlayerCubeNode.swift in Sources */,
+				2E2BFFFD2B81460A0074E69D /* GameCenterManager.swift in Sources */,
 				2EADDD4C2B66977900D724BF /* GameViewController.swift in Sources */,
 				2E9EC6632B795D6800141568 /* PlayerCubesView.swift in Sources */,
 				2EADDD5D2B6697E500D724BF /* TileNode.swift in Sources */,
@@ -530,6 +536,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = DashCube/DashCube.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"DashCube/Preview Content\"";
@@ -567,6 +574,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = DashCube/DashCube.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"DashCube/Preview Content\"";
