@@ -112,7 +112,10 @@ private extension PlayerCubesView {
                 Image(systemName: "lock.fill")
                 Text("\("highscore_required".localizedString) \(playerCube.requiredHighScore)")
             }
+            .font(.title3)
+            .fontDesign(.rounded)
         }
+        .foregroundStyle(.white)
     }
 }
 

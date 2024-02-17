@@ -10,14 +10,14 @@ class CubesManager {
                                                           isSelected: false)
     
     init() {
-        self.setCubes()
+        self.setUpCubes()
         self.setSelectedCube()
     }
 }
 
-// MARK: - Get unlocked cubes
+// MARK: - Cubes Setup
 private extension CubesManager {
-    func setCubes() {
+    func setUpCubes() {
         // High score
         let highScore = UserDefaults.standard.value(forKey: Constants.UserDefaults.highScore) as? Int ?? 0
         // Saved selected cube ID
