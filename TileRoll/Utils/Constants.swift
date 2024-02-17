@@ -48,6 +48,8 @@ class Constants {
     struct UserDefaults {
         static let highScore = "highScore"
         static let cubelets = "cubelets"
+        static let cubeIds = "cubeIds"
+        static let selectedCubeId = "selectedCubeId"
     }
     // MARK: - Game Timer
     struct GameTimer {

@@ -29,8 +29,7 @@ class MenuViewModel : ObservableObject {
         self.cubesManager = cubesManager
         self.selectedPlayerCube = gameManager.selectedPlayerCube
         self.addSubscriptions()
-        guard let firstPlayerCube = Constants.PlayerCubeValues.playerCubeOptions.first else { return }
-        self.selectedPlayerCube = firstPlayerCube
+        self.selectedPlayerCube = cubesManager.selectedCube
     }
     
     private func addSubscriptions() {
@@ -78,6 +77,7 @@ private extension MenuViewModel {
             .dropFirst()
             .sink { [weak self] newSelectedPlayerCube in
                 guard let self else { return }
+                self.cubesManager.saveSelectedCubeId(newSelectedPlayerCube.id)
                 self.gameManager.setPlayerCube(newSelectedPlayerCube)
             }
             .store(in: &cancellables)
@@ -127,6 +127,6 @@ extension MenuViewModel {
     }
     
     func unlockPlayerCube(_ playerCube : PlayerCube) {
-        self.cubesManager.unlockPlayerCube(playerCube)
+        self.cubesManager.unlockCube(playerCube)
     }
 }

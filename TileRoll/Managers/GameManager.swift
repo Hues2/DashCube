@@ -15,7 +15,7 @@ class GameManager {
     private var maxMilliseconds : Int = Constants.GameTimer.timerStartingMilliSeconds
     
     // Player Cube
-    @Published private(set) var selectedPlayerCube : PlayerCube = PlayerCube(id: "white", color: .white, animation: .basic, cost: .zero, isUnlocked: false)    
+    @Published private(set) var selectedPlayerCube : PlayerCube = PlayerCube(id: "white", color: .white, animation: .basic, cost: .zero, isUnlocked: false)
     
     // Dependencies
     private let cubeletsManager : CubeletsManager
