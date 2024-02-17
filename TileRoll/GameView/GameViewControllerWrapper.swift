@@ -4,11 +4,12 @@ import SceneKit
 struct GameViewControllerWrapper: UIViewControllerRepresentable {
     let frameSize : CGSize
     let gameManager : GameManager
+    let cubesManager: CubesManager
     let gameVC = GameViewController()
     
     func makeUIViewController(context: Context) -> GameViewController {
         gameVC.setUp(frameSize)
-        gameVC.injectDependencies(gameManager: gameManager)
+        gameVC.injectDependencies(gameManager: gameManager, cubesManager: cubesManager)
         return gameVC
     }
 

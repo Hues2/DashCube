@@ -62,6 +62,8 @@ extension CubesManager {
     }
     
     func saveSelectedCubeId(_ id : String) {
+        guard let cube = self.cubes.first(where: { $0.id == id }) else { return }
+        self.selectedCube = cube
         UserDefaults.standard.setValue(id, forKey: Constants.UserDefaults.selectedCubeId)
     }
 }

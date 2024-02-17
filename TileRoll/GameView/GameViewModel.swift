@@ -14,11 +14,13 @@ class GameViewModel : ObservableObject {
     
     // Dependencies
     let gameManager : GameManager
+    let cubesManager: CubesManager
     let cubeletsManager: CubeletsManager
     private var cancellables = Set<AnyCancellable>()
     
-    init(gameManager: GameManager, cubeletsManager: CubeletsManager) {
+    init(gameManager: GameManager, cubesManager: CubesManager, cubeletsManager: CubeletsManager) {
         self.gameManager = gameManager
+        self.cubesManager = cubesManager
         self.cubeletsManager = cubeletsManager
         self.addSubscriptions()
     }

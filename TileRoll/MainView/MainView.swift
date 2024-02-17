@@ -27,7 +27,11 @@ struct MainView: View {
 // MARK: - Game View
 private extension MainView {
     var gameView : some View {
-        GameView(gameManager: viewModel.gameManager, cubeletsManager: menuViewModel.cubeletsManager, namespace: namespace, showMenu: viewModel.showMenu)
+        GameView(gameManager: viewModel.gameManager,
+                 cubesManager: menuViewModel.cubesManager,
+                 cubeletsManager: menuViewModel.cubeletsManager,
+                 namespace: namespace,
+                 showMenu: viewModel.showMenu)
     }
 }
 

@@ -6,8 +6,8 @@ struct GameView: View {
     private var namespace : Namespace.ID
     private var showMenu : Bool
     
-    init(gameManager : GameManager, cubeletsManager: CubeletsManager, namespace : Namespace.ID, showMenu : Bool) {
-        self._viewModel = StateObject(wrappedValue: GameViewModel(gameManager: gameManager, cubeletsManager: cubeletsManager))
+    init(gameManager : GameManager, cubesManager: CubesManager, cubeletsManager: CubeletsManager, namespace : Namespace.ID, showMenu : Bool) {
+        self._viewModel = StateObject(wrappedValue: GameViewModel(gameManager: gameManager, cubesManager: cubesManager, cubeletsManager: cubeletsManager))
         self.namespace = namespace
         self.showMenu = showMenu
     }
@@ -72,7 +72,7 @@ private extension GameView {
 // MARK: - Game UI
 private extension GameView {
     func game(_ proxy : GeometryProxy) -> some View {
-        GameViewControllerWrapper(frameSize: proxy.size, gameManager: viewModel.gameManager)
+        GameViewControllerWrapper(frameSize: proxy.size, gameManager: viewModel.gameManager, cubesManager: viewModel.cubesManager)
             .ignoresSafeArea(edges: .bottom)
             .disabled(viewModel.gameState != .playing)
     }

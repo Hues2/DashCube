@@ -87,6 +87,6 @@ class Constants {
     }
     // MARK: - Cubelets
     struct Cubelets {
-        static let gameStartedCubelets : Int = 5
+        static let gameStartedCubelets : Int = 500
     }
 }

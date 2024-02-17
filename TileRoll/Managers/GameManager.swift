@@ -14,9 +14,6 @@ class GameManager {
     private var maxSeconds : Int = Constants.GameTimer.timerStartingSeconds
     private var maxMilliseconds : Int = Constants.GameTimer.timerStartingMilliSeconds
     
-    // Player Cube
-    @Published private(set) var selectedPlayerCube : PlayerCube = PlayerCube(id: "white", color: .white, animation: .basic, cost: .zero, isUnlocked: false)
-    
     // Dependencies
     private let cubeletsManager : CubeletsManager
     private var cancellables = Set<AnyCancellable>()
@@ -178,12 +175,5 @@ private extension GameManager {
         self.stopTimer()
         self.resetTimerValues()
         self.setHighScore()
-    }
-}
-
-// MARK: - Update Player Cube
-extension GameManager {
-    func setPlayerCube(_ playerCube : PlayerCube) {
-        self.selectedPlayerCube = playerCube
     }
 }

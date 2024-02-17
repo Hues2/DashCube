@@ -12,6 +12,8 @@ class GameViewController: UIViewController {
     private var scene : SCNScene!
     // Game Manager
     private var gameManager : GameManager!
+    // CubesManager
+    private var cubesManager : CubesManager!
     // Game Manager
     private var tileManager : TileManager!
     // Game Controller Manager;
@@ -48,8 +50,9 @@ extension GameViewController {
         self.sceneView.backgroundColor = .clear
     }
     
-    func injectDependencies(gameManager : GameManager) {
+    func injectDependencies(gameManager : GameManager, cubesManager : CubesManager) {
         self.gameManager = gameManager
+        self.cubesManager = cubesManager
         self.setUpSwipeGestureManager()
         self.addSubscriptions()
     }
@@ -84,10 +87,10 @@ private extension GameViewController {
     }
     
     func subscribeToPlayerCubeModel() {
-        self.gameManager.$selectedPlayerCube
-            .sink { [weak self] newSelectedPlayerCube in
+        self.cubesManager.$selectedCube
+            .sink { [weak self] newSelectedCube in
                 guard let self else { return }
-                self.playerCube.updatePlayerCubeModel(newSelectedPlayerCube)
+                self.playerCube.updatePlayerCubeModel(newSelectedCube)
             }
             .store(in: &cancellables)
     }
