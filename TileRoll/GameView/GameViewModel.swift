@@ -15,13 +15,11 @@ class GameViewModel : ObservableObject {
     // Dependencies
     let gameManager : GameManager
     let cubesManager: CubesManager
-    let cubeletsManager: CubeletsManager
     private var cancellables = Set<AnyCancellable>()
     
-    init(gameManager: GameManager, cubesManager: CubesManager, cubeletsManager: CubeletsManager) {
+    init(gameManager: GameManager, cubesManager: CubesManager) {
         self.gameManager = gameManager
         self.cubesManager = cubesManager
-        self.cubeletsManager = cubeletsManager
         self.addSubscriptions()
     }
     
@@ -65,7 +63,6 @@ private extension GameViewModel {
                 withAnimation {
                     self.gameState = newGameState
                 }
-                self.handleGameStateCubelets(newGameState)
             }
             .store(in: &cancellables)
     }
@@ -86,23 +83,5 @@ private extension GameViewModel {
                 self.milliseconds = newMilliSeconds
             }
             .store(in: &cancellables)
-    }
-}
-
-// MARK: - Cubelets
-private extension GameViewModel {
-    func handleGameStateCubelets(_ gameState : GameState) {
-        switch gameState {
-        case .playing:
-            self.addCubelets(Constants.Cubelets.gameStartedCubelets)
-        case .over(timerEnded: false):
-            self.cubeletsManager.saveNewCubelets()
-        default:
-            break
-        }
-    }
-    
-    func addCubelets(_ amount : Int) {
-        self.cubeletsManager.addCubelets(amount)
     }
 }

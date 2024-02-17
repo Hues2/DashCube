@@ -5,9 +5,9 @@ struct MainView: View {
     @StateObject private var menuViewModel : MenuViewModel
     @Namespace private var namespace
     
-    init(gameManager : GameManager, cubeletsManager: CubeletsManager, cubesManager: CubesManager) {
+    init(gameManager : GameManager, cubesManager: CubesManager) {
         self._viewModel = StateObject(wrappedValue: MainViewModel(gameManager: gameManager))
-        self._menuViewModel = StateObject(wrappedValue: MenuViewModel(gameManager: gameManager, cubeletsManager: cubeletsManager, cubesManager: cubesManager))
+        self._menuViewModel = StateObject(wrappedValue: MenuViewModel(gameManager: gameManager, cubesManager: cubesManager))
     }
     
     var body: some View {
@@ -29,7 +29,6 @@ private extension MainView {
     var gameView : some View {
         GameView(gameManager: viewModel.gameManager,
                  cubesManager: menuViewModel.cubesManager,
-                 cubeletsManager: menuViewModel.cubeletsManager,
                  namespace: namespace,
                  showMenu: viewModel.showMenu)
     }

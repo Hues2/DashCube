@@ -56,7 +56,7 @@ private extension PlayerCubesView {
         ZStack {
             cube(proxy: proxy, playerCube: playerCube)
             if !playerCube.isUnlocked {
-                unlockCubeView(playerCube)
+                lockedCubeView(playerCube)
             }
         }
     }
@@ -106,23 +106,13 @@ private extension PlayerCubesView {
             }
     }
     
-    func unlockCubeView(_ playerCube : PlayerCube) -> some View {
+    func lockedCubeView(_ playerCube : PlayerCube) -> some View {
         VStack(spacing: 15) {
             HStack {
                 Image(systemName: "lock.fill")
-                Text("\(playerCube.cost) \("cubelets".localizedString)")
-            }
-            if viewModel.canUnlockCube(playerCube) {
-                unlockCubeButton(playerCube)
+                Text("\("highscore_required".localizedString) \(playerCube.requiredHighScore)")
             }
         }
-    }
-    
-    func unlockCubeButton(_ playerCube : PlayerCube) -> some View {
-        CustomButton(title: "unlock_player_cube".localizedString) {        
-            viewModel.unlockPlayerCube(playerCube)
-        }
-        .padding()
     }
 }
 

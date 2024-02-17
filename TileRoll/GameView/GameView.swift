@@ -6,8 +6,8 @@ struct GameView: View {
     private var namespace : Namespace.ID
     private var showMenu : Bool
     
-    init(gameManager : GameManager, cubesManager: CubesManager, cubeletsManager: CubeletsManager, namespace : Namespace.ID, showMenu : Bool) {
-        self._viewModel = StateObject(wrappedValue: GameViewModel(gameManager: gameManager, cubesManager: cubesManager, cubeletsManager: cubeletsManager))
+    init(gameManager : GameManager, cubesManager: CubesManager , namespace : Namespace.ID, showMenu : Bool) {
+        self._viewModel = StateObject(wrappedValue: GameViewModel(gameManager: gameManager, cubesManager: cubesManager))
         self.namespace = namespace
         self.showMenu = showMenu
     }

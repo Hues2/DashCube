@@ -47,7 +47,6 @@ class Constants {
     // MARK: - User Defaults
     struct UserDefaults {
         static let highScore = "highScore"
-        static let cubelets = "cubelets"
         static let cubeIds = "cubeIds"
         static let selectedCubeId = "selectedCubeId"
     }
@@ -71,22 +70,21 @@ class Constants {
             PlayerCube(id: "red",
                        color: .red,
                        animation: .basic,
-                       cost: 0,
-                       isUnlocked: true),
+                       requiredHighScore: .zero,
+                       isUnlocked: true,
+                       isSelected: false),
             PlayerCube(id: "blue",
                        color: .blue,
                        animation: .yAxisSpin,
-                       cost: 500,
-                       isUnlocked: false),
+                       requiredHighScore: 35,
+                       isUnlocked: false,
+                       isSelected: false),
             PlayerCube(id: "purple",
                        color: .purple,
                        animation: .basicYAxisSpin,
-                       cost: 1500,
-                       isUnlocked: false)
+                       requiredHighScore: 75,
+                       isUnlocked: false,
+                       isSelected: false)
         ]
-    }
-    // MARK: - Cubelets
-    struct Cubelets {
-        static let gameStartedCubelets : Int = 5
     }
 }

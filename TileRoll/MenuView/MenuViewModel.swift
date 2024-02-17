@@ -9,23 +9,19 @@ class MenuViewModel : ObservableObject {
     @Published private(set) var isGameOver : Bool = false
     
     // Player Cube
-    @Published var selectedPlayerCube : PlayerCube    
-    // Cubelets
-    @Published private(set) var totalCubelets : Int = .zero
+    @Published var selectedPlayerCube : PlayerCube
     // Cubes
     @Published private(set) var cubes : [PlayerCube] = []
     
     // Dependencies
     let gameManager : GameManager
-    let cubeletsManager: CubeletsManager
     let cubesManager: CubesManager
     
     // Cancellables
     private var cancellables = Set<AnyCancellable>()
     
-    init(gameManager: GameManager, cubeletsManager: CubeletsManager, cubesManager: CubesManager) {
+    init(gameManager: GameManager, cubesManager: CubesManager) {
         self.gameManager = gameManager
-        self.cubeletsManager = cubeletsManager
         self.cubesManager = cubesManager
         self.selectedPlayerCube = cubesManager.selectedCube
         self.addSubscriptions()
@@ -37,7 +33,6 @@ class MenuViewModel : ObservableObject {
         subscribeToHighScore()
         subscribeToCubes()
         subscribeToSelectedPlayerCube()
-        subscribeToTotalCubelets()
     }
 }
 
@@ -67,6 +62,8 @@ private extension MenuViewModel {
             .sink { [weak self] newHighScore in
                 guard let self else { return }
                 self.highScore = newHighScore
+                // Highscore has changed, so try to unlock cubes
+                self.unlockCubes(newHighScore)
             }
             .store(in: &cancellables)
     }
@@ -82,19 +79,11 @@ private extension MenuViewModel {
     }
     
     func subscribeToCubes() {
-        self.cubesManager.$cubes
+        self.cubesManager.$cubes            
             .sink { [weak self] newCubes in
                 guard let self else { return }
+                print("MENU VM cubes \n \(newCubes)")
                 self.cubes = newCubes
-            }
-            .store(in: &cancellables)
-    }
-    
-    func subscribeToTotalCubelets() {
-        self.cubeletsManager.$totalCubelets
-            .sink { [weak self] newTotalCubelets in
-                guard let self else { return }
-                self.totalCubelets = newTotalCubelets
             }
             .store(in: &cancellables)
     }
@@ -118,18 +107,8 @@ extension MenuViewModel {
     }
 }
 
-// MARK: - Unlock player cube
-extension MenuViewModel {
-    func canUnlockCube(_ playerCube : PlayerCube) -> Bool {
-        return (self.totalCubelets >= playerCube.cost)
-    }
-    
-    func unlockPlayerCube(_ playerCube : PlayerCube) {
-        // Unlock and save the cube
-        self.cubesManager.unlockCube(playerCube)
-        // Spend the cubelets
-        self.cubeletsManager.spendCubelets(playerCube.cost)
-        // Publish the new cube for the game view controller
-        self.selectedPlayerCube = playerCube
+private extension MenuViewModel {
+    func unlockCubes(_ highScore : Int) {
+        self.cubesManager.unlockCubes(highScore)
     }
 }

@@ -2,58 +2,64 @@ import Foundation
 
 class CubesManager {
     @Published var cubes : [PlayerCube] = []
-    @Published var selectedCube : PlayerCube = PlayerCube(id: "white", color: .white, animation: .basic, cost: .zero, isUnlocked: false)
+    @Published var selectedCube : PlayerCube = PlayerCube(id: "white",
+                                                          color: .white,
+                                                          animation: .basic,
+                                                          requiredHighScore: .zero,
+                                                          isUnlocked: false,
+                                                          isSelected: false)
     
     init() {
-        self.cubes = self.getUnlockedCubeIds()
-        guard let savedSelectedCube = self.savedSelectedCube() else {
-            guard let firstCube = Constants.PlayerCubeValues.playerCubeOptions.first else { return }
-            self.selectedCube = firstCube
-            return
-        }
-        self.selectedCube = savedSelectedCube
+        self.setCubes()
+        self.setSelectedCube()
     }
 }
 
 // MARK: - Get unlocked cubes
 private extension CubesManager {
-    func getUnlockedCubeIds() -> [PlayerCube] {
-        let unlockedIds = UserDefaults.standard.value(forKey: Constants.UserDefaults.cubeIds) as? [String] ?? []
+    func setCubes() {
+        // High score
+        let highScore = UserDefaults.standard.value(forKey: Constants.UserDefaults.highScore) as? Int ?? 0
+        // Saved selected cube ID
+        let savedSelectedCubeId = UserDefaults.standard.value(forKey: Constants.UserDefaults.selectedCubeId) as? String ?? ""
+        // Set the cube values
         let cubes = Constants.PlayerCubeValues.playerCubeOptions.map { cube in
             return PlayerCube(id: cube.id,
                               color: cube.color,
                               animation: cube.animation,
-                              cost: cube.cost,
-                              isUnlocked: (unlockedIds.contains(cube.id)) ? true : cube.isUnlocked)
+                              requiredHighScore: cube.requiredHighScore,
+                              isUnlocked: (highScore >= cube.requiredHighScore),
+                              isSelected: (savedSelectedCubeId == cube.id))
         }
-        return cubes
+        print("CUBES MANAGER : \n\(cubes)")
+        self.cubes = cubes
     }
 }
 
 // MARK: - Unlock cube
 extension CubesManager {
-    func unlockCube(_ playerCube : PlayerCube) {
-        // TODO: Should use CloudKit or similar to store this data, instead of user defaults
-        // Save the cube id to user defaults
-        var unlockedCubeIds : [String] = UserDefaults.standard.value(forKey: Constants.UserDefaults.cubeIds) as? [String] ?? []
-        unlockedCubeIds.append(playerCube.id)
-        UserDefaults.standard.setValue(unlockedCubeIds, forKey: Constants.UserDefaults.cubeIds)        
-        // Publish the modified cubes list
-        self.cubes = self.cubes.map({ cube in
+    func unlockCubes(_ highScore : Int) {
+        self.cubes = self.cubes.map { cube in
             return PlayerCube(id: cube.id,
                               color: cube.color,
                               animation: cube.animation,
-                              cost: cube.cost,
-                              isUnlocked: (playerCube == cube) ? true : cube.isUnlocked )
-        })
+                              requiredHighScore: cube.requiredHighScore,
+                              isUnlocked: (highScore >= cube.requiredHighScore),
+                              isSelected: cube.isSelected)
+        }
     }
 }
 
 // MARK: - Selected cube
 extension CubesManager {
-    private func savedSelectedCube() -> PlayerCube? {
-        let savedSelectedCubeId = UserDefaults.standard.value(forKey: Constants.UserDefaults.selectedCubeId) as? String
-        return self.cubes.first(where: { $0.id == savedSelectedCubeId })
+    private func setSelectedCube() {
+        let savedSelectedCube = self.cubes.first(where: { $0.isSelected })
+        guard let savedSelectedCube = savedSelectedCube else {
+            guard let firstCube = Constants.PlayerCubeValues.playerCubeOptions.first else { return }
+            self.selectedCube = firstCube
+            return
+        }
+        self.selectedCube = savedSelectedCube
     }
     
     func saveSelectedCubeId(_ id : String) {

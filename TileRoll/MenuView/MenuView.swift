@@ -30,7 +30,7 @@ private extension MenuView {
                 .padding(.bottom, 50)
             VStack {
                 VStack {
-                    header
+                    highScore
                     playerCubesView
                     playButton
                 }
@@ -53,37 +53,14 @@ private extension MenuView {
 
 // MARK: - Menu header
 private extension MenuView {
-    var header : some View {
-        HStack {
-            highScore
-            Spacer()
-            cubeletsView
-        }
-    }
-    
     var highScore : some View {
-        VStack {
+        HStack {
             Text("high_score".localizedString)
                 .font(.title2)
                 .fontWeight(.bold)
                 .fontDesign(.rounded)
                 .foregroundStyle(.white)
             Text("\(viewModel.highScore)")
-                .font(.title2)
-                .fontWeight(.light)
-                .fontDesign(.rounded)
-                .foregroundStyle(.white)
-        }
-    }
-    
-    var cubeletsView : some View {
-        VStack {
-            Text("\("cubelets".localizedString):")
-                .font(.title2)
-                .fontWeight(.bold)
-                .fontDesign(.rounded)
-                .foregroundStyle(.white)
-            Text("\(viewModel.totalCubelets)")
                 .font(.title2)
                 .fontWeight(.light)
                 .fontDesign(.rounded)
