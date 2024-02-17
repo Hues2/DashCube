@@ -112,6 +112,6 @@ extension MenuViewModel {
     }
     
     func saveSelectedCube(_ playerCube : PlayerCube) {
-        self.cubesManager.saveSelectedCubeId(playerCube.id)
+        self.cubesManager.saveSelectedCube(playerCube.id)
     }
 }

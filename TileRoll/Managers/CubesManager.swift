@@ -60,8 +60,7 @@ extension CubesManager {
         self.selectedCube = savedSelectedCube
     }
     
-    func saveSelectedCubeId(_ id : String) {
-        guard let selectedCube = self.cubes.first(where: { $0.id == id }) else { return }
+    func saveSelectedCube(_ id : String) {
         self.cubes = self.cubes.map { cube in
             return PlayerCube(id: cube.id,
                               color: cube.color,
