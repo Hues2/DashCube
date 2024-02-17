@@ -1,7 +1,7 @@
 import SwiftUI
 
 @main
-struct TileRollApp: App {
+struct CubeDropApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()

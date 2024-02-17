@@ -21,7 +21,7 @@
 		2EA0A1572B8020D30014AE22 /* CubesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EA0A1562B8020D30014AE22 /* CubesManager.swift */; };
 		2EA119D82B76D5F400F4B481 /* AmbientLightNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EA119D72B76D5F400F4B481 /* AmbientLightNode.swift */; };
 		2EA341C42B68592D0046DE5A /* PlayerCubeNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EA341C32B68592C0046DE5A /* PlayerCubeNode.swift */; };
-		2EADDD2A2B66924000D724BF /* TileRollApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EADDD292B66924000D724BF /* TileRollApp.swift */; };
+		2EADDD2A2B66924000D724BF /* CubeDropApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EADDD292B66924000D724BF /* CubeDropApp.swift */; };
 		2EADDD2C2B66924000D724BF /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EADDD2B2B66924000D724BF /* ContentView.swift */; };
 		2EADDD2E2B66924300D724BF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2EADDD2D2B66924300D724BF /* Assets.xcassets */; };
 		2EADDD312B66924300D724BF /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2EADDD302B66924300D724BF /* Preview Assets.xcassets */; };
@@ -62,7 +62,7 @@
 		2EA119D72B76D5F400F4B481 /* AmbientLightNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmbientLightNode.swift; sourceTree = "<group>"; };
 		2EA341C32B68592C0046DE5A /* PlayerCubeNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerCubeNode.swift; sourceTree = "<group>"; };
 		2EADDD262B66924000D724BF /* CubeDrop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CubeDrop.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		2EADDD292B66924000D724BF /* TileRollApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TileRollApp.swift; sourceTree = "<group>"; };
+		2EADDD292B66924000D724BF /* CubeDropApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CubeDropApp.swift; sourceTree = "<group>"; };
 		2EADDD2B2B66924000D724BF /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		2EADDD2D2B66924300D724BF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2EADDD302B66924300D724BF /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -191,7 +191,7 @@
 		2EADDD442B66947B00D724BF /* App */ = {
 			isa = PBXGroup;
 			children = (
-				2EADDD292B66924000D724BF /* TileRollApp.swift */,
+				2EADDD292B66924000D724BF /* CubeDropApp.swift */,
 				2EADDD2B2B66924000D724BF /* ContentView.swift */,
 			);
 			path = App;
@@ -395,7 +395,7 @@
 				2EADDD512B6697A900D724BF /* TileManager.swift in Sources */,
 				2EADDD472B66950B00D724BF /* GameView.swift in Sources */,
 				2E52F0DF2B6AB7BE009014CF /* GameOverView.swift in Sources */,
-				2EADDD2A2B66924000D724BF /* TileRollApp.swift in Sources */,
+				2EADDD2A2B66924000D724BF /* CubeDropApp.swift in Sources */,
 				2E78123C2B66EE4D009CEE78 /* GameState.swift in Sources */,
 				2EADDD532B6697A900D724BF /* SwipeGestureManager.swift in Sources */,
 				2EADDD6F2B66D65300D724BF /* MainViewModel.swift in Sources */,

@@ -2,8 +2,7 @@ import Foundation
 
 class CubesManager {
     @Published var cubes : [PlayerCube] = []
-    @Published var selectedCube : PlayerCube = PlayerCube(id: "white",
-                                                          color: .white,
+    @Published var selectedCube : PlayerCube = PlayerCube(color: .white,
                                                           animation: .basic,
                                                           requiredHighScore: .zero,
                                                           isUnlocked: false,
@@ -24,8 +23,7 @@ private extension CubesManager {
         let savedSelectedCubeId = UserDefaults.standard.value(forKey: Constants.UserDefaults.selectedCubeId) as? String ?? ""
         // Set the cube values
         self.cubes = Constants.PlayerCubeValues.playerCubeOptions.map { cube in
-            return PlayerCube(id: cube.id,
-                              color: cube.color,
+            return PlayerCube(color: cube.color,
                               animation: cube.animation,
                               requiredHighScore: cube.requiredHighScore,
                               isUnlocked: (highScore >= cube.requiredHighScore),
@@ -38,8 +36,7 @@ private extension CubesManager {
 extension CubesManager {
     func unlockCubes(_ highScore : Int) {
         self.cubes = self.cubes.map { cube in
-            return PlayerCube(id: cube.id,
-                              color: cube.color,
+            return PlayerCube(color: cube.color,
                               animation: cube.animation,
                               requiredHighScore: cube.requiredHighScore,
                               isUnlocked: (highScore >= cube.requiredHighScore),
@@ -62,8 +59,7 @@ extension CubesManager {
     
     func saveSelectedCube(_ id : String) {
         self.cubes = self.cubes.map { cube in
-            return PlayerCube(id: cube.id,
-                              color: cube.color,
+            return PlayerCube(color: cube.color,
                               animation: cube.animation,
                               requiredHighScore: cube.requiredHighScore,
                               isUnlocked: cube.isUnlocked,

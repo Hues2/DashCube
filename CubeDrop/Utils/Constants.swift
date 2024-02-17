@@ -17,7 +17,7 @@ class Constants {
         static let playerMovementAnimationDuration : Double = 0.1
         static let jumpActionDuration : Double = 0.1
         static let jumpDisplayActionDuration : Double = 0.2
-        static let rotationActionDuration : Double = 0.2      
+        static let rotationActionDuration : Double = 0.2
         static let pauseActionDuration : Double = 2.5
     }
     // MARK: - Node Name
@@ -67,20 +67,17 @@ class Constants {
     // MARK: - Player Cube
     struct PlayerCubeValues {
         static let playerCubeOptions : [PlayerCube] = [
-            PlayerCube(id: "red",
-                       color: .red,
+            PlayerCube(color: .basicCube,
                        animation: .basic,
                        requiredHighScore: .zero,
                        isUnlocked: true,
                        isSelected: false),
-            PlayerCube(id: "blue",
-                       color: .blue,
+            PlayerCube(color: .blue,
                        animation: .yAxisSpin,
                        requiredHighScore: 35,
                        isUnlocked: false,
                        isSelected: false),
-            PlayerCube(id: "purple",
-                       color: .purple,
+            PlayerCube(color: .purple,
                        animation: .basicYAxisSpin,
                        requiredHighScore: 75,
                        isUnlocked: false,
