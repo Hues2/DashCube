@@ -61,7 +61,7 @@
 		2EA0A1562B8020D30014AE22 /* CubesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CubesManager.swift; sourceTree = "<group>"; };
 		2EA119D72B76D5F400F4B481 /* AmbientLightNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmbientLightNode.swift; sourceTree = "<group>"; };
 		2EA341C32B68592C0046DE5A /* PlayerCubeNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerCubeNode.swift; sourceTree = "<group>"; };
-		2EADDD262B66924000D724BF /* TileRoll.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TileRoll.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		2EADDD262B66924000D724BF /* CubeDrop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CubeDrop.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2EADDD292B66924000D724BF /* TileRollApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TileRollApp.swift; sourceTree = "<group>"; };
 		2EADDD2B2B66924000D724BF /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		2EADDD2D2B66924300D724BF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -137,7 +137,7 @@
 		2EADDD1D2B66924000D724BF = {
 			isa = PBXGroup;
 			children = (
-				2EADDD282B66924000D724BF /* TileRoll */,
+				2EADDD282B66924000D724BF /* CubeDrop */,
 				2EADDD272B66924000D724BF /* Products */,
 			);
 			sourceTree = "<group>";
@@ -145,12 +145,12 @@
 		2EADDD272B66924000D724BF /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				2EADDD262B66924000D724BF /* TileRoll.app */,
+				2EADDD262B66924000D724BF /* CubeDrop.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		2EADDD282B66924000D724BF /* TileRoll */ = {
+		2EADDD282B66924000D724BF /* CubeDrop */ = {
 			isa = PBXGroup;
 			children = (
 				2EADDD442B66947B00D724BF /* App */,
@@ -165,7 +165,7 @@
 				2EADDD2D2B66924300D724BF /* Assets.xcassets */,
 				2EADDD2F2B66924300D724BF /* Preview Content */,
 			);
-			path = TileRoll;
+			path = CubeDrop;
 			sourceTree = "<group>";
 		};
 		2EADDD2F2B66924300D724BF /* Preview Content */ = {
@@ -298,9 +298,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		2EADDD252B66924000D724BF /* TileRoll */ = {
+		2EADDD252B66924000D724BF /* CubeDrop */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 2EADDD342B66924300D724BF /* Build configuration list for PBXNativeTarget "TileRoll" */;
+			buildConfigurationList = 2EADDD342B66924300D724BF /* Build configuration list for PBXNativeTarget "CubeDrop" */;
 			buildPhases = (
 				2EADDD222B66924000D724BF /* Sources */,
 				2EADDD232B66924000D724BF /* Frameworks */,
@@ -310,9 +310,9 @@
 			);
 			dependencies = (
 			);
-			name = TileRoll;
+			name = CubeDrop;
 			productName = TileRoll;
-			productReference = 2EADDD262B66924000D724BF /* TileRoll.app */;
+			productReference = 2EADDD262B66924000D724BF /* CubeDrop.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -330,7 +330,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 2EADDD212B66924000D724BF /* Build configuration list for PBXProject "TileRoll" */;
+			buildConfigurationList = 2EADDD212B66924000D724BF /* Build configuration list for PBXProject "CubeDrop" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -343,7 +343,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				2EADDD252B66924000D724BF /* TileRoll */,
+				2EADDD252B66924000D724BF /* CubeDrop */,
 			);
 		};
 /* End PBXProject section */
@@ -458,7 +458,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -515,7 +515,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
@@ -532,10 +532,12 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"TileRoll/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"CubeDrop/Preview Content\"";
 				DEVELOPMENT_TEAM = UD7DDMT4QH;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "Cube Drop";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.arcade-games";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -548,7 +550,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.greg-ross-tile-roll.TileRoll";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.greg-ross-cube-drop.CubeDrop";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
@@ -567,10 +569,12 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"TileRoll/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"CubeDrop/Preview Content\"";
 				DEVELOPMENT_TEAM = UD7DDMT4QH;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "Cube Drop";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.arcade-games";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -583,7 +587,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.greg-ross-tile-roll.TileRoll";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.greg-ross-cube-drop.CubeDrop";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
@@ -598,7 +602,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		2EADDD212B66924000D724BF /* Build configuration list for PBXProject "TileRoll" */ = {
+		2EADDD212B66924000D724BF /* Build configuration list for PBXProject "CubeDrop" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2EADDD322B66924300D724BF /* Debug */,
@@ -607,7 +611,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		2EADDD342B66924300D724BF /* Build configuration list for PBXNativeTarget "TileRoll" */ = {
+		2EADDD342B66924300D724BF /* Build configuration list for PBXNativeTarget "CubeDrop" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2EADDD352B66924300D724BF /* Debug */,
