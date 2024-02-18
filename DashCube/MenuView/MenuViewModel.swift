@@ -6,6 +6,7 @@ class MenuViewModel : ObservableObject {
     @Published private(set) var gameState : GameState = .menu
     @Published private(set) var score : Int = .zero
     @Published private(set) var highScore : Int?
+    @Published private(set) var overallRank : Int?
     @Published private(set) var isGameOver : Bool = false
     
     // Player Cube
@@ -33,6 +34,7 @@ class MenuViewModel : ObservableObject {
         subscribeToScore()
         subscribeToGameState()
         subscribeToHighScore()
+        subscribeToOverallRank()
         subscribeToCubes()
         subscribeToSelectedPlayerCube()
     }
@@ -42,6 +44,7 @@ class MenuViewModel : ObservableObject {
 private extension MenuViewModel {
     func subscribeToScore() {
         self.gameManager.$score
+            .receive(on: DispatchQueue.main)
             .sink { [weak self] newScore in
                 guard let self else { return }
                 self.score = newScore
@@ -51,6 +54,7 @@ private extension MenuViewModel {
     
     func subscribeToGameState() {
         self.gameManager.$gameState
+            .receive(on: DispatchQueue.main)
             .sink { [weak self] newGameState in
                 guard let self else { return }
                 self.gameState = newGameState
@@ -60,9 +64,9 @@ private extension MenuViewModel {
     }
     
     func subscribeToHighScore() {
-        self.gameCenterManager.$highScore
-            .dropFirst()
+        self.gameCenterManager.$overallHighScore
             .receive(on: DispatchQueue.main)
+            .dropFirst()
             .sink { [weak self] newHighScore in
                 guard let self else { return }
                 withAnimation {
@@ -72,8 +76,22 @@ private extension MenuViewModel {
             .store(in: &cancellables)
     }
     
+    func subscribeToOverallRank() {
+        self.gameCenterManager.$overallRank
+            .receive(on: DispatchQueue.main)
+            .dropFirst()
+            .sink { [weak self] newOverallRank in
+                guard let self else { return }
+                withAnimation {
+                    self.overallRank = newOverallRank
+                }
+            }
+            .store(in: &cancellables)
+    }
+    
     func subscribeToSelectedPlayerCube() {
         self.cubesManager.$selectedCube
+            .receive(on: DispatchQueue.main)
             .sink { [weak self] newSelectedPlayerCube in
                 guard let self else { return }
                 self.selectedPlayerCube = newSelectedPlayerCube
@@ -82,7 +100,8 @@ private extension MenuViewModel {
     }
     
     func subscribeToCubes() {
-        self.cubesManager.$cubes            
+        self.cubesManager.$cubes
+            .receive(on: DispatchQueue.main)
             .sink { [weak self] newCubes in
                 guard let self else { return }
                 self.cubes = newCubes

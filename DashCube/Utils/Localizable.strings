@@ -14,5 +14,6 @@
 // Menu View
 "play_button_title" = "Play";
 "high_score" = "High Score:";
+"overall_rank" = "Overall rank:";
 "pick_a_cube" = "Pick your cube:";
 "highscore_required" = "High score required:";

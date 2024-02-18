@@ -51,7 +51,7 @@ private extension GameViewModel {
     }
     
     func subscribeToHighScore() {
-        self.gameCenterManager.$highScore
+        self.gameCenterManager.$overallHighScore
             .receive(on: DispatchQueue.main)
             .sink { [weak self] newHighScore in
                 guard let self else { return }

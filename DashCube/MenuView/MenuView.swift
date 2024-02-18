@@ -30,7 +30,12 @@ private extension MenuView {
                 .padding(.bottom, 50)
             VStack {
                 VStack {
-                    highScore
+                    VStack(spacing: 5) {
+                        // High Score
+                        row("high_score".localizedString, viewModel.highScore)
+                        // Overall Rank
+                        row("overall_rank".localizedString, viewModel.overallRank)
+                    }
                     playerCubesView
                     playButton
                 }
@@ -51,23 +56,23 @@ private extension MenuView {
     }
 }
 
-// MARK: - Menu header
+// MARK: - Values
 private extension MenuView {
-    var highScore : some View {
+    func row(_ title : String, _ value : Int?) -> some View {
         HStack(spacing: 5) {
-            Text("high_score".localizedString)
+            Text(title)
                 .font(.title2)
                 .fontWeight(.bold)
                 .fontDesign(.rounded)
                 .foregroundStyle(.white)
             Group {
-                if let highScore = viewModel.highScore {
-                    Text("\(highScore)")
+                if let value {
+                    Text("\(value)")
                 } else {
-                    Text("-")                
+                    Text("-")
                 }
             }
-            .font(.title2)
+            .font(.title)
             .fontWeight(.light)
             .fontDesign(.rounded)
             .foregroundStyle(.white)
