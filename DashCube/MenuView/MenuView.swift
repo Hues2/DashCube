@@ -2,7 +2,7 @@ import SwiftUI
 
 struct MenuView: View {
     @ObservedObject var viewModel : MenuViewModel
-
+    
     var body: some View {
         content
     }
@@ -34,7 +34,7 @@ private extension MenuView {
                         // High Score
                         row("high_score".localizedString, viewModel.highScore)
                         // Overall Rank
-                        row("overall_rank".localizedString, viewModel.overallRank)
+                        row("overall_rank".localizedString, viewModel.overallRank, true)
                     }
                     playerCubesView
                     playButton
@@ -58,24 +58,31 @@ private extension MenuView {
 
 // MARK: - Values
 private extension MenuView {
-    func row(_ title : String, _ value : Int?) -> some View {
-        HStack(spacing: 5) {
+    func row(_ title : String, _ value : Int?, _ isRank : Bool = false) -> some View {
+        HStack(spacing: 7.5) {
             Text(title)
                 .font(.title2)
                 .fontWeight(.bold)
                 .fontDesign(.rounded)
                 .foregroundStyle(.white)
-            Group {
-                if let value {
-                    Text("\(value)")
-                } else {
-                    Text("-")
+            HStack(spacing: 5) {
+                Group {
+                    if let value {
+                        Text("\(value)")
+                    } else {
+                        Text("-")
+                    }
+                }
+                .font(.title)
+                .fontWeight(.light)
+                .fontDesign(.rounded)
+                .foregroundStyle(.white)
+                
+                if isRank, value == 1 {
+                    Image(systemName: "trophy")
+                        .foregroundStyle(.yellow)
                 }
             }
-            .font(.title)
-            .fontWeight(.light)
-            .fontDesign(.rounded)
-            .foregroundStyle(.white)
         }
     }
 }
