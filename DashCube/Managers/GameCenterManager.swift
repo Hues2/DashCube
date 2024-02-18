@@ -39,9 +39,9 @@ private extension GameCenterManager {
                 }
                 
                 Task {
-                    // Await this methos, as the classic score and rank need the leaderboards to have returned
+                    // Await this method, as the classic score and rank need the leaderboards to have returned
                     await self.setLeaderboards()
-                    self.setClassicHighScore()
+                    await self.setClassicHighScore()
                 }
             }
             .store(in: &cancellables)
@@ -66,7 +66,7 @@ private extension GameCenterManager {
 
 // MARK: - Set classic high score
 extension GameCenterManager {
-    func setClassicHighScore() {
+    func setClassicHighScore() async {
         let classicLeaderboard = leaderboards.first(where: { $0.baseLeaderboardID == Constants.GameCenter.classicLeaderboard })
         guard let classicLeaderboard else {
             // There is no classic leaderboard
@@ -75,26 +75,22 @@ extension GameCenterManager {
             return
         }
         
-        // Check values from the classic leaderboard and the app storage, and set the high score
+        // High score in app storage
         let appStorageHighScore = self.getHighScoreFromAppStorage()
-        Task {
-            let leaderboardHighScore = await self.getHighScoreFromLeaderboard(classicLeaderboard)
-            // Sync the high scores
-            self.syncHighScores(appStorageHighScore, leaderboardHighScore)
-            
-            // Publish the high score
-            self.highScore = max(leaderboardHighScore, appStorageHighScore)
-        }
+        // High score in leaderboard
+        let leaderboardHighScore = await self.getHighScoreFromLeaderboard(classicLeaderboard)
+        // Sync the high scores
+        self.syncHighScores(appStorageHighScore, leaderboardHighScore)
+        // Publish the high score
+        self.highScore = max(leaderboardHighScore, appStorageHighScore)
     }
     
-    // MARK: - Leaderboard High Score
     private func getHighScoreFromLeaderboard(_ leaderboard : GKLeaderboard?) async -> Int {
         guard let leaderboard else { return 0 }
         let entries = await getLeaderboardEntries(from: leaderboard)
         return entries?.0?.score ?? 0
     }
     
-    // MARK: - App Storage High Score
     private func getHighScoreFromAppStorage() -> Int {
         return UserDefaults.standard.integer(forKey: Constants.UserDefaults.highScore)
     }
