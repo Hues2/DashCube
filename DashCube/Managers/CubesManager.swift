@@ -1,4 +1,5 @@
 import Foundation
+import Combine
 
 class CubesManager {
     @Published var cubes : [PlayerCube] = []
@@ -11,18 +12,37 @@ class CubesManager {
     // Dependencies
     let gameCenterManager : GameCenterManager
     
+    private var cancellables = Set<AnyCancellable>()
+    
     init(gameCenterManager : GameCenterManager) {
         self.gameCenterManager = gameCenterManager
-        self.setUpCubes()
-        self.setSelectedCube()
+        self.addSubscriptions()
+    }
+    
+    private func addSubscriptions() {
+        subscribeToHighScore()
+    }
+}
+
+// MARK: - Subscriptions
+private extension CubesManager {
+    func subscribeToHighScore() {
+        self.gameCenterManager.$highScore
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] newHighScore in
+                guard let self else { return }
+                self.setUpCubes(newHighScore: newHighScore)
+                self.setSelectedCube()
+            }
+            .store(in: &cancellables)
     }
 }
 
 // MARK: - Cubes Setup
 private extension CubesManager {
-    func setUpCubes() {
+    func setUpCubes(newHighScore : Int?) {
         // High score
-        let highScore = UserDefaults.standard.value(forKey: Constants.UserDefaults.highScore) as? Int ?? 0
+        let highScore = newHighScore ?? UserDefaults.standard.integer(forKey: Constants.UserDefaults.highScore)
         // Saved selected cube ID
         let savedSelectedCubeId = UserDefaults.standard.value(forKey: Constants.UserDefaults.selectedCubeId) as? String ?? ""
         // Set the cube values
@@ -30,21 +50,8 @@ private extension CubesManager {
             return PlayerCube(color: cube.color,
                               animation: cube.animation,
                               requiredHighScore: cube.requiredHighScore,
-                              isUnlocked: (highScore >= cube.requiredHighScore),
-                              isSelected: (savedSelectedCubeId == cube.id))
-        }        
-    }
-}
-
-// MARK: - Unlock cube
-extension CubesManager {
-    func unlockCubes(_ highScore : Int) {
-        self.cubes = self.cubes.map { cube in
-            return PlayerCube(color: cube.color,
-                              animation: cube.animation,
-                              requiredHighScore: cube.requiredHighScore,
-                              isUnlocked: (highScore >= cube.requiredHighScore),
-                              isSelected: cube.isSelected)
+                              isUnlocked: (highScore >= cube.requiredHighScore), // Unlock the cubes that can be unlocked
+                              isSelected: (savedSelectedCubeId == cube.id))      // Select the cube that has the matching ID
         }
     }
 }

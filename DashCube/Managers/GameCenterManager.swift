@@ -29,7 +29,7 @@ private extension GameCenterManager {
             .sink { [weak self] newIsGameCenterEnabled in
                 guard let self else { return }
                 guard newIsGameCenterEnabled else {
-                    self.setSavedHighScore(nil)
+                    self.highScore = self.getUserHighScoreFromAppStorage()
                     return
                 }
                 self.loadClassicLeaderboard()
@@ -79,6 +79,11 @@ extension GameCenterManager {
     // MARK: - Leaderboard High Score
     func getUserHighScoreFromLeaderboard(_ leaderboard : GKLeaderboard?) async -> Int {
         guard let leaderboard else { return 0 }
+        /*
+         entries.0 --> Local player leaderboard entry
+         entries.1 --> List of player entries
+         entries.2 --> Returns the total amount of entries in the leaderboard for the corresponding parameters (playerScope, timeScope, etc...)
+         */
         let entries = try? await leaderboard.loadEntries(for: .global, timeScope: .allTime, range: NSRange(location: 1, length: 10))
         return entries?.0?.score ?? 0
     }

@@ -5,7 +5,7 @@ import SwiftUI
 class MenuViewModel : ObservableObject {
     @Published private(set) var gameState : GameState = .menu
     @Published private(set) var score : Int = .zero
-    @Published private(set) var highScore : Int = .zero
+    @Published private(set) var highScore : Int?
     @Published private(set) var isGameOver : Bool = false
     
     // Player Cube
@@ -61,14 +61,13 @@ private extension MenuViewModel {
     
     func subscribeToHighScore() {
         self.gameCenterManager.$highScore
+            .dropFirst()
             .receive(on: DispatchQueue.main)
             .sink { [weak self] newHighScore in
                 guard let self else { return }
                 withAnimation {
                     self.highScore = newHighScore
                 }
-                // Highscore has changed, so try to unlock cubes
-                self.unlockCubes(newHighScore)
             }
             .store(in: &cancellables)
     }
@@ -111,11 +110,7 @@ extension MenuViewModel {
 }
 
 // MARK: - Cubes
-extension MenuViewModel {
-    private func unlockCubes(_ highScore : Int) {
-        self.cubesManager.unlockCubes(highScore)
-    }
-    
+extension MenuViewModel {    
     func saveSelectedCube(_ playerCube : PlayerCube) {
         self.cubesManager.saveSelectedCube(playerCube.id)
     }

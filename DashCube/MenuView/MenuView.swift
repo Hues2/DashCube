@@ -60,11 +60,13 @@ private extension MenuView {
                 .fontWeight(.bold)
                 .fontDesign(.rounded)
                 .foregroundStyle(.white)
-            Text("\(viewModel.highScore)")
-                .font(.title2)
-                .fontWeight(.light)
-                .fontDesign(.rounded)
-                .foregroundStyle(.white)
+            if let highScore = viewModel.highScore {
+                Text("\(highScore)")
+                    .font(.title2)
+                    .fontWeight(.light)
+                    .fontDesign(.rounded)
+                    .foregroundStyle(.white)
+            }
         }
     }
 }
