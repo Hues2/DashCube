@@ -54,19 +54,23 @@ private extension MenuView {
 // MARK: - Menu header
 private extension MenuView {
     var highScore : some View {
-        HStack {
+        HStack(spacing: 5) {
             Text("high_score".localizedString)
                 .font(.title2)
                 .fontWeight(.bold)
                 .fontDesign(.rounded)
                 .foregroundStyle(.white)
-            if let highScore = viewModel.highScore {
-                Text("\(highScore)")
-                    .font(.title2)
-                    .fontWeight(.light)
-                    .fontDesign(.rounded)
-                    .foregroundStyle(.white)
+            Group {
+                if let highScore = viewModel.highScore {
+                    Text("\(highScore)")
+                } else {
+                    Text("-")                
+                }
             }
+            .font(.title2)
+            .fontWeight(.light)
+            .fontDesign(.rounded)
+            .foregroundStyle(.white)
         }
     }
 }
