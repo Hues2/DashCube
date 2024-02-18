@@ -7,9 +7,9 @@ struct ContentView: View {
     private let gameCenterManager : GameCenterManager
     
     init() {
-        self.gameManager = GameManager()
-        self.cubesManager = CubesManager()
         self.gameCenterManager = GameCenterManager()
+        self.gameManager = GameManager(gameCenterManager : gameCenterManager)
+        self.cubesManager = CubesManager(gameCenterManager : gameCenterManager)
     }
     
     var body: some View {

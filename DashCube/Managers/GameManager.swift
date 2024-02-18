@@ -14,9 +14,13 @@ class GameManager {
     private var maxSeconds : Int = Constants.GameTimer.timerStartingSeconds
     private var maxMilliseconds : Int = Constants.GameTimer.timerStartingMilliSeconds
     
+    // Dependencies
+    let gameCenterManager : GameCenterManager
+    
     private var cancellables = Set<AnyCancellable>()
     
-    init() {
+    init(gameCenterManager : GameCenterManager) {
+        self.gameCenterManager = gameCenterManager
         addSubscriptions()
         getHighScore()
     }

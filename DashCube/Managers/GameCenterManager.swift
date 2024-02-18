@@ -4,7 +4,9 @@ import Combine
 
 class GameCenterManager {
     @Published private(set) var gcEnabled : Bool = false
-    @Published private(set) var gameCenterPlayers : [GameCenterPlayer] = []
+    @Published private(set) var highScore : Int = 0
+    
+    // Leaderboards
     private var classicLeaderboard : GKLeaderboard?
     
     init() {
@@ -19,8 +21,9 @@ extension GameCenterManager {
             do {
                 let leaderboards = try await GKLeaderboard.loadLeaderboards(IDs: [Constants.GameCenter.classicLeaderboard])
                 self.classicLeaderboard = leaderboards.first
-                self.getUserHighScoreFromLeaderboard(self.classicLeaderboard)
+                self.setHighScore(classicLeaderboard)
             } catch {
+                self.highScore = self.getUserHighScoreFromAppStorage()
                 print("Classic leaderboard not found")
             }
         }
@@ -29,11 +32,22 @@ extension GameCenterManager {
 
 // MARK: - Get user highscore
 extension GameCenterManager {
-    func getUserHighScoreFromLeaderboard(_ leaderboard : GKLeaderboard?) {
-        guard let leaderboard else { return }
-        leaderboard.loadEntries(for: .global, timeScope: .allTime, range: NSRange(location: 1, length: 10)) { local, entries, count, error in
+    func setHighScore(_ leaderboard : GKLeaderboard?) {
+        self.highScore = max(self.getUserHighScoreFromLeaderboard(leaderboard),
+                             self.getUserHighScoreFromAppStorage())
+    }
+    
+    func getUserHighScoreFromLeaderboard(_ leaderboard : GKLeaderboard?) -> Int {
+        var score : Int = .zero
+        leaderboard?.loadEntries(for: .global, timeScope: .allTime, range: NSRange(location: 1, length: 10)) { local, entries, count, error in
             print("LOCAL PLAYER SCORE --> \(local?.formattedScore)")
+            score = local?.score ?? 0
         }
+        return score
+    }
+    
+    func getUserHighScoreFromAppStorage() -> Int {
+        return UserDefaults.standard.integer(forKey: Constants.UserDefaults.highScore)
     }
 }
 
@@ -47,9 +61,7 @@ extension GameCenterManager {
                 return
             }
             print("GAME CENTER ENABLED")
-            print("LOCAL GAME PLAYER ID --> \(GKLocalPlayer.local.gamePlayerID)")
             print("LOCAL GAME PLAYER ALIAS --> \(GKLocalPlayer.local.alias)")
-            print("LOCAL GAME PLAYER TEAM ID --> \(GKLocalPlayer.local.teamPlayerID)")
             self.gcEnabled = true
             self.loadClassicLeaderboard()
         }

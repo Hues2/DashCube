@@ -8,7 +8,11 @@ class CubesManager {
                                                           isUnlocked: false,
                                                           isSelected: false)
     
-    init() {
+    // Dependencies
+    let gameCenterManager : GameCenterManager
+    
+    init(gameCenterManager : GameCenterManager) {
+        self.gameCenterManager = gameCenterManager
         self.setUpCubes()
         self.setSelectedCube()
     }
