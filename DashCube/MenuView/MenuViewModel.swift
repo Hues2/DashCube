@@ -60,10 +60,13 @@ private extension MenuViewModel {
     }
     
     func subscribeToHighScore() {
-        self.gameManager.$highScore
+        self.gameCenterManager.$highScore
+            .receive(on: DispatchQueue.main)
             .sink { [weak self] newHighScore in
                 guard let self else { return }
-                self.highScore = newHighScore
+                withAnimation {
+                    self.highScore = newHighScore
+                }
                 // Highscore has changed, so try to unlock cubes
                 self.unlockCubes(newHighScore)
             }

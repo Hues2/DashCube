@@ -33,6 +33,7 @@ private extension MainView {
     var gameView : some View {
         GameView(gameManager: viewModel.gameManager,
                  cubesManager: menuViewModel.cubesManager,
+                 gameCenterManager: menuViewModel.gameCenterManager,
                  namespace: namespace,
                  showMenu: viewModel.showMenu)
     }

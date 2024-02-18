@@ -4,7 +4,6 @@ import Combine
 class GameManager {
     @Published private(set) var gameState : GameState = .menu
     @Published private(set) var score : Int = 0
-    @Published private(set) var highScore : Int = 0
     
     // Timer
     @Published private(set) var seconds : Int = Constants.GameTimer.timerStartingSeconds
@@ -22,7 +21,6 @@ class GameManager {
     init(gameCenterManager : GameCenterManager) {
         self.gameCenterManager = gameCenterManager
         addSubscriptions()
-        getHighScore()
     }
     
     private func addSubscriptions() {
@@ -119,15 +117,9 @@ extension GameManager {
 
 // MARK: - High Score
 extension GameManager {
-    private func getHighScore() {
-        self.highScore = UserDefaults.standard.integer(forKey: Constants.UserDefaults.highScore)
-    }
-    
     private func setHighScore() {
-        if self.score > self.highScore {
-            self.highScore = score
-            // TODO: Save this highscore to game centre account or cloud kit
-            UserDefaults.standard.setValue(score, forKey: Constants.UserDefaults.highScore)
+        if self.score > self.gameCenterManager.highScore {
+            self.gameCenterManager.setHighScore(self.score)
         }
     }
 }

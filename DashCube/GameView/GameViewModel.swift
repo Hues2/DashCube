@@ -15,11 +15,14 @@ class GameViewModel : ObservableObject {
     // Dependencies
     let gameManager : GameManager
     let cubesManager: CubesManager
+    let gameCenterManager : GameCenterManager
+    
     private var cancellables = Set<AnyCancellable>()
     
-    init(gameManager: GameManager, cubesManager: CubesManager) {
+    init(gameManager: GameManager, cubesManager: CubesManager, gameCenterManager : GameCenterManager) {
         self.gameManager = gameManager
         self.cubesManager = cubesManager
+        self.gameCenterManager = gameCenterManager
         self.addSubscriptions()
     }
     
@@ -48,10 +51,13 @@ private extension GameViewModel {
     }
     
     func subscribeToHighScore() {
-        self.gameManager.$highScore
+        self.gameCenterManager.$highScore
+            .receive(on: DispatchQueue.main)
             .sink { [weak self] newHighScore in
                 guard let self else { return }
-                self.highScore = newHighScore
+                withAnimation {
+                    self.highScore = newHighScore
+                }
             }
             .store(in: &cancellables)
     }

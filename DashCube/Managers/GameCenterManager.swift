@@ -51,6 +51,15 @@ extension GameCenterManager {
     }
 }
 
+// MARK: - Set high score
+extension GameCenterManager {
+    func setHighScore(_ score : Int) {
+        self.highScore = score
+        // TODO: Save this highscore to game centre account
+        UserDefaults.standard.setValue(score, forKey: Constants.UserDefaults.highScore)
+    }
+}
+
 // MARK: - Authenticate User
 extension GameCenterManager {
     func authenticateUser() {
