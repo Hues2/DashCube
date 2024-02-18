@@ -63,8 +63,17 @@ extension GameCenterManager {
         Task {
             let leaderboardHighScore = await self.getUserHighScoreFromLeaderboard(leaderboard)
             self.highScore = max(leaderboardHighScore, appStorageHighScore)
+            
+            // If player played with no connection, the app storage high score may be higher than the leaderboard score
+            if appStorageHighScore > leaderboardHighScore {
+                self.saveHighScoreToGameCenterLeaderboard(appStorageHighScore)
+            }
+            // If it is first launch, the app storage value will be 0, but the game center leaderboard may have a score for this player already
+            //So set the leaderboard score in the app storage
+            else if leaderboardHighScore > appStorageHighScore {
+                self.saveHighScoreToAppStorage(leaderboardHighScore)
+            }
         }
-        // TODO: If the app storage high score is higher than the leaderboard score, then set this score in the game center leaderboard --> If game center is enabled
     }
     
     // MARK: - Leaderboard High Score
@@ -85,10 +94,16 @@ extension GameCenterManager {
     func setNewHighScore(_ score : Int) {
         print("GAME CENTER --> Setting new high score")
         self.highScore = score
+        self.saveHighScoreToAppStorage(score)
+        self.saveHighScoreToGameCenterLeaderboard(score)
+    }
+    
+    private func saveHighScoreToAppStorage(_ score : Int) {
         UserDefaults.standard.setValue(score, forKey: Constants.UserDefaults.highScore)
+    }
+    
+    private func saveHighScoreToGameCenterLeaderboard(_ score : Int) {
         guard isGameCenterEnabled else { return }
-        // Game center is enabled
-        // Save the new highscore
         Task {
             try? await GKLeaderboard.submitScore(score,
                                                  context: 0,
