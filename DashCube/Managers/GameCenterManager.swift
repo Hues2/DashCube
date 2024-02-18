@@ -2,6 +2,12 @@ import Foundation
 import GameKit
 import Combine
 
+/*
+ entries.0 --> Local player leaderboard entry
+ entries.1 --> List of player entries
+ entries.2 --> Returns the total amount of entries in the leaderboard for the corresponding parameters (playerScope, timeScope, etc...)
+ */
+
 class GameCenterManager {
     @Published private(set) var isGameCenterEnabled : Bool = false
     @Published private(set) var highScore : Int = .zero
@@ -31,8 +37,12 @@ private extension GameCenterManager {
                     self.highScore = self.getHighScoreFromAppStorage()
                     return
                 }
-                self.getLeaderboards()
-                self.getClassicHighScore()
+                
+                Task {
+                    // Await this methos, as the classic score and rank need the leaderboards to have returned
+                    await self.setLeaderboards()
+                    self.setClassicHighScore()
+                }
             }
             .store(in: &cancellables)
     }
@@ -40,34 +50,35 @@ private extension GameCenterManager {
 
 // MARK: - Load all leaderboards
 private extension GameCenterManager {
-    func getLeaderboards() {
-        Task {
-            let loadedLeaderbaords = try? await GKLeaderboard.loadLeaderboards(IDs: [Constants.GameCenter.classicLeaderboard])
-            guard let loadedLeaderbaords else { return }
-            self.leaderboards = loadedLeaderbaords
-        }
+    func setLeaderboards() async  {
+        let loadedLeaderboards = try? await GKLeaderboard.loadLeaderboards(IDs: [Constants.GameCenter.classicLeaderboard])
+        guard let loadedLeaderboards else { return }
+        self.leaderboards = loadedLeaderboards
     }
 }
 
-// MARK: - Get classic high score
+// MARK: - Get leaderboard entries
+private extension GameCenterManager {
+    func getLeaderboardEntries(from leaderboard : GKLeaderboard) async -> (GKLeaderboard.Entry?, [GKLeaderboard.Entry], Int)? {
+        return try? await leaderboard.loadEntries(for: .global, timeScope: .allTime, range: NSRange(location: 1, length: 10))
+    }
+}
+
+// MARK: - Set classic high score
 extension GameCenterManager {
-    func getClassicHighScore() {
-        let classicLeaderboard = self.leaderboards.first(where: { $0.baseLeaderboardID == Constants.GameCenter.classicLeaderboard })
+    func setClassicHighScore() {
+        let classicLeaderboard = leaderboards.first(where: { $0.baseLeaderboardID == Constants.GameCenter.classicLeaderboard })
         guard let classicLeaderboard else {
+            // There is no classic leaderboard
             self.highScore = self.getHighScoreFromAppStorage()
             print("Classic leaderboard not found")
             return
         }
-        self.setSavedHighScore(classicLeaderboard)
-    }
-}
-
-// MARK: - Get user highscore
-extension GameCenterManager {
-    func setSavedHighScore(_ leaderboard : GKLeaderboard?) {
+        
+        // Check values from the classic leaderboard and the app storage, and set the high score
         let appStorageHighScore = self.getHighScoreFromAppStorage()
         Task {
-            let leaderboardHighScore = await self.getHighScoreFromLeaderboard(leaderboard)
+            let leaderboardHighScore = await self.getHighScoreFromLeaderboard(classicLeaderboard)
             // Sync the high scores
             self.syncHighScores(appStorageHighScore, leaderboardHighScore)
             
@@ -77,19 +88,14 @@ extension GameCenterManager {
     }
     
     // MARK: - Leaderboard High Score
-    func getHighScoreFromLeaderboard(_ leaderboard : GKLeaderboard?) async -> Int {
+    private func getHighScoreFromLeaderboard(_ leaderboard : GKLeaderboard?) async -> Int {
         guard let leaderboard else { return 0 }
-        /*
-         entries.0 --> Local player leaderboard entry
-         entries.1 --> List of player entries
-         entries.2 --> Returns the total amount of entries in the leaderboard for the corresponding parameters (playerScope, timeScope, etc...)
-         */
-        let entries = try? await leaderboard.loadEntries(for: .global, timeScope: .allTime, range: NSRange(location: 1, length: 10))
+        let entries = await getLeaderboardEntries(from: leaderboard)
         return entries?.0?.score ?? 0
     }
     
     // MARK: - App Storage High Score
-    func getHighScoreFromAppStorage() -> Int {
+    private func getHighScoreFromAppStorage() -> Int {
         return UserDefaults.standard.integer(forKey: Constants.UserDefaults.highScore)
     }
 }
