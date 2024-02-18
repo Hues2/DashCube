@@ -119,7 +119,7 @@ extension GameManager {
 extension GameManager {
     private func setHighScore() {
         if self.score > self.gameCenterManager.highScore {
-            self.gameCenterManager.setHighScore(self.score)
+            self.gameCenterManager.setNewHighScore(self.score)
         }
     }
 }

@@ -21,7 +21,7 @@ extension GameCenterManager {
             do {
                 let leaderboards = try await GKLeaderboard.loadLeaderboards(IDs: [Constants.GameCenter.classicLeaderboard])
                 self.classicLeaderboard = leaderboards.first
-                self.setHighScore(classicLeaderboard)
+                self.setSavedHighScore(classicLeaderboard)
             } catch {
                 self.highScore = self.getUserHighScoreFromAppStorage()
                 print("Classic leaderboard not found")
@@ -32,9 +32,10 @@ extension GameCenterManager {
 
 // MARK: - Get user highscore
 extension GameCenterManager {
-    func setHighScore(_ leaderboard : GKLeaderboard?) {
+    func setSavedHighScore(_ leaderboard : GKLeaderboard?) {
         self.highScore = max(self.getUserHighScoreFromLeaderboard(leaderboard),
                              self.getUserHighScoreFromAppStorage())
+        // TODO: If the app storage high score is higher than the leaderboard score, then set this score in the game center leaderboard
     }
     
     func getUserHighScoreFromLeaderboard(_ leaderboard : GKLeaderboard?) -> Int {
@@ -53,7 +54,7 @@ extension GameCenterManager {
 
 // MARK: - Set high score
 extension GameCenterManager {
-    func setHighScore(_ score : Int) {
+    func setNewHighScore(_ score : Int) {
         self.highScore = score
         // TODO: Save this highscore to game centre account
         UserDefaults.standard.setValue(score, forKey: Constants.UserDefaults.highScore)
