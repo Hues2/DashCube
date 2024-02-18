@@ -84,4 +84,8 @@ class Constants {
                        isSelected: false)
         ]
     }
+    // MARK: - Game Center
+    struct GameCenter {
+        static let classicLeaderboard = "classicLeaderboard"
+    }
 }
