@@ -4,11 +4,10 @@ import Combine
 
 class GameCenterManager {
     @Published private(set) var isGameCenterEnabled : Bool = false
-    @Published private(set) var highScore : Int = 0
-    
-    // Leaderboards
-    private var classicLeaderboard : GKLeaderboard?
-    
+    @Published private(set) var highScore : Int = .zero
+    @Published private(set) var rank : Int = .zero
+    private var leaderboards : [GKLeaderboard] = []
+        
     private var cancellables = Set<AnyCancellable>()
     
     init() {
@@ -29,55 +28,56 @@ private extension GameCenterManager {
             .sink { [weak self] newIsGameCenterEnabled in
                 guard let self else { return }
                 guard newIsGameCenterEnabled else {
-                    self.highScore = self.getUserHighScoreFromAppStorage()
+                    self.highScore = self.getHighScoreFromAppStorage()
                     return
                 }
-                self.loadClassicLeaderboard()
+                self.getLeaderboards()
+                self.getClassicHighScore()
             }
             .store(in: &cancellables)
     }
 }
 
-// MARK: - Load classic leaderboard
-extension GameCenterManager {
-    func loadClassicLeaderboard() {
-        print("GAME CENTER --> Loading Classic Leaderboard")
+// MARK: - Load all leaderboards
+private extension GameCenterManager {
+    func getLeaderboards() {
         Task {
-            do {
-                let leaderboards = try await GKLeaderboard.loadLeaderboards(IDs: [Constants.GameCenter.classicLeaderboard])
-                self.classicLeaderboard = leaderboards.first
-                self.setSavedHighScore(classicLeaderboard)
-            } catch {
-                self.highScore = self.getUserHighScoreFromAppStorage()
-                print("Classic leaderboard not found")
-            }
+            let loadedLeaderbaords = try? await GKLeaderboard.loadLeaderboards(IDs: [Constants.GameCenter.classicLeaderboard])
+            guard let loadedLeaderbaords else { return }
+            self.leaderboards = loadedLeaderbaords
         }
+    }
+}
+
+// MARK: - Get classic high score
+extension GameCenterManager {
+    func getClassicHighScore() {
+        let classicLeaderboard = self.leaderboards.first(where: { $0.baseLeaderboardID == Constants.GameCenter.classicLeaderboard })
+        guard let classicLeaderboard else {
+            self.highScore = self.getHighScoreFromAppStorage()
+            print("Classic leaderboard not found")
+            return
+        }
+        self.setSavedHighScore(classicLeaderboard)
     }
 }
 
 // MARK: - Get user highscore
 extension GameCenterManager {
     func setSavedHighScore(_ leaderboard : GKLeaderboard?) {
-        print("GAME CENTER --> Getting saved high score")
-        let appStorageHighScore = self.getUserHighScoreFromAppStorage()
+        let appStorageHighScore = self.getHighScoreFromAppStorage()
         Task {
-            let leaderboardHighScore = await self.getUserHighScoreFromLeaderboard(leaderboard)
-            self.highScore = max(leaderboardHighScore, appStorageHighScore)
+            let leaderboardHighScore = await self.getHighScoreFromLeaderboard(leaderboard)
+            // Sync the high scores
+            self.syncHighScores(appStorageHighScore, leaderboardHighScore)
             
-            // If player played with no connection, the app storage high score may be higher than the leaderboard score
-            if appStorageHighScore > leaderboardHighScore {
-                self.saveHighScoreToGameCenterLeaderboard(appStorageHighScore)
-            }
-            // If it is first launch, the app storage value will be 0, but the game center leaderboard may have a score for this player already
-            //So set the leaderboard score in the app storage
-            else if leaderboardHighScore > appStorageHighScore {
-                self.saveHighScoreToAppStorage(leaderboardHighScore)
-            }
+            // Publish the high score
+            self.highScore = max(leaderboardHighScore, appStorageHighScore)
         }
     }
     
     // MARK: - Leaderboard High Score
-    func getUserHighScoreFromLeaderboard(_ leaderboard : GKLeaderboard?) async -> Int {
+    func getHighScoreFromLeaderboard(_ leaderboard : GKLeaderboard?) async -> Int {
         guard let leaderboard else { return 0 }
         /*
          entries.0 --> Local player leaderboard entry
@@ -89,15 +89,29 @@ extension GameCenterManager {
     }
     
     // MARK: - App Storage High Score
-    func getUserHighScoreFromAppStorage() -> Int {
+    func getHighScoreFromAppStorage() -> Int {
         return UserDefaults.standard.integer(forKey: Constants.UserDefaults.highScore)
     }
 }
 
-// MARK: - Set high score
+// MARK: - Sync high scores
+private extension GameCenterManager {
+    func syncHighScores(_ appStorageHighScore : Int, _ leaderboardHighScore : Int) {
+        // If player played with no connection, the app storage high score may be higher than the leaderboard score
+        if appStorageHighScore > leaderboardHighScore {
+            self.saveHighScoreToGameCenterLeaderboard(appStorageHighScore)
+        }
+        // If it is first launch, the app storage value will be 0, but the game center leaderboard may have a score for this player already
+        //So set the leaderboard score in the app storage
+        else if leaderboardHighScore > appStorageHighScore {
+            self.saveHighScoreToAppStorage(leaderboardHighScore)
+        }
+    }
+}
+
+// MARK: - Save new high score
 extension GameCenterManager {
-    func setNewHighScore(_ score : Int) {
-        print("GAME CENTER --> Setting new high score")
+    func saveNewHighScore(_ score : Int) {
         self.highScore = score
         self.saveHighScoreToAppStorage(score)
         self.saveHighScoreToGameCenterLeaderboard(score)
@@ -133,15 +147,7 @@ extension GameCenterManager {
                 self.isGameCenterEnabled = false
                 return
             }
-            print("GAME CENTER ENABLED")
             self.isGameCenterEnabled = true
         }
-    }
-}
-
-extension GameCenterManager {
-    struct GameCenterPlayer {
-        let name : String
-        let score : Int
     }
 }
