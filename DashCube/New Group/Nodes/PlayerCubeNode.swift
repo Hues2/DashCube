@@ -27,15 +27,15 @@ class PlayerCubeNode: SCNNode {
 // MARK: - Movement
 private extension PlayerCubeNode {
     private func setUpCube() {
-        setUpGeometryBox()
+        setUpGeometry()
         // Set the position of the player cube
         self.position = initialPlayerPosition
         setUpPhysicsBody()
     }
     
-    private func setUpGeometryBox() {
+    private func setUpGeometry() {
         // Create a box geometry
-        let boxGeometry = SCNBox(width: Constants.Node.tileSize,
+        let geometry = SCNBox(width: Constants.Node.tileSize,
                                  height: Constants.Node.tileSize,
                                  length: Constants.Node.tileSize,
                                  chamferRadius: 0.0)
@@ -45,9 +45,9 @@ private extension PlayerCubeNode {
         material.diffuse.contents = playerCubeModel.color
         
         // Apply the material to the box
-        boxGeometry.materials = [material]
+        geometry.materials = [material]
         // Create a node with the box geometry
-        self.geometry = boxGeometry
+        self.geometry = geometry
     }
     
     private func setUpPhysicsBody() {
@@ -79,10 +79,13 @@ extension PlayerCubeNode {
     }
     
     private func setupActions() {
+        self.removeAllActions()
         self.jumpRightAction = SCNAction.group([playerCubeModel.animation.cubeAction.rightAction,
                                                 moveAction(.right)])
         self.jumpLeftAction = SCNAction.group([playerCubeModel.animation.cubeAction.leftAction,
                                                moveAction(.left)])
+        guard let repeatAction = playerCubeModel.animation.cubeAction.repeatForeverAction else { return }
+        self.runAction(SCNAction.repeatForever(repeatAction))
     }
 }
 
@@ -136,7 +139,7 @@ extension PlayerCubeNode {
 extension PlayerCubeNode {
     func updatePlayerCubeModel(_ playerCubeModel : PlayerCube) {
         self.playerCubeModel = playerCubeModel
-        self.setUpGeometryBox()
+        self.setUpGeometry()
         self.setupActions()
     }
 }

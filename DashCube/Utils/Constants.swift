@@ -78,13 +78,13 @@ class Constants {
                        isUnlocked: false,
                        isSelected: false),
             PlayerCube(color: .cube3,
-                       animation: .basicWithExtraRotation,
+                       animation: .basicWithYAxisSpin,
                        requiredHighScore: 50,
                        isUnlocked: false,
                        isSelected: false),
             PlayerCube(color: .cube4,
-                       animation: .basicWithYAxisSpin,
-                       requiredHighScore: 75,
+                       animation: .basicWithColorChange,
+                       requiredHighScore: 50,
                        isUnlocked: false,
                        isSelected: false)
         ]
