@@ -11,13 +11,13 @@ enum CubeAnimation {
     var displayAction : SCNAction {
         switch self {
         case .basic:
-            return basicAction()
+            return displayBasicAction()
         case .yAxisSpin:
-            return yAxisSpinAction()
+            return displayYAxisSpinAction()
         case .basicWithYAxisSpin:
-            return basicWithYAxisSpinAction()
+            return displayBasicWithYAxisSpinAction()
         case .basicWithColorChange:
-            return basicWithColourChangeAction()
+            return displayBasicWithColourChangeAction()
         }
     }
     
@@ -78,7 +78,7 @@ private extension CubeAnimation {
 
 // MARK: - Basic Animation
 extension CubeAnimation {
-    private func basicAction() -> SCNAction {
+    private func displayBasicAction() -> SCNAction {
         // Pause
         let pauseAction = pauseAction()
 
@@ -124,7 +124,7 @@ extension CubeAnimation {
 
 // MARK: - Y Axis Spin
 extension CubeAnimation {
-    private func yAxisSpinAction() -> SCNAction {
+    private func displayYAxisSpinAction() -> SCNAction {
         // Pause
         let pauseAction = pauseAction()
 
@@ -170,7 +170,7 @@ extension CubeAnimation {
 
 // MARK: - Basic Y Axis Spin
 extension CubeAnimation {
-    private func basicWithYAxisSpinAction() -> SCNAction {
+    private func displayBasicWithYAxisSpinAction() -> SCNAction {
         // Pause
         let pauseAction = pauseAction()
 
@@ -215,8 +215,8 @@ extension CubeAnimation {
 }
 
 // MARK: - Basic Animation
-extension CubeAnimation {
-    private func basicWithColourChangeAction() -> SCNAction {
+private extension CubeAnimation {
+    func displayBasicWithColourChangeAction() -> SCNAction {
         // Pause
         let pauseAction = pauseAction()
 
@@ -226,42 +226,8 @@ extension CubeAnimation {
         // Rotation amount
         let rotationAmount : CGFloat = (.pi / 2)
         
-        // Original and target colors
-        let originalColor = UIColor.cube4
-        let targetColor1 = UIColor.cube1
-        let targetColor2 = UIColor.cube2
-        let targetColor3 = UIColor.cube3
-
-        // Define the duration for each color change
-        let colorChangeDuration = 0.5
-
-        // Define the actions to change color and revert back
-        let changeColorAction = SCNAction.customAction(duration: colorChangeDuration) { node, elapsedTime in
-            let percentage = min(1.0, elapsedTime / CGFloat(colorChangeDuration))
-            let newColor = self.interpolateColor(from: originalColor, to: targetColor1, fraction: percentage)
-            node.geometry?.firstMaterial?.diffuse.contents = newColor
-        }
-
-        let revertColorAction1 = SCNAction.customAction(duration: colorChangeDuration) { node, elapsedTime in
-            let percentage = min(1.0, elapsedTime / CGFloat(colorChangeDuration))
-            let newColor = self.interpolateColor(from: targetColor1, to: targetColor2, fraction: percentage)
-            node.geometry?.firstMaterial?.diffuse.contents = newColor
-        }
-        
-        let revertColorAction2 = SCNAction.customAction(duration: colorChangeDuration) { node, elapsedTime in
-            let percentage = min(1.0, elapsedTime / CGFloat(colorChangeDuration))
-            let newColor = self.interpolateColor(from: targetColor2, to: targetColor3, fraction: percentage)
-            node.geometry?.firstMaterial?.diffuse.contents = newColor
-        }
-        
-        let revertColorAction3 = SCNAction.customAction(duration: colorChangeDuration) { node, elapsedTime in
-            let percentage = min(1.0, elapsedTime / CGFloat(colorChangeDuration))
-            let newColor = self.interpolateColor(from: targetColor3, to: originalColor, fraction: percentage)
-            node.geometry?.firstMaterial?.diffuse.contents = newColor
-        }
-
-        // Create a sequence of actions
-        let colorChangeSequence = SCNAction.repeatForever(SCNAction.sequence([changeColorAction, revertColorAction1, revertColorAction2, revertColorAction3]))
+        // Change color action
+        let changeColorAction = SCNAction.repeatForever(self.changeColorAction())
         
         // Rotate left
         let rotateLeftAction = SCNAction.rotate(by: rotationAmount, around: .init(1, 0, 0), duration: Constants.Animation.rotationActionDuration)
@@ -275,17 +241,32 @@ extension CubeAnimation {
         
         // Action
         let rotationActions = SCNAction.sequence([leftAction, rightAction])
-        let action = SCNAction.group([colorChangeSequence, rotationActions])
+        let action = SCNAction.group([changeColorAction, rotationActions])
         return .repeatForever(action)
     }
     
-    private func basicWithColourChangeCubeAction() -> CubeAction {
+    func basicWithColourChangeCubeAction() -> CubeAction {
         // Jump
         let jumpAction = jumpAction()
         
         // Rotation amount
         let rotationAmount : CGFloat = (.pi / 2)
 
+        // Change color action
+        let changeColorAction = self.changeColorAction()
+        
+        // Rotate left
+        let rotateLeftAction = SCNAction.rotate(by: rotationAmount, around: .init(1, 0, 0), duration: Constants.Animation.rotationActionDuration)
+        let jumpLeftAndRotateAction = SCNAction.group([jumpAction, rotateLeftAction])
+        
+        // Rotate right
+        let rotateRightAction = SCNAction.rotate(by: -rotationAmount, around: .init(0, 0, 1), duration: Constants.Animation.rotationActionDuration)
+        let jumpRightAndRotateAction = SCNAction.group([jumpAction, rotateRightAction])
+        
+        return CubeAction(leftAction: jumpLeftAndRotateAction, rightAction: jumpRightAndRotateAction, repeatForeverAction: changeColorAction)
+    }
+    
+    func changeColorAction() -> SCNAction {
         // Original and target colors
         let originalColor = UIColor.cube4
         let targetColor1 = UIColor.cube1
@@ -293,7 +274,7 @@ extension CubeAnimation {
         let targetColor3 = UIColor.cube3
 
         // Define the duration for each color change
-        let colorChangeDuration = 0.5
+        let colorChangeDuration = 0.7
 
         // Define the actions to change color and revert back
         let changeColorAction = SCNAction.customAction(duration: colorChangeDuration) { node, elapsedTime in
@@ -320,17 +301,6 @@ extension CubeAnimation {
             node.geometry?.firstMaterial?.diffuse.contents = newColor
         }
 
-        // Create a sequence of actions
-        let colorChangeSequence = SCNAction.sequence([changeColorAction, revertColorAction1, revertColorAction2, revertColorAction3])
-        
-        // Rotate left
-        let rotateLeftAction = SCNAction.rotate(by: rotationAmount, around: .init(1, 0, 0), duration: Constants.Animation.rotationActionDuration)
-        let jumpLeftAndRotateAction = SCNAction.group([jumpAction, rotateLeftAction])
-        
-        // Rotate right
-        let rotateRightAction = SCNAction.rotate(by: -rotationAmount, around: .init(0, 0, 1), duration: Constants.Animation.rotationActionDuration)
-        let jumpRightAndRotateAction = SCNAction.group([jumpAction, rotateRightAction])
-        
-        return CubeAction(leftAction: jumpLeftAndRotateAction, rightAction: jumpRightAndRotateAction, repeatForeverAction: colorChangeSequence)
+        return SCNAction.sequence([changeColorAction, revertColorAction1, revertColorAction2, revertColorAction3])
     }
 }
