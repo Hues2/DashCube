@@ -4,7 +4,8 @@ import SceneKit
 enum CubeAnimation {
     case basic
     case yAxisSpin
-    case basicYAxisSpin
+    case basicWithExtraRotation
+    case basicWithYAxisSpin
     
     var displayAction : SCNAction {
         switch self {
@@ -12,8 +13,10 @@ enum CubeAnimation {
             return basicAction()
         case .yAxisSpin:
             return yAxisSpinAction()
-        case .basicYAxisSpin:
-            return basicYAxisSpinAction()
+        case .basicWithExtraRotation:
+            return basicWithExtraRotationAction()
+        case .basicWithYAxisSpin:
+            return basicWithYAxisSpinAction()
         }
     }
     
@@ -23,14 +26,35 @@ enum CubeAnimation {
             return basicCubeAction()
         case .yAxisSpin:
             return yAxisSpinCubeAction()
-        case .basicYAxisSpin:
-            return basicYAxisSpinCubeActions()
+        case .basicWithExtraRotation:
+            return basicWithExtraRotationCubeAction()
+        case .basicWithYAxisSpin:
+            return basicWithYAxisSpinCubeAction()
         }
     }
     
     struct CubeAction {
         let leftAction : SCNAction
         let rightAction : SCNAction
+    }
+}
+
+// MARK: - Reusable Actions
+extension CubeAnimation {
+    func pauseAction() -> SCNAction {
+        return SCNAction.move(by: .init(0, 0, 0), duration: Constants.Animation.pauseActionDuration)
+    }
+    
+    func dispayJumpAction() -> SCNAction {
+        let jumpUpAction = SCNAction.move(by: .init(0, 1, 0), duration: Constants.Animation.jumpDisplayActionDuration)
+        let jumpDownAction = SCNAction.move(by: .init(0, -1, 0), duration: Constants.Animation.jumpDisplayActionDuration)
+        return SCNAction.sequence([jumpUpAction, jumpDownAction])
+    }
+    
+    func jumpAction() -> SCNAction {
+        let jumpUpAction = SCNAction.move(by: .init(0, 1, 0), duration: Constants.Animation.jumpActionDuration)
+        let jumpDownAction = SCNAction.move(by: .init(0, -1, 0), duration: Constants.Animation.jumpActionDuration)
+        return SCNAction.sequence([jumpUpAction, jumpDownAction])
     }
 }
 
@@ -128,7 +152,7 @@ extension CubeAnimation {
 
 // MARK: - Basic Y Axis Spin
 extension CubeAnimation {
-    private func basicYAxisSpinAction() -> SCNAction {
+    private func basicWithYAxisSpinAction() -> SCNAction {
         // Pause
         let pauseAction = pauseAction()
 
@@ -153,7 +177,7 @@ extension CubeAnimation {
         return .repeatForever(action)
     }
     
-    private func basicYAxisSpinCubeActions() -> CubeAction {
+    private func basicWithYAxisSpinCubeAction() -> CubeAction {
         // Jump
         let jumpAction = jumpAction()
         
@@ -172,21 +196,48 @@ extension CubeAnimation {
     }
 }
 
-// MARK: - Reusable Actions
+// MARK: - Basic Animation
 extension CubeAnimation {
-    func pauseAction() -> SCNAction {
-        return SCNAction.move(by: .init(0, 0, 0), duration: Constants.Animation.pauseActionDuration)
+    private func basicWithExtraRotationAction() -> SCNAction {
+        // Pause
+        let pauseAction = pauseAction()
+
+        // Jump
+        let jumpAction = dispayJumpAction()
+        
+        // Rotation amount
+        let rotationAmount : CGFloat = .pi
+        
+        // Rotate left
+        let rotateLeftAction = SCNAction.rotate(by: rotationAmount, around: .init(1, 0, 0), duration: Constants.Animation.rotationActionDuration)
+        let jumpLeftAndRotateAction = SCNAction.group([jumpAction, rotateLeftAction])
+        let leftAction = SCNAction.sequence([jumpLeftAndRotateAction, pauseAction])
+        
+        // Rotate right
+        let rotateRightAction = SCNAction.rotate(by: -rotationAmount, around: .init(0, 0, 1), duration: Constants.Animation.rotationActionDuration)
+        let jumpRightAndRotateAction = SCNAction.group([jumpAction, rotateRightAction])
+        let rightAction = SCNAction.sequence([jumpRightAndRotateAction, pauseAction])
+        
+        // Action
+        let action = SCNAction.sequence([leftAction, rightAction])
+        return .repeatForever(action)
     }
     
-    func dispayJumpAction() -> SCNAction {
-        let jumpUpAction = SCNAction.move(by: .init(0, 1, 0), duration: Constants.Animation.jumpDisplayActionDuration)
-        let jumpDownAction = SCNAction.move(by: .init(0, -1, 0), duration: Constants.Animation.jumpDisplayActionDuration)
-        return SCNAction.sequence([jumpUpAction, jumpDownAction])
-    }
-    
-    func jumpAction() -> SCNAction {
-        let jumpUpAction = SCNAction.move(by: .init(0, 1, 0), duration: Constants.Animation.jumpActionDuration)
-        let jumpDownAction = SCNAction.move(by: .init(0, -1, 0), duration: Constants.Animation.jumpActionDuration)
-        return SCNAction.sequence([jumpUpAction, jumpDownAction])
+    private func basicWithExtraRotationCubeAction() -> CubeAction {
+        // Jump
+        let jumpAction = jumpAction()
+        
+        // Rotation amount
+        let rotationAmount : CGFloat = .pi
+        
+        // Rotate left
+        let rotateLeftAction = SCNAction.rotate(by: rotationAmount, around: .init(1, 0, 0), duration: Constants.Animation.rotationActionDuration)
+        let jumpLeftAndRotateAction = SCNAction.group([jumpAction, rotateLeftAction])
+        
+        // Rotate right
+        let rotateRightAction = SCNAction.rotate(by: -rotationAmount, around: .init(0, 0, 1), duration: Constants.Animation.rotationActionDuration)
+        let jumpRightAndRotateAction = SCNAction.group([jumpAction, rotateRightAction])
+        
+        return CubeAction(leftAction: jumpLeftAndRotateAction, rightAction: jumpRightAndRotateAction)
     }
 }

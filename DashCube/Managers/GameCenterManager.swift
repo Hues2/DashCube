@@ -74,7 +74,7 @@ extension GameCenterManager {
     func setOveralHighScore() async {
         let classicLeaderboard = leaderboards.first(where: { $0.baseLeaderboardID == Constants.GameCenter.classicLeaderboard })
         guard let classicLeaderboard else {
-            // There is no classic leaderboard
+            // There is no "classic" leaderboard
             self.overallHighScore = self.getHighScoreFromAppStorage()
             print("Classic leaderboard not found")
             return
