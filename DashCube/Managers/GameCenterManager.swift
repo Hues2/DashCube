@@ -44,9 +44,9 @@ private extension GameCenterManager {
                     // Get leaderboards
                     await self.setLeaderboards()
                     // Set overall high score
-                    await self.setOveralHighScore()
+                    self.setOveralHighScore()
                     // Set overall rank
-                    await self.setRank(Constants.GameCenter.classicLeaderboard)
+                    self.setRank(Constants.GameCenter.classicLeaderboard)
                 }
             }
             .store(in: &cancellables)
@@ -71,7 +71,7 @@ private extension GameCenterManager {
 
 // MARK: - Set classic high score
 extension GameCenterManager {
-    func setOveralHighScore() async {
+    func setOveralHighScore() {
         let classicLeaderboard = leaderboards.first(where: { $0.baseLeaderboardID == Constants.GameCenter.classicLeaderboard })
         guard let classicLeaderboard else {
             // There is no "classic" leaderboard
@@ -79,15 +79,16 @@ extension GameCenterManager {
             print("Classic leaderboard not found")
             return
         }
-        
-        // High score in app storage
-        let appStorageHighScore = self.getHighScoreFromAppStorage()
-        // High score in leaderboard
-        let leaderboardHighScore = await self.getHighScoreFromLeaderboard(classicLeaderboard)
-        // Sync the high scores
-        self.syncHighScores(appStorageHighScore, leaderboardHighScore)
-        // Publish the high score
-        self.overallHighScore = max(leaderboardHighScore, appStorageHighScore)
+        Task {
+            // High score in app storage
+            let appStorageHighScore = self.getHighScoreFromAppStorage()
+            // High score in leaderboard
+            let leaderboardHighScore = await self.getHighScoreFromLeaderboard(classicLeaderboard)
+            // Sync the high scores
+            self.syncHighScores(appStorageHighScore, leaderboardHighScore)
+            // Publish the high score
+            self.overallHighScore = max(leaderboardHighScore, appStorageHighScore)
+        }
     }
     
     private func getHighScoreFromLeaderboard(_ leaderboard : GKLeaderboard?) async -> Int {
@@ -146,18 +147,20 @@ extension GameCenterManager {
 
 // MARK: - Set Rank
 private extension GameCenterManager {
-    func setRank(_ leaderboardId : String) async {
+    func setRank(_ leaderboardId : String) {
         let leaderboard = self.leaderboards.first(where: { $0.baseLeaderboardID == leaderboardId })
         guard let leaderboard else { return }
         
-        let leaderboardEntries = await self.getLeaderboardEntries(from: leaderboard)
-        let rank = leaderboardEntries?.0?.rank
-        guard let rank else { return }
-        
-        if leaderboardId == Constants.GameCenter.classicLeaderboard {
-            self.overallRank = rank
-        } else {
-            self.dailyRank = rank
+        Task {
+            let leaderboardEntries = await self.getLeaderboardEntries(from: leaderboard)
+            let rank = leaderboardEntries?.0?.rank
+            guard let rank else { return }
+            
+            if leaderboardId == Constants.GameCenter.classicLeaderboard {
+                self.overallRank = rank
+            } else {
+                self.dailyRank = rank
+            }
         }
     }
 }
