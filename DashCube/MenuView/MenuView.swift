@@ -2,9 +2,13 @@ import SwiftUI
 
 struct MenuView: View {
     @ObservedObject var viewModel : MenuViewModel
+    @State private var isGameCenterPresented = false
     
     var body: some View {
         content
+            .sheet(isPresented: $isGameCenterPresented) {
+                GameCenterView(leaderboardID: Constants.GameCenter.classicLeaderboard)
+            }
     }
 }
 
@@ -41,6 +45,7 @@ private extension MenuView {
                     }
                     playerCubesView
                     playButton
+                    showGameCenterButton
                 }
             }
             .withCardStyle(outerPadding: Constants.UI.outerMenuPadding)
@@ -114,5 +119,14 @@ private extension MenuView {
 private extension MenuView {
     var gameOverView : some View {
         GameOverView(viewModel: viewModel)
+    }
+}
+
+// MARK: - Game Center Button
+private extension MenuView {
+    var showGameCenterButton : some View {
+        CustomButton(title: "game_center".localizedString) {
+            self.isGameCenterPresented.toggle()
+        }
     }
 }
