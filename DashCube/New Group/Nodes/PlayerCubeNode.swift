@@ -8,7 +8,7 @@ class PlayerCubeNode: SCNNode {
     let initialPlayerPosition : SCNVector3 = SCNVector3(0, 13, 0)
     var playerCubeModel : PlayerCube = PlayerCube(color: .white,
                                                   animation: .basic,
-                                                  requiredHighScore: .zero,
+                                                  requiredHighscore: .zero,
                                                   isUnlocked: false,
                                                   isSelected: false)
     

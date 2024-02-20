@@ -5,7 +5,7 @@ import SwiftUI
 class GameViewModel : ObservableObject {
     @Published private(set) var gameState : GameState = .menu
     @Published private(set) var score : Int = .zero
-    @Published private(set) var highScore : Int = .zero
+    @Published private(set) var highscore : Int?
     @Published var isAnimating : Bool = false
     
     // Timer
@@ -51,12 +51,12 @@ private extension GameViewModel {
     }
     
     func subscribeToHighScore() {
-        self.gameCenterManager.$overallHighScore
+        self.gameCenterManager.$overallHighscore
             .receive(on: DispatchQueue.main)
-            .sink { [weak self] newHighScore in
-                guard let self else { return }
+            .sink { [weak self] newHighscore in
+                guard let self, let newHighscore else { return }
                 withAnimation {
-                    self.highScore = newHighScore
+                    self.highscore = newHighscore
                 }
             }
             .store(in: &cancellables)

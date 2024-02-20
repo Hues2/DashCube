@@ -5,7 +5,7 @@ import SwiftUI
 class MenuViewModel : ObservableObject {
     @Published private(set) var gameState : GameState = .menu
     @Published private(set) var score : Int = .zero
-    @Published private(set) var highScore : Int?
+    @Published private(set) var highscore : Int?
     @Published private(set) var overallRank : Int?
     @Published private(set) var isGameOver : Bool = false
     
@@ -64,13 +64,13 @@ private extension MenuViewModel {
     }
     
     func subscribeToHighScore() {
-        self.gameCenterManager.$overallHighScore
+        self.gameCenterManager.$overallHighscore
             .receive(on: DispatchQueue.main)
             .dropFirst()
-            .sink { [weak self] newHighScore in
+            .sink { [weak self] newHighscore in
                 guard let self else { return }
                 withAnimation {
-                    self.highScore = newHighScore
+                    self.highscore = newHighscore
                 }
             }
             .store(in: &cancellables)
@@ -138,6 +138,6 @@ extension MenuViewModel {
 // MARK: - Fetch Rank
 extension MenuViewModel {
     func fetchOverallRank() {
-        self.gameCenterManager.fetchRank(Constants.GameCenter.classicLeaderboard)
+        self.gameCenterManager.fetchOverallHighScoreAndRank()
     }
 }

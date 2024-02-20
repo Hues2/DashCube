@@ -35,7 +35,7 @@ private extension MenuView {
                 VStack {
                     VStack(spacing: 5) {
                         // High Score
-                        row("high_score".localizedString, viewModel.highScore)
+                        row("high_score".localizedString, viewModel.highscore)
                         // Overall Rank
                         row("overall_rank".localizedString, viewModel.overallRank, true)
                     }

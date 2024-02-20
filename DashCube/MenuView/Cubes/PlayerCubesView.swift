@@ -110,7 +110,7 @@ private extension PlayerCubesView {
         VStack(spacing: 15) {
             HStack {
                 Image(systemName: "lock.fill")
-                Text("\("highscore_required".localizedString) \(playerCube.requiredHighScore)")
+                Text("\("highscore_required".localizedString) \(playerCube.requiredHighscore)")
             }
             .font(.title3)
             .fontDesign(.rounded)

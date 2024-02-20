@@ -35,7 +35,11 @@ struct GameView: View {
 private extension GameView {
     func header(_ proxy : GeometryProxy) -> some View {
         HStack {
-            headerSection(title: "best_title".localizedString, value: "\(viewModel.highScore)")
+            if let highscore = viewModel.highscore {
+                headerSection(title: "best_title".localizedString, value: "\(highscore)")
+            } else {
+                headerSection(title: "best_title".localizedString, value: "-")
+            }
             Spacer()
             headerSection(title: "timer_title".localizedString, value: String(format: "%02d:%02d", viewModel.seconds, viewModel.milliseconds))
             Spacer()

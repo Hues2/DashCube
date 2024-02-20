@@ -118,7 +118,7 @@ extension GameManager {
 // MARK: - High Score
 extension GameManager {
     private func setHighScore() {
-        if self.score > self.gameCenterManager.overallHighScore {
+        if self.score > (self.gameCenterManager.overallHighscore ?? 0) {
             self.gameCenterManager.saveNewHighScore(self.score)
         }
     }
