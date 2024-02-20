@@ -2,33 +2,23 @@ import SwiftUI
 import GameKit
 
 struct GameCenterView: UIViewControllerRepresentable {
-    let menuViewmodel : MenuViewModel
-    private let leaderboardVC = LeaderboardViewController()
-    
-    func makeUIViewController(context: Context) -> LeaderboardViewController {
-        leaderboardVC.menuViewmodel = self.menuViewmodel
-        return leaderboardVC
+    let leaderboardID: String
+
+    func makeUIViewController(context: Context) -> GKGameCenterViewController {
+        let viewController = GKGameCenterViewController(leaderboardID: leaderboardID, playerScope: .global, timeScope: .allTime)
+        viewController.gameCenterDelegate = context.coordinator
+        return viewController
     }
 
-    func updateUIViewController(_ uiViewController: LeaderboardViewController, context: Context) { }
-}
+    func updateUIViewController(_ uiViewController: GKGameCenterViewController, context: Context) {}
 
+    func makeCoordinator() -> Coordinator {
+        Coordinator()
+    }
 
-class LeaderboardViewController: UIViewController, GKGameCenterControllerDelegate {
-    var menuViewmodel : MenuViewModel?
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        showLeaderboard()
-    }
-    
-    func showLeaderboard() {
-        let gcViewController = GKGameCenterViewController()
-        gcViewController.gameCenterDelegate = self
-        gcViewController.modalPresentationStyle = .popover        
-        present(gcViewController, animated: true, completion: nil)
-    }
-    
-    func gameCenterViewControllerDidFinish(_ gameCenterViewController: GKGameCenterViewController) {
+    class Coordinator: NSObject, GKGameCenterControllerDelegate {
+        func gameCenterViewControllerDidFinish(_ gameCenterViewController: GKGameCenterViewController) {
+            gameCenterViewController.dismiss(animated: true, completion: nil)
+        }
     }
 }
