@@ -16,6 +16,9 @@ private extension MenuView {
                 gameOverView
             } else {
                 mainMenu
+                    .onAppear {
+                        self.viewModel.fetchOverallRank()
+                    }
             }
         }
     }

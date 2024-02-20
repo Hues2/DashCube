@@ -134,3 +134,10 @@ extension MenuViewModel {
         self.cubesManager.saveSelectedCube(playerCube.id)
     }
 }
+
+// MARK: - Fetch Rank
+extension MenuViewModel {
+    func fetchOverallRank() {
+        self.gameCenterManager.fetchRank(Constants.GameCenter.classicLeaderboard)
+    }
+}

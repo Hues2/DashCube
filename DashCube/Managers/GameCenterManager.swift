@@ -38,18 +38,25 @@ private extension GameCenterManager {
                     self.overallHighScore = self.getHighScoreFromAppStorage()
                     return
                 }
-                
-                Task {
-                    // Await this method, as the classic score and rank need the leaderboards to have returned
-                    // Get leaderboards
-                    await self.setLeaderboards()
-                    // Set overall high score
-                    self.setOveralHighScore()
-                    // Set overall rank
-                    self.setRank(Constants.GameCenter.classicLeaderboard)
-                }
+                print("User Authenticated")
+                self.fetchAllLeaderboardData()
             }
             .store(in: &cancellables)
+    }
+}
+
+// MARK: - Get all leaderboard data
+private extension GameCenterManager {
+    func fetchAllLeaderboardData() {
+        Task {
+            // Await this method, as the classic score and rank need the leaderboards to have returned
+            // Get leaderboards
+            await self.setLeaderboards()
+            // Set overall high score
+            self.setOverallHighScore()
+            // Set overall rank
+            self.fetchRank(Constants.GameCenter.classicLeaderboard)
+        }
     }
 }
 
@@ -69,9 +76,9 @@ private extension GameCenterManager {
     }
 }
 
-// MARK: - Set classic high score
+// MARK: - Set overall high score
 extension GameCenterManager {
-    func setOveralHighScore() {
+    func setOverallHighScore() {
         let classicLeaderboard = leaderboards.first(where: { $0.baseLeaderboardID == Constants.GameCenter.classicLeaderboard })
         guard let classicLeaderboard else {
             // There is no "classic" leaderboard
@@ -146,8 +153,9 @@ extension GameCenterManager {
 }
 
 // MARK: - Set Rank
-private extension GameCenterManager {
-    func setRank(_ leaderboardId : String) {
+extension GameCenterManager {
+    func fetchRank(_ leaderboardId : String) {
+        guard isGameCenterEnabled else { return }
         let leaderboard = self.leaderboards.first(where: { $0.baseLeaderboardID == leaderboardId })
         guard let leaderboard else { return }
         
