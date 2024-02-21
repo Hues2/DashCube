@@ -42,10 +42,12 @@ private extension MenuView {
                         row("high_score".localizedString, viewModel.highscore)
                         // Overall Rank
                         row("overall_rank".localizedString, viewModel.overallRank, true)
+                        // Leaderboard button
+                        showLeaderboardButton
                     }
+                    .padding(.bottom, 10)
                     playerCubesView
                     playButton
-                    showGameCenterButton
                 }
             }
             .withCardStyle(outerPadding: Constants.UI.outerMenuPadding)
@@ -124,9 +126,20 @@ private extension MenuView {
 
 // MARK: - Game Center Button
 private extension MenuView {
-    var showGameCenterButton : some View {
-        CustomButton(title: "game_center".localizedString) {
+    var showLeaderboardButton : some View {
+        Button {
             self.isGameCenterPresented.toggle()
+        } label: {
+            Text("view_leaderboard".localizedString)
+                .font(.title3)
+                .fontWeight(.light)
+                .foregroundStyle(.white)
+                .padding(2.5)
+                .overlay(alignment: .bottom) {
+                    LinearGradient(gradient: Gradient(colors: [Color.customAqua, Color.customStrawberry]), startPoint: .leading, endPoint: .trailing)
+                        .frame(height: 1.5, alignment: .bottom)
+                        .clipShape(.rect(cornerRadius: 8))
+                }
         }
     }
 }

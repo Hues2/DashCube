@@ -17,6 +17,7 @@
 		2E78123E2B66EF6F009CEE78 /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E78123D2B66EF6F009CEE78 /* MenuView.swift */; };
 		2E7812402B66EFEC009CEE78 /* MenuViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E78123F2B66EFEC009CEE78 /* MenuViewModel.swift */; };
 		2E8ED5DB2B7C343700526D09 /* CubeAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E8ED5DA2B7C343700526D09 /* CubeAnimation.swift */; };
+		2E97E7F12B86B13600839866 /* TapGestureManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E97E7F02B86B13600839866 /* TapGestureManager.swift */; };
 		2E9ACA872B699D3D0090245B /* DeadZoneNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9ACA862B699D3D0090245B /* DeadZoneNode.swift */; };
 		2E9EC6612B795AB800141568 /* CubeNodeViewRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9EC6602B795AB800141568 /* CubeNodeViewRepresentable.swift */; };
 		2E9EC6632B795D6800141568 /* PlayerCubesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9EC6622B795D6800141568 /* PlayerCubesView.swift */; };
@@ -60,6 +61,7 @@
 		2E78123D2B66EF6F009CEE78 /* MenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
 		2E78123F2B66EFEC009CEE78 /* MenuViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewModel.swift; sourceTree = "<group>"; };
 		2E8ED5DA2B7C343700526D09 /* CubeAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CubeAnimation.swift; sourceTree = "<group>"; };
+		2E97E7F02B86B13600839866 /* TapGestureManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TapGestureManager.swift; sourceTree = "<group>"; };
 		2E9ACA862B699D3D0090245B /* DeadZoneNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeadZoneNode.swift; sourceTree = "<group>"; };
 		2E9EC6602B795AB800141568 /* CubeNodeViewRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CubeNodeViewRepresentable.swift; sourceTree = "<group>"; };
 		2E9EC6622B795D6800141568 /* PlayerCubesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerCubesView.swift; sourceTree = "<group>"; };
@@ -236,6 +238,7 @@
 			children = (
 				2EADDD502B6697A900D724BF /* SwipeGestureManager.swift */,
 				2EADDD4E2B6697A900D724BF /* TileManager.swift */,
+				2E97E7F02B86B13600839866 /* TapGestureManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -394,6 +397,7 @@
 				2EADDD4C2B66977900D724BF /* GameViewController.swift in Sources */,
 				2E9EC6632B795D6800141568 /* PlayerCubesView.swift in Sources */,
 				2EADDD5D2B6697E500D724BF /* TileNode.swift in Sources */,
+				2E97E7F12B86B13600839866 /* TapGestureManager.swift in Sources */,
 				2E52F0E22B6AC0BE009014CF /* RoundedGradientBorder.swift in Sources */,
 				2EADDD612B66981C00D724BF /* Utils.swift in Sources */,
 				2E8ED5DB2B7C343700526D09 /* CubeAnimation.swift in Sources */,

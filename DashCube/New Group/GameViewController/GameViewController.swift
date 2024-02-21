@@ -16,8 +16,10 @@ class GameViewController: UIViewController {
     private var cubesManager : CubesManager!
     // Game Manager
     private var tileManager : TileManager!
-    // Game Controller Manager;
+    // Swipe Gesture Manager
     private var swipeGestureManager : SwipeGestureManager!
+    // Tap Gesture Manager
+    private var tapGestureManager : TapGestureManager!
     // Camera
     private var cameraNode : CameraNode!
     // Directional Light
@@ -54,6 +56,7 @@ extension GameViewController {
         self.gameManager = gameManager
         self.cubesManager = cubesManager
         self.setUpSwipeGestureManager()
+        self.setUpTapGestureManager()
         self.addSubscriptions()
     }
 }
@@ -142,10 +145,19 @@ private extension GameViewController {
     }
 }
 
-// MARK: - Game Controller Manager Setup
+// MARK: - Swipe Gesture Manager Setup
 private extension GameViewController {
     func setUpSwipeGestureManager() {
         self.swipeGestureManager = SwipeGestureManager(sceneView: self.sceneView,
+                                                       playerCube: playerCube,
+                                                       gameManager: self.gameManager)
+    }
+}
+
+// MARK: - Tap Gesture Manager Setup
+private extension GameViewController {
+    func setUpTapGestureManager() {
+        self.tapGestureManager = TapGestureManager(sceneView: self.sceneView,
                                                        playerCube: playerCube,
                                                        gameManager: self.gameManager)
     }

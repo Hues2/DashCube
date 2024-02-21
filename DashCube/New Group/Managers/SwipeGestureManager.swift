@@ -25,7 +25,7 @@ class SwipeGestureManager {
         guard gesture.state == .ended else { return }
         self.gameManager.startTimer()
 //        self.enableSwipeGestureRecognizers(false)
-        self.playerCube.move(gesture.direction) {
+        self.playerCube.swipeMove(gesture.direction) {
 //            self.enableSwipeGestureRecognizers(true)
         }
     }

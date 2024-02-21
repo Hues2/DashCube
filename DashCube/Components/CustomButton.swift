@@ -14,10 +14,9 @@ struct CustomButton: View {
                 .foregroundStyle(.white)
                 .padding()
                 .frame(maxWidth: .infinity)
-                .background(
-                    Color(uiColor: .darkGray)
-                        .withRoundedGradientBorder(colors: [Color.customAqua, Color.customStrawberry])
-                )
+                .withRoundedGradientBorder(colors: [Color.customAqua, Color.customStrawberry])
+                .compositingGroup()
+                .shadow(radius: 4)
         }
     }
 }

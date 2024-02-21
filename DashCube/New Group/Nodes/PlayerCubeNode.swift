@@ -63,7 +63,20 @@ private extension PlayerCubeNode {
 
 // MARK: - Movement
 extension PlayerCubeNode {
-    func move(_ swipeDirection : UISwipeGestureRecognizer.Direction, _ completion : @escaping () -> Void) {
+    func tapMove(_ swipeDirection : TapGestureManager.TapSide, _ completion : @escaping () -> Void) {
+        switch swipeDirection {
+        case .left:
+            self.runAction(jumpLeftAction) {
+                completion()
+            }
+        case .right:
+            self.runAction(jumpRightAction) {
+                completion()
+            }
+        }
+    }
+    
+    func swipeMove(_ swipeDirection : UISwipeGestureRecognizer.Direction, _ completion : @escaping () -> Void) {
         switch swipeDirection {
         case .left:
             self.runAction(jumpLeftAction) {
