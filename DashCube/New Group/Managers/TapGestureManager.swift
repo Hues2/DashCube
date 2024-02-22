@@ -24,11 +24,12 @@ class TapGestureManager {
     @objc func handleTap(_ recognizer: UITapGestureRecognizer) {
         guard recognizer.state == .ended else { return }
         self.gameManager.startTimer()
+        self.enableTapGestureRecognizers(false)
         let location = recognizer.location(in: self.sceneView)
         if location.x < self.sceneView.bounds.width / 2 {
-            self.playerCube.tapMove(.left) { }
+            self.playerCube.tapMove(.left) { self.enableTapGestureRecognizers(true) }
         } else {
-            self.playerCube.tapMove(.right) { }
+            self.playerCube.tapMove(.right) { self.enableTapGestureRecognizers(true) }
         }
     }
     

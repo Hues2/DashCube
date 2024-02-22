@@ -17,7 +17,6 @@ struct MainView: View {
     var body: some View {
         ZStack(alignment: .center) {
             gameView
-                .ignoresSafeArea(edges: [.bottom])
                 .blur(radius: viewModel.showMenu ? 7.5 : 0)
             
             if viewModel.showMenu {

@@ -25,8 +25,7 @@ struct GameView: View {
                 }
                 
                 game(proxy)
-                    .overlay { gameInstructionsOverlay }
-                    .padding(.bottom, 5)
+//                    .overlay { gameInstructionsOverlay(proxy) }
             }
             .frame(maxHeight: .infinity)
         }
@@ -88,7 +87,7 @@ private extension GameView {
             .disabled(viewModel.gameState != .playing)
     }
     
-    @ViewBuilder var gameInstructionsOverlay : some View {
+    @ViewBuilder func gameInstructionsOverlay(_ proxy : GeometryProxy) -> some View {
         if viewModel.showGameInstructions {
             VStack {
                 HStack {
@@ -96,24 +95,27 @@ private extension GameView {
                         Spacer()
                         VStack {
                             Image(systemName: "target")
+                                .font(.largeTitle)
                             Text("Move left")
+                                .font(.title)
                         }
-                        .font(.title)
                         .fontDesign(.rounded)
                         .foregroundStyle(.white)
                         Spacer()
                     }
                     
-                    Divider()
-                        .overlay {
-                            Color.white
-                        }
+                    VerticalLine()
+                        .stroke(style: .init(lineWidth: 1, dash: [15]))
+                        .frame(width: 1)
+                        .frame(maxHeight: .infinity)
                     
                     Group {
                         Spacer()
                         VStack {
                             Image(systemName: "target")
+                                .font(.largeTitle)
                             Text("Move right")
+                                .font(.title)
                         }
                         .font(.title)
                         .fontDesign(.rounded)
@@ -125,12 +127,10 @@ private extension GameView {
                 .padding(.horizontal)
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .allowsHitTesting(false)            
-//            .background(
-//                Color.black
-//                    .opacity(0.4)
-//                    .allowsHitTesting(false)
-//            )
+//            .padding(.bottom, proxy.safeAreaInsets.bottom)
+            .withCardStyle()
+            .allowsHitTesting(false)
+            .padding(.horizontal)
         }
     }
 }
