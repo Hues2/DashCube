@@ -13,6 +13,8 @@ class GameManager {
     private var maxSeconds : Int = Constants.GameTimer.timerStartingSeconds
     private var maxMilliseconds : Int = Constants.GameTimer.timerStartingMilliSeconds
     
+    @Published private(set) var showGameInstructions : Bool = false
+    
     // Dependencies
     let gameCenterManager : GameCenterManager
     
@@ -58,6 +60,7 @@ private extension GameManager {
 // MARK: - Timer
 extension GameManager {
     func startTimer() {
+        if self.showGameInstructions { self.showGameInstructions = false }
         DispatchQueue.main.async {
             self.stopTimer()
             self.timeEnded = false
@@ -141,6 +144,7 @@ extension GameManager {
             DispatchQueue.main.async {
                 self.score = 0
                 self.gameState = .playing
+                self.showGameInstructions = true
             }
         }
     }

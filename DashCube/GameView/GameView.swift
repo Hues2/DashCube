@@ -19,12 +19,14 @@ struct GameView: View {
     
     var body: some View {
         GeometryReader { proxy in
-            VStack(alignment: .center, spacing: 5) {
+            VStack(alignment: .center, spacing: 0) {
                 if !showMenu {
                     header(proxy)
                 }
                 
                 game(proxy)
+                    .overlay { gameInstructionsOverlay }
+                    .padding(.bottom, 5)
             }
             .frame(maxHeight: .infinity)
         }
@@ -84,6 +86,52 @@ private extension GameView {
         GameViewControllerWrapper(frameSize: proxy.size, gameManager: viewModel.gameManager, cubesManager: viewModel.cubesManager)
             .ignoresSafeArea(edges: .bottom)
             .disabled(viewModel.gameState != .playing)
+    }
+    
+    @ViewBuilder var gameInstructionsOverlay : some View {
+        if viewModel.showGameInstructions {
+            VStack {
+                HStack {
+                    Group {
+                        Spacer()
+                        VStack {
+                            Image(systemName: "target")
+                            Text("Move left")
+                        }
+                        .font(.title)
+                        .fontDesign(.rounded)
+                        .foregroundStyle(.white)
+                        Spacer()
+                    }
+                    
+                    Divider()
+                        .overlay {
+                            Color.white
+                        }
+                    
+                    Group {
+                        Spacer()
+                        VStack {
+                            Image(systemName: "target")
+                            Text("Move right")
+                        }
+                        .font(.title)
+                        .fontDesign(.rounded)
+                        .foregroundStyle(.white)
+                        Spacer()
+                    }
+                }
+                .frame(maxWidth: .infinity)
+                .padding(.horizontal)
+            }
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .allowsHitTesting(false)            
+//            .background(
+//                Color.black
+//                    .opacity(0.4)
+//                    .allowsHitTesting(false)
+//            )
+        }
     }
 }
 

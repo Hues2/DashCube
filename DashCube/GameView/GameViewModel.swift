@@ -12,6 +12,9 @@ class GameViewModel : ObservableObject {
     @Published private(set) var seconds : Int = 0
     @Published private(set) var milliseconds: Int = 0
     
+    // Game overlay
+    @Published var showGameInstructions : Bool = false
+    
     // Dependencies
     let gameManager : GameManager
     let cubesManager: CubesManager
@@ -32,6 +35,7 @@ class GameViewModel : ObservableObject {
         subscribeToGameState()
         subscribeToSeconds()
         subscribeToMilliseconds()
+        subscribeToUserHasMoved()
     }
 }
 
@@ -87,6 +91,15 @@ private extension GameViewModel {
             .sink { [weak self] newMilliSeconds in
                 guard let self else { return }
                 self.milliseconds = newMilliSeconds
+            }
+            .store(in: &cancellables)
+    }
+    
+    func subscribeToUserHasMoved() {
+        self.gameManager.$showGameInstructions
+            .sink { [weak self] newShowGameInstructions in
+                guard let self else { return }
+                self.showGameInstructions = newShowGameInstructions
             }
             .store(in: &cancellables)
     }
