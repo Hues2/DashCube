@@ -45,13 +45,3 @@ private extension MainView {
             .matchedGeometryEffect(id: Constants.GeometryEffectName.card, in: namespace)
     }
 }
-
-// MARK: - Background gradient
-private extension MainView {
-    var backgroundGradient : some View {
-        LinearGradient(gradient: Gradient(colors: [Color.customStrawberry, Color.customAqua]),
-                       startPoint: .top,
-                       endPoint: .bottom)
-        .ignoresSafeArea()
-    }
-}
