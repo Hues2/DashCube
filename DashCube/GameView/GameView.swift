@@ -4,23 +4,20 @@ import SceneKit
 struct GameView: View {
     @StateObject private var viewModel : GameViewModel
     private let namespace : Namespace.ID
-    private var showMenu : Bool
     
     init(gameManager : GameManager, cubesManager: CubesManager,
          gameCenterManager : GameCenterManager,
-         namespace : Namespace.ID,
-         showMenu : Bool) {
+         namespace : Namespace.ID) {
         self._viewModel = StateObject(wrappedValue: GameViewModel(gameManager: gameManager,
                                                                   cubesManager: cubesManager,
                                                                   gameCenterManager : gameCenterManager))
         self.namespace = namespace
-        self.showMenu = showMenu
     }
     
     var body: some View {
         GeometryReader { proxy in
             VStack(alignment: .center, spacing: 0) {
-                if !showMenu {
+                if viewModel.gameState == .playing {
                     header(proxy)
                 }
                 

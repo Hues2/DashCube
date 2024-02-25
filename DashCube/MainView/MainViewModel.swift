@@ -3,7 +3,7 @@ import Combine
 import SwiftUI
 
 class MainViewModel : ObservableObject {
-    @Published private(set) var showMenu : Bool = true
+    @Published private(set) var gameState : GameState = .menu
     
     // Dependencies
     let gameManager : GameManager
@@ -26,7 +26,7 @@ private extension MainViewModel {
             .sink { [weak self] newGameState in
                 guard let self else { return }
                 withAnimation(.spring) {
-                    self.showMenu = (newGameState == .playing) ? false : true
+                    self.gameState = newGameState
                 }
             }
             .store(in: &cancellables)

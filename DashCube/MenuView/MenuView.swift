@@ -16,16 +16,10 @@ struct MenuView: View {
 // MARK: - Content
 private extension MenuView {
     var content : some View {
-        VStack {
-            if viewModel.isGameOver {
-                gameOverView
-            } else {
-                mainMenu
-                    .onAppear {
-                        self.viewModel.fetchOverallRank()
-                    }
+        mainMenu
+            .onAppear {
+                self.viewModel.fetchOverallRank()
             }
-        }
     }
 }
 
@@ -55,6 +49,7 @@ private extension MenuView {
             .fontWeight(.black)
             .fontDesign(.rounded)
             .foregroundStyle(.white)
+        
     }
 }
 
@@ -70,6 +65,7 @@ private extension MenuView {
             showLeaderboardButton
         }
         .withCardStyle(outerPadding: Constants.UI.outerMenuPadding)
+        .matchedGeometryEffect(id: Constants.GeometryEffectName.card, in: namespace)
     }
     
     func row(_ title : String, _ value : Int?, _ isRank : Bool = false) -> some View {
@@ -103,30 +99,20 @@ private extension MenuView {
 
 // MARK: - Play game button
 private extension MenuView {
-    @ViewBuilder var playButton : some View {
-        if viewModel.gameState == .menu {
-            CustomButton(title: "play_button_title".localizedString) {
-                self.viewModel.startGame()
-            }
-            .padding(.top, 20)
+    var playButton : some View {
+        CustomButton(title: "play_button_title".localizedString) {
+            self.viewModel.startGame()
         }
+        .padding(.top, 20)
     }
 }
 
 // MARK: - Player Cubes
 private extension MenuView {
-    @ViewBuilder var playerCubesView : some View {
-        if viewModel.gameState == .menu {
-            PlayerCubesView(viewModel: viewModel)
-                .padding(.top, 20)
-        }
-    }
-}
-
-// MARK: - Game Over UI
-private extension MenuView {
-    var gameOverView : some View {
-        GameOverView(viewModel: viewModel)
+    var playerCubesView : some View {
+        PlayerCubesView(viewModel: viewModel)
+            .padding(.top, 20)
+        
     }
 }
 
