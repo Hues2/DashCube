@@ -3,7 +3,7 @@ import Combine
 import SwiftUI
 
 class MainViewModel : ObservableObject {
-    @Published private(set) var gameState : GameState = .menu
+    @Published var gameState : GameState = .menu
     
     // Dependencies
     let gameManager : GameManager

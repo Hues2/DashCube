@@ -3,7 +3,6 @@ import Combine
 import SwiftUI
 
 class GameViewModel : ObservableObject {
-    @Published private(set) var gameState : GameState = .menu
     @Published private(set) var score : Int = .zero
     @Published private(set) var highscore : Int?
     @Published var isAnimating : Bool = false
@@ -32,7 +31,6 @@ class GameViewModel : ObservableObject {
     private func addSubscriptions() {
         subscribeToScore()
         subscribeToHighScore()
-        subscribeToGameState()
         subscribeToSeconds()
         subscribeToMilliseconds()
         subscribeToUserHasMoved()
@@ -61,17 +59,6 @@ private extension GameViewModel {
                 guard let self, let newHighscore else { return }
                 withAnimation {
                     self.highscore = newHighscore
-                }
-            }
-            .store(in: &cancellables)
-    }
-    
-    func subscribeToGameState() {
-        self.gameManager.$gameState
-            .sink { [weak self] newGameState in
-                guard let self else { return }
-                withAnimation {
-                    self.gameState = newGameState
                 }
             }
             .store(in: &cancellables)

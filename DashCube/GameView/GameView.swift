@@ -3,21 +3,24 @@ import SceneKit
 
 struct GameView: View {
     @StateObject private var viewModel : GameViewModel
+    @Binding private var mainGameState : GameState
     private let namespace : Namespace.ID
     
     init(gameManager : GameManager, cubesManager: CubesManager,
          gameCenterManager : GameCenterManager,
-         namespace : Namespace.ID) {
+         namespace : Namespace.ID, 
+         mainGameState : Binding<GameState>) {
         self._viewModel = StateObject(wrappedValue: GameViewModel(gameManager: gameManager,
                                                                   cubesManager: cubesManager,
                                                                   gameCenterManager : gameCenterManager))
+        self._mainGameState = mainGameState
         self.namespace = namespace
     }
     
     var body: some View {
         GeometryReader { proxy in
             VStack(alignment: .center, spacing: 0) {
-                if viewModel.gameState == .playing {
+                if mainGameState == .playing {
                     header(proxy)
                 }
                 
@@ -77,7 +80,7 @@ private extension GameView {
     func game(_ proxy : GeometryProxy) -> some View {
         GameViewControllerWrapper(frameSize: proxy.size, gameManager: viewModel.gameManager, cubesManager: viewModel.cubesManager)
             .ignoresSafeArea(edges: .bottom)
-            .disabled(viewModel.gameState != .playing)
+            .disabled(mainGameState != .playing)
     }
     
     @ViewBuilder func gameInstructionsOverlay(_ proxy : GeometryProxy) -> some View {

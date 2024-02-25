@@ -45,7 +45,8 @@ private extension MainView {
         GameView(gameManager: viewModel.gameManager,
                  cubesManager: menuViewModel.cubesManager,
                  gameCenterManager: menuViewModel.gameCenterManager,
-                 namespace: namespace)
+                 namespace: namespace,
+                 mainGameState: $viewModel.gameState)
     }
 }
 

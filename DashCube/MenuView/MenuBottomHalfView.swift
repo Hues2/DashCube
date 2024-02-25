@@ -5,27 +5,12 @@ struct MenuBottomHalfView: View {
     
     var body: some View {
         VStack {
-            playerCubesView
-            playButton
+            PlayerCubesView(viewModel: viewModel)
+            CustomButton(title: "play_button_title".localizedString) {
+                self.viewModel.startGame()
+            }
+            .padding(.top, 20)
         }
         .withCardStyle(outerPadding: Constants.UI.outerMenuPadding)        
     }
 }
-
-// MARK: - Play game button
-private extension MenuBottomHalfView {
-    var playButton : some View {
-        CustomButton(title: "play_button_title".localizedString) {
-            self.viewModel.startGame()
-        }
-        .padding(.top, 20)
-    }
-}
-
-// MARK: - Player Cubes
-private extension MenuBottomHalfView {
-    var playerCubesView : some View {
-        PlayerCubesView(viewModel: viewModel)        
-    }
-}
-
