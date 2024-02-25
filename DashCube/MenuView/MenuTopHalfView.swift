@@ -83,19 +83,8 @@ private extension MenuTopHalfView {
 // MARK: - Game Center Button
 private extension MenuTopHalfView {
     var showLeaderboardButton : some View {
-        Button {
+        CustomButton(title: "view_leaderboard".localizedString) {
             self.isGameCenterPresented.toggle()
-        } label: {
-            Text("view_leaderboard".localizedString)
-                .font(.title3)
-                .fontWeight(.light)
-                .foregroundStyle(.white)
-                .padding(2.5)
-                .overlay(alignment: .bottom) {
-                    LinearGradient(gradient: Gradient(colors: [Color.customAqua, Color.customStrawberry]), startPoint: .leading, endPoint: .trailing)
-                        .frame(height: 1.5, alignment: .bottom)
-                        .clipShape(.rect(cornerRadius: 8))
-                }
         }
     }
 }
