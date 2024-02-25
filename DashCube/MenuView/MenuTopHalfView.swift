@@ -68,7 +68,7 @@ private extension MenuTopHalfView {
                     }
                 }
                 .font(.title)
-                .fontWeight(.light)
+                .fontWeight(.ultraLight)
                 .fontDesign(.rounded)
                 .foregroundStyle(.white)
                 
