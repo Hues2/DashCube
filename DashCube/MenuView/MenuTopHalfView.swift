@@ -1,12 +1,12 @@
 import SwiftUI
 
-struct MenuView: View {
+struct MenuTopHalfView: View {
     @ObservedObject var viewModel : MenuViewModel
     @State private var isGameCenterPresented = false
-    let namespace : Namespace.ID
     
     var body: some View {
         content
+            .onAppear { self.viewModel.fetchOverallRank() }
             .sheet(isPresented: $isGameCenterPresented) {
                 GameCenterView(leaderboardID: Constants.GameCenter.classicLeaderboard)
             }
@@ -14,35 +14,19 @@ struct MenuView: View {
 }
 
 // MARK: - Content
-private extension MenuView {
+private extension MenuTopHalfView {
     var content : some View {
-        mainMenu
-            .onAppear {
-                self.viewModel.fetchOverallRank()
-            }
+        VStack {
+            appTitle
+            scoreAndRank
+        }
+        .padding(.top, 25)
     }
 }
 
-// MARK: - Main Menu
-private extension MenuView {
-    var mainMenu : some View {
-        VStack {
-            VStack {
-                appTitle
-                    .padding(.top, 25)
-                scoreAndRank
-            }
-            VStack {
-                playerCubesView
-                playButton
-            }
-            .withCardStyle(outerPadding: Constants.UI.outerMenuPadding)
-        }
-    }
-}
 
 // MARK: - App Title
-private extension MenuView {
+private extension MenuTopHalfView {
     var appTitle : some View {
         Text("app_title".localizedString)
             .font(.largeTitle)
@@ -54,7 +38,7 @@ private extension MenuView {
 }
 
 // MARK: - Values
-private extension MenuView {
+private extension MenuTopHalfView {
     var scoreAndRank : some View {
         VStack(spacing: 5) {
             // High Score
@@ -65,7 +49,6 @@ private extension MenuView {
             showLeaderboardButton
         }
         .withCardStyle(outerPadding: Constants.UI.outerMenuPadding)
-        .matchedGeometryEffect(id: Constants.GeometryEffectName.card, in: namespace)
     }
     
     func row(_ title : String, _ value : Int?, _ isRank : Bool = false) -> some View {
@@ -97,27 +80,8 @@ private extension MenuView {
     }
 }
 
-// MARK: - Play game button
-private extension MenuView {
-    var playButton : some View {
-        CustomButton(title: "play_button_title".localizedString) {
-            self.viewModel.startGame()
-        }
-        .padding(.top, 20)
-    }
-}
-
-// MARK: - Player Cubes
-private extension MenuView {
-    var playerCubesView : some View {
-        PlayerCubesView(viewModel: viewModel)
-            .padding(.top, 20)
-        
-    }
-}
-
 // MARK: - Game Center Button
-private extension MenuView {
+private extension MenuTopHalfView {
     var showLeaderboardButton : some View {
         Button {
             self.isGameCenterPresented.toggle()

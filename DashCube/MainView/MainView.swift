@@ -19,11 +19,20 @@ struct MainView: View {
             gameView
                 .blur(radius: (viewModel.gameState == .playing) ? 0 : 7.5)
             
-            if viewModel.gameState == .menu {
-                menuView
-            } else if viewModel.gameState == .over(timerEnded: false) ||
-                        viewModel.gameState == .over(timerEnded: true) {
-                gameOverView
+            VStack {
+                switch viewModel.gameState {
+                case .menu:
+                    menuTopHalf
+                case .over(timerEnded: true), .over(timerEnded: false):
+                    gameOverView
+                default:
+                    EmptyView()
+                }
+                
+                // This allows me to animate the bottom half of the menu
+                if viewModel.gameState == .menu {
+                    menuBottomHalf
+                }
             }
         }
         .background(Color.customBackground)
@@ -40,10 +49,19 @@ private extension MainView {
     }
 }
 
-// MARK: - Menu View
+// MARK: - Menu - Top Half
 private extension MainView {
-    var menuView : some View {
-        MenuView(viewModel: menuViewModel, namespace: namespace)            
+    var menuTopHalf : some View {
+        MenuTopHalfView(viewModel: self.menuViewModel)
+            .matchedGeometryEffect(id: Constants.GeometryEffectName.card, in: namespace)
+    }
+}
+
+// MARK: - Menu - Bottom Half
+private extension MainView {
+    var menuBottomHalf : some View {
+        MenuBottomHalfView(viewModel: self.menuViewModel)
+            .transition(.move(edge: .leading))
     }
 }
 
