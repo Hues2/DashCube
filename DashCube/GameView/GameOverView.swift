@@ -15,6 +15,7 @@ private extension GameOverView {
             
             VStack(spacing: 15) {
                 score
+                    .padding(.bottom, 5)
                 playAgainButton
                 returnToMenuButton
             }

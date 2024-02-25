@@ -78,7 +78,7 @@ private extension MenuView {
             HStack(spacing: 5) {
                 Group {
                     if let value {
-                        Text("\(value)")
+                        Text("\(isRank ? "#" : "")\(value)")
                     } else {
                         Text("-")
                     }

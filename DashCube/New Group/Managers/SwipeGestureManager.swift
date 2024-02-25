@@ -24,9 +24,9 @@ class SwipeGestureManager {
     @objc func handleSwipe(_ gesture: UISwipeGestureRecognizer) {
         guard gesture.state == .ended else { return }
         self.gameManager.startTimer()
-//        self.enableSwipeGestureRecognizers(false)
+        self.enableSwipeGestureRecognizers(false)
         self.playerCube.swipeMove(gesture.direction) {
-//            self.enableSwipeGestureRecognizers(true)
+            self.enableSwipeGestureRecognizers(true)
         }
     }
     
