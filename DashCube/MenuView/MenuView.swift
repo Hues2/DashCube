@@ -3,6 +3,7 @@ import SwiftUI
 struct MenuView: View {
     @ObservedObject var viewModel : MenuViewModel
     @State private var isGameCenterPresented = false
+    let namespace : Namespace.ID
     
     var body: some View {
         content
@@ -32,23 +33,14 @@ private extension MenuView {
 private extension MenuView {
     var mainMenu : some View {
         VStack {
-            appTitle
-                .padding(.top, 25)
-                .padding(.bottom, 50)
             VStack {
-                VStack {
-                    VStack(spacing: 5) {
-                        // High Score
-                        row("high_score".localizedString, viewModel.highscore)
-                        // Overall Rank
-                        row("overall_rank".localizedString, viewModel.overallRank, true)
-                        // Leaderboard button
-                        showLeaderboardButton
-                    }
-                    .padding(.bottom, 10)
-                    playerCubesView
-                    playButton
-                }
+                appTitle
+                    .padding(.top, 25)
+                scoreAndRank
+            }
+            VStack {
+                playerCubesView
+                playButton
             }
             .withCardStyle(outerPadding: Constants.UI.outerMenuPadding)
         }
@@ -68,6 +60,18 @@ private extension MenuView {
 
 // MARK: - Values
 private extension MenuView {
+    var scoreAndRank : some View {
+        VStack(spacing: 5) {
+            // High Score
+            row("high_score".localizedString, viewModel.highscore)
+            // Overall Rank
+            row("overall_rank".localizedString, viewModel.overallRank, true)
+            // Leaderboard button
+            showLeaderboardButton
+        }
+        .withCardStyle(outerPadding: Constants.UI.outerMenuPadding)
+    }
+    
     func row(_ title : String, _ value : Int?, _ isRank : Bool = false) -> some View {
         HStack(spacing: 7.5) {
             Text(title)
@@ -99,11 +103,13 @@ private extension MenuView {
 
 // MARK: - Play game button
 private extension MenuView {
-    var playButton : some View {
-        CustomButton(title: "play_button_title".localizedString) {
-            self.viewModel.startGame()
+    @ViewBuilder var playButton : some View {
+        if viewModel.gameState == .menu {
+            CustomButton(title: "play_button_title".localizedString) {
+                self.viewModel.startGame()
+            }
+            .padding(.top, 20)
         }
-        .padding(.top, 20)
     }
 }
 

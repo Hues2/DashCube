@@ -41,7 +41,7 @@ private extension MainView {
 // MARK: - Menu View
 private extension MainView {
     var menuView : some View {
-        MenuView(viewModel: menuViewModel)
+        MenuView(viewModel: menuViewModel, namespace: namespace)
             .matchedGeometryEffect(id: Constants.GeometryEffectName.card, in: namespace)
     }
 }

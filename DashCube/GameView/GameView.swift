@@ -3,7 +3,7 @@ import SceneKit
 
 struct GameView: View {
     @StateObject private var viewModel : GameViewModel
-    private var namespace : Namespace.ID
+    private let namespace : Namespace.ID
     private var showMenu : Bool
     
     init(gameManager : GameManager, cubesManager: CubesManager,
