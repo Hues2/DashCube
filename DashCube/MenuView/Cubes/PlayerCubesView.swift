@@ -32,22 +32,32 @@ private extension PlayerCubesView {
     
     var cubesScrollView : some View {
         GeometryReader { proxy in
-            ScrollView(.horizontal, showsIndicators: false) {
-                HStack(spacing: 0) {
-                    ForEach(viewModel.cubes) { playerCube in
-                        cubeNodeView(proxy: proxy, playerCube: playerCube)
+            ScrollViewReader { reader in
+                ScrollView(.horizontal, showsIndicators: false) {
+                    HStack(spacing: 0) {
+                        ForEach(viewModel.cubes) { playerCube in
+                            cubeNodeView(proxy: proxy, playerCube: playerCube)
+                                .tag(playerCube.id)
+                                .id(playerCube.id)
+                        }
                     }
                 }
+                .contentMargins(0)
+                .scrollTargetBehavior(.paging)
+                .frame(maxWidth: .infinity)
+                .background(
+                    Color.customBackground
+                        .opacity(0.5)
+                        .clipShape(RoundedRectangle(cornerRadius: Constants.UI.cornerRadius))
+                )
+                .withRoundedGradientBorder(colors: [Color(viewModel.selectedPlayerCube.color)])
+                .onAppear {
+                    reader.scrollTo(viewModel.selectedPlayerCube.id)
+                }
+                .onChange(of: viewModel.selectedPlayerCube) { oldValue, newValue in
+                    reader.scrollTo(newValue.id)
+                }
             }
-            .contentMargins(0)
-            .scrollTargetBehavior(.paging)
-            .frame(maxWidth: .infinity)
-            .background(
-                Color.customBackground
-                    .opacity(0.5)
-                    .clipShape(RoundedRectangle(cornerRadius: Constants.UI.cornerRadius))
-            )
-            .withRoundedGradientBorder(colors: [Color(viewModel.selectedPlayerCube.color)])
         }
         .frame(height: 200)
     }
