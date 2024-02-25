@@ -18,7 +18,7 @@ private extension MenuTopHalfView {
     var content : some View {
         VStack {
             appTitle
-            scoreAndRank
+            gameCenterContent
         }
         .padding(.top, 25)
     }
@@ -39,7 +39,7 @@ private extension MenuTopHalfView {
 
 // MARK: - Values
 private extension MenuTopHalfView {
-    var scoreAndRank : some View {
+    var gameCenterContent : some View {
         VStack(spacing: 5) {
             // High Score
             row("high_score".localizedString, viewModel.highscore)
@@ -47,6 +47,7 @@ private extension MenuTopHalfView {
             row("overall_rank".localizedString, viewModel.overallRank, true)
             // Leaderboard button
             showLeaderboardButton
+                .padding(.top, 5)
         }
         .withCardStyle(outerPadding: Constants.UI.outerMenuPadding)
     }

@@ -25,9 +25,7 @@ private extension MenuBottomHalfView {
 // MARK: - Player Cubes
 private extension MenuBottomHalfView {
     var playerCubesView : some View {
-        PlayerCubesView(viewModel: viewModel)
-            .padding(.top, 20)
-        
+        PlayerCubesView(viewModel: viewModel)        
     }
 }
 
