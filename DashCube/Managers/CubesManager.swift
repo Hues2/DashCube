@@ -72,6 +72,7 @@ private extension CubesManager {
 
 // MARK: - Selected cube
 extension CubesManager {
+    // This method is used to notify the game of any changes
     private func setSelectedCube() {
         let savedSelectedCube = self.cubes.first(where: { $0.isSelected })
         guard let savedSelectedCube else {
@@ -112,6 +113,7 @@ extension CubesManager {
                               isUnlocked: cube.isUnlocked,
                               isSelected: cube.isSelected)
         }
+        
         // Publish the selected cube for the game scene
         self.setSelectedCube()
         

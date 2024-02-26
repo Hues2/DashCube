@@ -63,7 +63,7 @@ private extension MainView {
     var menuBottomHalf : some View {
         MenuBottomHalfView(viewModel: self.menuViewModel)
             .frame(maxHeight: .infinity)
-            .transition(.move(edge: .bottom))
+            .transition(.move(edge: .bottom).combined(with: .opacity))
     }
 }
 
