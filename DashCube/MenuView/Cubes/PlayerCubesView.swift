@@ -16,7 +16,7 @@ private extension PlayerCubesView {
         VStack(alignment: .leading, spacing: 10) {
             title
             cubesScrollView
-            cubeColors
+            cubeColorsScrollView
         }
         .onChange(of: viewModel.selectedPlayerCube) { oldValue, newValue in
             if isFirst { self.isFirst = false }
@@ -76,7 +76,7 @@ private extension PlayerCubesView {
         ZStack(alignment: .topTrailing) {
             CubeNodeViewRepresentable(playerCube: playerCube)
                 .frame(width: proxy.size.width)
-            if viewModel.selectedPlayerCube == playerCube {
+            if playerCube.isSelected {
                 selectedIcon(self.isFirst)
                     .padding()
             }
@@ -149,28 +149,14 @@ private extension PlayerCubesView {
     }
 }
 
-
+// MARK: - Cube Colors
 private extension PlayerCubesView {
-    var cubeColors : some View {
+    var cubeColorsScrollView : some View {
         GeometryReader { proxy in
             ScrollView(.horizontal) {
-                HStack(spacing: 7.5) {
+                HStack(spacing: 10) {
                     ForEach(viewModel.cubeColors) { cubeColor in
-                        ZStack(alignment: .topTrailing) {
-                            cubeColor.color
-                                .id(cubeColor.id)
-                                .tag(cubeColor.id)
-                                .frame(width: 75, height: 75)
-                                .clipShape(.rect(cornerRadius: Constants.UI.cornerRadius))
-                                .onTapGesture {
-                                    withAnimation {
-                                        self.viewModel.saveSelectedCubeColor(cubeColor)
-                                    }
-                                }
-                            if cubeColor.isSelected {
-                                selectedIcon(self.isFirst)
-                            }
-                        }
+                        cubeColorView(cubeColor)
                     }
                 }
                 .frame(maxWidth: .infinity)
@@ -178,6 +164,24 @@ private extension PlayerCubesView {
             .contentMargins(0)
             .scrollIndicators(.hidden)
             .frame(maxWidth: .infinity)
+        }
+    }
+    
+    func cubeColorView(_ cubeColor : CubeColor) -> some View {
+        ZStack(alignment: .topTrailing) {
+            cubeColor.color
+                .id(cubeColor.id)
+                .tag(cubeColor.id)
+                .frame(width: 75, height: 75)
+                .clipShape(.rect(cornerRadius: Constants.UI.cornerRadius))
+                .onTapGesture {
+                    withAnimation {
+                        self.viewModel.saveSelectedCubeColor(cubeColor)
+                    }
+                }
+            if cubeColor.isSelected {
+                selectedIcon(self.isFirst)
+            }
         }
     }
 }

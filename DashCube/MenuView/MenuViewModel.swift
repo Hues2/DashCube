@@ -39,7 +39,6 @@ class MenuViewModel : ObservableObject {
         subscribeToOverallRank()
         subscribeToCubes()
         subscribeToCubeColors()
-        subscribeToSelectedPlayerCube()
     }
 }
 
@@ -92,22 +91,13 @@ private extension MenuViewModel {
             .store(in: &cancellables)
     }
     
-    func subscribeToSelectedPlayerCube() {
-        self.cubesManager.$selectedCube
-            .receive(on: DispatchQueue.main)
-            .sink { [weak self] newSelectedPlayerCube in
-                guard let self else { return }
-                self.selectedPlayerCube = newSelectedPlayerCube
-            }
-            .store(in: &cancellables)
-    }
-    
     func subscribeToCubes() {
         self.cubesManager.$cubes
             .receive(on: DispatchQueue.main)
             .sink { [weak self] newCubes in
                 guard let self else { return }                
                 self.cubes = newCubes
+                self.setSelectedCube(newCubes)
             }
             .store(in: &cancellables)
     }
@@ -120,6 +110,20 @@ private extension MenuViewModel {
                 self.cubeColors = newCubeColors
             }
             .store(in: &cancellables)
+    }
+}
+
+
+// MARK: - Set the selected cube
+private extension MenuViewModel {
+    func setSelectedCube(_ newCubes : [PlayerCube]) {
+        let selectedCube = newCubes.first(where: { $0.isSelected })
+        guard let selectedCube else { return }
+        // If the player cube id hasn't changed, then don't set it again
+        // This means that the colour porbably changed, but we don't want to scroll to the selected cube again
+        if selectedCube.id != self.selectedPlayerCube.id {
+            self.selectedPlayerCube = selectedCube
+        }
     }
 }
 
