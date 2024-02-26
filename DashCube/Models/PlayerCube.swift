@@ -9,7 +9,7 @@ struct PlayerCube : Identifiable, Hashable {
     var isSelected : Bool
     
     init(color: UIColor, animation: CubeAnimation, requiredHighscore: Int, isUnlocked: Bool, isSelected: Bool) {
-        self.id = color.hashValue.description
+        self.id = "\(requiredHighscore)"
         self.color = color
         self.animation = animation
         self.requiredHighscore = requiredHighscore

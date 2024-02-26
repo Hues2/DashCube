@@ -49,6 +49,7 @@ class Constants {
         static let highScore = "highScore"
         static let cubeIds = "cubeIds"
         static let selectedCubeId = "selectedCubeId"
+        static let selectedCubeColorId = "selectedCubeColorId"
     }
     // MARK: - Game Timer
     struct GameTimer {
@@ -74,20 +75,24 @@ class Constants {
                        isSelected: false),
             PlayerCube(color: .cube2,
                        animation: .yAxisSpin,
-                       requiredHighscore: 25,
+                       requiredHighscore: 15,
                        isUnlocked: false,
                        isSelected: false),
             PlayerCube(color: .cube3,
                        animation: .basicWithYAxisSpin,
-                       requiredHighscore: 50,
+                       requiredHighscore: 30,
                        isUnlocked: false,
                        isSelected: false),
-            PlayerCube(color: .cube4,
-                       animation: .basicWithColorChange,
-                       requiredHighscore: 50,
-                       isUnlocked: false,
-                       isSelected: false)
+//            PlayerCube(color: .cube4,
+//                       animation: .basicWithColorChange,
+//                       requiredHighscore: 50,
+//                       isUnlocked: false,
+//                       isSelected: false)
         ]
+        static let colors : [CubeColor] = [.init(color: .cube1, isSelected: true),
+                                           .init(color: .cube2, isSelected: false),
+                                           .init(color: .cube3, isSelected: false),
+                                           .init(color: .cube4, isSelected: false)]        
     }
     // MARK: - Game Center
     struct GameCenter {

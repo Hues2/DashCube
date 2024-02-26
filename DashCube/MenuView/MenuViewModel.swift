@@ -13,6 +13,8 @@ class MenuViewModel : ObservableObject {
     @Published var selectedPlayerCube : PlayerCube
     // Cubes
     @Published private(set) var cubes : [PlayerCube] = []
+    // Cube Colors
+    @Published private(set) var cubeColors : [CubeColor] = []
     
     // Dependencies
     let gameManager : GameManager
@@ -36,6 +38,7 @@ class MenuViewModel : ObservableObject {
         subscribeToHighScore()
         subscribeToOverallRank()
         subscribeToCubes()
+        subscribeToCubeColors()
         subscribeToSelectedPlayerCube()
     }
 }
@@ -108,6 +111,16 @@ private extension MenuViewModel {
             }
             .store(in: &cancellables)
     }
+    
+    func subscribeToCubeColors() {
+        self.cubesManager.$cubeColors
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] newCubeColors in
+                guard let self else { return }
+                self.cubeColors = newCubeColors
+            }
+            .store(in: &cancellables)
+    }
 }
 
 // MARK: - Restart game
@@ -132,6 +145,10 @@ extension MenuViewModel {
 extension MenuViewModel {    
     func saveSelectedCube(_ playerCube : PlayerCube) {
         self.cubesManager.saveSelectedCube(playerCube.id)
+    }
+    
+    func saveSelectedCubeColor(_ cubeColor : CubeColor) {
+        self.cubesManager.saveSelectedCubeColor(cubeColor)
     }
 }
 

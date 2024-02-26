@@ -16,6 +16,7 @@ private extension PlayerCubesView {
         VStack(alignment: .leading, spacing: 10) {
             title
             cubesScrollView
+            cubeColors
         }
         .onChange(of: viewModel.selectedPlayerCube) { oldValue, newValue in
             if isFirst { self.isFirst = false }
@@ -50,7 +51,7 @@ private extension PlayerCubesView {
                         .opacity(0.5)
                         .clipShape(RoundedRectangle(cornerRadius: Constants.UI.cornerRadius))
                 )
-                .withRoundedGradientBorder(colors: [Color(viewModel.selectedPlayerCube.color)])
+                .withRoundedGradientBorder(colors: [Color.clear])
                 .onAppear {
                     reader.scrollTo(viewModel.selectedPlayerCube.id)
                 }
@@ -145,5 +146,33 @@ private extension PlayerCubesView {
     struct CheckMarkAnimation {
         var scale : CGFloat = 1.0
         var tint : Color = .white
+    }
+}
+
+
+private extension PlayerCubesView {
+    var cubeColors : some View {
+        GeometryReader { proxy in
+            ScrollView(.horizontal) {
+                HStack(spacing: 7.5) {
+                    ForEach(viewModel.cubeColors) { cubeColor in
+                        cubeColor.color
+                            .id(cubeColor.id)
+                            .tag(cubeColor.id)
+                            .frame(width: 75, height: 75)
+                            .clipShape(.rect(cornerRadius: Constants.UI.cornerRadius))
+                            .onTapGesture {
+                                withAnimation {
+                                    self.viewModel.saveSelectedCubeColor(cubeColor)
+                                }
+                            }
+                    }
+                }
+                .frame(maxWidth: .infinity)
+            }
+            .contentMargins(0)
+            .scrollIndicators(.hidden)
+            .frame(maxWidth: .infinity)
+        }
     }
 }
