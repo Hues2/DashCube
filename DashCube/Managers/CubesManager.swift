@@ -17,7 +17,6 @@ class CubesManager {
     
     init(gameCenterManager : GameCenterManager) {
         self.gameCenterManager = gameCenterManager
-        self.setUpCubeColors()
         self.addSubscriptions()
     }
     
@@ -43,6 +42,8 @@ private extension CubesManager {
 // MARK: - Cubes Setup
 private extension CubesManager {
     func setUpCubes(newHighscore : Int?) {
+        // Set up cube colors
+        self.setUpCubeColors()
         // High score
         let highscore = newHighscore ?? UserDefaults.standard.integer(forKey: Constants.UserDefaults.highScore)
         // Saved selected cube ID

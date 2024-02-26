@@ -15,6 +15,7 @@ class MenuViewModel : ObservableObject {
     @Published private(set) var cubes : [PlayerCube] = []
     // Cube Colors
     @Published private(set) var cubeColors : [CubeColor] = []
+    @Published private(set) var selectedColor : Color = .cube1
     
     // Dependencies
     let gameManager : GameManager
@@ -119,10 +120,13 @@ private extension MenuViewModel {
     func setSelectedCube(_ newCubes : [PlayerCube]) {
         let selectedCube = newCubes.first(where: { $0.isSelected })
         guard let selectedCube else { return }
-        // If the player cube id hasn't changed, then don't set it again
-        // This means that the colour porbably changed, but we don't want to scroll to the selected cube again
-        if selectedCube.id != self.selectedPlayerCube.id {
-            self.selectedPlayerCube = selectedCube
+        withAnimation {
+            self.selectedColor = Color(uiColor: selectedCube.color)
+            // If the player cube id hasn't changed, then don't set it again
+            // This means that the colour porbably changed, but we don't want to scroll to the selected cube again
+            if selectedCube.id != self.selectedPlayerCube.id {
+                self.selectedPlayerCube = selectedCube
+            }
         }
     }
 }

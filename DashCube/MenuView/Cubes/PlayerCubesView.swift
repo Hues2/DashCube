@@ -51,7 +51,7 @@ private extension PlayerCubesView {
                         .opacity(0.5)
                         .clipShape(RoundedRectangle(cornerRadius: Constants.UI.cornerRadius))
                 )
-                .withRoundedGradientBorder(colors: [Color.clear])
+                .withRoundedGradientBorder(colors: [viewModel.selectedColor])
                 .onAppear {
                     reader.scrollTo(viewModel.selectedPlayerCube.id)
                 }
@@ -181,6 +181,7 @@ private extension PlayerCubesView {
                 }
             if cubeColor.isSelected {
                 selectedIcon(self.isFirst)
+                    .padding(2)
             }
         }
     }
