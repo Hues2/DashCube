@@ -106,7 +106,7 @@ private extension MenuViewModel {
         self.cubesManager.$cubes
             .receive(on: DispatchQueue.main)
             .sink { [weak self] newCubes in
-                guard let self else { return }
+                guard let self else { return }                
                 self.cubes = newCubes
             }
             .store(in: &cancellables)

@@ -28,6 +28,10 @@ struct CubeNodeViewRepresentable: UIViewRepresentable {
 
     func updateUIView(_ uiView: SCNView, context: Context) {
         // Update the SCNView if needed
+        // Update the cube's material with the new color
+        if let cubeNode = uiView.scene?.rootNode.childNode(withName: Constants.NodeName.playerCubeNodeName, recursively: true) {
+            cubeNode.geometry?.firstMaterial?.diffuse.contents = playerCube.color
+        }
     }
     
     private func cubeNode() -> SCNNode {
@@ -44,7 +48,10 @@ struct CubeNodeViewRepresentable: UIViewRepresentable {
         // Apply the material to the box
         boxGeometry.materials = [material]
         
-        return SCNNode(geometry: boxGeometry)
+        // Create the cube node & set the name
+        let cubeNode = SCNNode(geometry: boxGeometry)
+        cubeNode.name = Constants.NodeName.playerCubeNodeName
+        return cubeNode
     }
     
     private func cameraNode() -> SCNNode {
