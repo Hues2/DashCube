@@ -156,16 +156,21 @@ private extension PlayerCubesView {
             ScrollView(.horizontal) {
                 HStack(spacing: 7.5) {
                     ForEach(viewModel.cubeColors) { cubeColor in
-                        cubeColor.color
-                            .id(cubeColor.id)
-                            .tag(cubeColor.id)
-                            .frame(width: 75, height: 75)
-                            .clipShape(.rect(cornerRadius: Constants.UI.cornerRadius))
-                            .onTapGesture {
-                                withAnimation {
-                                    self.viewModel.saveSelectedCubeColor(cubeColor)
+                        ZStack(alignment: .topTrailing) {
+                            cubeColor.color
+                                .id(cubeColor.id)
+                                .tag(cubeColor.id)
+                                .frame(width: 75, height: 75)
+                                .clipShape(.rect(cornerRadius: Constants.UI.cornerRadius))
+                                .onTapGesture {
+                                    withAnimation {
+                                        self.viewModel.saveSelectedCubeColor(cubeColor)
+                                    }
                                 }
+                            if cubeColor.isSelected {
+                                selectedIcon(self.isFirst)
                             }
+                        }
                     }
                 }
                 .frame(maxWidth: .infinity)

@@ -60,7 +60,7 @@ private extension CubesManager {
     }
     
     func setUpCubeColors() {
-        let savedSelectedCubeId = UserDefaults.standard.value(forKey: Constants.UserDefaults.selectedCubeId) as? String ?? ""
+        let savedSelectedCubeId = UserDefaults.standard.value(forKey: Constants.UserDefaults.selectedCubeColorId) as? String ?? ""
         // Set the cube values
         self.cubeColors = Constants.PlayerCubeValues.colors.map { cubeColor in
             return CubeColor(color: cubeColor.color,
