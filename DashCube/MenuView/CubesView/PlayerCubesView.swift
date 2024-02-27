@@ -99,7 +99,7 @@ private extension PlayerCubesView {
         Image(systemName: Constants.SFSymbol.checkMark)
             .foregroundStyle(.white)
             .fontWeight(.bold)
-            .font(.title2)            
+            .font(.title2)
             .keyframeAnimator(initialValue: CheckMarkAnimation(), trigger: self.animationToggle) { content, value in
                 content
                     .scaleEffect(isFirst ? 1 : value.scale)
@@ -152,19 +152,16 @@ private extension PlayerCubesView {
 // MARK: - Cube Colors
 private extension PlayerCubesView {
     var cubeColorsScrollView : some View {
-        GeometryReader { proxy in
-            ScrollView(.horizontal) {
-                HStack(spacing: 10) {
-                    ForEach(viewModel.cubeColors) { cubeColor in
-                        cubeColorView(cubeColor)
-                    }
+        ScrollView(.horizontal) {
+            HStack(spacing: 10) {
+                ForEach(viewModel.cubeColors) { cubeColor in
+                    cubeColorView(cubeColor)
                 }
-                .frame(maxWidth: .infinity)
             }
-            .contentMargins(0)
-            .scrollIndicators(.hidden)
             .frame(maxWidth: .infinity)
         }
+        .contentMargins(0)
+        .scrollIndicators(.hidden)
     }
     
     func cubeColorView(_ cubeColor : CubeColor) -> some View {

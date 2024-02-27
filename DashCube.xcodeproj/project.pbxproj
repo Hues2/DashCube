@@ -24,6 +24,7 @@
 		2E9EC6632B795D6800141568 /* PlayerCubesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9EC6622B795D6800141568 /* PlayerCubesView.swift */; };
 		2EA0A1572B8020D30014AE22 /* CubesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EA0A1562B8020D30014AE22 /* CubesManager.swift */; };
 		2EA119D82B76D5F400F4B481 /* AmbientLightNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EA119D72B76D5F400F4B481 /* AmbientLightNode.swift */; };
+		2EA199B42B8E55CC009A42D0 /* RankView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EA199B32B8E55CC009A42D0 /* RankView.swift */; };
 		2EA341C42B68592D0046DE5A /* PlayerCubeNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EA341C32B68592C0046DE5A /* PlayerCubeNode.swift */; };
 		2EADDD2A2B66924000D724BF /* CubeDropApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EADDD292B66924000D724BF /* CubeDropApp.swift */; };
 		2EADDD2C2B66924000D724BF /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EADDD2B2B66924000D724BF /* ContentView.swift */; };
@@ -71,6 +72,7 @@
 		2E9EC6622B795D6800141568 /* PlayerCubesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerCubesView.swift; sourceTree = "<group>"; };
 		2EA0A1562B8020D30014AE22 /* CubesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CubesManager.swift; sourceTree = "<group>"; };
 		2EA119D72B76D5F400F4B481 /* AmbientLightNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmbientLightNode.swift; sourceTree = "<group>"; };
+		2EA199B32B8E55CC009A42D0 /* RankView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankView.swift; sourceTree = "<group>"; };
 		2EA341C32B68592C0046DE5A /* PlayerCubeNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerCubeNode.swift; sourceTree = "<group>"; };
 		2EADDD262B66924000D724BF /* DashCube.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DashCube.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2EADDD292B66924000D724BF /* CubeDropApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CubeDropApp.swift; sourceTree = "<group>"; };
@@ -148,13 +150,28 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
-		2E9EC65F2B795A9B00141568 /* Cubes */ = {
+		2EA199B02B8E556A009A42D0 /* RankView */ = {
+			isa = PBXGroup;
+			children = (
+				2EA199B32B8E55CC009A42D0 /* RankView.swift */,
+			);
+			path = RankView;
+			sourceTree = "<group>";
+		};
+		2EA199B12B8E5587009A42D0 /* StatsView */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = StatsView;
+			sourceTree = "<group>";
+		};
+		2EA199B22B8E559E009A42D0 /* CubesView */ = {
 			isa = PBXGroup;
 			children = (
 				2E9EC6602B795AB800141568 /* CubeNodeViewRepresentable.swift */,
 				2E9EC6622B795D6800141568 /* PlayerCubesView.swift */,
 			);
-			path = Cubes;
+			path = CubesView;
 			sourceTree = "<group>";
 		};
 		2EADDD1D2B66924000D724BF = {
@@ -294,7 +311,9 @@
 		2EADDD6C2B66D60D00D724BF /* MenuView */ = {
 			isa = PBXGroup;
 			children = (
-				2E9EC65F2B795A9B00141568 /* Cubes */,
+				2EA199B12B8E5587009A42D0 /* StatsView */,
+				2EA199B22B8E559E009A42D0 /* CubesView */,
+				2EA199B02B8E556A009A42D0 /* RankView */,
 				2E78123F2B66EFEC009CEE78 /* MenuViewModel.swift */,
 				2EB1E7D72B8BAF39006199FB /* MenuTopHalfView.swift */,
 				2EB1E7D92B8BAFCE006199FB /* MenuBottomHalfView.swift */,
@@ -415,6 +434,7 @@
 				2E7812402B66EFEC009CEE78 /* MenuViewModel.swift in Sources */,
 				2EADDD682B66D52900D724BF /* GameViewModel.swift in Sources */,
 				2EADDD662B66D33500D724BF /* GameManager.swift in Sources */,
+				2EA199B42B8E55CC009A42D0 /* RankView.swift in Sources */,
 				2E99A0682B87D2C9008EAF43 /* VerticalLine.swift in Sources */,
 				2EB1E7D82B8BAF3A006199FB /* MenuTopHalfView.swift in Sources */,
 				2EADDD632B66982E00D724BF /* Constants.swift in Sources */,

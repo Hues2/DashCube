@@ -2,28 +2,31 @@ import SwiftUI
 
 struct MenuTopHalfView: View {
     @ObservedObject var viewModel : MenuViewModel
-    @State private var isGameCenterPresented = false
+    @State private var height : CGFloat = .zero
     
     var body: some View {
-        content
-            .onAppear { self.viewModel.fetchOverallRank() }
-            .sheet(isPresented: $isGameCenterPresented) {
-                GameCenterView(leaderboardID: Constants.GameCenter.classicLeaderboard)
-            }
-    }
-}
-
-// MARK: - Content
-private extension MenuTopHalfView {
-    var content : some View {
         VStack {
             appTitle
-            gameCenterContent
+            
+            ScrollView(.horizontal) {
+                HStack(spacing: 0) {
+                    cubesView
+                        .padding()
+                        .containerRelativeFrame(.horizontal, count: 1, spacing: 10)
+                    
+                    rankView
+                        .padding()
+                        .containerRelativeFrame(.horizontal, count: 1, spacing: 10)
+                }
+                .frame(maxHeight: .infinity)
+                .scrollTargetLayout()
+            }
+            .scrollTargetBehavior(.paging)
+            .scrollIndicators(.hidden)
         }
-        .padding(.top, 25)
+        .padding(.top)
     }
 }
-
 
 // MARK: - App Title
 private extension MenuTopHalfView {
@@ -37,55 +40,19 @@ private extension MenuTopHalfView {
     }
 }
 
-// MARK: - Values
+// MARK: - Cubes View
 private extension MenuTopHalfView {
-    var gameCenterContent : some View {
-        VStack(spacing: 5) {
-            // High Score
-            row("high_score".localizedString, viewModel.highscore)
-            // Overall Rank
-            row("overall_rank".localizedString, viewModel.overallRank, true)
-            // Leaderboard button
-            showLeaderboardButton
-                .padding(.top, 5)
-        }
-        .withCardStyle(outerPadding: Constants.UI.outerMenuPadding)
-    }
-    
-    func row(_ title : String, _ value : Int?, _ isRank : Bool = false) -> some View {
-        HStack(spacing: 7.5) {
-            Text(title)
-                .font(.title2)
-                .fontWeight(.bold)
-                .fontDesign(.rounded)
-                .foregroundStyle(.white)
-            HStack(spacing: 5) {
-                Group {
-                    if let value {
-                        Text("\(isRank ? "#" : "")\(value)")
-                    } else {
-                        Text("-")
-                    }
-                }
-                .font(.title)
-                .fontWeight(.ultraLight)
-                .fontDesign(.rounded)
-                .foregroundStyle(.white)
-                
-                if isRank, value == 1 {
-                    Image(systemName: "trophy")
-                        .foregroundStyle(.yellow)
-                }
-            }
-        }
+    var cubesView : some View {
+        PlayerCubesView(viewModel: self.viewModel)
+            .withCardStyle(outerPadding: 0)
     }
 }
 
-// MARK: - Game Center Button
+// MARK: - Rank View
 private extension MenuTopHalfView {
-    var showLeaderboardButton : some View {
-        CustomButton(title: "view_leaderboard".localizedString) {
-            self.isGameCenterPresented.toggle()
-        }
+    var rankView : some View {
+        RankView(viewModel: self.viewModel)
+            .frame(maxHeight: .infinity)
+            .withCardStyle(outerPadding: 0)
     }
 }
