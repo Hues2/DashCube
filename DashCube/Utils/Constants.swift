@@ -55,13 +55,13 @@ class Constants {
     struct GameTimer {
         static let timerStartingSeconds : Int = 1
         static let timerStartingMilliSeconds : Int = 0
-        static let timerMinimumMilliSeconds : Int = 59
+        static let timerMinimumMilliSeconds : Int = 69
     }
     // MARK: - Namespace names
     struct GeometryEffectName {
         static let card = "card"
     }
-    // Gameplay Values
+    // MARK: - Gameplay Values
     struct Gameplay {
         static let spikeTileOdds : Double = 25
     }

@@ -146,7 +146,6 @@ private extension PlayerCubesView {
 private extension PlayerCubesView {
     struct CheckMarkAnimation {
         var scale : CGFloat = 1.0
-        var tint : Color = .white
     }
 }
 

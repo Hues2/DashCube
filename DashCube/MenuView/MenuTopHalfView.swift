@@ -11,12 +11,8 @@ struct MenuTopHalfView: View {
             ScrollView(.horizontal) {
                 HStack(spacing: 0) {
                     cubesView
-                        .padding()
-                        .containerRelativeFrame(.horizontal, count: 1, spacing: 10)
                     
-                    rankView
-                        .padding()
-                        .containerRelativeFrame(.horizontal, count: 1, spacing: 10)
+                    rankView                        
                 }
                 .frame(maxHeight: .infinity)
                 .scrollTargetLayout()
@@ -44,15 +40,20 @@ private extension MenuTopHalfView {
 private extension MenuTopHalfView {
     var cubesView : some View {
         PlayerCubesView(viewModel: self.viewModel)
-            .withCardStyle(outerPadding: 0)
+            .withMenuScrollViewAnimation()
     }
 }
 
 // MARK: - Rank View
 private extension MenuTopHalfView {
     var rankView : some View {
-        ProgressView(viewModel: self.viewModel)
+        UserProgressView(viewModel: self.viewModel)
             .frame(maxHeight: .infinity)
-            .withCardStyle(outerPadding: 0)
+            .withMenuScrollViewAnimation()
     }
+}
+
+
+extension View {
+    
 }

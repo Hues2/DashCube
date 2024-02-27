@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		2E2B00002B8175500074E69D /* GameCenterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E2BFFFF2B8175500074E69D /* GameCenterView.swift */; };
 		2E2BFFFD2B81460A0074E69D /* GameCenterManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E2BFFFC2B81460A0074E69D /* GameCenterManager.swift */; };
+		2E3E55C02B8E89820045B1FE /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E3E55BF2B8E89820045B1FE /* View.swift */; };
 		2E52F0DF2B6AB7BE009014CF /* GameOverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E52F0DE2B6AB7BE009014CF /* GameOverView.swift */; };
 		2E52F0E22B6AC0BE009014CF /* RoundedGradientBorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E52F0E12B6AC0BE009014CF /* RoundedGradientBorder.swift */; };
 		2E52F0E52B6AC282009014CF /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E52F0E42B6AC282009014CF /* CustomButton.swift */; };
@@ -24,7 +25,7 @@
 		2E9EC6632B795D6800141568 /* PlayerCubesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9EC6622B795D6800141568 /* PlayerCubesView.swift */; };
 		2EA0A1572B8020D30014AE22 /* CubesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EA0A1562B8020D30014AE22 /* CubesManager.swift */; };
 		2EA119D82B76D5F400F4B481 /* AmbientLightNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EA119D72B76D5F400F4B481 /* AmbientLightNode.swift */; };
-		2EA199B42B8E55CC009A42D0 /* ProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EA199B32B8E55CC009A42D0 /* ProgressView.swift */; };
+		2EA199B42B8E55CC009A42D0 /* UserProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EA199B32B8E55CC009A42D0 /* UserProgressView.swift */; };
 		2EA341C42B68592D0046DE5A /* PlayerCubeNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EA341C32B68592C0046DE5A /* PlayerCubeNode.swift */; };
 		2EADDD2A2B66924000D724BF /* CubeDropApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EADDD292B66924000D724BF /* CubeDropApp.swift */; };
 		2EADDD2C2B66924000D724BF /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EADDD2B2B66924000D724BF /* ContentView.swift */; };
@@ -57,6 +58,7 @@
 		2E2BFFFB2B8141900074E69D /* DashCube.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DashCube.entitlements; sourceTree = "<group>"; };
 		2E2BFFFC2B81460A0074E69D /* GameCenterManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameCenterManager.swift; sourceTree = "<group>"; };
 		2E2BFFFF2B8175500074E69D /* GameCenterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameCenterView.swift; sourceTree = "<group>"; };
+		2E3E55BF2B8E89820045B1FE /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
 		2E52F0DE2B6AB7BE009014CF /* GameOverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOverView.swift; sourceTree = "<group>"; };
 		2E52F0E12B6AC0BE009014CF /* RoundedGradientBorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedGradientBorder.swift; sourceTree = "<group>"; };
 		2E52F0E42B6AC282009014CF /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
@@ -72,7 +74,7 @@
 		2E9EC6622B795D6800141568 /* PlayerCubesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerCubesView.swift; sourceTree = "<group>"; };
 		2EA0A1562B8020D30014AE22 /* CubesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CubesManager.swift; sourceTree = "<group>"; };
 		2EA119D72B76D5F400F4B481 /* AmbientLightNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmbientLightNode.swift; sourceTree = "<group>"; };
-		2EA199B32B8E55CC009A42D0 /* ProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressView.swift; sourceTree = "<group>"; };
+		2EA199B32B8E55CC009A42D0 /* UserProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProgressView.swift; sourceTree = "<group>"; };
 		2EA341C32B68592C0046DE5A /* PlayerCubeNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerCubeNode.swift; sourceTree = "<group>"; };
 		2EADDD262B66924000D724BF /* DashCube.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DashCube.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2EADDD292B66924000D724BF /* CubeDropApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CubeDropApp.swift; sourceTree = "<group>"; };
@@ -150,12 +152,12 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
-		2EA199B02B8E556A009A42D0 /* ProgressView */ = {
+		2EA199B02B8E556A009A42D0 /* UserProgressView */ = {
 			isa = PBXGroup;
 			children = (
-				2EA199B32B8E55CC009A42D0 /* ProgressView.swift */,
+				2EA199B32B8E55CC009A42D0 /* UserProgressView.swift */,
 			);
-			path = ProgressView;
+			path = UserProgressView;
 			sourceTree = "<group>";
 		};
 		2EA199B12B8E5587009A42D0 /* StatsView */ = {
@@ -313,7 +315,7 @@
 			children = (
 				2EA199B12B8E5587009A42D0 /* StatsView */,
 				2EA199B22B8E559E009A42D0 /* CubesView */,
-				2EA199B02B8E556A009A42D0 /* ProgressView */,
+				2EA199B02B8E556A009A42D0 /* UserProgressView */,
 				2E78123F2B66EFEC009CEE78 /* MenuViewModel.swift */,
 				2EB1E7D72B8BAF39006199FB /* MenuTopHalfView.swift */,
 				2EB1E7D92B8BAFCE006199FB /* MenuBottomHalfView.swift */,
@@ -338,6 +340,7 @@
 			children = (
 				2EADDD742B66E06D00D724BF /* String.swift */,
 				2EE69A3F2B79902800DC44BE /* Array.swift */,
+				2E3E55BF2B8E89820045B1FE /* View.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -434,11 +437,12 @@
 				2E7812402B66EFEC009CEE78 /* MenuViewModel.swift in Sources */,
 				2EADDD682B66D52900D724BF /* GameViewModel.swift in Sources */,
 				2EADDD662B66D33500D724BF /* GameManager.swift in Sources */,
-				2EA199B42B8E55CC009A42D0 /* ProgressView.swift in Sources */,
+				2EA199B42B8E55CC009A42D0 /* UserProgressView.swift in Sources */,
 				2E99A0682B87D2C9008EAF43 /* VerticalLine.swift in Sources */,
 				2EB1E7D82B8BAF3A006199FB /* MenuTopHalfView.swift in Sources */,
 				2EADDD632B66982E00D724BF /* Constants.swift in Sources */,
 				2E6A25022B6B08BB00FB24DA /* CardStyle.swift in Sources */,
+				2E3E55C02B8E89820045B1FE /* View.swift in Sources */,
 				2E2B00002B8175500074E69D /* GameCenterView.swift in Sources */,
 				2EADDD492B66952600D724BF /* GameViewControllerWrapper.swift in Sources */,
 				2E9ACA872B699D3D0090245B /* DeadZoneNode.swift in Sources */,

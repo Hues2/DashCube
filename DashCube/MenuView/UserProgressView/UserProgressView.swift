@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct ProgressView: View {
+struct UserProgressView: View {
     @ObservedObject var viewModel : MenuViewModel
     @State private var isGameCenterPresented = false
     
@@ -14,7 +14,7 @@ struct ProgressView: View {
 }
 
 // MARK: - Values
-private extension ProgressView {
+private extension UserProgressView {
     var content : some View {
         VStack {
             title
@@ -29,7 +29,7 @@ private extension ProgressView {
 }
 
 // MARK: - Values
-private extension ProgressView {
+private extension UserProgressView {
     var title : some View {
         Text("progress_title".localizedString)
             .font(.title)
@@ -40,7 +40,7 @@ private extension ProgressView {
 }
 
 // MARK: - Values
-private extension ProgressView {
+private extension UserProgressView {
     var progressValues : some View {
         VStack(spacing: 5) {
             // High Score
@@ -80,7 +80,7 @@ private extension ProgressView {
 }
 
 // MARK: - Game Center Button
-private extension ProgressView {
+private extension UserProgressView {
     var showLeaderboardButton : some View {
         CustomButton(title: "view_leaderboard".localizedString) {
             self.isGameCenterPresented.toggle()
