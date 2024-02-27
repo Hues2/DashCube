@@ -11,8 +11,8 @@ struct MenuScrollViewModifiers : ViewModifier {
                               bottomTrailing: .interactive) { view, phase in
                 view
                     .scaleEffect(phase.isIdentity ? 1 : 0)
-                    .opacity(phase.isIdentity ? 1 : 0.5)
-                    .rotationEffect(.degrees(phase.isIdentity ? 0 : -90))
+                    .opacity(phase.isIdentity ? 1 : 0.3)
+                    .rotationEffect(.degrees(phase.isIdentity ? 0 : -90))                    
             }
     }
 }

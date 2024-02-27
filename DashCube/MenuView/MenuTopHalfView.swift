@@ -12,13 +12,17 @@ struct MenuTopHalfView: View {
                 HStack(spacing: 0) {
                     cubesView
                     
-                    rankView                        
+                    rankView
+                    
+                    // TODO: Add the stats view here
+                    rankView
                 }
                 .frame(maxHeight: .infinity)
                 .scrollTargetLayout()
             }
             .scrollTargetBehavior(.paging)
             .scrollIndicators(.hidden)
+            .defaultScrollAnchor(.center)
         }
         .padding(.top)
     }
@@ -51,9 +55,4 @@ private extension MenuTopHalfView {
             .frame(maxHeight: .infinity)
             .withMenuScrollViewAnimation()
     }
-}
-
-
-extension View {
-    
 }
