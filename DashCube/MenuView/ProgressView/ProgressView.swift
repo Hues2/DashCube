@@ -1,11 +1,11 @@
 import SwiftUI
 
-struct RankView: View {
+struct ProgressView: View {
     @ObservedObject var viewModel : MenuViewModel
     @State private var isGameCenterPresented = false
     
     var body: some View {
-        rankViewContent
+        content
             .onAppear { self.viewModel.fetchOverallRank() }
             .sheet(isPresented: $isGameCenterPresented) {
                 GameCenterView(leaderboardID: Constants.GameCenter.classicLeaderboard)
@@ -14,16 +14,39 @@ struct RankView: View {
 }
 
 // MARK: - Values
-private extension RankView {
-    var rankViewContent : some View {
+private extension ProgressView {
+    var content : some View {
+        VStack {
+            title
+            Spacer()
+            progressValues
+            Spacer()
+            // Leaderboard button
+            showLeaderboardButton
+                .padding(.top, 5)
+        }
+    }
+}
+
+// MARK: - Values
+private extension ProgressView {
+    var title : some View {
+        Text("progress_title".localizedString)
+            .font(.title)
+            .fontWeight(.bold)
+            .fontDesign(.rounded)
+            .foregroundStyle(.white)
+    }
+}
+
+// MARK: - Values
+private extension ProgressView {
+    var progressValues : some View {
         VStack(spacing: 5) {
             // High Score
             row("high_score".localizedString, viewModel.highscore)
             // Overall Rank
             row("overall_rank".localizedString, viewModel.overallRank, true)
-            // Leaderboard button
-            showLeaderboardButton
-                .padding(.top, 5)
         }        
     }
     
@@ -57,7 +80,7 @@ private extension RankView {
 }
 
 // MARK: - Game Center Button
-private extension RankView {
+private extension ProgressView {
     var showLeaderboardButton : some View {
         CustomButton(title: "view_leaderboard".localizedString) {
             self.isGameCenterPresented.toggle()

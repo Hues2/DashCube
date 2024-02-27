@@ -8,25 +8,26 @@ struct PlayerCubesView: View {
     
     var body: some View {
         content
+            .onChange(of: viewModel.selectedPlayerCube) { oldValue, newValue in
+                if isFirst { self.isFirst = false }
+            }
     }
 }
 
 private extension PlayerCubesView {
     var content : some View {
-        VStack(alignment: .leading, spacing: 10) {
+        VStack(alignment: .center, spacing: 15) {
             title
+                .padding(.bottom)
             cubesScrollView
             cubeColorsScrollView
-        }
-        .onChange(of: viewModel.selectedPlayerCube) { oldValue, newValue in
-            if isFirst { self.isFirst = false }
         }
     }
     
     var title : some View {
-        Text("pick_a_cube".localizedString)
-            .font(.title2)
-            .fontWeight(.semibold)
+        Text("select_a_cube".localizedString)
+            .font(.title)
+            .fontWeight(.bold)
             .fontDesign(.rounded)
             .foregroundStyle(.white)
     }

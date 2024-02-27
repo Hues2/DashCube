@@ -11,11 +11,18 @@
 "play_again" = "Play again";
 "return_to_menu" = "Return to menu";
 
-// Menu View
-"play_button_title" = "Play";
+// Menu - Progress
+"progress_title" = "Your progress:";
 "high_score" = "High Score:";
 "overall_rank" = "Overall rank:";
-"pick_a_cube" = "Pick your cube:";
-"highscore_required" = "High score required:";
-"game_center" = "Game Center";
 "view_leaderboard" = "View leaderboard";
+
+// Menu - Cubes
+"select_a_cube" = "Select your cube:";
+"highscore_required" = "High score required:";
+
+// Menu - Stats
+
+
+// Menu View - Play Button
+"play_button_title" = "Play";

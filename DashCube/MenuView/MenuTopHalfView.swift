@@ -51,7 +51,7 @@ private extension MenuTopHalfView {
 // MARK: - Rank View
 private extension MenuTopHalfView {
     var rankView : some View {
-        RankView(viewModel: self.viewModel)
+        ProgressView(viewModel: self.viewModel)
             .frame(maxHeight: .infinity)
             .withCardStyle(outerPadding: 0)
     }
