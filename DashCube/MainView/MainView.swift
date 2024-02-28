@@ -31,7 +31,12 @@ struct MainView: View {
                 
                 // This allows us to animate the bottom half of the menu, independently of the top half
                 if viewModel.gameState == .menu {
-                    menuBottomHalf
+                    VStack {
+                        Spacer()
+                            .frame(maxHeight: .infinity)
+                        menuBottomHalf
+                    }
+                    .transition(.move(edge: .bottom).combined(with: .opacity))
                 }
             }
         }
@@ -63,7 +68,6 @@ private extension MainView {
     var menuBottomHalf : some View {
         MenuBottomHalfView(viewModel: self.menuViewModel)
             .frame(maxHeight: .infinity)
-            .transition(.move(edge: .bottom).combined(with: .opacity))
     }
 }
 
