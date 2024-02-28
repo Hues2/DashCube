@@ -6,11 +6,12 @@ struct MenuScrollViewModifiers : ViewModifier {
         content
             .withCardStyle(outerPadding: 0)
             .padding()
-            .containerRelativeFrame(.horizontal, count: 1, spacing: 10)
+            .containerRelativeFrame(.horizontal, count: 1, spacing: 0)
             .scrollTransition(topLeading: .interactive,
                               bottomTrailing: .interactive) { view, phase in
                 view
-                    .opacity(phase.isIdentity ? 1 : 0.3)
+                    .opacity(phase.isIdentity ? 1 : 0.1)
+                    .scaleEffect(phase.isIdentity ? 1 : 0.1)
                     .rotation3DEffect(.degrees(phase.isIdentity ? 0 : -90), axis: (x: 0, y: 1, z: 0))
             }
     }

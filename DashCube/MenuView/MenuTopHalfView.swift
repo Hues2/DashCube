@@ -1,8 +1,20 @@
 import SwiftUI
 
+// MARK: - Scroll position id
+private extension MenuTopHalfView {
+    enum ScrollPositionId : String {
+        case cubes, progress, stats
+    }
+}
+
 struct MenuTopHalfView: View {
     @ObservedObject var viewModel : MenuViewModel
-    @State private var scrollPositionId : ScrollPositionId?
+    @State private var scrollPositionId : ScrollPositionId? = .progress
+    
+    // Animation
+    @State private var indicatorId : ScrollPositionId = .progress
+    @Namespace private var namespace
+    
     
     var body: some View {
         VStack {
@@ -28,8 +40,11 @@ struct MenuTopHalfView: View {
             .scrollClipDisabled()
             .scrollPosition(id: $scrollPositionId, anchor: .center)
             .onChange(of: scrollPositionId) { oldValue, newValue in
-                print("NEW VALUE: \(scrollPositionId?.rawValue)")
+                guard let newValue, (newValue != indicatorId) else { return }
+                withAnimation(.spring(.bouncy)) { self.indicatorId = newValue }
             }
+            
+            scrollIndicatorsView
         }
         .padding(.top)
     }
@@ -64,9 +79,33 @@ private extension MenuTopHalfView {
     }
 }
 
-// MARK: - Scroll position id
+// MARK: - Scroll indicator
 private extension MenuTopHalfView {
-    enum ScrollPositionId : String {
-        case cubes, progress, stats
+    var scrollIndicatorsView : some View {
+        HStack(spacing: 25) {
+            indicator(.cubes)
+            indicator(.progress)
+            indicator(.stats)
+        }
+        .foregroundStyle(.white)
+        .padding()
+        .background(Color.white
+            .opacity(0.1))
+        .clipShape(.rect(cornerRadius: 30))
+    }
+    
+    func indicator(_ indicatorId : ScrollPositionId) -> some View {
+        Rectangle()
+            .frame(width: 6, height: 6)
+            .clipShape(.rect(cornerRadius: 2))
+            .opacity(0.5)
+            .overlay {
+                if self.indicatorId == indicatorId {
+                    Rectangle()
+                        .frame(width: 14, height: 14)
+                        .clipShape(.rect(cornerRadius: 2))
+                        .matchedGeometryEffect(id: "indicator", in: namespace)
+                }
+            }
     }
 }

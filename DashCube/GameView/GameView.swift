@@ -73,6 +73,11 @@ private extension GameView {
                 }
         }
     }
+    
+    // Animation Values
+    struct ScoreAnimationValues {
+        var scale : CGFloat = 1.0
+    }
 }
 
 // MARK: - Game UI
@@ -123,16 +128,10 @@ private extension GameView {
                 .padding(.horizontal)
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
-//            .padding(.bottom, proxy.safeAreaInsets.bottom)
+            .padding(.bottom, proxy.safeAreaInsets.bottom)
             .withCardStyle()
             .allowsHitTesting(false)
             .padding(.horizontal)
         }
-    }
-}
-
-private extension GameView {
-    struct ScoreAnimationValues {
-        var scale : CGFloat = 1.0
     }
 }
