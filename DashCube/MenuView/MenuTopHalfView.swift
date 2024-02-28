@@ -2,7 +2,6 @@ import SwiftUI
 
 struct MenuTopHalfView: View {
     @ObservedObject var viewModel : MenuViewModel
-    @State private var height : CGFloat = .zero
     
     var body: some View {
         VStack {
@@ -17,12 +16,12 @@ struct MenuTopHalfView: View {
                     // TODO: Add the stats view here
                     rankView
                 }
-                .frame(maxHeight: .infinity)
                 .scrollTargetLayout()
             }
             .scrollTargetBehavior(.paging)
             .scrollIndicators(.hidden)
             .defaultScrollAnchor(.center)
+            .scrollClipDisabled()
         }
         .padding(.top)
     }

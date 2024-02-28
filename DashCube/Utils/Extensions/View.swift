@@ -10,9 +10,8 @@ struct MenuScrollViewModifiers : ViewModifier {
             .scrollTransition(topLeading: .interactive,
                               bottomTrailing: .interactive) { view, phase in
                 view
-                    .scaleEffect(phase.isIdentity ? 1 : 0)
                     .opacity(phase.isIdentity ? 1 : 0.3)
-                    .rotationEffect(.degrees(phase.isIdentity ? 0 : -90))                    
+                    .rotation3DEffect(.degrees(phase.isIdentity ? 0 : -90), axis: (x: 0, y: 1, z: 0))
             }
     }
 }
