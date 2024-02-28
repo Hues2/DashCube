@@ -94,6 +94,15 @@ class Constants {
                                            .init(color: .cube3, isSelected: false),
                                            .init(color: .cube4, isSelected: false)]        
     }
+    
+    struct AnimationCubes {
+        static let animationCubes : [AnimationCube] = [
+            .init(animation: .basic, requiredHighscore: .zero),
+            .init(animation: .yAxisSpin, requiredHighscore: 15),
+            .init(animation: .basicWithYAxisSpin, requiredHighscore: 30)
+        ]
+    }
+    
     // MARK: - Game Center
     struct GameCenter {
         static let classicLeaderboard = "classicLeaderboard"

@@ -2,7 +2,7 @@ import Foundation
 import SceneKit
 import UIKit
 
-enum CubeAnimation {
+enum CubeAnimation : String {
     case basic
     case yAxisSpin
     case basicWithYAxisSpin
