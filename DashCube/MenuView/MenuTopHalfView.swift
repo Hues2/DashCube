@@ -65,7 +65,7 @@ private extension MenuTopHalfView {
 // MARK: - Cubes View
 private extension MenuTopHalfView {
     var cubesView : some View {
-        PlayerCubesView(viewModel: self.viewModel)
+        PlayerCubeView(viewModel: self.viewModel)
             .withMenuScrollViewAnimation()
     }
 }

@@ -6,7 +6,7 @@ class CubesManager {
     @Published var selectedCube : PlayerCube = PlayerCube(color: .cube1,
                                                           animation: .basic,
                                                           requiredHighscore: .zero,
-                                                          isUnlocked: false,
+                                                          isUnlocked: true,
                                                           isSelected: false)
     @Published var cubeColors : [CubeColor] = []
     
