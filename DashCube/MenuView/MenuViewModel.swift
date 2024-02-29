@@ -11,11 +11,6 @@ class MenuViewModel : ObservableObject {
     
     // Player Cube
     @Published var selectedPlayerCube : PlayerCube
-    // Cubes
-    @Published private(set) var cubes : [PlayerCube] = []
-    // Cube Colors
-    @Published private(set) var cubeColors : [CubeColor] = []
-    @Published private(set) var selectedColor : Color = .cube1
     
     // Dependencies
     let gameManager : GameManager
@@ -38,8 +33,6 @@ class MenuViewModel : ObservableObject {
         subscribeToGameState()
         subscribeToHighScore()
         subscribeToOverallRank()
-        subscribeToCubes()
-        subscribeToCubeColors()
     }
 }
 
@@ -91,44 +84,6 @@ private extension MenuViewModel {
             }
             .store(in: &cancellables)
     }
-    
-    func subscribeToCubes() {
-        self.cubesManager.$cubes
-            .receive(on: DispatchQueue.main)
-            .sink { [weak self] newCubes in
-                guard let self else { return }                
-                self.cubes = newCubes
-                self.setSelectedCube(newCubes)
-            }
-            .store(in: &cancellables)
-    }
-    
-    func subscribeToCubeColors() {
-        self.cubesManager.$cubeColors
-            .receive(on: DispatchQueue.main)
-            .sink { [weak self] newCubeColors in
-                guard let self else { return }
-                self.cubeColors = newCubeColors
-            }
-            .store(in: &cancellables)
-    }
-}
-
-
-// MARK: - Set the selected cube
-private extension MenuViewModel {
-    func setSelectedCube(_ newCubes : [PlayerCube]) {
-        let selectedCube = newCubes.first(where: { $0.isSelected })
-        guard let selectedCube else { return }
-        withAnimation {
-            self.selectedColor = Color(uiColor: selectedCube.color)
-            // If the player cube id hasn't changed, then don't set it again
-            // This means that the colour porbably changed, but we don't want to scroll to the selected cube again
-            if selectedCube.id != self.selectedPlayerCube.id {
-                self.selectedPlayerCube = selectedCube
-            }
-        }
-    }
 }
 
 // MARK: - Restart game
@@ -146,17 +101,6 @@ extension MenuViewModel {
         withAnimation {
             self.gameManager.returnToMenu()
         }
-    }
-}
-
-// MARK: - Cubes
-extension MenuViewModel {    
-    func saveSelectedCube(_ playerCube : PlayerCube) {
-        self.cubesManager.saveSelectedCube(playerCube.id)
-    }
-    
-    func saveSelectedCubeColor(_ cubeColor : CubeColor) {
-        self.cubesManager.saveSelectedCubeColor(cubeColor)
     }
 }
 

@@ -1,8 +1,12 @@
-import Foundation
+import UIKit
 
-struct AnimationCube {
+/*
+ This is used for the animation cubes in the cube selection view
+ */
+struct AnimationCube : BasicCube {
     let id : String
-    let animation : CubeAnimation
+    var animation : CubeAnimation
+    var color : UIColor = .white
     let requiredHighscore : Int
     
     init(animation: CubeAnimation, requiredHighscore: Int) {

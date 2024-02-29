@@ -32,37 +32,16 @@ private extension PlayerCubeView {
     }
     
     var cubeView : some View {
-        CubeView(viewModel: self.viewModel)
+        CubeView(playerCube: viewModel.selectedPlayerCube)
             .frame(maxWidth: .infinity)
             .background(
                 Color.customBackground
                     .opacity(0.5)
                     .clipShape(RoundedRectangle(cornerRadius: Constants.UI.cornerRadius))
             )
-            .withRoundedGradientBorder(colors: [viewModel.selectedColor])
+            .withRoundedGradientBorder(colors: [Color(uiColor: viewModel.selectedPlayerCube.color)])
             .onTapGesture {
                 self.showCubeSelectionSheet = true
             }
     }
 }
-// MARK: - Cube Colors
-//private extension PlayerCubesView {
-//    func cubeColorView(_ cubeColor : CubeColor) -> some View {
-//        ZStack(alignment: .topTrailing) {
-//            cubeColor.color
-//                .id(cubeColor.id)
-//                .tag(cubeColor.id)
-//                .frame(width: 75, height: 75)
-//                .clipShape(.rect(cornerRadius: Constants.UI.cornerRadius))
-//                .onTapGesture {
-//                    withAnimation {
-//                        self.viewModel.saveSelectedCubeColor(cubeColor)
-//                    }
-//                }
-//            if cubeColor.isSelected {
-//                selectedIcon(self.isFirst)
-//                    .padding(2)
-//            }
-//        }
-//    }
-//}

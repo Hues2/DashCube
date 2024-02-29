@@ -1,19 +1,9 @@
 import UIKit
 
-struct PlayerCube : Identifiable, Hashable {
-    let id : String
-    let color : UIColor
-    let animation : CubeAnimation
-    let requiredHighscore : Int    
-    var isUnlocked : Bool
-    var isSelected : Bool
-    
-    init(color: UIColor, animation: CubeAnimation, requiredHighscore: Int, isUnlocked: Bool, isSelected: Bool) {
-        self.id = "\(requiredHighscore)"
-        self.color = color
-        self.animation = animation
-        self.requiredHighscore = requiredHighscore
-        self.isUnlocked = isUnlocked
-        self.isSelected = isSelected
-    }
+/*
+ This cube is used to display in the main menu & is passed to the game view controller
+ */
+struct PlayerCube : BasicCube {
+    var color : UIColor
+    var animation : CubeAnimation
 }

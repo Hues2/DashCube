@@ -6,11 +6,8 @@ class PlayerCubeNode: SCNNode {
     private var jumpLeftAction : SCNAction!
     private let initialRotation = SCNVector4(x: 0, y: 0, z: 0, w: 0)
     let initialPlayerPosition : SCNVector3 = SCNVector3(0, 13, 0)
-    var playerCubeModel : PlayerCube = PlayerCube(color: .white,
-                                                  animation: .basic,
-                                                  requiredHighscore: .zero,
-                                                  isUnlocked: false,
-                                                  isSelected: false)
+    var playerCubeModel : PlayerCube = PlayerCube(color: .cube1,
+                                                  animation: .basic)
     
     override init() {
         super.init()

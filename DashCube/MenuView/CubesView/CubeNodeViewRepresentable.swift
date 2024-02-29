@@ -2,7 +2,7 @@ import SwiftUI
 import SceneKit
 
 struct CubeNodeViewRepresentable: UIViewRepresentable {
-    let playerCube : PlayerCube
+    let playerCube : BasicCube
     
     func makeUIView(context: Context) -> SCNView {
         let sceneView = SCNView()

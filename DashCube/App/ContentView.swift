@@ -9,7 +9,7 @@ struct ContentView: View {
     init() {
         self.gameCenterManager = GameCenterManager()
         self.gameManager = GameManager(gameCenterManager : gameCenterManager)
-        self.cubesManager = CubesManager(gameCenterManager : gameCenterManager)
+        self.cubesManager = CubesManager()
     }
     
     var body: some View {

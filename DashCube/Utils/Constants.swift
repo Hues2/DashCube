@@ -65,36 +65,7 @@ class Constants {
     struct Gameplay {
         static let spikeTileOdds : Double = 25
     }
-    // MARK: - Player Cube
-    struct PlayerCubeValues {
-        static let playerCubeOptions : [PlayerCube] = [
-            PlayerCube(color: .cube1,
-                       animation: .basic,
-                       requiredHighscore: .zero,
-                       isUnlocked: true,
-                       isSelected: false),
-            PlayerCube(color: .cube2,
-                       animation: .yAxisSpin,
-                       requiredHighscore: 15,
-                       isUnlocked: false,
-                       isSelected: false),
-            PlayerCube(color: .cube3,
-                       animation: .basicWithYAxisSpin,
-                       requiredHighscore: 30,
-                       isUnlocked: false,
-                       isSelected: false),
-//            PlayerCube(color: .cube4,
-//                       animation: .basicWithColorChange,
-//                       requiredHighscore: 50,
-//                       isUnlocked: false,
-//                       isSelected: false)
-        ]
-        static let colors : [CubeColor] = [.init(color: .cube1, isSelected: true),
-                                           .init(color: .cube2, isSelected: false),
-                                           .init(color: .cube3, isSelected: false),
-                                           .init(color: .cube4, isSelected: false)]        
-    }
-    
+    // MARK: - Animation Cubes
     struct AnimationCubes {
         static let animationCubes : [AnimationCube] = [
             .init(animation: .basic, requiredHighscore: .zero),
