@@ -9,14 +9,16 @@ struct CubeSelectionView: View {
     
     var body: some View {
         VStack {
-            Text("Cube Selection View")
+            animationCubes
+            Spacer()
         }
+        .frame(maxHeight: .infinity)
     }
 }
 
-// MARK: - Cube Animations
+// MARK: - Animations Cubes
 private extension CubeSelectionView {
-    var cubeAnimations : some View {
+    var animationCubes : some View {
         AnimationCubeSelectionView(viewModel: self.viewModel)
     }
 }

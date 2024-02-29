@@ -21,6 +21,9 @@
 "select_a_cube" = "Select your cube:";
 "highscore_required" = "High score required:";
 
+// Cube selection
+"select_cube_animation" = "Select animation:";
+
 // Menu - Stats
 
 
