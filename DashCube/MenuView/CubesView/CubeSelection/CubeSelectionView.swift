@@ -1,11 +1,7 @@
 import SwiftUI
 
 struct CubeSelectionView: View {
-    @StateObject private var viewModel : CubeSelectionViewModel    
-    
-    init(cubesManager : CubesManager) {
-        self._viewModel = StateObject(wrappedValue: CubeSelectionViewModel(cubesManager: cubesManager))
-    }
+    @ObservedObject var viewModel : CubeSelectionViewModel    
     
     var body: some View {
         VStack(spacing: 25) {

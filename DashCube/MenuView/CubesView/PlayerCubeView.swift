@@ -2,13 +2,17 @@ import SwiftUI
 import SceneKit
 
 struct PlayerCubeView: View {
-    @ObservedObject var viewModel : MenuViewModel
+    @StateObject private var viewModel : CubeSelectionViewModel
     @State private var showCubeSelectionSheet : Bool = false
+    
+    init(cubesManager : CubesManager) {
+        self._viewModel = StateObject(wrappedValue: CubeSelectionViewModel(cubesManager: cubesManager))
+    }
     
     var body: some View {
         content
             .sheet(isPresented: $showCubeSelectionSheet) {
-                CubeSelectionView(cubesManager: self.viewModel.cubesManager)
+                CubeSelectionView(viewModel: self.viewModel)
             }
     }
 }

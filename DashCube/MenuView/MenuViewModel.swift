@@ -9,9 +9,6 @@ class MenuViewModel : ObservableObject {
     @Published private(set) var overallRank : Int?
     @Published private(set) var isGameOver : Bool = false
     
-    // Player Cube
-    @Published var selectedPlayerCube : PlayerCube
-    
     // Dependencies
     let gameManager : GameManager
     let cubesManager: CubesManager
@@ -24,7 +21,6 @@ class MenuViewModel : ObservableObject {
         self.gameManager = gameManager
         self.cubesManager = cubesManager
         self.gameCenterManager = gameCenterManager
-        self.selectedPlayerCube = cubesManager.selectedPlayerCube
         self.addSubscriptions()
     }
     
@@ -33,7 +29,6 @@ class MenuViewModel : ObservableObject {
         subscribeToGameState()
         subscribeToHighScore()
         subscribeToOverallRank()
-        subscribeToSelectedPlayerCube()
     }
 }
 
@@ -82,16 +77,6 @@ private extension MenuViewModel {
                 withAnimation {
                     self.overallRank = newOverallRank
                 }
-            }
-            .store(in: &cancellables)
-    }
-    
-    func subscribeToSelectedPlayerCube() {
-        self.cubesManager.$selectedPlayerCube
-            .receive(on: DispatchQueue.main)
-            .sink { [weak self] newSelectedPlayerCube in
-                guard let self else { return }
-                self.selectedPlayerCube = newSelectedPlayerCube
             }
             .store(in: &cancellables)
     }

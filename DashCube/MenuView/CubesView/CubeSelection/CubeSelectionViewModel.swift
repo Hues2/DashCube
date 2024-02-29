@@ -2,17 +2,18 @@ import SwiftUI
 import Combine
 
 class CubeSelectionViewModel : ObservableObject {
-    @Published private(set) var selectedPlayerCube : PlayerCube = PlayerCube(color: .cube1, animation: .basic)
+    @Published private(set) var selectedPlayerCube : PlayerCube
     let animationCubes : [AnimationCube] = Constants.AnimationCubes.animationCubes
     let colorCubes : [ColorCube] = Constants.ColorCubes.colorCubes
     
     // Dependencies
-    private let cubesManager : CubesManager
+    let cubesManager : CubesManager
     
     private var cancellables = Set<AnyCancellable>()
     
     init(cubesManager : CubesManager) {
         self.cubesManager = cubesManager
+        self.selectedPlayerCube = cubesManager.selectedPlayerCube
         addSubscriptions()
     }
     
