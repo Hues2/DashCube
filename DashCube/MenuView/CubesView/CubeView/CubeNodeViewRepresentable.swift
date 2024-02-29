@@ -30,7 +30,10 @@ struct CubeNodeViewRepresentable: UIViewRepresentable {
         // Update the SCNView if needed
         // Update the cube's material with the new color
         if let cubeNode = uiView.scene?.rootNode.childNode(withName: Constants.NodeName.playerCubeNodeName, recursively: true) {
-            cubeNode.geometry?.firstMaterial?.diffuse.contents = basicCube.color
+            cubeNode.removeAllAnimations()
+            cubeNode.removeAllActions()
+            cubeNode.geometry?.firstMaterial?.diffuse.contents = UIColor(basicCube.color)
+            self.animateCube(cubeNode)
         }
     }
     

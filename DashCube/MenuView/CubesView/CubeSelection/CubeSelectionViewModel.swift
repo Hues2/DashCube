@@ -1,9 +1,10 @@
-import Foundation
+import SwiftUI
 import Combine
 
 class CubeSelectionViewModel : ObservableObject {
     @Published private(set) var selectedPlayerCube : PlayerCube = PlayerCube(color: .cube1, animation: .basic)
     let animationCubes : [AnimationCube] = Constants.AnimationCubes.animationCubes
+    let colorCubes : [ColorCube] = Constants.ColorCubes.colorCubes
     
     // Dependencies
     private let cubesManager : CubesManager
@@ -24,6 +25,7 @@ class CubeSelectionViewModel : ObservableObject {
 private extension CubeSelectionViewModel {
     func subscribeToSelectedPlayerCube() {
         self.cubesManager.$selectedPlayerCube
+            .receive(on: DispatchQueue.main)
             .sink { [weak self] newSelectedPlayerCube in
                 guard let self else { return }
                 self.selectedPlayerCube = newSelectedPlayerCube
@@ -32,9 +34,16 @@ private extension CubeSelectionViewModel {
     }
 }
 
-// MARK: - Change selected animation
+// MARK: - Change selected cube animation
 extension CubeSelectionViewModel {
     func changeSelectedAnimation(to animation : CubeAnimation) {
         self.cubesManager.changeSelectedAnimation(to: animation)        
+    }
+}
+
+// MARK: - Change selected cube color
+extension CubeSelectionViewModel {
+    func changeSelectedColor(to color : Color) {
+        self.cubesManager.changeSelectedColor(to: color)
     }
 }

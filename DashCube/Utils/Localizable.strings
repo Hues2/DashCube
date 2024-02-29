@@ -23,6 +23,7 @@
 
 // Cube selection
 "select_cube_animation" = "Select animation:";
+"select_cube_color" = "Select color:";
 
 // Menu - Stats
 

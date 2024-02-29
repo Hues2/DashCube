@@ -8,9 +8,11 @@ struct CubeSelectionView: View {
     }
     
     var body: some View {
-        VStack {
+        VStack(spacing: 25) {
             animationCubes
-                .padding(.vertical)
+                .padding(.top)
+            colorCubes
+                .padding(.bottom)
             Spacer()
         }
         .frame(maxHeight: .infinity)
@@ -27,7 +29,7 @@ private extension CubeSelectionView {
 
 // MARK: - Cube Colors
 private extension CubeSelectionView {
-    var cubeColors : some View {
-        Text("")
+    var colorCubes : some View {
+        ColorCubeSelectionView(viewModel: self.viewModel)
     }
 }

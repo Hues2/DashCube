@@ -7,6 +7,7 @@ enum CubeAnimation : String {
     case yAxisSpin
     case basicWithYAxisSpin
     case basicWithColorChange
+    case none
     
     var displayAction : SCNAction {
         switch self {
@@ -18,6 +19,8 @@ enum CubeAnimation : String {
             return displayBasicWithYAxisSpinAction()
         case .basicWithColorChange:
             return displayBasicWithColourChangeAction()
+        case .none:
+            return SCNAction()
         }
     }
     
@@ -31,6 +34,8 @@ enum CubeAnimation : String {
             return basicWithYAxisSpinCubeAction()
         case .basicWithColorChange:
             return basicWithColourChangeCubeAction()
+        case .none:
+            return CubeAction(leftAction: SCNAction(), rightAction: SCNAction())
         }
     }
     

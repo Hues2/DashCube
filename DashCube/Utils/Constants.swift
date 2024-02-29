@@ -18,7 +18,7 @@ class Constants {
         static let jumpActionDuration : Double = 0.1
         static let jumpDisplayActionDuration : Double = 0.2
         static let rotationActionDuration : Double = 0.2
-        static let pauseActionDuration : Double = 1.0
+        static let pauseActionDuration : Double = 0.75
     }
     // MARK: - Node Name
     struct NodeName {
@@ -73,7 +73,15 @@ class Constants {
             .init(animation: .basicWithYAxisSpin, requiredHighscore: 30)
         ]
     }
-    
+    // MARK: - Animation Cubes
+    struct ColorCubes {
+        static let colorCubes : [ColorCube] = [
+            .init(animation: .none, color: .cube1, requiredGamesPlayed: 0),
+            .init(animation: .none, color: .cube2, requiredGamesPlayed: 10),
+            .init(animation: .none, color: .cube3, requiredGamesPlayed: 20),
+            .init(animation: .none, color: .cube4, requiredGamesPlayed: 30),
+        ]
+    }
     // MARK: - Game Center
     struct GameCenter {
         static let classicLeaderboard = "classicLeaderboard"

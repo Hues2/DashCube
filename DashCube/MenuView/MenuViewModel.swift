@@ -33,6 +33,7 @@ class MenuViewModel : ObservableObject {
         subscribeToGameState()
         subscribeToHighScore()
         subscribeToOverallRank()
+        subscribeToSelectedPlayerCube()
     }
 }
 
@@ -81,6 +82,16 @@ private extension MenuViewModel {
                 withAnimation {
                     self.overallRank = newOverallRank
                 }
+            }
+            .store(in: &cancellables)
+    }
+    
+    func subscribeToSelectedPlayerCube() {
+        self.cubesManager.$selectedPlayerCube
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] newSelectedPlayerCube in
+                guard let self else { return }
+                self.selectedPlayerCube = newSelectedPlayerCube
             }
             .store(in: &cancellables)
     }
