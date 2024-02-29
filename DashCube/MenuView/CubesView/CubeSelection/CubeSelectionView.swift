@@ -10,9 +10,11 @@ struct CubeSelectionView: View {
     var body: some View {
         VStack {
             animationCubes
+                .padding(.vertical)
             Spacer()
         }
         .frame(maxHeight: .infinity)
+        .padding()
     }
 }
 

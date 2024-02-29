@@ -11,7 +11,7 @@ struct AnimationCubeSelectionView: View {
 
 private extension AnimationCubeSelectionView {
     var content : some View {
-        VStack(alignment: .leading) {
+        VStack(alignment: .leading, spacing: 15) {
             title
             grid
         }
@@ -30,9 +30,15 @@ private extension AnimationCubeSelectionView {
             ForEach(viewModel.animationCubes) { animationCube in
                 CubeView(basicCube: animationCube)
                     .scaledToFit()
-                    .border(.red)
-                    .onAppear {
-                        print("animation cube appeared \(animationCube)")
+                    .overlay {
+                        RoundedRectangle(cornerRadius: Constants.UI.cornerRadius)
+                            .stroke(viewModel.selectedPlayerCube.animation.rawValue == animationCube.animation.rawValue ? .white : (.white.opacity(0.2)))
+                    }
+                    .contentShape(RoundedRectangle(cornerRadius: Constants.UI.cornerRadius))
+                    .onTapGesture {
+                        withAnimation {
+                            self.viewModel.changeSelectedAnimation(to: animationCube.animation)
+                        }
                     }
             }
         }

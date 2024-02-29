@@ -18,7 +18,7 @@ class Constants {
         static let jumpActionDuration : Double = 0.1
         static let jumpDisplayActionDuration : Double = 0.2
         static let rotationActionDuration : Double = 0.2
-        static let pauseActionDuration : Double = 2.5
+        static let pauseActionDuration : Double = 1.0
     }
     // MARK: - Node Name
     struct NodeName {
