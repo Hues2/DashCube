@@ -24,7 +24,7 @@ class MenuViewModel : ObservableObject {
         self.gameManager = gameManager
         self.cubesManager = cubesManager
         self.gameCenterManager = gameCenterManager
-        self.selectedPlayerCube = cubesManager.selectedCube
+        self.selectedPlayerCube = cubesManager.selectedPlayerCube
         self.addSubscriptions()
     }
     

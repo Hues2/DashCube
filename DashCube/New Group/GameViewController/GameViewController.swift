@@ -90,7 +90,7 @@ private extension GameViewController {
     }
     
     func subscribeToPlayerCubeModel() {
-        self.cubesManager.$selectedCube
+        self.cubesManager.$selectedPlayerCube
             .sink { [weak self] newSelectedCube in
                 guard let self else { return }
                 self.playerCube.updatePlayerCubeModel(newSelectedCube)

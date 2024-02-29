@@ -30,6 +30,8 @@
 		2EA199B42B8E55CC009A42D0 /* UserProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EA199B32B8E55CC009A42D0 /* UserProgressView.swift */; };
 		2EA341C42B68592D0046DE5A /* PlayerCubeNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EA341C32B68592C0046DE5A /* PlayerCubeNode.swift */; };
 		2EA48D652B910FFD00F0569A /* BasicCube.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EA48D642B910FFD00F0569A /* BasicCube.swift */; };
+		2EA48D682B91167F00F0569A /* AnimationCubeSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EA48D672B91167F00F0569A /* AnimationCubeSelectionView.swift */; };
+		2EA48D6A2B91168D00F0569A /* ColorCubeSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EA48D692B91168D00F0569A /* ColorCubeSelectionView.swift */; };
 		2EA8946E2B8FEF9C0020D8DF /* CubeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EA8946D2B8FEF9C0020D8DF /* CubeView.swift */; };
 		2EADDD2A2B66924000D724BF /* CubeDropApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EADDD292B66924000D724BF /* CubeDropApp.swift */; };
 		2EADDD2C2B66924000D724BF /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EADDD2B2B66924000D724BF /* ContentView.swift */; };
@@ -83,6 +85,8 @@
 		2EA199B32B8E55CC009A42D0 /* UserProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProgressView.swift; sourceTree = "<group>"; };
 		2EA341C32B68592C0046DE5A /* PlayerCubeNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerCubeNode.swift; sourceTree = "<group>"; };
 		2EA48D642B910FFD00F0569A /* BasicCube.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicCube.swift; sourceTree = "<group>"; };
+		2EA48D672B91167F00F0569A /* AnimationCubeSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationCubeSelectionView.swift; sourceTree = "<group>"; };
+		2EA48D692B91168D00F0569A /* ColorCubeSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorCubeSelectionView.swift; sourceTree = "<group>"; };
 		2EA8946D2B8FEF9C0020D8DF /* CubeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CubeView.swift; sourceTree = "<group>"; };
 		2EADDD262B66924000D724BF /* DashCube.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DashCube.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2EADDD292B66924000D724BF /* CubeDropApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CubeDropApp.swift; sourceTree = "<group>"; };
@@ -134,8 +138,9 @@
 		2E447EB92B8FF87200173431 /* CubeSelection */ = {
 			isa = PBXGroup;
 			children = (
-				2EA8946D2B8FEF9C0020D8DF /* CubeView.swift */,
 				2E447EB72B8FF79700173431 /* CubeSelectionView.swift */,
+				2EA48D672B91167F00F0569A /* AnimationCubeSelectionView.swift */,
+				2EA48D692B91168D00F0569A /* ColorCubeSelectionView.swift */,
 			);
 			path = CubeSelection;
 			sourceTree = "<group>";
@@ -189,11 +194,20 @@
 		2EA199B22B8E559E009A42D0 /* CubesView */ = {
 			isa = PBXGroup;
 			children = (
+				2EA48D662B91134000F0569A /* CubeView */,
 				2E447EB92B8FF87200173431 /* CubeSelection */,
-				2E9EC6602B795AB800141568 /* CubeNodeViewRepresentable.swift */,
 				2E9EC6622B795D6800141568 /* PlayerCubeView.swift */,
 			);
 			path = CubesView;
+			sourceTree = "<group>";
+		};
+		2EA48D662B91134000F0569A /* CubeView */ = {
+			isa = PBXGroup;
+			children = (
+				2EA8946D2B8FEF9C0020D8DF /* CubeView.swift */,
+				2E9EC6602B795AB800141568 /* CubeNodeViewRepresentable.swift */,
+			);
+			path = CubeView;
 			sourceTree = "<group>";
 		};
 		2EADDD1D2B66924000D724BF = {
@@ -442,7 +456,9 @@
 				2EB1E7DA2B8BAFCE006199FB /* MenuBottomHalfView.swift in Sources */,
 				2EA119D82B76D5F400F4B481 /* AmbientLightNode.swift in Sources */,
 				2EFD816D2B79856000CEB4A3 /* PlayerCube.swift in Sources */,
+				2EA48D6A2B91168D00F0569A /* ColorCubeSelectionView.swift in Sources */,
 				2EE69A402B79902800DC44BE /* Array.swift in Sources */,
+				2EA48D682B91167F00F0569A /* AnimationCubeSelectionView.swift in Sources */,
 				2E9EC6612B795AB800141568 /* CubeNodeViewRepresentable.swift in Sources */,
 				2EA341C42B68592D0046DE5A /* PlayerCubeNode.swift in Sources */,
 				2E2BFFFD2B81460A0074E69D /* GameCenterManager.swift in Sources */,

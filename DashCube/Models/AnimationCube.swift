@@ -1,17 +1,11 @@
-import UIKit
+import SwiftUI
 
 /*
  This is used for the animation cubes in the cube selection view
  */
 struct AnimationCube : BasicCube {
-    let id : String
+    let id : String = UUID().uuidString
     var animation : CubeAnimation
-    var color : UIColor = .white
+    var color : Color = .white
     let requiredHighscore : Int
-    
-    init(animation: CubeAnimation, requiredHighscore: Int) {
-        self.id = animation.rawValue
-        self.animation = animation
-        self.requiredHighscore = requiredHighscore
-    }
 }
