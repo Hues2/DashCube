@@ -8,7 +8,7 @@ struct PlayerCubeView: View {
     var body: some View {
         content
             .sheet(isPresented: $showCubeSelectionSheet) {
-                CubeSelectionView(viewModel: self.viewModel)
+                CubeSelectionView(cubesManager: self.viewModel.cubesManager)
             }
     }
 }
@@ -32,7 +32,7 @@ private extension PlayerCubeView {
     }
     
     var cubeView : some View {
-        CubeView(playerCube: viewModel.selectedPlayerCube)
+        CubeView(basicCube: viewModel.selectedPlayerCube)
             .frame(maxWidth: .infinity)
             .background(
                 Color.customBackground

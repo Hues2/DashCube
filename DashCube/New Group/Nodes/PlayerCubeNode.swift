@@ -39,7 +39,7 @@ private extension PlayerCubeNode {
         
         // Create a material for the box
         let material = SCNMaterial()
-        material.diffuse.contents = playerCubeModel.color
+        material.diffuse.contents = UIColor(playerCubeModel.color)
         
         // Apply the material to the box
         geometry.materials = [material]

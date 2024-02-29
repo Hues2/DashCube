@@ -1,18 +1,20 @@
-//
-//  AnimationCubeSelectionView.swift
-//  DashCube
-//
-//  Created by Greg Ross on 29/02/2024.
-//
-
 import SwiftUI
 
 struct AnimationCubeSelectionView: View {
+    @ObservedObject var viewModel : CubeSelectionViewModel
+    private let columns : [GridItem] = .init(repeating: GridItem(.flexible()), count: 2)
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        content
     }
 }
 
-#Preview {
-    AnimationCubeSelectionView()
+private extension AnimationCubeSelectionView {
+    var content : some View {
+        LazyVGrid(columns: columns) {
+            ForEach(viewModel.animationCubes) { animationCube in
+                CubeView(basicCube: animationCube)
+            }
+        }
+    }
 }

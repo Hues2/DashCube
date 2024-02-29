@@ -1,8 +1,11 @@
 import SwiftUI
 
 struct CubeSelectionView: View {
-    @ObservedObject var viewModel : MenuViewModel
-    private let columns : [GridItem] = .init(repeating: GridItem(.flexible()), count: 2)
+    @StateObject private var viewModel : CubeSelectionViewModel    
+    
+    init(cubesManager : CubesManager) {
+        self._viewModel = StateObject(wrappedValue: CubeSelectionViewModel(cubesManager: cubesManager))
+    }
     
     var body: some View {
         VStack {
@@ -14,9 +17,7 @@ struct CubeSelectionView: View {
 // MARK: - Cube Animations
 private extension CubeSelectionView {
     var cubeAnimations : some View {
-        VStack {
-            
-        }
+        AnimationCubeSelectionView(viewModel: self.viewModel)
     }
 }
 

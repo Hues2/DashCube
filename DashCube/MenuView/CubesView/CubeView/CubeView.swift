@@ -1,9 +1,9 @@
 import SwiftUI
 
 struct CubeView: View {
-    let playerCube : PlayerCube
+    let basicCube : BasicCube
     
     var body: some View {
-        CubeNodeViewRepresentable(playerCube: playerCube)
+        CubeNodeViewRepresentable(basicCube: basicCube)
     }
 }

@@ -32,6 +32,7 @@
 		2EA48D652B910FFD00F0569A /* BasicCube.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EA48D642B910FFD00F0569A /* BasicCube.swift */; };
 		2EA48D682B91167F00F0569A /* AnimationCubeSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EA48D672B91167F00F0569A /* AnimationCubeSelectionView.swift */; };
 		2EA48D6A2B91168D00F0569A /* ColorCubeSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EA48D692B91168D00F0569A /* ColorCubeSelectionView.swift */; };
+		2EA48D6C2B911B4100F0569A /* CubeSelectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EA48D6B2B911B4100F0569A /* CubeSelectionViewModel.swift */; };
 		2EA8946E2B8FEF9C0020D8DF /* CubeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EA8946D2B8FEF9C0020D8DF /* CubeView.swift */; };
 		2EADDD2A2B66924000D724BF /* CubeDropApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EADDD292B66924000D724BF /* CubeDropApp.swift */; };
 		2EADDD2C2B66924000D724BF /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EADDD2B2B66924000D724BF /* ContentView.swift */; };
@@ -87,6 +88,7 @@
 		2EA48D642B910FFD00F0569A /* BasicCube.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicCube.swift; sourceTree = "<group>"; };
 		2EA48D672B91167F00F0569A /* AnimationCubeSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationCubeSelectionView.swift; sourceTree = "<group>"; };
 		2EA48D692B91168D00F0569A /* ColorCubeSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorCubeSelectionView.swift; sourceTree = "<group>"; };
+		2EA48D6B2B911B4100F0569A /* CubeSelectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CubeSelectionViewModel.swift; sourceTree = "<group>"; };
 		2EA8946D2B8FEF9C0020D8DF /* CubeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CubeView.swift; sourceTree = "<group>"; };
 		2EADDD262B66924000D724BF /* DashCube.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DashCube.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2EADDD292B66924000D724BF /* CubeDropApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CubeDropApp.swift; sourceTree = "<group>"; };
@@ -141,6 +143,7 @@
 				2E447EB72B8FF79700173431 /* CubeSelectionView.swift */,
 				2EA48D672B91167F00F0569A /* AnimationCubeSelectionView.swift */,
 				2EA48D692B91168D00F0569A /* ColorCubeSelectionView.swift */,
+				2EA48D6B2B911B4100F0569A /* CubeSelectionViewModel.swift */,
 			);
 			path = CubeSelection;
 			sourceTree = "<group>";
@@ -481,6 +484,7 @@
 				2E3E55C02B8E89820045B1FE /* View.swift in Sources */,
 				2E2B00002B8175500074E69D /* GameCenterView.swift in Sources */,
 				2EADDD492B66952600D724BF /* GameViewControllerWrapper.swift in Sources */,
+				2EA48D6C2B911B4100F0569A /* CubeSelectionViewModel.swift in Sources */,
 				2E9ACA872B699D3D0090245B /* DeadZoneNode.swift in Sources */,
 				2EADDD5F2B6697E500D724BF /* DirectionalLightNode.swift in Sources */,
 				2EADDD2C2B66924000D724BF /* ContentView.swift in Sources */,

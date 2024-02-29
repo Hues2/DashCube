@@ -2,7 +2,7 @@ import SwiftUI
 import SceneKit
 
 struct CubeNodeViewRepresentable: UIViewRepresentable {
-    let playerCube : BasicCube
+    let basicCube : BasicCube
     
     func makeUIView(context: Context) -> SCNView {
         let sceneView = SCNView()
@@ -30,7 +30,7 @@ struct CubeNodeViewRepresentable: UIViewRepresentable {
         // Update the SCNView if needed
         // Update the cube's material with the new color
         if let cubeNode = uiView.scene?.rootNode.childNode(withName: Constants.NodeName.playerCubeNodeName, recursively: true) {
-            cubeNode.geometry?.firstMaterial?.diffuse.contents = playerCube.color
+            cubeNode.geometry?.firstMaterial?.diffuse.contents = basicCube.color
         }
     }
     
@@ -43,7 +43,7 @@ struct CubeNodeViewRepresentable: UIViewRepresentable {
         
         // Create a material for the box
         let material = SCNMaterial()
-        material.diffuse.contents = playerCube.color
+        material.diffuse.contents = UIColor(basicCube.color)
         
         // Apply the material to the box
         boxGeometry.materials = [material]
@@ -89,6 +89,6 @@ struct CubeNodeViewRepresentable: UIViewRepresentable {
     
     
     private func animateCube(_ node : SCNNode) {
-        node.runAction(playerCube.animation.displayAction)
+        node.runAction(basicCube.animation.displayAction)
     }
 }
