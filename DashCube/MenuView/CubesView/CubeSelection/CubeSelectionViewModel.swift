@@ -36,7 +36,7 @@ private extension CubeSelectionViewModel {
             .receive(on: DispatchQueue.main)
             .sink { [weak self] newHighScore in
                 guard let self, let newHighScore else { return }
-                self.highScore = 5
+                self.highScore = newHighScore
             }
             .store(in: &cancellables)
     }
