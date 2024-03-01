@@ -30,9 +30,7 @@ private extension AnimationCubeSelectionView {
             ForEach(viewModel.animationCubes) { animationCube in
                 cubeView(animationCube)
                     .onTapGesture {
-                        withAnimation {
-                            self.viewModel.changeSelectedAnimation(to: animationCube.animation)
-                        }
+                        self.changeSelectedAnimation(animationCube)
                     }
             }
         }
@@ -56,5 +54,16 @@ private extension AnimationCubeSelectionView {
     func cube(_ animationCube : AnimationCube) -> some View {
         CubeView(basicCube: animationCube)
             .scaledToFit()
+    }
+}
+
+// MARK: - Functionality
+private extension AnimationCubeSelectionView {
+    func changeSelectedAnimation(_ animationCube : AnimationCube) {
+        if self.viewModel.highScore >= animationCube.requiredHighscore {
+            withAnimation {
+                self.viewModel.changeSelectedAnimation(to: animationCube.animation)
+            }
+        }
     }
 }

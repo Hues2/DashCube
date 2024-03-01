@@ -12,7 +12,10 @@ class CubesManager {
 // MARK: - Set player cube values
 extension CubesManager {
     func changeSelectedAnimation(to animation : CubeAnimation) {
-        self.selectedPlayerCube.animation = animation
+        // Avoid publishing the value if it hasn't changed
+        if self.selectedPlayerCube.animation != animation {
+            self.selectedPlayerCube.animation = animation
+        }
         // TODO: Save the animation in user defaults
     }
     
