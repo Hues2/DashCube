@@ -28,13 +28,7 @@ private extension AnimationCubeSelectionView {
     var grid : some View {
         LazyVGrid(columns: columns) {
             ForEach(viewModel.animationCubes) { animationCube in
-                CubeView(basicCube: animationCube)
-                    .scaledToFit()
-                    .overlay {
-                        RoundedRectangle(cornerRadius: Constants.UI.cornerRadius)
-                            .stroke(viewModel.selectedPlayerCube.animation.rawValue == animationCube.animation.rawValue ? .white : (.white.opacity(0.2)))
-                    }
-                    .contentShape(RoundedRectangle(cornerRadius: Constants.UI.cornerRadius))
+                cubeView(animationCube)
                     .onTapGesture {
                         withAnimation {
                             self.viewModel.changeSelectedAnimation(to: animationCube.animation)
@@ -42,5 +36,25 @@ private extension AnimationCubeSelectionView {
                     }
             }
         }
+    }
+    
+    func cubeView(_ animationCube : AnimationCube) -> some View {
+        ZStack {
+            cube(animationCube)
+            
+            if animationCube.requiredHighscore > self.viewModel.highScore {
+                LockedView(value: animationCube.requiredHighscore)
+            }
+        }
+        .overlay {
+            RoundedRectangle(cornerRadius: Constants.UI.cornerRadius)
+                .stroke(viewModel.selectedPlayerCube.animation.rawValue == animationCube.animation.rawValue ? .white : (.white.opacity(0.2)))
+        }
+        .contentShape(RoundedRectangle(cornerRadius: Constants.UI.cornerRadius))
+    }
+    
+    func cube(_ animationCube : AnimationCube) -> some View {
+        CubeView(basicCube: animationCube)
+            .scaledToFit()
     }
 }

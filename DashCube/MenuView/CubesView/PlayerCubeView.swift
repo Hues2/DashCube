@@ -5,8 +5,8 @@ struct PlayerCubeView: View {
     @StateObject private var viewModel : CubeSelectionViewModel
     @State private var showCubeSelectionSheet : Bool = false
     
-    init(cubesManager : CubesManager) {
-        self._viewModel = StateObject(wrappedValue: CubeSelectionViewModel(cubesManager: cubesManager))
+    init(_ cubesManager : CubesManager, _ statsManager : StatsManager) {
+        self._viewModel = StateObject(wrappedValue: CubeSelectionViewModel(cubesManager, statsManager))
     }
     
     var body: some View {

@@ -37,7 +37,7 @@ struct CubeNodeViewRepresentable: UIViewRepresentable {
     private func resetCubeNode(_ cubeNode : SCNNode) {
         cubeNode.removeAllAnimations()
         cubeNode.removeAllActions()
-        cubeNode.eulerAngles = SCNVector3Zero
+//        cubeNode.eulerAngles = SCNVector3Zero
         cubeNode.position = SCNVector3Zero
         cubeNode.rotation = SCNVector4Zero
         cubeNode.geometry?.firstMaterial?.diffuse.contents = UIColor(basicCube.color)

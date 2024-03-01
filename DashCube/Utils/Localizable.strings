@@ -19,14 +19,14 @@
 
 // Menu - Cubes
 "select_a_cube" = "Select your cube:";
-"highscore_required" = "High score required:";
 
 // Cube selection
 "select_cube_animation" = "Select animation:";
 "select_cube_color" = "Select color:";
+"highscore_required" = "High score: %d";
+"games_played_required" = "Games played: %d";
 
 // Menu - Stats
-
 
 // Menu View - Play Button
 "play_button_title" = "Play";
