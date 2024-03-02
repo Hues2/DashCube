@@ -7,8 +7,9 @@ class CubeSelectionViewModel : ObservableObject {
     let animationCubes : [AnimationCube] = Constants.AnimationCubes.animationCubes
     let colorCubes : [ColorCube] = Constants.ColorCubes.colorCubes
     
-    // Required stats
-    @Published private(set) var highScore : Int = .zero
+    // Required stats to unlock cubes
+    @Published private(set) var highScore : Int
+    @Published private(set) var gamesPlayed : Int
     
     // Dependencies
     let cubesManager : CubesManager
@@ -19,12 +20,17 @@ class CubeSelectionViewModel : ObservableObject {
     init(_ cubesManager : CubesManager, _ statsManager : StatsManager) {
         self.cubesManager = cubesManager
         self.statsManager = statsManager
+        // Set the values here, instead of giving them a default value
+        // These values will get set via the combine subscriptions
+        self.highScore = statsManager.highScore ?? .zero
+        self.gamesPlayed = statsManager.gamesPlayed
         self.selectedPlayerCube = cubesManager.selectedPlayerCube
         addSubscriptions()
     }
     
     private func addSubscriptions() {
         self.subscribeToHighScore()
+        self.subscribeToGamesPlayed()
         self.subscribeToSelectedPlayerCube()
     }
 }
@@ -37,6 +43,16 @@ private extension CubeSelectionViewModel {
             .sink { [weak self] newHighScore in
                 guard let self, let newHighScore else { return }
                 self.highScore = newHighScore
+            }
+            .store(in: &cancellables)
+    }
+    
+    func subscribeToGamesPlayed() {
+        self.statsManager.$gamesPlayed
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] newGamesPlayed in
+                guard let self else { return }
+                self.gamesPlayed = newGamesPlayed
             }
             .store(in: &cancellables)
     }

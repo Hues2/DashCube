@@ -147,8 +147,8 @@
 				2E447EB72B8FF79700173431 /* CubeSelectionView.swift */,
 				2EA48D672B91167F00F0569A /* AnimationCubeSelectionView.swift */,
 				2EA48D692B91168D00F0569A /* ColorCubeSelectionView.swift */,
-				2EA48D6B2B911B4100F0569A /* CubeSelectionViewModel.swift */,
 				2EAE6FF22B928EE00075A14E /* LockedView.swift */,
+				2EA48D6B2B911B4100F0569A /* CubeSelectionViewModel.swift */,
 			);
 			path = CubeSelection;
 			sourceTree = "<group>";

@@ -4,6 +4,7 @@ class CubesManager {
     @Published var selectedPlayerCube : PlayerCube = PlayerCube(color: .cube1,
                                                                 animation: .basic)
     init() {
+        // Load saved animation and color
         getPlayerCubeAnimation()
         getPlayerCubeColor()
     }
@@ -16,7 +17,7 @@ extension CubesManager {
         if self.selectedPlayerCube.animation != animation {
             self.selectedPlayerCube.animation = animation
         }
-        
+        // Save to user defaults
         UserDefaults.standard.setValue(animation.rawValue, forKey: Constants.UserDefaults.selectedCubeAnimation)
     }
     
@@ -29,7 +30,6 @@ extension CubesManager {
 // MARK: - Get player cube values
 private extension CubesManager {
     func getPlayerCubeAnimation() {
-        // TODO: Get saved player cube animation from user defaults
         let savedSelectedAnimationRawValue = UserDefaults.standard.string(forKey: Constants.UserDefaults.selectedCubeAnimation)
         guard let savedSelectedAnimationRawValue,
               let animation = CubeAnimation(rawValue: savedSelectedAnimationRawValue) else { return }

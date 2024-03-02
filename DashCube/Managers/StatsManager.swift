@@ -1,7 +1,9 @@
+import Foundation
 import Combine
 
 class StatsManager : ObservableObject {
     @Published private(set) var highScore : Int?
+    @Published private(set) var gamesPlayed : Int = .zero
     
     private let gameCenterManager : GameCenterManager
     
@@ -9,6 +11,7 @@ class StatsManager : ObservableObject {
     
     init(gameCenterManager: GameCenterManager) {
         self.gameCenterManager = gameCenterManager
+        self.getGamesPlayed()
         self.addSubscriptions()
     }
     
@@ -17,6 +20,7 @@ class StatsManager : ObservableObject {
     }
 }
 
+// MARK: - Subscriptions
 private extension StatsManager {
     func subscribeToHighScore() {
         self.gameCenterManager.$overallHighscore
@@ -25,5 +29,17 @@ private extension StatsManager {
                 self.highScore = newHighScore
             }
             .store(in: &cancellables)
+    }
+}
+
+// MARK: - Games Played
+extension StatsManager {
+    func getGamesPlayed() {
+        self.gamesPlayed = UserDefaults.standard.integer(forKey: Constants.UserDefaults.gamesPlayed)
+    }
+    
+    func addGamePlayed() {
+        self.gamesPlayed += 1
+        UserDefaults.standard.setValue(self.gamesPlayed, forKey: Constants.UserDefaults.gamesPlayed)
     }
 }
