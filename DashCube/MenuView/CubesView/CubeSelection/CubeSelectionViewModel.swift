@@ -52,7 +52,7 @@ private extension CubeSelectionViewModel {
             .receive(on: DispatchQueue.main)
             .sink { [weak self] newGamesPlayed in
                 guard let self else { return }
-                self.gamesPlayed = 50
+                self.gamesPlayed = newGamesPlayed
             }
             .store(in: &cancellables)
     }
