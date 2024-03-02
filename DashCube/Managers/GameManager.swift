@@ -16,12 +16,14 @@ class GameManager {
     @Published private(set) var showGameInstructions : Bool = false
     
     // Dependencies
-    let gameCenterManager : GameCenterManager
+    private let gameCenterManager : GameCenterManager
+    private let statsManager : StatsManager
     
     private var cancellables = Set<AnyCancellable>()
     
-    init(gameCenterManager : GameCenterManager) {
+    init(_ gameCenterManager : GameCenterManager, _ statsManager : StatsManager) {
         self.gameCenterManager = gameCenterManager
+        self.statsManager = statsManager
         addSubscriptions()
     }
     

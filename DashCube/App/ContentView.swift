@@ -9,8 +9,8 @@ struct ContentView: View {
     
     init() {
         self.gameCenterManager = GameCenterManager()
-        self.gameManager = GameManager(gameCenterManager : gameCenterManager)
         self.statsManager = StatsManager(gameCenterManager: gameCenterManager)
+        self.gameManager = GameManager(gameCenterManager, statsManager)
         self.cubesManager = CubesManager()
     }
     

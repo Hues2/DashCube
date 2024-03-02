@@ -19,6 +19,10 @@ struct MenuTopHalfView: View {
     var body: some View {
         VStack {
             appTitle
+                .padding(.top)
+            
+            Spacer()
+                .frame(maxHeight: .infinity)
             
             ScrollView(.horizontal) {
                 HStack(spacing: 0) {
@@ -45,8 +49,11 @@ struct MenuTopHalfView: View {
             }
             
             scrollIndicatorsView
+            
+            Spacer()
+                .frame(maxHeight: .infinity)
         }
-        .padding(.top)
+        .padding(.top)        
     }
 }
 
@@ -74,7 +81,6 @@ private extension MenuTopHalfView {
 private extension MenuTopHalfView {
     var rankView : some View {
         UserProgressView(viewModel: self.viewModel)
-            .frame(maxHeight: .infinity)
             .withMenuScrollViewAnimation()
     }
 }
