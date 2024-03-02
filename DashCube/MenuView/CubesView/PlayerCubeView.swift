@@ -24,6 +24,8 @@ private extension PlayerCubeView {
                 .padding(.bottom)
             
             cubeView
+            
+            customiseButton
         }
     }
     
@@ -38,14 +40,20 @@ private extension PlayerCubeView {
     var cubeView : some View {
         CubeView(basicCube: viewModel.selectedPlayerCube)
             .frame(maxWidth: .infinity)
+            .frame(height: 150)
             .background(
                 Color.customBackground
                     .opacity(0.5)
                     .clipShape(RoundedRectangle(cornerRadius: Constants.UI.cornerRadius))
             )
             .withRoundedGradientBorder(colors: [viewModel.selectedPlayerCube.cubeColor.color])
-            .onTapGesture {
+    }
+    
+    var customiseButton : some View {
+        CustomButton(title: "customise_cube".localizedString) {
+            withAnimation {
                 self.showCubeSelectionSheet = true
             }
+        }
     }
 }

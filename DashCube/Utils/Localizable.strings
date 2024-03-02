@@ -18,7 +18,8 @@
 "view_leaderboard" = "View leaderboard";
 
 // Menu - Cubes
-"select_a_cube" = "Select your cube:";
+"select_a_cube" = "Your cube:";
+"customise_cube" = "Customise";
 
 // Cube selection
 "select_cube_animation" = "Select animation:";
