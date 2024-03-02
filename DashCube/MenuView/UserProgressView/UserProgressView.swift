@@ -73,6 +73,7 @@ private extension UserProgressView {
                 if isRank, value == 1 {
                     Image(systemName: "trophy")
                         .foregroundStyle(.yellow)
+                        .fontWeight(.light)
                 }
             }
         }

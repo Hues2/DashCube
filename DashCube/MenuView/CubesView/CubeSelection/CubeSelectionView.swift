@@ -11,8 +11,9 @@ struct CubeSelectionView: View {
                 .padding(.bottom)
             Spacer()
         }
-        .frame(maxHeight: .infinity)
         .padding()
+        .frame(maxWidth: .infinity , maxHeight: .infinity)
+        .background(Color.customBackground)
     }
 }
 
