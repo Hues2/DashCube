@@ -5,8 +5,8 @@ class CubesManager {
                                                                 animation: .basic)
     init() {
         // Load saved animation and color
-        getPlayerCubeAnimation()
-        getPlayerCubeColor()
+        self.getPlayerCubeAnimation()
+        self.getPlayerCubeColor()
     }
 }
 
@@ -22,8 +22,11 @@ extension CubesManager {
     }
     
     func changeSelectedColor(to color : Color) {
-        self.selectedPlayerCube.color = color
-        // TODO: Save the color to user defaults
+        if self.selectedPlayerCube.color != color {
+            self.selectedPlayerCube.color = color
+        }
+        
+        UserDefaults.standard.setColor(color: UIColor(color), forKey: Constants.UserDefaults.selectedCubeColor)
     }
 }
 
@@ -37,6 +40,8 @@ private extension CubesManager {
     }
     
     func getPlayerCubeColor() {
-        // TODO: Get saved player cube color from user defaults
+        let savedSelectedColor = UserDefaults.standard.colorForKey(key: Constants.UserDefaults.selectedCubeColor)
+        guard let savedSelectedColor else { return }
+        self.selectedPlayerCube.color = Color(uiColor: savedSelectedColor)
     }
 }
