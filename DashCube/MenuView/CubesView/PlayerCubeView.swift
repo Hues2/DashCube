@@ -43,7 +43,7 @@ private extension PlayerCubeView {
                     .opacity(0.5)
                     .clipShape(RoundedRectangle(cornerRadius: Constants.UI.cornerRadius))
             )
-            .withRoundedGradientBorder(colors: [viewModel.selectedPlayerCube.color])
+            .withRoundedGradientBorder(colors: [viewModel.selectedPlayerCube.cubeColor.color])
             .onTapGesture {
                 self.showCubeSelectionSheet = true
             }

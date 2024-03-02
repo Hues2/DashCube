@@ -1,7 +1,7 @@
 import SwiftUI
 
 class CubesManager {
-    @Published var selectedPlayerCube : PlayerCube = PlayerCube(color: .cube1,
+    @Published var selectedPlayerCube : PlayerCube = PlayerCube(cubeColor: .cube1,
                                                                 animation: .basic)
     init() {
         // Load saved animation and color
@@ -21,12 +21,12 @@ extension CubesManager {
         UserDefaults.standard.setValue(animation.rawValue, forKey: Constants.UserDefaults.selectedCubeAnimation)
     }
     
-    func changeSelectedColor(to color : Color) {
-        if self.selectedPlayerCube.color != color {
-            self.selectedPlayerCube.color = color
+    func changeSelectedColor(to cubeColor : CubeColor) {
+        if self.selectedPlayerCube.cubeColor != cubeColor {
+            self.selectedPlayerCube.cubeColor = cubeColor
         }
         
-        UserDefaults.standard.setColor(color: UIColor(color), forKey: Constants.UserDefaults.selectedCubeColor)
+        UserDefaults.standard.setValue(cubeColor.rawValue, forKey: Constants.UserDefaults.selectedCubeColor)
     }
 }
 
@@ -40,8 +40,8 @@ private extension CubesManager {
     }
     
     func getPlayerCubeColor() {
-        let savedSelectedColor = UserDefaults.standard.colorForKey(key: Constants.UserDefaults.selectedCubeColor)
-        guard let savedSelectedColor else { return }
-        self.selectedPlayerCube.color = Color(uiColor: savedSelectedColor)
+        let savedSelectedCubeColorRawValue = UserDefaults.standard.value(forKey: Constants.UserDefaults.selectedCubeColor) as? String
+        guard let savedSelectedCubeColorRawValue, let cubeColor = CubeColor(rawValue: savedSelectedCubeColorRawValue) else { return }
+        self.selectedPlayerCube.cubeColor = cubeColor
     }
 }

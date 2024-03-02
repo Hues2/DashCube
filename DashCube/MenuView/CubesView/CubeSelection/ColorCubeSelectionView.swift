@@ -28,18 +28,37 @@ private extension ColorCubeSelectionView {
     var grid : some View {
         LazyVGrid(columns: columns) {
             ForEach(viewModel.colorCubes) { colorCube in
-                CubeView(basicCube: colorCube)
-                    .scaledToFit()
-                    .overlay {
-                        RoundedRectangle(cornerRadius: Constants.UI.cornerRadius)
-                            .stroke(viewModel.selectedPlayerCube.color.description.localizedString == colorCube.color.description.localizedString ? .white : (.white.opacity(0.2)))
-                    }
-                    .contentShape(RoundedRectangle(cornerRadius: Constants.UI.cornerRadius))
+                cubeView(colorCube)
                     .onTapGesture {
-                        withAnimation {
-                            self.viewModel.changeSelectedColor(to: colorCube.color)
-                        }
+                        self.changeSelectedColor(colorCube)
                     }
+            }
+        }
+    }
+    
+    func cubeView(_ colorCube : ColorCube) -> some View {
+        ZStack {
+            CubeView(basicCube: colorCube)
+                .scaledToFit()
+            
+            if colorCube.requiredGamesPlayed > self.viewModel.gamesPlayed {
+                LockedView(value: colorCube.requiredGamesPlayed)
+            }
+        }
+        .overlay {
+            RoundedRectangle(cornerRadius: Constants.UI.cornerRadius)
+                .stroke(viewModel.selectedPlayerCube.cubeColor == colorCube.cubeColor ? .white : (.white.opacity(0.2)))
+        }
+        .contentShape(RoundedRectangle(cornerRadius: Constants.UI.cornerRadius))
+    }
+}
+
+// MARK: - Functionality
+private extension ColorCubeSelectionView {
+    func changeSelectedColor(_ colorCube : ColorCube) {
+        if self.viewModel.gamesPlayed >= colorCube.requiredGamesPlayed {
+            withAnimation {
+                self.viewModel.changeSelectedCubeColor(to: colorCube.cubeColor)
             }
         }
     }

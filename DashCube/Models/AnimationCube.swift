@@ -6,6 +6,6 @@ import SwiftUI
 struct AnimationCube : BasicCube, Identifiable {
     let id : String = UUID().uuidString
     var animation : CubeAnimation
-    var color : Color = .white
+    var cubeColor : CubeColor
     let requiredHighscore : Int
 }

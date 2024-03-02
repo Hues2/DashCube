@@ -6,7 +6,7 @@ class PlayerCubeNode: SCNNode {
     private var jumpLeftAction : SCNAction!
     private let initialRotation = SCNVector4(x: 0, y: 0, z: 0, w: 0)
     let initialPlayerPosition : SCNVector3 = SCNVector3(0, 13, 0)
-    var playerCubeModel : PlayerCube = PlayerCube(color: .cube1,
+    var playerCubeModel : PlayerCube = PlayerCube(cubeColor: .cube1,
                                                   animation: .basic)
     
     override init() {
@@ -39,7 +39,7 @@ private extension PlayerCubeNode {
         
         // Create a material for the box
         let material = SCNMaterial()
-        material.diffuse.contents = UIColor(playerCubeModel.color)
+        material.diffuse.contents = UIColor(playerCubeModel.cubeColor.color)
         
         // Apply the material to the box
         geometry.materials = [material]

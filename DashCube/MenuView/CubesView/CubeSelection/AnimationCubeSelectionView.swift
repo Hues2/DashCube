@@ -26,7 +26,7 @@ private extension AnimationCubeSelectionView {
     }
     
     var grid : some View {
-        LazyVGrid(columns: columns) {
+        LazyVGrid(columns: columns) { 
             ForEach(viewModel.animationCubes) { animationCube in
                 cubeView(animationCube)
                     .onTapGesture {
@@ -38,7 +38,8 @@ private extension AnimationCubeSelectionView {
     
     func cubeView(_ animationCube : AnimationCube) -> some View {
         ZStack {
-            cube(animationCube)
+            CubeView(basicCube: animationCube)
+                .scaledToFit()
             
             if animationCube.requiredHighscore > self.viewModel.highScore {
                 LockedView(value: animationCube.requiredHighscore)
@@ -49,11 +50,6 @@ private extension AnimationCubeSelectionView {
                 .stroke(viewModel.selectedPlayerCube.animation.rawValue == animationCube.animation.rawValue ? .white : (.white.opacity(0.2)))
         }
         .contentShape(RoundedRectangle(cornerRadius: Constants.UI.cornerRadius))
-    }
-    
-    func cube(_ animationCube : AnimationCube) -> some View {
-        CubeView(basicCube: animationCube)
-            .scaledToFit()
     }
 }
 

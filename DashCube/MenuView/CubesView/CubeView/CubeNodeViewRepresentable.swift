@@ -40,7 +40,7 @@ struct CubeNodeViewRepresentable: UIViewRepresentable {
 //        cubeNode.eulerAngles = SCNVector3Zero
         cubeNode.position = SCNVector3Zero
         cubeNode.rotation = SCNVector4Zero
-        cubeNode.geometry?.firstMaterial?.diffuse.contents = UIColor(basicCube.color)
+        cubeNode.geometry?.firstMaterial?.diffuse.contents = UIColor(basicCube.cubeColor.color)
         self.animateCube(cubeNode)
     }
     
@@ -53,7 +53,7 @@ struct CubeNodeViewRepresentable: UIViewRepresentable {
         
         // Create a material for the box
         let material = SCNMaterial()
-        material.diffuse.contents = UIColor(basicCube.color)
+        material.diffuse.contents = UIColor(basicCube.cubeColor.color)
         
         // Apply the material to the box
         boxGeometry.materials = [material]

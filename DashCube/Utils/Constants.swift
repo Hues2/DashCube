@@ -68,18 +68,18 @@ class Constants {
     // MARK: - Animation Cubes
     struct AnimationCubes {
         static let animationCubes : [AnimationCube] = [
-            .init(animation: .basic, requiredHighscore: .zero),
-            .init(animation: .yAxisSpin, requiredHighscore: 15),
-            .init(animation: .basicWithYAxisSpin, requiredHighscore: 30)
+            .init(animation: .basic, cubeColor: .white, requiredHighscore: .zero),
+            .init(animation: .yAxisSpin, cubeColor: .white, requiredHighscore: 15),
+            .init(animation: .basicWithYAxisSpin, cubeColor: .white, requiredHighscore: 30)
         ]
     }
     // MARK: - Animation Cubes
     struct ColorCubes {
         static let colorCubes : [ColorCube] = [
-            .init(animation: .none, color: .cube1, requiredGamesPlayed: 0),
-            .init(animation: .none, color: .cube2, requiredGamesPlayed: 10),
-            .init(animation: .none, color: .cube3, requiredGamesPlayed: 20),
-            .init(animation: .none, color: .cube4, requiredGamesPlayed: 30),
+            .init(animation: .none, cubeColor: .cube1, requiredGamesPlayed: 0),
+            .init(animation: .none, cubeColor: .cube2, requiredGamesPlayed: 10),
+            .init(animation: .none, cubeColor: .cube3, requiredGamesPlayed: 20),
+            .init(animation: .none, cubeColor: .cube4, requiredGamesPlayed: 30),
         ]
     }
     // MARK: - Game Center

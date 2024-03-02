@@ -52,7 +52,7 @@ private extension CubeSelectionViewModel {
             .receive(on: DispatchQueue.main)
             .sink { [weak self] newGamesPlayed in
                 guard let self else { return }
-                self.gamesPlayed = newGamesPlayed
+                self.gamesPlayed = 50
             }
             .store(in: &cancellables)
     }
@@ -77,7 +77,7 @@ extension CubeSelectionViewModel {
 
 // MARK: - Change selected cube color
 extension CubeSelectionViewModel {
-    func changeSelectedColor(to color : Color) {
-        self.cubesManager.changeSelectedColor(to: color)
+    func changeSelectedCubeColor(to cubeColor : CubeColor) {
+        self.cubesManager.changeSelectedColor(to: cubeColor)
     }
 }
