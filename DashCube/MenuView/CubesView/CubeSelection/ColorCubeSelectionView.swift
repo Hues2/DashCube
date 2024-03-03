@@ -12,7 +12,9 @@ struct ColorCubeSelectionView: View {
 private extension ColorCubeSelectionView {
     var content : some View {
         VStack(alignment: .leading, spacing: 15) {            
-            GridTitleView(title: "select_cube_color".localizedString, subTitle: "unlock_with_games_played".localizedString)
+            GridTitleView(title: "select_cube_color".localizedString,
+                          subTitle: "unlock_with_games_played".localizedString,
+                          showSubTitle: viewModel.showColorCubeSubTitle())
             grid
         }
     }

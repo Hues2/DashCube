@@ -12,7 +12,9 @@ struct AnimationCubeSelectionView: View {
 private extension AnimationCubeSelectionView {
     var content : some View {
         VStack(alignment: .leading, spacing: 15) {            
-            GridTitleView(title: "select_cube_animation".localizedString, subTitle: "unlock_with_highscore".localizedString)
+            GridTitleView(title: "select_cube_animation".localizedString,
+                          subTitle: "unlock_with_highscore".localizedString,
+                          showSubTitle: viewModel.showAnimationCubeSubTitle())
             grid
         }
     }

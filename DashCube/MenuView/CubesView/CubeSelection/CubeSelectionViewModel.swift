@@ -68,15 +68,25 @@ private extension CubeSelectionViewModel {
     }
 }
 
-// MARK: - Change selected cube animation
+// MARK: - Show subtitles
+extension CubeSelectionViewModel {
+    func showAnimationCubeSubTitle() -> Bool {
+        guard let lastAnimationCube = self.animationCubes.last else { return true }
+        return self.highScore < lastAnimationCube.requiredHighscore
+    }
+    
+    func showColorCubeSubTitle() -> Bool {
+        guard let lastColorCube = self.colorCubes.last else { return true }
+        return self.gamesPlayed < lastColorCube.requiredGamesPlayed
+    }
+}
+
+// MARK: - Change selected cube values
 extension CubeSelectionViewModel {
     func changeSelectedAnimation(to animation : CubeAnimation) {
         self.cubesManager.changeSelectedAnimation(to: animation)        
     }
-}
-
-// MARK: - Change selected cube color
-extension CubeSelectionViewModel {
+    
     func changeSelectedCubeColor(to cubeColor : CubeColor) {
         self.cubesManager.changeSelectedColor(to: cubeColor)
     }
