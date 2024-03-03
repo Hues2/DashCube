@@ -33,6 +33,7 @@
 // Menu - Stats
 "stats_title" = "Stats";
 "games_played" = "Games played:";
+"average_score" = "Average score:";
 
 // Menu View - Play Button
 "play_button_title" = "Play";

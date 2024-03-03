@@ -2,8 +2,9 @@ import SwiftUI
 import Combine
 
 class StatsViewModel : ObservableObject {
-    @Published private(set) var highScore : Int
-    @Published private(set) var gamesPlayed : Int
+    @Published private(set) var highScore : Int?
+    @Published private(set) var gamesPlayed : Int?
+    @Published private(set) var averageScore : Int?
     
     // Dependencies
     let statsManager : StatsManager
@@ -14,7 +15,7 @@ class StatsViewModel : ObservableObject {
         self.statsManager = statsManager
         // Set the values here, instead of giving them a default value
         // These values will get set via the combine subscriptions
-        self.highScore = statsManager.highScore ?? .zero
+        self.highScore = statsManager.highScore
         self.gamesPlayed = statsManager.gamesPlayed
         addSubscriptions()
     }
@@ -31,7 +32,7 @@ private extension StatsViewModel {
         self.statsManager.$highScore
             .receive(on: DispatchQueue.main)
             .sink { [weak self] newHighScore in
-                guard let self, let newHighScore else { return }
+                guard let self else { return }
                 self.highScore = newHighScore
             }
             .store(in: &cancellables)
