@@ -28,9 +28,8 @@ struct MenuTopHalfView: View {
                     
                     rankView
                         .id(ScrollPositionId.progress)
-                    
-                    // TODO: Add the stats view here
-                    rankView
+                                        
+                    statsView
                         .id(ScrollPositionId.stats)
                 }
                 .scrollTargetLayout()
@@ -67,6 +66,14 @@ private extension MenuTopHalfView {
     var rankView : some View {
         UserProgressView(viewModel: self.viewModel)
             .withMenuScrollViewAnimation()
+    }
+}
+
+// MARK: - Stats View
+private extension MenuTopHalfView {
+    var statsView : some View {
+        StatsView(self.viewModel.statsManager)
+            .withMenuScrollViewAnimation()            
     }
 }
 

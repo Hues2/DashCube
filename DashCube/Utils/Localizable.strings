@@ -31,6 +31,8 @@
 "games_played_required" = "Games played: %d";
 
 // Menu - Stats
+"stats_title" = "Stats";
+"games_played" = "Games played:";
 
 // Menu View - Play Button
 "play_button_title" = "Play";

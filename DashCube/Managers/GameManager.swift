@@ -147,6 +147,7 @@ extension GameManager {
                 self.score = 0
                 self.gameState = .playing
                 self.showGameInstructions = true
+                self.statsManager.addGamePlayed()
             }
         }
     }

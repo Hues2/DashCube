@@ -24,6 +24,8 @@
 		2E99A0682B87D2C9008EAF43 /* VerticalLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E99A0672B87D2C9008EAF43 /* VerticalLine.swift */; };
 		2E9ACA872B699D3D0090245B /* DeadZoneNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9ACA862B699D3D0090245B /* DeadZoneNode.swift */; };
 		2E9E66942B94B0770059E1FD /* GridTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9E66932B94B0770059E1FD /* GridTitleView.swift */; };
+		2E9E66962B94FB990059E1FD /* StatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9E66952B94FB990059E1FD /* StatsView.swift */; };
+		2E9E66982B94FC490059E1FD /* StatsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9E66972B94FC490059E1FD /* StatsViewModel.swift */; };
 		2E9EC6612B795AB800141568 /* CubeNodeViewRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9EC6602B795AB800141568 /* CubeNodeViewRepresentable.swift */; };
 		2E9EC6632B795D6800141568 /* PlayerCubeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9EC6622B795D6800141568 /* PlayerCubeView.swift */; };
 		2EA0A1572B8020D30014AE22 /* CubesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EA0A1562B8020D30014AE22 /* CubesManager.swift */; };
@@ -84,6 +86,8 @@
 		2E99A0672B87D2C9008EAF43 /* VerticalLine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticalLine.swift; sourceTree = "<group>"; };
 		2E9ACA862B699D3D0090245B /* DeadZoneNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeadZoneNode.swift; sourceTree = "<group>"; };
 		2E9E66932B94B0770059E1FD /* GridTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridTitleView.swift; sourceTree = "<group>"; };
+		2E9E66952B94FB990059E1FD /* StatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsView.swift; sourceTree = "<group>"; };
+		2E9E66972B94FC490059E1FD /* StatsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsViewModel.swift; sourceTree = "<group>"; };
 		2E9EC6602B795AB800141568 /* CubeNodeViewRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CubeNodeViewRepresentable.swift; sourceTree = "<group>"; };
 		2E9EC6622B795D6800141568 /* PlayerCubeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerCubeView.swift; sourceTree = "<group>"; };
 		2EA0A1562B8020D30014AE22 /* CubesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CubesManager.swift; sourceTree = "<group>"; };
@@ -201,6 +205,8 @@
 		2EA199B12B8E5587009A42D0 /* StatsView */ = {
 			isa = PBXGroup;
 			children = (
+				2E9E66952B94FB990059E1FD /* StatsView.swift */,
+				2E9E66972B94FC490059E1FD /* StatsViewModel.swift */,
 			);
 			path = StatsView;
 			sourceTree = "<group>";
@@ -470,9 +476,11 @@
 				2E52F0E52B6AC282009014CF /* CustomButton.swift in Sources */,
 				2EAE6FF12B927D780075A14E /* StatsManager.swift in Sources */,
 				2EB1E7DA2B8BAFCE006199FB /* MenuBottomHalfView.swift in Sources */,
+				2E9E66982B94FC490059E1FD /* StatsViewModel.swift in Sources */,
 				2EA119D82B76D5F400F4B481 /* AmbientLightNode.swift in Sources */,
 				2EFD816D2B79856000CEB4A3 /* PlayerCube.swift in Sources */,
 				2EA48D6A2B91168D00F0569A /* ColorCubeSelectionView.swift in Sources */,
+				2E9E66962B94FB990059E1FD /* StatsView.swift in Sources */,
 				2EE69A402B79902800DC44BE /* Array.swift in Sources */,
 				2EAE6FF32B928EE00075A14E /* LockedView.swift in Sources */,
 				2EA48D682B91167F00F0569A /* AnimationCubeSelectionView.swift in Sources */,
