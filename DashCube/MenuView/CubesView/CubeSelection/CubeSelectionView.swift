@@ -18,8 +18,8 @@ struct CubeSelectionView: View {
 // MARK: - Header
 private extension CubeSelectionView {
     var header : some View {
-        VStack {
-            ZStack(alignment: .trailing) {
+        ZStack(alignment: .trailing) {
+            Group {
                 Text("cube_customisation".localizedString)
                     .font(.title)
                     .fontWeight(.bold)
@@ -37,6 +37,7 @@ private extension CubeSelectionView {
             }
             .padding()
         }
+        .padding(.vertical)
         .foregroundStyle(.white)
         .background(
             Color.customBackground
@@ -57,7 +58,7 @@ private extension CubeSelectionView {
             VStack {
                 animationCubes
                     .padding(.bottom)
-                    .padding(.top, 20)
+                    .padding(.top, 25)
                 colorCubes
                     .padding(.bottom)
             }

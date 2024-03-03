@@ -23,6 +23,7 @@
 		2E97E7F12B86B13600839866 /* TapGestureManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E97E7F02B86B13600839866 /* TapGestureManager.swift */; };
 		2E99A0682B87D2C9008EAF43 /* VerticalLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E99A0672B87D2C9008EAF43 /* VerticalLine.swift */; };
 		2E9ACA872B699D3D0090245B /* DeadZoneNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9ACA862B699D3D0090245B /* DeadZoneNode.swift */; };
+		2E9E66942B94B0770059E1FD /* GridTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9E66932B94B0770059E1FD /* GridTitleView.swift */; };
 		2E9EC6612B795AB800141568 /* CubeNodeViewRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9EC6602B795AB800141568 /* CubeNodeViewRepresentable.swift */; };
 		2E9EC6632B795D6800141568 /* PlayerCubeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9EC6622B795D6800141568 /* PlayerCubeView.swift */; };
 		2EA0A1572B8020D30014AE22 /* CubesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EA0A1562B8020D30014AE22 /* CubesManager.swift */; };
@@ -82,6 +83,7 @@
 		2E97E7F02B86B13600839866 /* TapGestureManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TapGestureManager.swift; sourceTree = "<group>"; };
 		2E99A0672B87D2C9008EAF43 /* VerticalLine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticalLine.swift; sourceTree = "<group>"; };
 		2E9ACA862B699D3D0090245B /* DeadZoneNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeadZoneNode.swift; sourceTree = "<group>"; };
+		2E9E66932B94B0770059E1FD /* GridTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridTitleView.swift; sourceTree = "<group>"; };
 		2E9EC6602B795AB800141568 /* CubeNodeViewRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CubeNodeViewRepresentable.swift; sourceTree = "<group>"; };
 		2E9EC6622B795D6800141568 /* PlayerCubeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerCubeView.swift; sourceTree = "<group>"; };
 		2EA0A1562B8020D30014AE22 /* CubesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CubesManager.swift; sourceTree = "<group>"; };
@@ -151,6 +153,7 @@
 				2EA48D692B91168D00F0569A /* ColorCubeSelectionView.swift */,
 				2EAE6FF22B928EE00075A14E /* LockedView.swift */,
 				2EA48D6B2B911B4100F0569A /* CubeSelectionViewModel.swift */,
+				2E9E66932B94B0770059E1FD /* GridTitleView.swift */,
 			);
 			path = CubeSelection;
 			sourceTree = "<group>";
@@ -507,6 +510,7 @@
 				2EADDD472B66950B00D724BF /* GameView.swift in Sources */,
 				2E52F0DF2B6AB7BE009014CF /* GameOverView.swift in Sources */,
 				2EADDD2A2B66924000D724BF /* CubeDropApp.swift in Sources */,
+				2E9E66942B94B0770059E1FD /* GridTitleView.swift in Sources */,
 				2E78123C2B66EE4D009CEE78 /* GameState.swift in Sources */,
 				2E447EBB2B8FFCB600173431 /* AnimationCube.swift in Sources */,
 				2EADDD532B6697A900D724BF /* SwipeGestureManager.swift in Sources */,

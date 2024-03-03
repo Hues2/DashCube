@@ -11,18 +11,10 @@ struct AnimationCubeSelectionView: View {
 
 private extension AnimationCubeSelectionView {
     var content : some View {
-        VStack(alignment: .leading, spacing: 15) {
-            title
+        VStack(alignment: .leading, spacing: 15) {            
+            GridTitleView(title: "select_cube_animation".localizedString, subTitle: "unlock_with_highscore".localizedString)
             grid
         }
-    }
-    
-    var title : some View {
-        Text("select_cube_animation".localizedString)
-            .font(.title3)
-            .foregroundStyle(.white)
-            .fontDesign(.rounded)
-            .fontWeight(.semibold)
     }
     
     var grid : some View {

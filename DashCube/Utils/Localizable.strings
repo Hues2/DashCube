@@ -24,6 +24,8 @@
 // Cube selection
 "cube_customisation" = "Cube customisation";
 "select_cube_animation" = "Select animation:";
+"unlock_with_highscore" = "(Unlock by achieving the required highscore)";
+"unlock_with_games_played" = "(Unlock by playing the required number of games)";
 "select_cube_color" = "Select color:";
 "highscore_required" = "High score: %d";
 "games_played_required" = "Games played: %d";
