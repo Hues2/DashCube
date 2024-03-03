@@ -5,16 +5,10 @@ struct CubeSelectionView: View {
     @ObservedObject var viewModel : CubeSelectionViewModel
     
     var body: some View {
-        VStack(spacing: 25) {
+        VStack(spacing: 0) {
             header
-            Group {
-                animationCubes
-                    .padding(.top)
-                colorCubes
-                    .padding(.bottom)
-                Spacer()
-            }
-            .padding()
+            scrollView
+                .padding(.horizontal)
         }
         .frame(maxWidth: .infinity , maxHeight: .infinity)
         .background(Color.customBackground)
@@ -24,16 +18,8 @@ struct CubeSelectionView: View {
 // MARK: - Header
 private extension CubeSelectionView {
     var header : some View {
-        ZStack(alignment: .trailing) {
-            Color.customBackground
-                .cornerRadius(Constants.UI.cornerRadius, corners: [.bottomLeft, .bottomRight])
-                .padding(.bottom, 1)
-                .background(
-                    LinearGradient(colors: [.customAqua, .customStrawberry], startPoint: .leading, endPoint: .trailing)
-                        .cornerRadius(Constants.UI.cornerRadius, corners: [.bottomLeft, .bottomRight])
-                )
-            
-            Group {
+        VStack {
+            ZStack(alignment: .trailing) {
                 Text("cube_customisation".localizedString)
                     .font(.title)
                     .fontWeight(.bold)
@@ -52,6 +38,30 @@ private extension CubeSelectionView {
             .padding()
         }
         .foregroundStyle(.white)
+        .background(
+            Color.customBackground
+                .cornerRadius(Constants.UI.cornerRadius, corners: [.bottomLeft, .bottomRight])
+                .padding(.bottom, 2)
+                .background(
+                    LinearGradient(colors: [.customAqua, .customStrawberry], startPoint: .leading, endPoint: .trailing)
+                        .cornerRadius(Constants.UI.cornerRadius, corners: [.bottomLeft, .bottomRight])
+                )
+        )
+    }
+}
+
+// MARK: - ScrollView
+private extension CubeSelectionView {
+    var scrollView : some View {
+        ScrollView {
+            VStack {
+                animationCubes
+                    .padding(.bottom)
+                    .padding(.top, 20)
+                colorCubes
+                    .padding(.bottom)
+            }
+        }
     }
 }
 
