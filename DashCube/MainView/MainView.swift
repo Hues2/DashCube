@@ -24,17 +24,16 @@ struct MainView: View {
             VStack {
                 switch viewModel.gameState {
                 case .menu:
+                    appTitle
+                        .transition(.move(edge: .top).combined(with: .opacity))
+                        .padding(.top)
                     menuTopHalf
+                    menuBottomHalf
+                        .transition(.move(edge: .bottom).combined(with: .opacity))
                 case .over(timerEnded: true), .over(timerEnded: false):
                     gameOverView
                 default:
                     EmptyView()
-                }
-                
-                // This allows us to animate the bottom half of the menu, independently of the top half
-                if viewModel.gameState == .menu {
-                    menuBottomHalf
-                    .transition(.move(edge: .bottom).combined(with: .opacity))
                 }
             }
         }
@@ -50,6 +49,18 @@ private extension MainView {
                  gameCenterManager: menuViewModel.gameCenterManager,
                  namespace: namespace,
                  mainGameState: $viewModel.gameState)
+    }
+}
+
+// MARK: - App Title
+private extension MainView {
+    var appTitle : some View {
+        Text("app_title".localizedString)
+            .font(.largeTitle)
+            .fontWeight(.black)
+            .fontDesign(.rounded)
+            .foregroundStyle(.white)
+        
     }
 }
 

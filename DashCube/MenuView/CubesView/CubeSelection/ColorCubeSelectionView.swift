@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct ColorCubeSelectionView: View {
+struct ColorCubeSelectionView: View {    
     @ObservedObject var viewModel : CubeSelectionViewModel
     private let columns : [GridItem] = [GridItem(.adaptive(minimum: 100))]
     
@@ -19,10 +19,10 @@ private extension ColorCubeSelectionView {
     
     var title : some View {
         Text("select_cube_color".localizedString)
-            .font(.title)
+            .font(.title3)
             .foregroundStyle(.white)
             .fontDesign(.rounded)
-            .fontWeight(.bold)
+            .fontWeight(.semibold)
     }
     
     var grid : some View {

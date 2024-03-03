@@ -19,10 +19,10 @@ private extension AnimationCubeSelectionView {
     
     var title : some View {
         Text("select_cube_animation".localizedString)
-            .font(.title)
+            .font(.title3)
             .foregroundStyle(.white)
             .fontDesign(.rounded)
-            .fontWeight(.bold)
+            .fontWeight(.semibold)
     }
     
     var grid : some View {

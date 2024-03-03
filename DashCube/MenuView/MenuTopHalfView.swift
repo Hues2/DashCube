@@ -17,10 +17,7 @@ struct MenuTopHalfView: View {
     
     
     var body: some View {
-        VStack {
-            appTitle
-                .padding(.top)
-            
+        VStack {            
             Spacer()
                 .frame(maxHeight: .infinity)
             
@@ -54,18 +51,6 @@ struct MenuTopHalfView: View {
                 .frame(maxHeight: .infinity)
         }
         .padding(.top)        
-    }
-}
-
-// MARK: - App Title
-private extension MenuTopHalfView {
-    var appTitle : some View {
-        Text("app_title".localizedString)
-            .font(.largeTitle)
-            .fontWeight(.black)
-            .fontDesign(.rounded)
-            .foregroundStyle(.white)
-        
     }
 }
 

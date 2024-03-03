@@ -22,6 +22,7 @@
 "customise_cube" = "Customise";
 
 // Cube selection
+"cube_customisation" = "Cube customisation";
 "select_cube_animation" = "Select animation:";
 "select_cube_color" = "Select color:";
 "highscore_required" = "High score: %d";
