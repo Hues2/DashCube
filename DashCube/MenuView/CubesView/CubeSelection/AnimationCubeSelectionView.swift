@@ -39,6 +39,10 @@ private extension AnimationCubeSelectionView {
                 LockedView(value: animationCube.requiredHighscore)
             }
         }
+        .background(
+            Color.customBackground
+                .clipShape(.rect(cornerRadius: Constants.UI.cornerRadius))
+        )
         .overlay {
             RoundedRectangle(cornerRadius: Constants.UI.cornerRadius)
                 .stroke(viewModel.selectedPlayerCube.animation.rawValue == animationCube.animation.rawValue ? .white : (.white.opacity(0.2)))

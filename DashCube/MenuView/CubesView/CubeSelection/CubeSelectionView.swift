@@ -11,7 +11,10 @@ struct CubeSelectionView: View {
                 .padding(.horizontal)
         }
         .frame(maxWidth: .infinity , maxHeight: .infinity)
-        .background(Color.customBackground)
+        .background(
+            Color.white.opacity(0.07)
+                .ignoresSafeArea()
+        )
     }
 }
 

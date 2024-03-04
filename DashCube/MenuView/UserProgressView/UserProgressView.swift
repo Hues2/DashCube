@@ -9,6 +9,7 @@ struct UserProgressView: View {
             .onAppear { self.viewModel.fetchOverallRank() }
             .sheet(isPresented: $isGameCenterPresented) {
                 GameCenterView(leaderboardID: Constants.GameCenter.classicLeaderboard)
+                    .ignoresSafeArea()
             }
     }
 }

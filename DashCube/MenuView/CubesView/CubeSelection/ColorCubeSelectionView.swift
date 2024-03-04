@@ -39,6 +39,10 @@ private extension ColorCubeSelectionView {
                 LockedView(value: colorCube.requiredGamesPlayed)
             }
         }
+        .background(
+            Color.customBackground
+                .clipShape(.rect(cornerRadius: Constants.UI.cornerRadius))
+        )
         .overlay {
             RoundedRectangle(cornerRadius: Constants.UI.cornerRadius)
                 .stroke(viewModel.selectedPlayerCube.cubeColor == colorCube.cubeColor ? .white : (.white.opacity(0.2)))
