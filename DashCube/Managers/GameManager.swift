@@ -176,5 +176,6 @@ private extension GameManager {
         self.stopTimer()
         self.resetTimerValues()
         self.setHighScore()
+        self.statsManager.addToTotalPoints(self.score)
     }
 }

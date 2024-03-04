@@ -4,7 +4,8 @@ import Combine
 class StatsViewModel : ObservableObject {
     @Published private(set) var highScore : Int?
     @Published private(set) var gamesPlayed : Int?
-    @Published private(set) var averageScore : Int?
+    @Published private(set) var averageScore : Double?
+    @Published private(set) var totalPoints : Int?
     
     // Dependencies
     let statsManager : StatsManager
@@ -23,6 +24,8 @@ class StatsViewModel : ObservableObject {
     private func addSubscriptions() {
         subscribeToHighScore()
         subscribeToGamesPlayed()
+        subscribeToAverageScore()
+        subscribeToTotalPoints()
     }
 }
 
@@ -44,6 +47,26 @@ private extension StatsViewModel {
             .sink { [weak self] newGamesPlayed in
                 guard let self else { return }
                 self.gamesPlayed = newGamesPlayed
+            }
+            .store(in: &cancellables)
+    }
+    
+    func subscribeToAverageScore() {
+        self.statsManager.$averageScore
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] newAverageScore in
+                guard let self else { return }
+                self.averageScore = newAverageScore
+            }
+            .store(in: &cancellables)
+    }
+    
+    func subscribeToTotalPoints() {
+        self.statsManager.$totalPoints
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] newTotalPoints in
+                guard let self else { return }
+                self.totalPoints = newTotalPoints
             }
             .store(in: &cancellables)
     }

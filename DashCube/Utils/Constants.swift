@@ -50,6 +50,7 @@ class Constants {
         static let selectedCubeAnimation : String = "selectedCubeAnimation"
         static let selectedCubeColor : String = "selectedCubeColor"
         static let gamesPlayed : String = "gamesPlayed"
+        static let totalPoints : String = "totalPoints"
     }
     // MARK: - Game Timer
     struct GameTimer {

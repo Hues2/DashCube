@@ -44,13 +44,17 @@ private extension StatsView {
                 .listRowBackground(Color.clear)
             row("games_played".localizedString, viewModel.gamesPlayed)
                 .listRowBackground(Color.clear)
+            row("average_score".localizedString, viewModel.averageScore)
+                .listRowBackground(Color.clear)
+            row("total_points".localizedString, viewModel.totalPoints)
+                .listRowBackground(Color.clear)
         }
         .listStyle(.plain)
         .background(Color.clear)
         .listRowInsets(.none)
     }
     
-    func row(_ title : String, _ value : Int?) -> some View {
+    func row(_ title : String, _ value : Any?) -> some View {
         HStack(spacing: 7.5) {
             Text(title)
                 .font(.title2)
@@ -61,8 +65,10 @@ private extension StatsView {
             Spacer()
             
             Group {
-                if let value {
+                if let value = value as? Int, value > .zero {
                     Text("\(value)")
+                } else if let value = value as? Double, value > .zero {
+                    Text("\(value.toFormattedString)")
                 } else {
                     Text("-")
                 }

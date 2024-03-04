@@ -34,6 +34,7 @@
 "stats_title" = "Stats";
 "games_played" = "Games played:";
 "average_score" = "Average score:";
+"total_points" = "Total points:";
 
 // Menu View - Play Button
 "play_button_title" = "Play";
