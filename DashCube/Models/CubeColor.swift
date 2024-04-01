@@ -8,6 +8,9 @@ enum CubeColor : String {
     case cube4
     case cube5
     case cube6
+    case cube7
+    case cube8
+    case cube9
     
     var color : Color {
         switch self {
@@ -25,6 +28,12 @@ enum CubeColor : String {
             return Color.cube5
         case .cube6:
             return Color.cube6
+        case .cube7:
+            return Color.cube7
+        case .cube8:
+            return Color.cube8
+        case .cube9:
+            return Color.cube9
         }
     }
 }

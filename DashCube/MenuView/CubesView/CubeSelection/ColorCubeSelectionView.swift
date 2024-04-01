@@ -20,7 +20,7 @@ private extension ColorCubeSelectionView {
     }
     
     var grid : some View {
-        LazyVGrid(columns: columns) {
+        LazyVGrid(columns: columns, spacing: 10) {
             ForEach(viewModel.colorCubes) { colorCube in
                 cubeView(colorCube)
                     .onTapGesture {

@@ -82,7 +82,10 @@ class Constants {
             .init(animation: .none, cubeColor: .cube3, requiredGamesPlayed: 20),
             .init(animation: .none, cubeColor: .cube4, requiredGamesPlayed: 30),
             .init(animation: .none, cubeColor: .cube5, requiredGamesPlayed: 40),
-            .init(animation: .none, cubeColor: .cube6, requiredGamesPlayed: 50)
+            .init(animation: .none, cubeColor: .cube6, requiredGamesPlayed: 50),
+            .init(animation: .none, cubeColor: .cube7, requiredGamesPlayed: 60),
+            .init(animation: .none, cubeColor: .cube8, requiredGamesPlayed: 70),
+            .init(animation: .none, cubeColor: .cube9, requiredGamesPlayed: 80)
         ]
     }
     // MARK: - Game Center
