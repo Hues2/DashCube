@@ -81,6 +81,8 @@ class Constants {
             .init(animation: .none, cubeColor: .cube2, requiredGamesPlayed: 10),
             .init(animation: .none, cubeColor: .cube3, requiredGamesPlayed: 20),
             .init(animation: .none, cubeColor: .cube4, requiredGamesPlayed: 30),
+            .init(animation: .none, cubeColor: .cube5, requiredGamesPlayed: 40),
+            .init(animation: .none, cubeColor: .cube6, requiredGamesPlayed: 50)
         ]
     }
     // MARK: - Game Center

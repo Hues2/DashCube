@@ -38,7 +38,6 @@ private extension GameCenterManager {
                     self.overallHighscore = self.getHighScoreFromAppStorage()
                     return
                 }
-                print("User Authenticated")
                 self.fetchAllLeaderboardData()
             }
             .store(in: &cancellables)
@@ -88,7 +87,6 @@ extension GameCenterManager {
         guard let classicLeaderboard else {
             // There is no "classic" leaderboard
             self.overallHighscore = self.getHighScoreFromAppStorage()
-            print("Classic leaderboard not found")
             return
         }
         
