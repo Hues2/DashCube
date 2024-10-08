@@ -11,10 +11,12 @@ DashCube is a fast-paced iOS game designed to challenge your reaction speed. Sta
 
 **Screenshots:**
 <p float="left">
-  <img src="https://github.com/user-attachments/assets/1ee97ee2-3c94-4a8c-b34a-a2c9b1808878" width="150" />
-  <img src="https://github.com/user-attachments/assets/eca14d67-f26a-4d8d-ab89-a519b6fb40e7" width="150" />
-  <img src="https://github.com/user-attachments/assets/59eded62-d06b-43e4-82eb-90277ee4a590" width="150" />
- <img src="https://github.com/user-attachments/assets/09ba25a7-d7e3-45c6-8655-80e0c27643eb" width="150" />
+  <img src="https://github.com/user-attachments/assets/8d498b5f-f7c4-4c9f-b984-55a28bc30ca9" width="150" />
+  <img src="https://github.com/user-attachments/assets/f90d7216-ce12-4996-897a-9ee19608dc33" width="150" />
+  <img src="https://github.com/user-attachments/assets/dd6a9290-c7d7-43cc-9350-5114710b8ca3" width="150" />
+  <img src="https://github.com/user-attachments/assets/38f3df50-17da-4649-b3ad-5525f399cb8e" width="150" />
+  <img src="https://github.com/user-attachments/assets/3ad2629a-f1de-4fd2-b0c7-af3224077940" width="150" />
+  <img src="https://github.com/user-attachments/assets/e7e73879-b309-4177-8b6c-6a4e38c4c03c" width="150" />
 </p>
 
 *Built with SwiftUI, UIKit, Combine, SceneKit, and GameKit.*
