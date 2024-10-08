@@ -9,7 +9,8 @@ DashCube is a fast-paced iOS game designed to challenge your reaction speed. Sta
 - **Leaderboard and Stats**: Track your stats and high scores, and compete on the leaderboard to see how you rank against other players.
 - **Unlockable Customizations**: Unlock new animations and colors for your player cube as you progress!
 
-**Screenshots:**
+
+## Screenshots:
 <p float="left">
   <img src="https://github.com/user-attachments/assets/8d498b5f-f7c4-4c9f-b984-55a28bc30ca9" width="150" />
   <img src="https://github.com/user-attachments/assets/f90d7216-ce12-4996-897a-9ee19608dc33" width="150" />
